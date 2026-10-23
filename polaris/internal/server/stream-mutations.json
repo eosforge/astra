@@ -1,0 +1,428 @@
+{
+  "version": 1,
+  "scope": "Finite stream mutation inventory for owned shutdown, virtual deadlines, admission, bounded receive/send, initial inventory, scope/sequence grouping, retained-history recovery, cumulative ACK and assessment floors, snapshot ownership, and truthful once-only readiness. It complements cache/authority and window inventories. Subscription-versus-plan capture ordering, complete independent-effect coverage, fault matrices, protected CI and whole-system release qualification remain separate obligations.",
+  "package": "./polaris/internal/server",
+  "import": "github.com/eosforge/astra/polaris/internal/server",
+  "mutations": [
+    {
+      "id": "stream-capacity",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestDeadlineCapacity",
+      "before": "slots: make(chan struct{}, 16)",
+      "after": "slots: make(chan struct{}, 15)"
+    },
+    {
+      "id": "stream-wait",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestDeadline",
+      "before": "func (streams *Streams) Wait() { streams.workers.Wait() }",
+      "after": "func (streams *Streams) Wait() {}"
+    },
+    {
+      "id": "stream-retirement",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestDeadline",
+      "before": "<-transfer.received\n\t\t<-streams.slots",
+      "after": "<-streams.slots\n\t\t<-transfer.received"
+    },
+    {
+      "id": "stream-cancellation",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestDeadline",
+      "before": "return status.FromContextError(ctx.Err()).Err()",
+      "after": "return status.Error(codes.Unavailable, \"cancelled\")"
+    },
+    {
+      "id": "expiry-boundary",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestExpiration",
+      "before": "if remaining <= 0 {",
+      "after": "if remaining < 0 {"
+    },
+    {
+      "id": "expiry-rearm",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestExpiration",
+      "before": "timer.Reset(remaining)",
+      "after": "timer.Reset(remaining + time.Nanosecond)"
+    },
+    {
+      "id": "phase-clear",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestExpiration",
+      "before": "transfer.deadline.Store(nil)",
+      "after": "transfer.deadline.Store(new(time.Time))"
+    },
+    {
+      "id": "input-eof",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "status.Error(codes.Canceled, \"Almanac upstream closed\")",
+      "after": "status.Error(codes.InvalidArgument, \"Almanac upstream closed\")"
+    },
+    {
+      "id": "send-cancelled",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "if transfer.ctx.Err() != nil {",
+      "after": "if transfer.ctx.Err() != nil && false {"
+    },
+    {
+      "id": "send-admission",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestFlow",
+      "before": "if transfer.remote != nil && !transfer.owner.node.Directory().Current(transfer.remote) {",
+      "after": "if transfer.remote != nil && !transfer.owner.node.Directory().Current(transfer.remote) && false {"
+    },
+    {
+      "id": "send-capacity",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "if proto.Size(packet) > transfer.maximum {",
+      "after": "if proto.Size(packet) > transfer.maximum && false {"
+    },
+    {
+      "id": "send-deadline",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "err := transfer.wire.Send(packet)\n\ttransfer.wait(0)",
+      "after": "err := transfer.wire.Send(packet)\n\t// Deliberately retain the completed send deadline."
+    },
+    {
+      "id": "inventory-deadline",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestInventoryInput",
+      "before": "defer transfer.wait(0)",
+      "after": "defer func() {}()"
+    },
+    {
+      "id": "inventory-completion",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestInventoryInput",
+      "before": "if page.Complete {",
+      "after": "if true {"
+    },
+    {
+      "id": "inventory-duplicate",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "duplicate || !scope.Valid()",
+      "after": "(false && duplicate) || !scope.Valid()"
+    },
+    {
+      "id": "inventory-capacity",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestStreamProtocol",
+      "before": "int64(len(target)) >= transfer.owner.authority.store.Limits().Scopes",
+      "after": "int64(len(target)) > transfer.owner.authority.store.Limits().Scopes"
+    },
+    {
+      "id": "hello-protocol",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestStreamProtocol",
+      "before": "hello.ProtocolMajor != 1",
+      "after": "hello.ProtocolMajor > 1"
+    },
+    {
+      "id": "hello-minimum",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestStreamProtocol",
+      "before": "hello.MaxFrameBytes < 1024",
+      "after": "hello.MaxFrameBytes < 1023"
+    },
+    {
+      "id": "hello-maximum",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestStreamProtocol",
+      "before": "hello.MaxFrameBytes > 8<<20",
+      "after": "hello.MaxFrameBytes > 9<<20"
+    },
+    {
+      "id": "stream-duplicate",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestStreamProtocol",
+      "before": "transfer.owner.active[string(transfer.remote.Id)]; exists {",
+      "after": "transfer.owner.active[string(transfer.remote.Id)]; exists && false {"
+    },
+    {
+      "id": "identity-retirement",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestFlow",
+      "before": "delete(transfer.owner.active, string(transfer.remote.Id))",
+      "after": "_ = transfer.remote.Id"
+    },
+    {
+      "id": "feed-retirement",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestFlow",
+      "before": "defer feed.Close()",
+      "after": "defer func() {}()"
+    },
+    {
+      "id": "assessment-consumption",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestBusyAssessment",
+      "before": "transfer.actual = nil",
+      "after": "_ = transfer.actual"
+    },
+    {
+      "id": "assessment-fairness",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestBusyAssessment",
+      "before": "\t\tselect {\n\t\tcase <-period.C:\n\t\t\tif err := transfer.assess(); err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tperiod.Reset(30*time.Second + time.Duration(rand.IntN(5000))*time.Millisecond)\n\t\tdefault:\n\t\t}",
+      "after": "\t\t_ = period"
+    },
+    {
+      "id": "suffix-scope",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestSuffix",
+      "before": "events[begin].Scope == scope && len(changes) < 128",
+      "after": "len(changes) < 128"
+    },
+    {
+      "id": "suffix-duplicate",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestFlow",
+      "before": "if event.Version <= version {",
+      "after": "if event.Version < version {"
+    },
+    {
+      "id": "suffix-gap",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestFlow",
+      "before": "if event.Version != version+1 {",
+      "after": "if event.Version != version+1 && false {"
+    },
+    {
+      "id": "suffix-batch",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestSuffix",
+      "before": "len(changes) < 128 {",
+      "after": "len(changes) < 129 {"
+    },
+    {
+      "id": "manifest-completion",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "page.Complete = true",
+      "after": "page.Complete = false"
+    },
+    {
+      "id": "manifest-refusal",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "if err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Plan{Plan: page}}); err != nil {\n\t\t\t\treturn err",
+      "after": "if err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Plan{Plan: page}}); err != nil {\n\t\t\t\treturn nil"
+    },
+    {
+      "id": "synchronize-position",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestSuffix",
+      "before": "if after >= position.Version {",
+      "after": "if after <= position.Version {"
+    },
+    {
+      "id": "synchronize-history",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestSuffix",
+      "before": "\t\tif !errors.Is(err, storage.ErrHistory) {\n\t\t\treturn failure(err)",
+      "after": "\t\tif errors.Is(err, storage.ErrHistory) {\n\t\t\treturn failure(err)"
+    },
+    {
+      "id": "restore-release",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestSuffix",
+      "before": "defer pin.release()",
+      "after": "defer func() {}()"
+    },
+    {
+      "id": "update-erase",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "if item.Erase {",
+      "after": "if item.Erase && false {"
+    },
+    {
+      "id": "update-atomic-shape",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestSuffix",
+      "before": "if change.Key == \"\" {",
+      "after": "if change.Key != \"\" {"
+    },
+    {
+      "id": "update-page-reset",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestSuffix",
+      "before": "page = &polaris.Updates{Scope: page.Scope}",
+      "after": "page.Scope = page.Scope"
+    },
+    {
+      "id": "control-fairness",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestDrainBudget",
+      "before": "count < 16",
+      "after": "count < 17"
+    },
+    {
+      "id": "control-admission",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "packet == nil || !transfer.owner.node.Directory().Current(transfer.remote)",
+      "after": "packet == nil || (false && !transfer.owner.node.Directory().Current(transfer.remote))"
+    },
+    {
+      "id": "ack-boundary",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestControl",
+      "before": "storage.Version(position.Version) > sent",
+      "after": "storage.Version(position.Version) >= sent"
+    },
+    {
+      "id": "ack-monotonicity",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "max(transfer.installed[scope], storage.Version(position.Version))",
+      "after": "storage.Version(position.Version)"
+    },
+    {
+      "id": "assessment-completion",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "if inventory.Complete {",
+      "after": "if true {"
+    },
+    {
+      "id": "assessment-floor",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "!exists || version < minimum",
+      "after": "!exists || (false && version < minimum)"
+    },
+    {
+      "id": "assessment-upper",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.sent[scope]; !exists || version > sent",
+      "after": "transfer.sent[scope]; !exists || version >= sent"
+    },
+    {
+      "id": "assessment-monotonicity",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.installed[scope] = max(transfer.installed[scope], version)\n\t\t\t\ttransfer.release",
+      "after": "transfer.installed[scope] = version\n\t\t\t\ttransfer.release"
+    },
+    {
+      "id": "assessment-credit",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.release(scope, version)",
+      "after": "_ = version"
+    },
+    {
+      "id": "assessment-result",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.actual = transfer.probe",
+      "after": "transfer.actual = nil"
+    },
+    {
+      "id": "assessment-reset",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.probe = nil",
+      "after": "transfer.probe = make(map[storage.Scope]storage.Version)"
+    },
+    {
+      "id": "assessment-overlap",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.probe != nil || transfer.actual != nil",
+      "after": "transfer.probe != nil"
+    },
+    {
+      "id": "assessment-sent-copy",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.boundary = make(map[storage.Scope]storage.Version, len(transfer.sent))",
+      "after": "transfer.boundary = transfer.sent"
+    },
+    {
+      "id": "assessment-floor-copy",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestAssessment",
+      "before": "transfer.floor = make(map[storage.Scope]storage.Version, len(transfer.installed))",
+      "after": "transfer.floor = transfer.installed"
+    },
+    {
+      "id": "reconcile-authority",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestReconciliation",
+      "before": "!exists || version > current || version > transfer.sent[scope]",
+      "after": "!exists || (false && version > current) || version > transfer.sent[scope]"
+    },
+    {
+      "id": "reconcile-sent",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestReconciliation",
+      "before": "!exists || version > current || version > transfer.sent[scope]",
+      "after": "!exists || version > current || (false && version > transfer.sent[scope])"
+    },
+    {
+      "id": "reconcile-replay",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestReconciliation",
+      "before": "expected && (!present || after < minimum)",
+      "after": "expected && (!present || after > minimum)"
+    },
+    {
+      "id": "reconcile-release",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestReconciliation",
+      "before": "\t\t\tpin.release()",
+      "after": "\t\t\t_ = pin"
+    },
+    {
+      "id": "reconcile-retirement",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestReconciliation",
+      "before": "transfer.floor = nil",
+      "after": "_ = transfer.floor"
+    },
+    {
+      "id": "ready-once",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestEmission",
+      "before": "if transfer.ready {",
+      "after": "if transfer.ready && false {"
+    },
+    {
+      "id": "ready-minimum",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestEmission",
+      "before": "!present || installed < minimum",
+      "after": "!present || (false && installed < minimum)"
+    },
+    {
+      "id": "ready-zero",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestEmission",
+      "before": "!present || installed < minimum",
+      "after": "(false && !present) || installed < minimum"
+    },
+    {
+      "id": "ready-commit",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestEmission",
+      "before": "\tif err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Ready",
+      "after": "\ttransfer.ready = true\n\tif err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Ready"
+    },
+    {
+      "id": "ready-refusal",
+      "file": "polaris/internal/server/stream.go",
+      "test": "TestEmission",
+      "before": "if err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Ready{Ready: &comet.Empty{}}}); err != nil {\n\t\treturn err",
+      "after": "if err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Ready{Ready: &comet.Empty{}}}); err != nil {\n\t\treturn nil"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "records": 1,
+    "bytes": 128
+  },
+  {
+    "records": 100,
+    "bytes": 128
+  },
+  {
+    "records": 1000,
+    "bytes": 128
+  },
+  {
+    "records": 10000,
+    "bytes": 128
+  },
+  {
+    "records": 1000,
+    "bytes": 16
+  },
+  {
+    "records": 1000,
+    "bytes": 1024
+  }
+]

@@ -1,0 +1,7217 @@
+{
+  "boundary": "Synthetic parser-control copies of admitted shapes. Native acceptance requires authenticated original streams and original source-bound masks. These copied fixtures supply no application or condition credit.",
+  "cases": {
+    "binding-galaxy": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "binding-galaxy",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "binding-galaxy",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "74657374",
+            "type": "text"
+          },
+          {
+            "hex": "706f6c61726973",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "binding-galaxy",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "binding-galaxy",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "binding-galaxy",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "binding-galaxy",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "6f74686572",
+            "type": "text"
+          },
+          {
+            "hex": "706f6c61726973",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "binding-galaxy",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "binding-galaxy",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "binding-galaxy",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "binding-galaxy",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "6f74686572",
+            "type": "text"
+          },
+          {
+            "hex": "706f6c61726973",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "binding-galaxy",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "binding-galaxy",
+        "values": []
+      }
+    ],
+    "binding-username": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "binding-username",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "binding-username",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "74657374",
+            "type": "text"
+          },
+          {
+            "hex": "706f6c61726973",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "binding-username",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "binding-username",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "binding-username",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "binding-username",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "74657374",
+            "type": "text"
+          },
+          {
+            "hex": "6f74686572",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "binding-username",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "binding-username",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "binding-username",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "binding-username",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "74657374",
+            "type": "text"
+          },
+          {
+            "hex": "6f74686572",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "binding-username",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "binding-username",
+        "values": []
+      }
+    ],
+    "checkpoint-busy": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 1048576
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 786433,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "checkpoint-busy",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 786497,
+          "Bytes": 786433,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "busy",
+          "log",
+          "checkpointed"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "checkpoint-busy",
+        "values": [
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 394
+          },
+          {
+            "type": "integer",
+            "value": 394
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "checkpoint-busy",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "checkpoint-busy",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 1048576
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 786433,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "checkpoint-busy",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 786497,
+          "Bytes": 786433,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "busy",
+          "log",
+          "checkpointed"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "checkpoint-busy",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 394
+          },
+          {
+            "type": "integer",
+            "value": 394
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "checkpoint-busy",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "checkpoint-busy",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 1048576
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 786433,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "checkpoint-busy",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 786497,
+          "Bytes": 786433,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "busy",
+          "log",
+          "checkpointed"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "checkpoint-busy",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 394
+          },
+          {
+            "type": "integer",
+            "value": 394
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "checkpoint-busy",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "checkpoint-busy",
+        "values": []
+      }
+    ],
+    "foreign-next": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "foreign-next",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "table",
+          "rowid",
+          "parent",
+          "fkid"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "foreign-next",
+        "values": [
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "foreign-next",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "foreign-next",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "foreign-next",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "table",
+          "rowid",
+          "parent",
+          "fkid"
+        ],
+        "kind": "next",
+        "outcome": "error",
+        "point": "foreign-next",
+        "values": [
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "foreign-next",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "foreign-next",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "foreign-next",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "table",
+          "rowid",
+          "parent",
+          "fkid"
+        ],
+        "kind": "next",
+        "outcome": "error",
+        "point": "foreign-next",
+        "values": [
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "foreign-next",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "foreign-next",
+        "values": []
+      }
+    ],
+    "foreign-row": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "foreign-row",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "table",
+          "rowid",
+          "parent",
+          "fkid"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "foreign-row",
+        "values": [
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "nil"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "foreign-row",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "foreign-row",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "foreign-row",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "table",
+          "rowid",
+          "parent",
+          "fkid"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "foreign-row",
+        "values": [
+          {
+            "hex": "7265636f726473",
+            "type": "text"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "hex": "73636f706573",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "foreign-row",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "foreign-row",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "foreign-row",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "table",
+          "rowid",
+          "parent",
+          "fkid"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "foreign-row",
+        "values": [
+          {
+            "hex": "7265636f726473",
+            "type": "text"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "hex": "73636f706573",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "foreign-row",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "foreign-row",
+        "values": []
+      }
+    ],
+    "history-value": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 1,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "history-value",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 65,
+          "Bytes": 1,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "version",
+          "key",
+          "value",
+          "erase",
+          "cost"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "history-value",
+        "values": [
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "bytes": 0,
+            "hex": "",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 65
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "version",
+          "key",
+          "value",
+          "erase",
+          "cost"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "history-value",
+        "values": [
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "bytes": 0,
+            "hex": "",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 65
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "history-value",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "history-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 1,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "history-value",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 65,
+          "Bytes": 1,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "version",
+          "key",
+          "value",
+          "erase",
+          "cost"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "history-value",
+        "values": [
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 65
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "history-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "history-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 1,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "history-value",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 65,
+          "Bytes": 1,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "version",
+          "key",
+          "value",
+          "erase",
+          "cost"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "history-value",
+        "values": [
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "type": "nil"
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 65
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "history-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "history-value",
+        "values": []
+      }
+    ],
+    "retained-count": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "retained-count",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "count",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "retained-count",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "retained-count",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "retained-count",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "retained-count",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "count",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "retained-count",
+        "values": [
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "retained-count",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "retained-count",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "retained-count",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "count",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "retained-count",
+        "values": [
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "retained-count",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "retained-count",
+        "values": []
+      }
+    ],
+    "scope-capacity": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 4,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 2,
+          "Username": "polaris"
+        },
+        "point": "scope-capacity",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7365636f6e64",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7365636f6e64",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 1,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 4,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 2,
+          "Username": "polaris"
+        },
+        "point": "scope-capacity",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7365636f6e64",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7365636f6e64",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "scope-capacity",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 1,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 4,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 2,
+          "Username": "polaris"
+        },
+        "point": "scope-capacity",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7365636f6e64",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "scope-capacity",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7365636f6e64",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "scope-capacity",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "scope-capacity",
+        "values": []
+      }
+    ],
+    "snapshot-value": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "snapshot-value",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "key",
+          "value"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "snapshot-value",
+        "values": [
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "bytes": 1,
+            "hex": "76",
+            "sha256": "4c94485e0c21ae6c41ce1dfe7b6bfaceea5ab68e40a2476f50208e526f506080",
+            "type": "blob"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "key",
+          "value"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "snapshot-value",
+        "values": [
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "bytes": 1,
+            "hex": "76",
+            "sha256": "4c94485e0c21ae6c41ce1dfe7b6bfaceea5ab68e40a2476f50208e526f506080",
+            "type": "blob"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "snapshot-value",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "snapshot-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "snapshot-value",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "key",
+          "value"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "snapshot-value",
+        "values": [
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "type": "nil"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "snapshot-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "snapshot-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "snapshot-value",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "key",
+          "value"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "snapshot-value",
+        "values": [
+          {
+            "hex": "6b",
+            "type": "text"
+          },
+          {
+            "type": "nil"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "snapshot-value",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "snapshot-value",
+        "values": []
+      }
+    ],
+    "state-backlog": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-backlog",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-backlog",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-backlog",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "state-backlog",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-backlog",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-backlog",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": -1
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-backlog",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-backlog",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 0,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-backlog",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-backlog",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": -1
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-backlog",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-backlog",
+        "values": []
+      }
+    ],
+    "state-retained": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 18446744073709551614,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-retained",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 18446744073709551615
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-retained",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-retained",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "state-retained",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 18446744073709551614,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-retained",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 18446744073709551615
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-retained",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": -1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-retained",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-retained",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 18446744073709551614,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-retained",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 18446744073709551615
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-retained",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": -1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-retained",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-retained",
+        "values": []
+      }
+    ],
+    "state-validation": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 18446744073709551614,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-validation",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 18446744073709551615
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-validation",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "state-validation",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-validation",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "state-validation",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 18446744073709551614,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-validation",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 18446744073709551615
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-validation",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": -1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "state-validation",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": -1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-validation",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-validation",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 18446744073709551614,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-validation",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 66,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 1,
+          "Version": 18446744073709551615
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-validation",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": -1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "state-validation",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "ffffffffffffffff",
+            "sha256": "12a3ae445661ce5dee78d0650d33362dec29c4f82af05e7e57fb595bbbacf0ca",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": -1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-validation",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-validation",
+        "values": []
+      }
+    ],
+    "state-version": [
+      {
+        "active": false,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 1,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 0,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-version",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 0,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 0,
+          "Version": 1
+        }
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-version",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "state-version",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000001",
+            "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-version",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "state-version",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 1,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 0,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-version",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 0,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 0,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-version",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000000",
+            "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "state-version",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000000",
+            "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-version",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-version",
+        "values": []
+      },
+      {
+        "active": true,
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "test",
+          "Username": "polaris"
+        },
+        "cursor": 1,
+        "kind": "context",
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 0,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "meta": {
+          "Advertise": "127.0.0.1:45101",
+          "Bytes": 2,
+          "Format": 1,
+          "Galaxy": "test",
+          "Scopes": 1,
+          "Username": "polaris"
+        },
+        "point": "state-version",
+        "scope": {
+          "Sector": "inspection",
+          "Spectrum": "reply"
+        },
+        "state": {
+          "Backlog": 0,
+          "Bytes": 2,
+          "Records": 1,
+          "Retained": 0,
+          "Version": 1
+        }
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "state-version",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000000",
+            "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "state-version",
+        "values": [
+          {
+            "hex": "696e7370656374696f6e",
+            "type": "text"
+          },
+          {
+            "hex": "7265706c79",
+            "type": "text"
+          },
+          {
+            "bytes": 8,
+            "hex": "0000000000000000",
+            "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+            "type": "blob"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "state-version",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "state-version",
+        "values": []
+      }
+    ]
+  },
+  "decisions": {
+    "polaris/internal/storage/commit.go:890": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 27,
+            "offset": 891
+          },
+          "end": {
+            "column": 19,
+            "line": 27,
+            "offset": 904
+          },
+          "text": "scope.Valid()"
+        },
+        {
+          "begin": {
+            "column": 23,
+            "line": 27,
+            "offset": 908
+          },
+          "end": {
+            "column": 42,
+            "line": 27,
+            "offset": 927
+          },
+          "text": "change.Version == 0"
+        },
+        {
+          "begin": {
+            "column": 46,
+            "line": 27,
+            "offset": 931
+          },
+          "end": {
+            "column": 56,
+            "line": 27,
+            "offset": 941
+          },
+          "text": "err != nil"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 27,
+        "offset": 890
+      },
+      "end": {
+        "column": 56,
+        "line": 27,
+        "offset": 941
+      },
+      "id": "polaris/internal/storage/commit.go:890",
+      "kind": "if",
+      "root": 5,
+      "text": "!scope.Valid() || change.Version == 0 || err != nil",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3,
+            4
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/feed.go:1983": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 46,
+            "offset": 1983
+          },
+          "end": {
+            "column": 28,
+            "line": 46,
+            "offset": 2006
+          },
+          "text": "len(store.feeds) >= 128"
+        },
+        {
+          "begin": {
+            "column": 32,
+            "line": 46,
+            "offset": 2010
+          },
+          "end": {
+            "column": 65,
+            "line": 46,
+            "offset": 2043
+          },
+          "text": "limit > (128<<20)-store.feedBytes"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 46,
+        "offset": 1983
+      },
+      "end": {
+        "column": 65,
+        "line": 46,
+        "offset": 2043
+      },
+      "id": "polaris/internal/storage/feed.go:1983",
+      "kind": "if",
+      "root": 2,
+      "text": "len(store.feeds) >= 128 || limit > (128<<20)-store.feedBytes",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/read.go:3910": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 52,
+            "line": 108,
+            "offset": 3910
+          },
+          "end": {
+            "column": 62,
+            "line": 108,
+            "offset": 3920
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 67,
+            "line": 108,
+            "offset": 3925
+          },
+          "end": {
+            "column": 89,
+            "line": 108,
+            "offset": 3947
+          },
+          "text": "text(record.Key, 1024)"
+        },
+        {
+          "begin": {
+            "column": 93,
+            "line": 108,
+            "offset": 3951
+          },
+          "end": {
+            "column": 112,
+            "line": 108,
+            "offset": 3970
+          },
+          "text": "record.Value == nil"
+        },
+        {
+          "begin": {
+            "column": 116,
+            "line": 108,
+            "offset": 3974
+          },
+          "end": {
+            "column": 141,
+            "line": 108,
+            "offset": 3999
+          },
+          "text": "len(record.Value) > 1<<20"
+        }
+      ],
+      "begin": {
+        "column": 52,
+        "line": 108,
+        "offset": 3910
+      },
+      "end": {
+        "column": 141,
+        "line": 108,
+        "offset": 3999
+      },
+      "id": "polaris/internal/storage/read.go:3910",
+      "kind": "if",
+      "root": 7,
+      "text": "err != nil || !text(record.Key, 1024) || record.Value == nil || len(record.Value) > 1<<20",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            0,
+            2
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3,
+            4
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            5,
+            6
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/read.go:5624": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 155,
+            "offset": 5624
+          },
+          "end": {
+            "column": 23,
+            "line": 155,
+            "offset": 5642
+          },
+          "text": "state.Retained < 0"
+        },
+        {
+          "begin": {
+            "column": 27,
+            "line": 155,
+            "offset": 5646
+          },
+          "end": {
+            "column": 73,
+            "line": 155,
+            "offset": 5692
+          },
+          "text": "uint64(state.Retained) > uint64(state.Version)"
+        },
+        {
+          "begin": {
+            "column": 77,
+            "line": 155,
+            "offset": 5696
+          },
+          "end": {
+            "column": 114,
+            "line": 155,
+            "offset": 5733
+          },
+          "text": "state.Retained > store.limits.History"
+        },
+        {
+          "begin": {
+            "column": 118,
+            "line": 155,
+            "offset": 5737
+          },
+          "end": {
+            "column": 135,
+            "line": 155,
+            "offset": 5754
+          },
+          "text": "state.Backlog < 0"
+        },
+        {
+          "begin": {
+            "column": 139,
+            "line": 155,
+            "offset": 5758
+          },
+          "end": {
+            "column": 175,
+            "line": 155,
+            "offset": 5794
+          },
+          "text": "state.Backlog > store.limits.Backlog"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 155,
+        "offset": 5624
+      },
+      "end": {
+        "column": 175,
+        "line": 155,
+        "offset": 5794
+      },
+      "id": "polaris/internal/storage/read.go:5624",
+      "kind": "if",
+      "root": 8,
+      "text": "state.Retained < 0 || uint64(state.Retained) > uint64(state.Version) || state.Retained > store.limits.History || state.Backlog < 0 || state.Backlog > store.limits.Backlog",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            6,
+            7
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/read.go:6637": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 91,
+            "line": 175,
+            "offset": 6637
+          },
+          "end": {
+            "column": 101,
+            "line": 175,
+            "offset": 6647
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 105,
+            "line": 175,
+            "offset": 6651
+          },
+          "end": {
+            "column": 130,
+            "line": 175,
+            "offset": 6676
+          },
+          "text": "position == state.Version"
+        },
+        {
+          "begin": {
+            "column": 134,
+            "line": 175,
+            "offset": 6680
+          },
+          "end": {
+            "column": 162,
+            "line": 175,
+            "offset": 6708
+          },
+          "text": "change.Version != position+1"
+        },
+        {
+          "begin": {
+            "column": 166,
+            "line": 175,
+            "offset": 6712
+          },
+          "end": {
+            "column": 185,
+            "line": 175,
+            "offset": 6731
+          },
+          "text": "change.Value == nil"
+        },
+        {
+          "begin": {
+            "column": 189,
+            "line": 175,
+            "offset": 6735
+          },
+          "end": {
+            "column": 240,
+            "line": 175,
+            "offset": 6786
+          },
+          "text": "cost != int64(64+len(change.Key)+len(change.Value))"
+        }
+      ],
+      "begin": {
+        "column": 91,
+        "line": 175,
+        "offset": 6637
+      },
+      "end": {
+        "column": 240,
+        "line": 175,
+        "offset": 6786
+      },
+      "id": "polaris/internal/storage/read.go:6637",
+      "kind": "if",
+      "root": 8,
+      "text": "err != nil || position == state.Version || change.Version != position+1 || change.Value == nil || cost != int64(64+len(change.Key)+len(change.Value))",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            6,
+            7
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:4872": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 95,
+            "offset": 4872
+          },
+          "end": {
+            "column": 35,
+            "line": 95,
+            "offset": 4901
+          },
+          "text": "meta.Galaxy != binding.Galaxy"
+        },
+        {
+          "begin": {
+            "column": 39,
+            "line": 95,
+            "offset": 4905
+          },
+          "end": {
+            "column": 72,
+            "line": 95,
+            "offset": 4938
+          },
+          "text": "meta.Username != binding.Username"
+        },
+        {
+          "begin": {
+            "column": 76,
+            "line": 95,
+            "offset": 4942
+          },
+          "end": {
+            "column": 111,
+            "line": 95,
+            "offset": 4977
+          },
+          "text": "meta.Advertise != binding.Advertise"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 95,
+        "offset": 4872
+      },
+      "end": {
+        "column": 111,
+        "line": 95,
+        "offset": 4977
+      },
+      "id": "polaris/internal/storage/schema.go:4872",
+      "kind": "if",
+      "root": 4,
+      "text": "meta.Galaxy != binding.Galaxy || meta.Username != binding.Username || meta.Advertise != binding.Advertise",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:5291": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 106,
+            "offset": 5291
+          },
+          "end": {
+            "column": 46,
+            "line": 106,
+            "offset": 5331
+          },
+          "text": "int64(len(scopes)) > store.limits.Scopes"
+        },
+        {
+          "begin": {
+            "column": 50,
+            "line": 106,
+            "offset": 5335
+          },
+          "end": {
+            "column": 83,
+            "line": 106,
+            "offset": 5368
+          },
+          "text": "meta.Scopes != int64(len(scopes))"
+        },
+        {
+          "begin": {
+            "column": 87,
+            "line": 106,
+            "offset": 5372
+          },
+          "end": {
+            "column": 118,
+            "line": 106,
+            "offset": 5403
+          },
+          "text": "meta.Bytes > store.limits.Total"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 106,
+        "offset": 5291
+      },
+      "end": {
+        "column": 118,
+        "line": 106,
+        "offset": 5403
+      },
+      "id": "polaris/internal/storage/schema.go:5291",
+      "kind": "if",
+      "root": 4,
+      "text": "int64(len(scopes)) > store.limits.Scopes || meta.Scopes != int64(len(scopes)) || meta.Bytes > store.limits.Total",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:5601": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 8,
+            "line": 113,
+            "offset": 5602
+          },
+          "end": {
+            "column": 27,
+            "line": 113,
+            "offset": 5621
+          },
+          "text": "scope.Scope.Valid()"
+        },
+        {
+          "begin": {
+            "column": 31,
+            "line": 113,
+            "offset": 5625
+          },
+          "end": {
+            "column": 49,
+            "line": 113,
+            "offset": 5643
+          },
+          "text": "state.Version == 0"
+        },
+        {
+          "begin": {
+            "column": 53,
+            "line": 113,
+            "offset": 5647
+          },
+          "end": {
+            "column": 89,
+            "line": 113,
+            "offset": 5683
+          },
+          "text": "state.Records > store.limits.Records"
+        },
+        {
+          "begin": {
+            "column": 93,
+            "line": 113,
+            "offset": 5687
+          },
+          "end": {
+            "column": 125,
+            "line": 113,
+            "offset": 5719
+          },
+          "text": "state.Bytes > store.limits.Bytes"
+        },
+        {
+          "begin": {
+            "column": 129,
+            "line": 113,
+            "offset": 5723
+          },
+          "end": {
+            "column": 166,
+            "line": 113,
+            "offset": 5760
+          },
+          "text": "state.Retained > store.limits.History"
+        },
+        {
+          "begin": {
+            "column": 170,
+            "line": 113,
+            "offset": 5764
+          },
+          "end": {
+            "column": 206,
+            "line": 113,
+            "offset": 5800
+          },
+          "text": "state.Backlog > store.limits.Backlog"
+        },
+        {
+          "begin": {
+            "column": 210,
+            "line": 113,
+            "offset": 5804
+          },
+          "end": {
+            "column": 228,
+            "line": 113,
+            "offset": 5822
+          },
+          "text": "state.Retained < 0"
+        },
+        {
+          "begin": {
+            "column": 232,
+            "line": 113,
+            "offset": 5826
+          },
+          "end": {
+            "column": 278,
+            "line": 113,
+            "offset": 5872
+          },
+          "text": "uint64(state.Retained) > uint64(state.Version)"
+        }
+      ],
+      "begin": {
+        "column": 7,
+        "line": 113,
+        "offset": 5601
+      },
+      "end": {
+        "column": 278,
+        "line": 113,
+        "offset": 5872
+      },
+      "id": "polaris/internal/storage/schema.go:5601",
+      "kind": "if",
+      "root": 15,
+      "text": "!scope.Scope.Valid() || state.Version == 0 || state.Records > store.limits.Records || state.Bytes > store.limits.Bytes || state.Retained > store.limits.History || state.Backlog > store.limits.Backlog || state.Retained < 0 || uint64(state.Retained) > uint64(state.Version)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3,
+            4
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            5,
+            6
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            7,
+            8
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 5,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            9,
+            10
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 6,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            11,
+            12
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 7,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            13,
+            14
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:6814": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 177,
+            "line": 133,
+            "offset": 6814
+          },
+          "end": {
+            "column": 187,
+            "line": 133,
+            "offset": 6824
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 191,
+            "line": 133,
+            "offset": 6828
+          },
+          "end": {
+            "column": 223,
+            "line": 133,
+            "offset": 6860
+          },
+          "text": "retained.Count != state.Retained"
+        },
+        {
+          "begin": {
+            "column": 227,
+            "line": 133,
+            "offset": 6864
+          },
+          "end": {
+            "column": 258,
+            "line": 133,
+            "offset": 6895
+          },
+          "text": "retained.Bytes != state.Backlog"
+        }
+      ],
+      "begin": {
+        "column": 177,
+        "line": 133,
+        "offset": 6814
+      },
+      "end": {
+        "column": 258,
+        "line": 133,
+        "offset": 6895
+      },
+      "id": "polaris/internal/storage/schema.go:6814",
+      "kind": "if",
+      "root": 4,
+      "text": "err != nil || retained.Count != state.Retained || retained.Bytes != state.Backlog",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:7432": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 153,
+            "offset": 7432
+          },
+          "end": {
+            "column": 13,
+            "line": 153,
+            "offset": 7439
+          },
+          "text": "invalid"
+        },
+        {
+          "begin": {
+            "column": 17,
+            "line": 153,
+            "offset": 7443
+          },
+          "end": {
+            "column": 27,
+            "line": 153,
+            "offset": 7453
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 31,
+            "line": 153,
+            "offset": 7457
+          },
+          "end": {
+            "column": 44,
+            "line": 153,
+            "offset": 7470
+          },
+          "text": "closed != nil"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 153,
+        "offset": 7432
+      },
+      "end": {
+        "column": 44,
+        "line": 153,
+        "offset": 7470
+      },
+      "id": "polaris/internal/storage/schema.go:7432",
+      "kind": "if",
+      "root": 4,
+      "text": "invalid || err != nil || closed != nil",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:11041": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 102,
+            "line": 276,
+            "offset": 11041
+          },
+          "end": {
+            "column": 112,
+            "line": 276,
+            "offset": 11051
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 116,
+            "line": 276,
+            "offset": 11055
+          },
+          "end": {
+            "column": 134,
+            "line": 276,
+            "offset": 11073
+          },
+          "text": "progress.Busy != 0"
+        },
+        {
+          "begin": {
+            "column": 138,
+            "line": 276,
+            "offset": 11077
+          },
+          "end": {
+            "column": 174,
+            "line": 276,
+            "offset": 11113
+          },
+          "text": "progress.Log > progress.Checkpointed"
+        }
+      ],
+      "begin": {
+        "column": 102,
+        "line": 276,
+        "offset": 11041
+      },
+      "end": {
+        "column": 174,
+        "line": 276,
+        "offset": 11113
+      },
+      "id": "polaris/internal/storage/store.go:11041",
+      "kind": "if",
+      "root": 4,
+      "text": "err != nil || progress.Busy != 0 || progress.Log > progress.Checkpointed",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "guards": [
+    {
+      "after_sha256": "0ab4eac7be95053e03d7a14f7833a537c5a93ccfce8132b61ae929e0bf7b527b",
+      "before_sha256": "d80c7f8729840d4559c631c4447a6466614ae1f6774c60c7c3d655ca19f269cc",
+      "change": {
+        "Erase": false,
+        "Key": "k",
+        "Value": "dg==",
+        "Version": 1
+      },
+      "entry_error": false,
+      "kind": "commit",
+      "outcome": "nil",
+      "point": "valid",
+      "scope": {
+        "Sector": "guard",
+        "Spectrum": "reply"
+      },
+      "version": 1
+    },
+    {
+      "after_sha256": "d80c7f8729840d4559c631c4447a6466614ae1f6774c60c7c3d655ca19f269cc",
+      "before_sha256": "d80c7f8729840d4559c631c4447a6466614ae1f6774c60c7c3d655ca19f269cc",
+      "change": {
+        "Erase": false,
+        "Key": "k",
+        "Value": "dg==",
+        "Version": 1
+      },
+      "entry_error": false,
+      "kind": "commit",
+      "outcome": "input",
+      "point": "scope",
+      "scope": {
+        "Sector": "",
+        "Spectrum": "reply"
+      },
+      "version": 0
+    },
+    {
+      "after_sha256": "d80c7f8729840d4559c631c4447a6466614ae1f6774c60c7c3d655ca19f269cc",
+      "before_sha256": "d80c7f8729840d4559c631c4447a6466614ae1f6774c60c7c3d655ca19f269cc",
+      "change": {
+        "Erase": false,
+        "Key": "k",
+        "Value": "dg==",
+        "Version": 0
+      },
+      "entry_error": false,
+      "kind": "commit",
+      "outcome": "input",
+      "point": "version",
+      "scope": {
+        "Sector": "guard",
+        "Spectrum": "reply"
+      },
+      "version": 0
+    },
+    {
+      "after_count": 1,
+      "after_reserved": 1,
+      "count": 0,
+      "index": 0,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 0
+    },
+    {
+      "after_count": 2,
+      "after_reserved": 2,
+      "count": 1,
+      "index": 1,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 1
+    },
+    {
+      "after_count": 3,
+      "after_reserved": 3,
+      "count": 2,
+      "index": 2,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 2
+    },
+    {
+      "after_count": 4,
+      "after_reserved": 4,
+      "count": 3,
+      "index": 3,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 3
+    },
+    {
+      "after_count": 5,
+      "after_reserved": 5,
+      "count": 4,
+      "index": 4,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 4
+    },
+    {
+      "after_count": 6,
+      "after_reserved": 6,
+      "count": 5,
+      "index": 5,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 5
+    },
+    {
+      "after_count": 7,
+      "after_reserved": 7,
+      "count": 6,
+      "index": 6,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 6
+    },
+    {
+      "after_count": 8,
+      "after_reserved": 8,
+      "count": 7,
+      "index": 7,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 7
+    },
+    {
+      "after_count": 9,
+      "after_reserved": 9,
+      "count": 8,
+      "index": 8,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 8
+    },
+    {
+      "after_count": 10,
+      "after_reserved": 10,
+      "count": 9,
+      "index": 9,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 9
+    },
+    {
+      "after_count": 11,
+      "after_reserved": 11,
+      "count": 10,
+      "index": 10,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 10
+    },
+    {
+      "after_count": 12,
+      "after_reserved": 12,
+      "count": 11,
+      "index": 11,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 11
+    },
+    {
+      "after_count": 13,
+      "after_reserved": 13,
+      "count": 12,
+      "index": 12,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 12
+    },
+    {
+      "after_count": 14,
+      "after_reserved": 14,
+      "count": 13,
+      "index": 13,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 13
+    },
+    {
+      "after_count": 15,
+      "after_reserved": 15,
+      "count": 14,
+      "index": 14,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 14
+    },
+    {
+      "after_count": 16,
+      "after_reserved": 16,
+      "count": 15,
+      "index": 15,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 15
+    },
+    {
+      "after_count": 17,
+      "after_reserved": 17,
+      "count": 16,
+      "index": 16,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 16
+    },
+    {
+      "after_count": 18,
+      "after_reserved": 18,
+      "count": 17,
+      "index": 17,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 17
+    },
+    {
+      "after_count": 19,
+      "after_reserved": 19,
+      "count": 18,
+      "index": 18,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 18
+    },
+    {
+      "after_count": 20,
+      "after_reserved": 20,
+      "count": 19,
+      "index": 19,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 19
+    },
+    {
+      "after_count": 21,
+      "after_reserved": 21,
+      "count": 20,
+      "index": 20,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 20
+    },
+    {
+      "after_count": 22,
+      "after_reserved": 22,
+      "count": 21,
+      "index": 21,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 21
+    },
+    {
+      "after_count": 23,
+      "after_reserved": 23,
+      "count": 22,
+      "index": 22,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 22
+    },
+    {
+      "after_count": 24,
+      "after_reserved": 24,
+      "count": 23,
+      "index": 23,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 23
+    },
+    {
+      "after_count": 25,
+      "after_reserved": 25,
+      "count": 24,
+      "index": 24,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 24
+    },
+    {
+      "after_count": 26,
+      "after_reserved": 26,
+      "count": 25,
+      "index": 25,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 25
+    },
+    {
+      "after_count": 27,
+      "after_reserved": 27,
+      "count": 26,
+      "index": 26,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 26
+    },
+    {
+      "after_count": 28,
+      "after_reserved": 28,
+      "count": 27,
+      "index": 27,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 27
+    },
+    {
+      "after_count": 29,
+      "after_reserved": 29,
+      "count": 28,
+      "index": 28,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 28
+    },
+    {
+      "after_count": 30,
+      "after_reserved": 30,
+      "count": 29,
+      "index": 29,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 29
+    },
+    {
+      "after_count": 31,
+      "after_reserved": 31,
+      "count": 30,
+      "index": 30,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 30
+    },
+    {
+      "after_count": 32,
+      "after_reserved": 32,
+      "count": 31,
+      "index": 31,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 31
+    },
+    {
+      "after_count": 33,
+      "after_reserved": 33,
+      "count": 32,
+      "index": 32,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 32
+    },
+    {
+      "after_count": 34,
+      "after_reserved": 34,
+      "count": 33,
+      "index": 33,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 33
+    },
+    {
+      "after_count": 35,
+      "after_reserved": 35,
+      "count": 34,
+      "index": 34,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 34
+    },
+    {
+      "after_count": 36,
+      "after_reserved": 36,
+      "count": 35,
+      "index": 35,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 35
+    },
+    {
+      "after_count": 37,
+      "after_reserved": 37,
+      "count": 36,
+      "index": 36,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 36
+    },
+    {
+      "after_count": 38,
+      "after_reserved": 38,
+      "count": 37,
+      "index": 37,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 37
+    },
+    {
+      "after_count": 39,
+      "after_reserved": 39,
+      "count": 38,
+      "index": 38,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 38
+    },
+    {
+      "after_count": 40,
+      "after_reserved": 40,
+      "count": 39,
+      "index": 39,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 39
+    },
+    {
+      "after_count": 41,
+      "after_reserved": 41,
+      "count": 40,
+      "index": 40,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 40
+    },
+    {
+      "after_count": 42,
+      "after_reserved": 42,
+      "count": 41,
+      "index": 41,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 41
+    },
+    {
+      "after_count": 43,
+      "after_reserved": 43,
+      "count": 42,
+      "index": 42,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 42
+    },
+    {
+      "after_count": 44,
+      "after_reserved": 44,
+      "count": 43,
+      "index": 43,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 43
+    },
+    {
+      "after_count": 45,
+      "after_reserved": 45,
+      "count": 44,
+      "index": 44,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 44
+    },
+    {
+      "after_count": 46,
+      "after_reserved": 46,
+      "count": 45,
+      "index": 45,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 45
+    },
+    {
+      "after_count": 47,
+      "after_reserved": 47,
+      "count": 46,
+      "index": 46,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 46
+    },
+    {
+      "after_count": 48,
+      "after_reserved": 48,
+      "count": 47,
+      "index": 47,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 47
+    },
+    {
+      "after_count": 49,
+      "after_reserved": 49,
+      "count": 48,
+      "index": 48,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 48
+    },
+    {
+      "after_count": 50,
+      "after_reserved": 50,
+      "count": 49,
+      "index": 49,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 49
+    },
+    {
+      "after_count": 51,
+      "after_reserved": 51,
+      "count": 50,
+      "index": 50,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 50
+    },
+    {
+      "after_count": 52,
+      "after_reserved": 52,
+      "count": 51,
+      "index": 51,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 51
+    },
+    {
+      "after_count": 53,
+      "after_reserved": 53,
+      "count": 52,
+      "index": 52,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 52
+    },
+    {
+      "after_count": 54,
+      "after_reserved": 54,
+      "count": 53,
+      "index": 53,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 53
+    },
+    {
+      "after_count": 55,
+      "after_reserved": 55,
+      "count": 54,
+      "index": 54,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 54
+    },
+    {
+      "after_count": 56,
+      "after_reserved": 56,
+      "count": 55,
+      "index": 55,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 55
+    },
+    {
+      "after_count": 57,
+      "after_reserved": 57,
+      "count": 56,
+      "index": 56,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 56
+    },
+    {
+      "after_count": 58,
+      "after_reserved": 58,
+      "count": 57,
+      "index": 57,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 57
+    },
+    {
+      "after_count": 59,
+      "after_reserved": 59,
+      "count": 58,
+      "index": 58,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 58
+    },
+    {
+      "after_count": 60,
+      "after_reserved": 60,
+      "count": 59,
+      "index": 59,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 59
+    },
+    {
+      "after_count": 61,
+      "after_reserved": 61,
+      "count": 60,
+      "index": 60,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 60
+    },
+    {
+      "after_count": 62,
+      "after_reserved": 62,
+      "count": 61,
+      "index": 61,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 61
+    },
+    {
+      "after_count": 63,
+      "after_reserved": 63,
+      "count": 62,
+      "index": 62,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 62
+    },
+    {
+      "after_count": 64,
+      "after_reserved": 64,
+      "count": 63,
+      "index": 63,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 63
+    },
+    {
+      "after_count": 65,
+      "after_reserved": 65,
+      "count": 64,
+      "index": 64,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 64
+    },
+    {
+      "after_count": 66,
+      "after_reserved": 66,
+      "count": 65,
+      "index": 65,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 65
+    },
+    {
+      "after_count": 67,
+      "after_reserved": 67,
+      "count": 66,
+      "index": 66,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 66
+    },
+    {
+      "after_count": 68,
+      "after_reserved": 68,
+      "count": 67,
+      "index": 67,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 67
+    },
+    {
+      "after_count": 69,
+      "after_reserved": 69,
+      "count": 68,
+      "index": 68,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 68
+    },
+    {
+      "after_count": 70,
+      "after_reserved": 70,
+      "count": 69,
+      "index": 69,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 69
+    },
+    {
+      "after_count": 71,
+      "after_reserved": 71,
+      "count": 70,
+      "index": 70,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 70
+    },
+    {
+      "after_count": 72,
+      "after_reserved": 72,
+      "count": 71,
+      "index": 71,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 71
+    },
+    {
+      "after_count": 73,
+      "after_reserved": 73,
+      "count": 72,
+      "index": 72,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 72
+    },
+    {
+      "after_count": 74,
+      "after_reserved": 74,
+      "count": 73,
+      "index": 73,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 73
+    },
+    {
+      "after_count": 75,
+      "after_reserved": 75,
+      "count": 74,
+      "index": 74,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 74
+    },
+    {
+      "after_count": 76,
+      "after_reserved": 76,
+      "count": 75,
+      "index": 75,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 75
+    },
+    {
+      "after_count": 77,
+      "after_reserved": 77,
+      "count": 76,
+      "index": 76,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 76
+    },
+    {
+      "after_count": 78,
+      "after_reserved": 78,
+      "count": 77,
+      "index": 77,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 77
+    },
+    {
+      "after_count": 79,
+      "after_reserved": 79,
+      "count": 78,
+      "index": 78,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 78
+    },
+    {
+      "after_count": 80,
+      "after_reserved": 80,
+      "count": 79,
+      "index": 79,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 79
+    },
+    {
+      "after_count": 81,
+      "after_reserved": 81,
+      "count": 80,
+      "index": 80,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 80
+    },
+    {
+      "after_count": 82,
+      "after_reserved": 82,
+      "count": 81,
+      "index": 81,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 81
+    },
+    {
+      "after_count": 83,
+      "after_reserved": 83,
+      "count": 82,
+      "index": 82,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 82
+    },
+    {
+      "after_count": 84,
+      "after_reserved": 84,
+      "count": 83,
+      "index": 83,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 83
+    },
+    {
+      "after_count": 85,
+      "after_reserved": 85,
+      "count": 84,
+      "index": 84,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 84
+    },
+    {
+      "after_count": 86,
+      "after_reserved": 86,
+      "count": 85,
+      "index": 85,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 85
+    },
+    {
+      "after_count": 87,
+      "after_reserved": 87,
+      "count": 86,
+      "index": 86,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 86
+    },
+    {
+      "after_count": 88,
+      "after_reserved": 88,
+      "count": 87,
+      "index": 87,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 87
+    },
+    {
+      "after_count": 89,
+      "after_reserved": 89,
+      "count": 88,
+      "index": 88,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 88
+    },
+    {
+      "after_count": 90,
+      "after_reserved": 90,
+      "count": 89,
+      "index": 89,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 89
+    },
+    {
+      "after_count": 91,
+      "after_reserved": 91,
+      "count": 90,
+      "index": 90,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 90
+    },
+    {
+      "after_count": 92,
+      "after_reserved": 92,
+      "count": 91,
+      "index": 91,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 91
+    },
+    {
+      "after_count": 93,
+      "after_reserved": 93,
+      "count": 92,
+      "index": 92,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 92
+    },
+    {
+      "after_count": 94,
+      "after_reserved": 94,
+      "count": 93,
+      "index": 93,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 93
+    },
+    {
+      "after_count": 95,
+      "after_reserved": 95,
+      "count": 94,
+      "index": 94,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 94
+    },
+    {
+      "after_count": 96,
+      "after_reserved": 96,
+      "count": 95,
+      "index": 95,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 95
+    },
+    {
+      "after_count": 97,
+      "after_reserved": 97,
+      "count": 96,
+      "index": 96,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 96
+    },
+    {
+      "after_count": 98,
+      "after_reserved": 98,
+      "count": 97,
+      "index": 97,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 97
+    },
+    {
+      "after_count": 99,
+      "after_reserved": 99,
+      "count": 98,
+      "index": 98,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 98
+    },
+    {
+      "after_count": 100,
+      "after_reserved": 100,
+      "count": 99,
+      "index": 99,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 99
+    },
+    {
+      "after_count": 101,
+      "after_reserved": 101,
+      "count": 100,
+      "index": 100,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 100
+    },
+    {
+      "after_count": 102,
+      "after_reserved": 102,
+      "count": 101,
+      "index": 101,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 101
+    },
+    {
+      "after_count": 103,
+      "after_reserved": 103,
+      "count": 102,
+      "index": 102,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 102
+    },
+    {
+      "after_count": 104,
+      "after_reserved": 104,
+      "count": 103,
+      "index": 103,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 103
+    },
+    {
+      "after_count": 105,
+      "after_reserved": 105,
+      "count": 104,
+      "index": 104,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 104
+    },
+    {
+      "after_count": 106,
+      "after_reserved": 106,
+      "count": 105,
+      "index": 105,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 105
+    },
+    {
+      "after_count": 107,
+      "after_reserved": 107,
+      "count": 106,
+      "index": 106,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 106
+    },
+    {
+      "after_count": 108,
+      "after_reserved": 108,
+      "count": 107,
+      "index": 107,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 107
+    },
+    {
+      "after_count": 109,
+      "after_reserved": 109,
+      "count": 108,
+      "index": 108,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 108
+    },
+    {
+      "after_count": 110,
+      "after_reserved": 110,
+      "count": 109,
+      "index": 109,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 109
+    },
+    {
+      "after_count": 111,
+      "after_reserved": 111,
+      "count": 110,
+      "index": 110,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 110
+    },
+    {
+      "after_count": 112,
+      "after_reserved": 112,
+      "count": 111,
+      "index": 111,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 111
+    },
+    {
+      "after_count": 113,
+      "after_reserved": 113,
+      "count": 112,
+      "index": 112,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 112
+    },
+    {
+      "after_count": 114,
+      "after_reserved": 114,
+      "count": 113,
+      "index": 113,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 113
+    },
+    {
+      "after_count": 115,
+      "after_reserved": 115,
+      "count": 114,
+      "index": 114,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 114
+    },
+    {
+      "after_count": 116,
+      "after_reserved": 116,
+      "count": 115,
+      "index": 115,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 115
+    },
+    {
+      "after_count": 117,
+      "after_reserved": 117,
+      "count": 116,
+      "index": 116,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 116
+    },
+    {
+      "after_count": 118,
+      "after_reserved": 118,
+      "count": 117,
+      "index": 117,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 117
+    },
+    {
+      "after_count": 119,
+      "after_reserved": 119,
+      "count": 118,
+      "index": 118,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 118
+    },
+    {
+      "after_count": 120,
+      "after_reserved": 120,
+      "count": 119,
+      "index": 119,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 119
+    },
+    {
+      "after_count": 121,
+      "after_reserved": 121,
+      "count": 120,
+      "index": 120,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 120
+    },
+    {
+      "after_count": 122,
+      "after_reserved": 122,
+      "count": 121,
+      "index": 121,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 121
+    },
+    {
+      "after_count": 123,
+      "after_reserved": 123,
+      "count": 122,
+      "index": 122,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 122
+    },
+    {
+      "after_count": 124,
+      "after_reserved": 124,
+      "count": 123,
+      "index": 123,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 123
+    },
+    {
+      "after_count": 125,
+      "after_reserved": 125,
+      "count": 124,
+      "index": 124,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 124
+    },
+    {
+      "after_count": 126,
+      "after_reserved": 126,
+      "count": 125,
+      "index": 125,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 125
+    },
+    {
+      "after_count": 127,
+      "after_reserved": 127,
+      "count": 126,
+      "index": 126,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 126
+    },
+    {
+      "after_count": 128,
+      "after_reserved": 128,
+      "count": 127,
+      "index": 127,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "nil",
+      "reserved": 127
+    },
+    {
+      "after_count": 128,
+      "after_reserved": 128,
+      "count": 128,
+      "index": 128,
+      "items": 1,
+      "kind": "feed",
+      "limit": 1,
+      "outcome": "capacity",
+      "reserved": 128
+    }
+  ],
+  "synthetic": true,
+  "vectors": {
+    "polaris/internal/storage/commit.go:890": [
+      {
+        "hits": 1,
+        "result": true,
+        "values": "100"
+      },
+      {
+        "hits": 9882,
+        "result": false,
+        "values": "211"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "212"
+      },
+      {
+        "hits": 10,
+        "result": true,
+        "values": "220"
+      }
+    ],
+    "polaris/internal/storage/feed.go:1983": [
+      {
+        "hits": 219,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/read.go:3910": [
+      {
+        "hits": 12,
+        "result": true,
+        "values": "1100"
+      },
+      {
+        "hits": 24596,
+        "result": false,
+        "values": "1211"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "1212"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "1220"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "2000"
+      }
+    ],
+    "polaris/internal/storage/read.go:5624": [
+      {
+        "hits": 19881,
+        "result": false,
+        "values": "11111"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "11112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "11120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "11200"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "20000"
+      }
+    ],
+    "polaris/internal/storage/read.go:6637": [
+      {
+        "hits": 21351,
+        "result": false,
+        "values": "11111"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "11112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "11120"
+      },
+      {
+        "hits": 7,
+        "result": true,
+        "values": "11200"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "20000"
+      }
+    ],
+    "polaris/internal/storage/schema.go:4872": [
+      {
+        "hits": 440,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/schema.go:5291": [
+      {
+        "hits": 434,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/schema.go:5601": [
+      {
+        "hits": 2,
+        "result": true,
+        "values": "10000000"
+      },
+      {
+        "hits": 224,
+        "result": false,
+        "values": "21111111"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21111112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21111120"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21111200"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21112000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21120000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21200000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "22000000"
+      }
+    ],
+    "polaris/internal/storage/schema.go:6814": [
+      {
+        "hits": 194,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 6,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/schema.go:7432": [
+      {
+        "hits": 367,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/store.go:11041": [
+      {
+        "hits": 10,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ]
+  }
+}

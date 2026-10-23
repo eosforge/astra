@@ -1,0 +1,167 @@
+// Exercise every identity file refusal at explicit native-backed boundaries and verify complete handle release.
+package admission
+
+import (
+	"encoding/json"
+	"errors"
+	"os"
+	"path/filepath"
+	"testing"
+)
+
+// opened retains a real fixture handle while changing only the selected response at its declared boundary.
+type opened struct {
+	file   *os.File
+	fault  string
+	reads  int
+	stats  int
+	closes int
+	marker error
+}
+
+// changed retains native metadata while explicitly reporting the selected nonregular-file response.
+type changed struct{ os.FileInfo }
+
+// Mode changes only the native file-kind observation.
+func (info changed) Mode() os.FileMode { return os.ModeDir }
+
+// Read returns native data except for the declared initial or partial failure.
+func (stream *opened) Read(buffer []byte) (int, error) {
+	stream.reads++
+	if stream.fault == "read" {
+		return 0, stream.marker
+	}
+	if stream.fault == "partial" {
+		count, err := stream.file.Read(buffer[:min(len(buffer), 8)])
+		if err != nil {
+			return count, err
+		}
+		return count, stream.marker
+	}
+	return stream.file.Read(buffer)
+}
+
+// Stat forwards native metadata unless the selected fault changes exactly its error or kind.
+func (stream *opened) Stat() (os.FileInfo, error) {
+	stream.stats++
+	if stream.fault == "stat" {
+		return nil, stream.marker
+	}
+	info, err := stream.file.Stat()
+	if stream.fault == "restat" && err == nil {
+		return changed{info}, nil
+	}
+	return info, err
+}
+
+// Close releases the physical handle before reporting the declared close error.
+func (stream *opened) Close() error {
+	stream.closes++
+	if err := stream.file.Close(); err != nil {
+		return err
+	}
+	if stream.fault == "close" {
+		return stream.marker
+	}
+	return nil
+}
+
+// TestLoadFault observes two identical failures and a disarmed recovery for all five material slots and eight response classes.
+func TestLoadFault(t *testing.T) {
+	check := counter(t, "ADMISSION-IDENTITY-FAULT")
+	directory := material(t)
+	value, err := Load(directory, "127.0.0.1:7443")
+	check(err == nil && value != nil, "native fixture failed before injection")
+	names := []string{"ca.pem", "cert.pem", "key.pem", "admission.pub", "login.json"}
+	for _, fault := range []string{"lstat", "nonregular", "open", "stat", "restat", "read", "partial", "close"} {
+		for slot, selected := range names {
+			for phase := range 3 {
+				marker := errors.New("selected material response failure")
+				active := fault
+				if phase == 2 {
+					active = ""
+				}
+				inspected, attempts := []string{}, []string{}
+				streams := []*opened{}
+				inspect := func(path string) (os.FileInfo, error) {
+					name := filepath.Base(path)
+					inspected = append(inspected, name)
+					if name == selected && active == "lstat" {
+						return nil, marker
+					}
+					info, err := os.Lstat(path)
+					if name == selected && active == "nonregular" && err == nil {
+						return changed{info}, nil
+					}
+					return info, err
+				}
+				open := func(path string) (file, error) {
+					name := filepath.Base(path)
+					attempts = append(attempts, name)
+					if name == selected && active == "open" {
+						return nil, marker
+					}
+					input, err := os.Open(path)
+					if err != nil {
+						return nil, err
+					}
+					stream := &opened{file: input, marker: marker}
+					if name == selected {
+						stream.fault = active
+					}
+					streams = append(streams, stream)
+					t.Cleanup(func() {
+						if stream.closes == 0 {
+							_ = input.Close()
+						}
+					})
+					return stream, nil
+				}
+				value, err := load(directory, "127.0.0.1:7443", inspect, open)
+				count, opened, tried := slot+1, slot+1, slot+1
+				if phase == 2 {
+					count, opened, tried = 5, 5, 5
+					check(err == nil && value != nil, "disarmed recovery did not publish one complete identity")
+				} else {
+					check(errors.Is(err, ErrIdentity) && value == nil, "file failure published a partial identity or changed its error")
+					if fault == "lstat" || fault == "nonregular" {
+						opened, tried = slot, slot
+					} else if fault == "open" {
+						opened = slot
+					}
+				}
+				check(len(inspected) == count && len(attempts) == tried && len(streams) == opened, "failure did not stop at its exact material prefix")
+				for index, name := range inspected {
+					check(index < len(names) && name == names[index], "material inspection order changed")
+				}
+				for index, stream := range streams {
+					check(filepath.Base(stream.file.Name()) == names[index] && stream.stats == 1 && stream.reads > 0 && stream.closes == 1, "file prefix was not read, inspected and closed exactly once")
+					_, physical := stream.file.Stat()
+					check(errors.Is(physical, os.ErrClosed), "physical file handle remains open")
+				}
+				result := "rejected"
+				if phase == 2 {
+					result = "loaded"
+				}
+				row := struct {
+					Fault     string `json:"fault"`
+					Slot      int    `json:"slot"`
+					Phase     int    `json:"phase"`
+					Inspected int    `json:"inspected"`
+					Attempted int    `json:"attempted"`
+					Opened    int    `json:"opened"`
+					Closed    int    `json:"closed"`
+					Result    string `json:"result"`
+				}{fault, slot, phase, len(inspected), len(attempts), len(streams), 0, result}
+				for _, stream := range streams {
+					row.Closed += stream.closes
+				}
+				data, err := json.Marshal(row)
+				if err != nil {
+					t.Fatal(err)
+				}
+				t.Logf("ADMISSION-IDENTITY-FAULT %s", data)
+			}
+		}
+	}
+}

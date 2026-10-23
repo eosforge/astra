@@ -1,0 +1,8 @@
+root = true
+
+[*]
+end_of_line = lf
+max_line_length = 160
+
+[**.{cpp,hpp,h,cc,cxx,hh,hxx}]
+max_line_length = off

@@ -1,0 +1,89 @@
+// Verify selection of a real HTTP termination result while admission remains pending.
+package main
+
+import (
+	"context"
+	"errors"
+	"net"
+	"net/http"
+	"sync"
+	"testing"
+	"time"
+)
+
+// servingpoint is inserted only at the existing parent.Done expression in the diagnostic overlay.
+// It returns the identical channel; the original select arms and channel results are preserved.
+var servingpoint = func(done <-chan struct{}, _ *http.Server, _ chan error) <-chan struct{} { return done }
+
+// TestServingStop makes only the native HTTP result ready, then requires normal exit and admission draining.
+func TestServingStop(t *testing.T) {
+	check := counter(t)
+	config, listener, identity := deployment(t)
+	service := launch(t, &config, identity, "cancel")
+	check(listener.Close() == nil, "cannot release the reserved management endpoint")
+	type boundary struct {
+		server *http.Server // Actual owner-created server, never a replacement.
+		result chan error   // Original buffered Serve result, observed and restored exactly once.
+	}
+	ready := make(chan boundary, 1)
+	released := make(chan struct{})
+	release := sync.OnceFunc(func() { close(released) })
+	servingpoint = func(done <-chan struct{}, server *http.Server, result chan error) <-chan struct{} {
+		ready <- boundary{server, result}
+		<-released
+		return done
+	}
+	ctx, cancel := context.WithCancel(t.Context())
+	done := make(chan error, 1)
+	joined := false
+	go func() { done <- run(ctx, config) }()
+	t.Cleanup(func() {
+		cancel()
+		release()
+		if !joined {
+			select {
+			case <-done:
+			case <-time.After(8 * time.Second):
+				t.Error("entry did not drain during fixture cleanup")
+			}
+		}
+		servingpoint = func(done <-chan struct{}, _ *http.Server, _ chan error) <-chan struct{} { return done }
+	})
+	select {
+	case <-service.entered:
+	case <-time.After(5 * time.Second):
+		t.Fatal("entry did not reach its pending admission call")
+	}
+	var current boundary
+	select {
+	case current = <-ready:
+	case <-time.After(5 * time.Second):
+		t.Fatal("entry did not reach its original select expression")
+	}
+	check(current.server.Close() == nil, "cannot close the owned HTTP server")
+	select {
+	case err := <-current.result:
+		check(errors.Is(err, http.ErrServerClosed), "HTTP shutdown did not preserve its native result")
+		current.result <- err
+	case <-time.After(5 * time.Second):
+		t.Fatal("closed server did not publish its result")
+	}
+	check(ctx.Err() == nil && len(current.result) == 1, "fixture cancelled the parent or lost the pending HTTP result")
+	release()
+	select {
+	case err := <-done:
+		joined = true
+		check(err == nil, "normal HTTP termination became a fatal entry failure")
+	case <-time.After(8 * time.Second):
+		t.Fatal("entry did not drain after HTTP termination")
+	}
+	select {
+	case <-service.exited:
+	case <-time.After(5 * time.Second):
+		t.Fatal("HTTP termination retained its admission handler")
+	}
+	check(service.calls.Load() == 1, "HTTP termination retried admission")
+	rebound, err := net.Listen("tcp", config.listen)
+	check(err == nil, "HTTP termination retained its listener")
+	check(rebound.Close() == nil, "cannot release the verification listener")
+}

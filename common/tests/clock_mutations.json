@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "engine": "cpp",
+  "scope": "Three Store time-input guards, checked by the unchanged store_clock assertion oracle. This finite guard campaign does not cover every Store decision, constructor predicate, numeric operation or resource failure.",
+  "mutations": [
+    {
+      "id": "store-negative-deadline",
+      "file": "common/src/store.cpp",
+      "test": "star_store_clock_test",
+      "oracle": "common/tests/store_clock_test.cpp",
+      "before": "deadline && deadline->time_since_epoch().count() < 0",
+      "after": "false"
+    },
+    {
+      "id": "store-missing-anchor",
+      "file": "common/src/store.cpp",
+      "test": "star_store_clock_test",
+      "oracle": "common/tests/store_clock_test.cpp",
+      "before": "deadline && !clock_",
+      "after": "false"
+    },
+    {
+      "id": "store-negative-tick",
+      "file": "common/src/store.cpp",
+      "test": "star_store_clock_test",
+      "oracle": "common/tests/store_clock_test.cpp",
+      "before": "now.time_since_epoch().count() < 0",
+      "after": "false"
+    }
+  ]
+}

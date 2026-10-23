@@ -1,0 +1,1510 @@
+{
+  "boundary": "Negative parser fixture only; copied native field shapes never qualify production or native execution.",
+  "cases": {
+    "checkpoint-close": [
+      {
+        "active": false,
+        "columns": [
+          "busy",
+          "log",
+          "checkpointed"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "checkpoint-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 394
+          },
+          {
+            "type": "integer",
+            "value": 394
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "checkpoint-close",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "checkpoint-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "busy",
+          "log",
+          "checkpointed"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "checkpoint-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 394
+          },
+          {
+            "type": "integer",
+            "value": 394
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "checkpoint-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "checkpoint-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "busy",
+          "log",
+          "checkpointed"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "checkpoint-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 0
+          },
+          {
+            "type": "integer",
+            "value": 394
+          },
+          {
+            "type": "integer",
+            "value": 394
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "checkpoint-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "checkpoint-close",
+        "values": []
+      }
+    ],
+    "integrity-close": [
+      {
+        "active": false,
+        "columns": [
+          "quick_check"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "integrity-close",
+        "values": [
+          {
+            "hex": "6f6b",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "quick_check"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "integrity-close",
+        "values": [
+          {
+            "hex": "6f6b",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "integrity-close",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "integrity-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "quick_check"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "integrity-close",
+        "values": [
+          {
+            "hex": "6f6b",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "quick_check"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "integrity-close",
+        "values": [
+          {
+            "hex": "6f6b",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "integrity-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "integrity-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "quick_check"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "integrity-close",
+        "values": [
+          {
+            "hex": "6f6b",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "quick_check"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "integrity-close",
+        "values": [
+          {
+            "hex": "6f6b",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "integrity-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "integrity-close",
+        "values": []
+      }
+    ],
+    "meta-close": [
+      {
+        "active": false,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "meta-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "74657374",
+            "type": "text"
+          },
+          {
+            "hex": "706f6c61726973",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "meta-close",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "meta-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "meta-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "74657374",
+            "type": "text"
+          },
+          {
+            "hex": "706f6c61726973",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "meta-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "meta-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "id",
+          "format",
+          "galaxy",
+          "username",
+          "advertise",
+          "scopes",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "meta-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "hex": "74657374",
+            "type": "text"
+          },
+          {
+            "hex": "706f6c61726973",
+            "type": "text"
+          },
+          {
+            "hex": "3132372e302e302e313a3435313031",
+            "type": "text"
+          },
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "meta-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "meta-close",
+        "values": []
+      }
+    ],
+    "records-close": [
+      {
+        "active": false,
+        "columns": [
+          "records",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "records-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "records-close",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "records-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "records",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "records-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "records-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "records-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "records",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "records-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "records-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "records-close",
+        "values": []
+      }
+    ],
+    "retained-close": [
+      {
+        "active": false,
+        "columns": [
+          "count",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "retained-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "retained-close",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "retained-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "count",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "retained-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "retained-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "retained-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "count",
+          "bytes"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "retained-close",
+        "values": [
+          {
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "type": "integer",
+            "value": 66
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "retained-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "retained-close",
+        "values": []
+      }
+    ],
+    "schema-close": [
+      {
+        "active": false,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c4520686973746f72792028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c206b65792054455854204e4f54204e554c4c2c2076616c756520424c4f42204e4f54204e554c4c2c20657261736520494e5445474552204e4f54204e554c4c20434845434b28657261736520494e2028302c3129292c20636f737420494e5445474552204e4f54204e554c4c20434845434b28636f73743e30292c205052494d415259204b455928736563746f722c737065637472756d2c76657273696f6e292c20464f524549474e204b455928736563746f722c737065637472756d29205245464552454e4345532073636f70657328736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c45206d6574612028696420494e5445474552205052494d415259204b455920434845434b2869643d31292c20666f726d617420494e5445474552204e4f54204e554c4c20434845434b28666f726d61743d31292c2067616c6178792054455854204e4f54204e554c4c2c20757365726e616d652054455854204e4f54204e554c4c2c206164766572746973652054455854204e4f54204e554c4c2c2073636f70657320494e5445474552204e4f54204e554c4c20434845434b2873636f7065733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292920535452494354",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c45207265636f7264732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c206b65792054455854204e4f54204e554c4c2c2076616c756520424c4f42204e4f54204e554c4c2c205052494d415259204b455928736563746f722c737065637472756d2c6b6579292c20464f524549474e204b455928736563746f722c737065637472756d29205245464552454e4345532073636f70657328736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c452073636f7065732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c207265636f72647320494e5445474552204e4f54204e554c4c20434845434b287265636f7264733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292c2072657461696e656420494e5445474552204e4f54204e554c4c20434845434b2872657461696e65643e3d30292c206261636b6c6f6720494e5445474552204e4f54204e554c4c20434845434b286261636b6c6f673e3d30292c205052494d415259204b455928736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c452073636f7065732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c207265636f72647320494e5445474552204e4f54204e554c4c20434845434b287265636f7264733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292c2072657461696e656420494e5445474552204e4f54204e554c4c20434845434b2872657461696e65643e3d30292c206261636b6c6f6720494e5445474552204e4f54204e554c4c20434845434b286261636b6c6f673e3d30292c205052494d415259204b455928736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "close",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": []
+      },
+      {
+        "active": false,
+        "columns": null,
+        "kind": "result",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c4520686973746f72792028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c206b65792054455854204e4f54204e554c4c2c2076616c756520424c4f42204e4f54204e554c4c2c20657261736520494e5445474552204e4f54204e554c4c20434845434b28657261736520494e2028302c3129292c20636f737420494e5445474552204e4f54204e554c4c20434845434b28636f73743e30292c205052494d415259204b455928736563746f722c737065637472756d2c76657273696f6e292c20464f524549474e204b455928736563746f722c737065637472756d29205245464552454e4345532073636f70657328736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c45206d6574612028696420494e5445474552205052494d415259204b455920434845434b2869643d31292c20666f726d617420494e5445474552204e4f54204e554c4c20434845434b28666f726d61743d31292c2067616c6178792054455854204e4f54204e554c4c2c20757365726e616d652054455854204e4f54204e554c4c2c206164766572746973652054455854204e4f54204e554c4c2c2073636f70657320494e5445474552204e4f54204e554c4c20434845434b2873636f7065733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292920535452494354",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c45207265636f7264732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c206b65792054455854204e4f54204e554c4c2c2076616c756520424c4f42204e4f54204e554c4c2c205052494d415259204b455928736563746f722c737065637472756d2c6b6579292c20464f524549474e204b455928736563746f722c737065637472756d29205245464552454e4345532073636f70657328736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c452073636f7065732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c207265636f72647320494e5445474552204e4f54204e554c4c20434845434b287265636f7264733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292c2072657461696e656420494e5445474552204e4f54204e554c4c20434845434b2872657461696e65643e3d30292c206261636b6c6f6720494e5445474552204e4f54204e554c4c20434845434b286261636b6c6f673e3d30292c205052494d415259204b455928736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c452073636f7065732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c207265636f72647320494e5445474552204e4f54204e554c4c20434845434b287265636f7264733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292c2072657461696e656420494e5445474552204e4f54204e554c4c20434845434b2872657461696e65643e3d30292c206261636b6c6f6720494e5445474552204e4f54204e554c4c20434845434b286261636b6c6f673e3d30292c205052494d415259204b455928736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "schema-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "schema-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c4520686973746f72792028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c206b65792054455854204e4f54204e554c4c2c2076616c756520424c4f42204e4f54204e554c4c2c20657261736520494e5445474552204e4f54204e554c4c20434845434b28657261736520494e2028302c3129292c20636f737420494e5445474552204e4f54204e554c4c20434845434b28636f73743e30292c205052494d415259204b455928736563746f722c737065637472756d2c76657273696f6e292c20464f524549474e204b455928736563746f722c737065637472756d29205245464552454e4345532073636f70657328736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c45206d6574612028696420494e5445474552205052494d415259204b455920434845434b2869643d31292c20666f726d617420494e5445474552204e4f54204e554c4c20434845434b28666f726d61743d31292c2067616c6178792054455854204e4f54204e554c4c2c20757365726e616d652054455854204e4f54204e554c4c2c206164766572746973652054455854204e4f54204e554c4c2c2073636f70657320494e5445474552204e4f54204e554c4c20434845434b2873636f7065733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292920535452494354",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c45207265636f7264732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c206b65792054455854204e4f54204e554c4c2c2076616c756520424c4f42204e4f54204e554c4c2c205052494d415259204b455928736563746f722c737065637472756d2c6b6579292c20464f524549474e204b455928736563746f722c737065637472756d29205245464552454e4345532073636f70657328736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "nil",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c452073636f7065732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c207265636f72647320494e5445474552204e4f54204e554c4c20434845434b287265636f7264733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292c2072657461696e656420494e5445474552204e4f54204e554c4c20434845434b2872657461696e65643e3d30292c206261636b6c6f6720494e5445474552204e4f54204e554c4c20434845434b286261636b6c6f673e3d30292c205052494d415259204b455928736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": [
+          "sql"
+        ],
+        "kind": "next",
+        "outcome": "eof",
+        "point": "schema-close",
+        "values": [
+          {
+            "hex": "435245415445205441424c452073636f7065732028736563746f722054455854204e4f54204e554c4c2c20737065637472756d2054455854204e4f54204e554c4c2c2076657273696f6e20424c4f42204e4f54204e554c4c20434845434b286c656e6774682876657273696f6e293d38292c207265636f72647320494e5445474552204e4f54204e554c4c20434845434b287265636f7264733e3d30292c20627974657320494e5445474552204e4f54204e554c4c20434845434b2862797465733e3d30292c2072657461696e656420494e5445474552204e4f54204e554c4c20434845434b2872657461696e65643e3d30292c206261636b6c6f6720494e5445474552204e4f54204e554c4c20434845434b286261636b6c6f673e3d30292c205052494d415259204b455928736563746f722c737065637472756d2929205354524943542c20574954484f555420524f574944",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "close",
+        "outcome": "error",
+        "point": "schema-close",
+        "values": []
+      },
+      {
+        "active": true,
+        "columns": null,
+        "kind": "result",
+        "outcome": "error",
+        "point": "schema-close",
+        "values": []
+      }
+    ]
+  },
+  "decisions": {
+    "polaris/internal/storage/schema.go:3986": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 66,
+            "line": 73,
+            "offset": 3986
+          },
+          "end": {
+            "column": 76,
+            "line": 73,
+            "offset": 3996
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 80,
+            "line": 73,
+            "offset": 4000
+          },
+          "end": {
+            "column": 97,
+            "line": 73,
+            "offset": 4017
+          },
+          "text": "integrity != \"ok\""
+        }
+      ],
+      "begin": {
+        "column": 66,
+        "line": 73,
+        "offset": 3986
+      },
+      "end": {
+        "column": 97,
+        "line": 73,
+        "offset": 4017
+      },
+      "id": "polaris/internal/storage/schema.go:3986",
+      "kind": "if",
+      "root": 2,
+      "text": "err != nil || integrity != \"ok\"",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:4289": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 115,
+            "line": 78,
+            "offset": 4289
+          },
+          "end": {
+            "column": 125,
+            "line": 78,
+            "offset": 4299
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 129,
+            "line": 78,
+            "offset": 4303
+          },
+          "end": {
+            "column": 160,
+            "line": 78,
+            "offset": 4334
+          },
+          "text": "len(definitions) != len(schema)"
+        }
+      ],
+      "begin": {
+        "column": 115,
+        "line": 78,
+        "offset": 4289
+      },
+      "end": {
+        "column": 160,
+        "line": 78,
+        "offset": 4334
+      },
+      "id": "polaris/internal/storage/schema.go:4289",
+      "kind": "if",
+      "root": 2,
+      "text": "err != nil || len(definitions) != len(schema)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:4809": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 63,
+            "line": 92,
+            "offset": 4809
+          },
+          "end": {
+            "column": 73,
+            "line": 92,
+            "offset": 4819
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 77,
+            "line": 92,
+            "offset": 4823
+          },
+          "end": {
+            "column": 93,
+            "line": 92,
+            "offset": 4839
+          },
+          "text": "meta.Format != 1"
+        }
+      ],
+      "begin": {
+        "column": 63,
+        "line": 92,
+        "offset": 4809
+      },
+      "end": {
+        "column": 93,
+        "line": 92,
+        "offset": 4839
+      },
+      "id": "polaris/internal/storage/schema.go:4809",
+      "kind": "if",
+      "root": 2,
+      "text": "err != nil || meta.Format != 1",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:6230": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 212,
+            "line": 121,
+            "offset": 6230
+          },
+          "end": {
+            "column": 222,
+            "line": 121,
+            "offset": 6240
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 226,
+            "line": 121,
+            "offset": 6244
+          },
+          "end": {
+            "column": 257,
+            "line": 121,
+            "offset": 6275
+          },
+          "text": "actual.Records != state.Records"
+        },
+        {
+          "begin": {
+            "column": 261,
+            "line": 121,
+            "offset": 6279
+          },
+          "end": {
+            "column": 288,
+            "line": 121,
+            "offset": 6306
+          },
+          "text": "actual.Bytes != state.Bytes"
+        }
+      ],
+      "begin": {
+        "column": 212,
+        "line": 121,
+        "offset": 6230
+      },
+      "end": {
+        "column": 288,
+        "line": 121,
+        "offset": 6306
+      },
+      "id": "polaris/internal/storage/schema.go:6230",
+      "kind": "if",
+      "root": 4,
+      "text": "err != nil || actual.Records != state.Records || actual.Bytes != state.Bytes",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:6814": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 177,
+            "line": 133,
+            "offset": 6814
+          },
+          "end": {
+            "column": 187,
+            "line": 133,
+            "offset": 6824
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 191,
+            "line": 133,
+            "offset": 6828
+          },
+          "end": {
+            "column": 223,
+            "line": 133,
+            "offset": 6860
+          },
+          "text": "retained.Count != state.Retained"
+        },
+        {
+          "begin": {
+            "column": 227,
+            "line": 133,
+            "offset": 6864
+          },
+          "end": {
+            "column": 258,
+            "line": 133,
+            "offset": 6895
+          },
+          "text": "retained.Bytes != state.Backlog"
+        }
+      ],
+      "begin": {
+        "column": 177,
+        "line": 133,
+        "offset": 6814
+      },
+      "end": {
+        "column": 258,
+        "line": 133,
+        "offset": 6895
+      },
+      "id": "polaris/internal/storage/schema.go:6814",
+      "kind": "if",
+      "root": 4,
+      "text": "err != nil || retained.Count != state.Retained || retained.Bytes != state.Backlog",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:11041": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 102,
+            "line": 276,
+            "offset": 11041
+          },
+          "end": {
+            "column": 112,
+            "line": 276,
+            "offset": 11051
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 116,
+            "line": 276,
+            "offset": 11055
+          },
+          "end": {
+            "column": 134,
+            "line": 276,
+            "offset": 11073
+          },
+          "text": "progress.Busy != 0"
+        },
+        {
+          "begin": {
+            "column": 138,
+            "line": 276,
+            "offset": 11077
+          },
+          "end": {
+            "column": 174,
+            "line": 276,
+            "offset": 11113
+          },
+          "text": "progress.Log > progress.Checkpointed"
+        }
+      ],
+      "begin": {
+        "column": 102,
+        "line": 276,
+        "offset": 11041
+      },
+      "end": {
+        "column": 174,
+        "line": 276,
+        "offset": 11113
+      },
+      "id": "polaris/internal/storage/store.go:11041",
+      "kind": "if",
+      "root": 4,
+      "text": "err != nil || progress.Busy != 0 || progress.Log > progress.Checkpointed",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "synthetic": true,
+  "vectors": {
+    "polaris/internal/storage/schema.go:3986": [
+      {
+        "hits": 456,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/schema.go:4289": [
+      {
+        "hits": 449,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 6,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/schema.go:4809": [
+      {
+        "hits": 443,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/schema.go:6230": [
+      {
+        "hits": 215,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/schema.go:6814": [
+      {
+        "hits": 194,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 6,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/store.go:11041": [
+      {
+        "hits": 10,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ]
+  }
+}

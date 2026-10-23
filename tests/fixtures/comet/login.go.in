@@ -1,0 +1,26 @@
+// Supply process-local dependency seams for the isolated login boundary configuration.
+package comet
+
+import (
+	"context"
+
+	"google.golang.org/grpc"
+
+	"github.com/eosforge/astra/comet/go/internal/protocol"
+)
+
+// loginBoundary defaults to the original concrete operations; only named unit cases replace them.
+var loginBoundary = struct {
+	transport func(*Client, string) (*grpc.ClientConn, error)
+	ready     func(context.Context, *grpc.ClientConn) bool
+	session   func(*grpc.ClientConn, context.Context, *protocol.SessionRequest) (grpc.ServerStreamingClient[protocol.SessionReply], error)
+}{
+	transport: func(client *Client, endpoint string) (*grpc.ClientConn, error) { return client.transport(endpoint) },
+	ready:     ready,
+	session: func(connection *grpc.ClientConn, ctx context.Context, request *protocol.SessionRequest) (grpc.ServerStreamingClient[protocol.SessionReply], error) {
+		return protocol.NewGatewayClient(connection).Session(ctx, request)
+	},
+}
+
+// loginBoundaryMaterializedConfiguration isolates this physical fixture from the rejected overlay cache identity.
+const loginBoundaryMaterializedConfiguration = 1

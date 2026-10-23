@@ -1,0 +1,93 @@
+//go:build linux && cgo
+
+// Observe complete commit admission inputs and the native subscription count boundary.
+package storage
+
+import (
+	"crypto/sha256"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"reflect"
+	"testing"
+)
+
+// guardInput emits actual arguments and receipts after the fixture has checked state and resource ownership.
+func guardInput(t *testing.T, frame map[string]any) {
+	t.Helper()
+	data, err := json.Marshal(frame)
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Printf("STORAGE-GUARD-INPUT %s\n", data)
+}
+
+// TestGuardInputs keeps invalid private commit inputs and exhausted public subscriptions separate from successful admission.
+func TestGuardInputs(t *testing.T) {
+	check := verification(t, "STORAGE-INPUT-GUARDS")
+	check(t.Run("commit", func(t *testing.T) {
+		for _, point := range []string{"valid", "scope", "version"} {
+			store, _, binding := fixture(t, Default())
+			scope, change := Scope{"guard", "reply"}, Change{Version: 1, Key: "k", Value: []byte("v")}
+			if point == "scope" {
+				scope.Sector = ""
+			} else if point == "version" {
+				change.Version = 0
+			}
+			before, changed := contents(t, store.writeSQL), store.Changed()
+			_, entryError := change.Entries()
+			version, err := store.commit(t.Context(), scope, change)
+			accepted := point == "valid"
+			check(accepted && err == nil && version == 1 || !accepted && errors.Is(err, ErrInput) && version == 0, "exact private commit outcome")
+			after := contents(t, store.writeSQL)
+			if accepted {
+				image, err := store.Load(t.Context(), scope)
+				check(err == nil && image.Version == 1 && reflect.DeepEqual(image.Records, []Record{{Key: "k", Value: []byte("v")}}), "complete admitted record")
+			} else {
+				check(before == after, "rejected arguments preserve durable state")
+			}
+			check(len(store.writer) == 0 && store.readSQL.Stats().InUse == 0 && store.writeSQL.Stats().InUse == 0 && !store.poisoned.Load() && store.validate(t.Context(), binding) == nil, "argument ownership and recovery")
+			notified := false
+			select {
+			case <-changed:
+				notified = true
+			default:
+			}
+			check(notified == accepted, "only admitted commit publishes completion")
+			outcome := "nil"
+			if err != nil {
+				outcome = "input"
+			}
+			guardInput(t, map[string]any{"kind": "commit", "point": point, "scope": scope, "change": change, "entry_error": entryError != nil, "version": version, "outcome": outcome, "before_sha256": fmt.Sprintf("%x", sha256.Sum256([]byte(before))), "after_sha256": fmt.Sprintf("%x", sha256.Sum256([]byte(after)))})
+		}
+	}), "joined commit input product")
+	check(t.Run("feeds", func(t *testing.T) {
+		store, _, _ := fixture(t, Default())
+		before, changed := contents(t, store.writeSQL), store.Changed()
+		var owned []*Feed
+		for index := range 129 {
+			count, reserved := len(store.feeds), store.feedBytes
+			feed, err := store.Subscribe(1, 1)
+			accepted := index < 128
+			check(accepted && err == nil && feed != nil && len(store.feeds) == index+1 && store.feedBytes == int64(index+1) || !accepted && errors.Is(err, ErrCapacity) && feed == nil && len(store.feeds) == count && store.feedBytes == reserved, "exact native count admission")
+			outcome := "nil"
+			if err != nil {
+				outcome = "capacity"
+			}
+			guardInput(t, map[string]any{"kind": "feed", "index": index, "count": count, "reserved": reserved, "limit": 1, "items": 1, "outcome": outcome, "after_count": len(store.feeds), "after_reserved": store.feedBytes})
+			if feed != nil {
+				owned = append(owned, feed)
+			}
+		}
+		for _, feed := range owned {
+			feed.Close()
+		}
+		check(len(store.feeds) == 0 && store.feedBytes == 0, "all admitted subscription budgets return")
+		check(contents(t, store.writeSQL) == before && len(store.writer) == 0 && store.readSQL.Stats().InUse == 0 && store.writeSQL.Stats().InUse == 0 && !store.poisoned.Load(), "feed admission preserves durable state and connection ownership")
+		select {
+		case <-changed:
+			t.Fatal("feed admission published a durable change")
+		default:
+		}
+	}), "joined native subscription capacity")
+}

@@ -1,0 +1,39 @@
+// Pulsar v1 time channel. Admission reuses proto.orbit.v1.Admission without duplicating registration RPCs.
+
+syntax = "proto3";
+package proto.pulsar.v1;
+
+// Bounded sampling stream over TLS, with astra-admission-bin and astra-signature-bin metadata.
+// Verifies current Star admission once per stream. At most eight samples per stream; does not modify client clocks.
+service Pulse {
+    rpc Bounce(stream Ping) returns (stream Pong);
+}
+
+message Ping {
+    // Star BOOTTIME nanoseconds, 0..INT64_MAX, echoed to match the sole in-flight sample. Not application time.
+    uint64 t0 = 1;
+}
+
+message Pong {
+    // Corresponding Ping t0 in nanoseconds.
+    uint64 t0 = 1;
+
+    // Estimated Unix time after Pulsar receives Ping, in nanoseconds, 0..INT64_MAX.
+    uint64 t1 = 2;
+
+    // Estimated Unix time before Pulsar submits Write, in nanoseconds; must be at least t1.
+    uint64 t2 = 3;
+
+    // Unix coordinates replace the process epoch. Old numbers and names remain reserved against reuse.
+    reserved 4;
+    reserved "era";
+
+    // Pulsar BOOTTIME precision rho: the greater of resolution and read cost, in nanoseconds, 1..20000000.
+    uint64 precision_ns = 5;
+
+    // Estimated upper bound on timestamp error, in nanoseconds, including reference error and unapplied correction. Not an accuracy guarantee.
+    uint64 uncertainty_ns = 6;
+
+    // Source is calibrated and meets quality requirements. Defaults to false so older Pong semantics cannot imply Unix time.
+    bool synchronized = 7;
+}

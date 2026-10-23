@@ -1,0 +1,2361 @@
+{
+  "decisions": {
+    "polaris/internal/storage/batch.go:1347": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 9,
+            "line": 35,
+            "offset": 1347
+          },
+          "end": {
+            "column": 31,
+            "line": 35,
+            "offset": 1369
+          },
+          "text": "text(change.Key, 1024)"
+        },
+        {
+          "begin": {
+            "column": 35,
+            "line": 35,
+            "offset": 1373
+          },
+          "end": {
+            "column": 61,
+            "line": 35,
+            "offset": 1399
+          },
+          "text": "len(change.Value) <= 1<<20"
+        },
+        {
+          "begin": {
+            "column": 67,
+            "line": 35,
+            "offset": 1405
+          },
+          "end": {
+            "column": 79,
+            "line": 35,
+            "offset": 1417
+          },
+          "text": "change.Erase"
+        },
+        {
+          "begin": {
+            "column": 83,
+            "line": 35,
+            "offset": 1421
+          },
+          "end": {
+            "column": 105,
+            "line": 35,
+            "offset": 1443
+          },
+          "text": "len(change.Value) == 0"
+        }
+      ],
+      "begin": {
+        "column": 9,
+        "line": 35,
+        "offset": 1347
+      },
+      "end": {
+        "column": 106,
+        "line": 35,
+        "offset": 1444
+      },
+      "id": "polaris/internal/storage/batch.go:1347",
+      "kind": "return",
+      "root": 7,
+      "text": "text(change.Key, 1024) && len(change.Value) <= 1<<20 && (!change.Erase || len(change.Value) == 0)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "or"
+        },
+        {
+          "children": [
+            2,
+            6
+          ],
+          "kind": "and"
+        }
+      ]
+    },
+    "polaris/internal/storage/model.go:1846": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 38,
+            "offset": 1847
+          },
+          "end": {
+            "column": 8,
+            "line": 38,
+            "offset": 1849
+          },
+          "text": "ok"
+        },
+        {
+          "begin": {
+            "column": 12,
+            "line": 38,
+            "offset": 1853
+          },
+          "end": {
+            "column": 27,
+            "line": 38,
+            "offset": 1868
+          },
+          "text": "len(bytes) != 8"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 38,
+        "offset": 1846
+      },
+      "end": {
+        "column": 27,
+        "line": 38,
+        "offset": 1868
+      },
+      "id": "polaris/internal/storage/model.go:1846",
+      "kind": "if",
+      "root": 3,
+      "text": "!ok || len(bytes) != 8",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/model.go:2338": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 9,
+            "line": 53,
+            "offset": 2338
+          },
+          "end": {
+            "column": 32,
+            "line": 53,
+            "offset": 2361
+          },
+          "text": "text(scope.Sector, 128)"
+        },
+        {
+          "begin": {
+            "column": 36,
+            "line": 53,
+            "offset": 2365
+          },
+          "end": {
+            "column": 61,
+            "line": 53,
+            "offset": 2390
+          },
+          "text": "text(scope.Spectrum, 128)"
+        }
+      ],
+      "begin": {
+        "column": 9,
+        "line": 53,
+        "offset": 2338
+      },
+      "end": {
+        "column": 61,
+        "line": 53,
+        "offset": 2390
+      },
+      "id": "polaris/internal/storage/model.go:2338",
+      "kind": "return",
+      "root": 2,
+      "text": "text(scope.Sector, 128) && text(scope.Spectrum, 128)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "and"
+        }
+      ]
+    },
+    "polaris/internal/storage/model.go:3745": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 9,
+            "line": 83,
+            "offset": 3745
+          },
+          "end": {
+            "column": 26,
+            "line": 83,
+            "offset": 3762
+          },
+          "text": "limits.Scopes > 0"
+        },
+        {
+          "begin": {
+            "column": 30,
+            "line": 83,
+            "offset": 3766
+          },
+          "end": {
+            "column": 52,
+            "line": 83,
+            "offset": 3788
+          },
+          "text": "limits.Scopes <= 16384"
+        },
+        {
+          "begin": {
+            "column": 56,
+            "line": 83,
+            "offset": 3792
+          },
+          "end": {
+            "column": 74,
+            "line": 83,
+            "offset": 3810
+          },
+          "text": "limits.Records > 0"
+        },
+        {
+          "begin": {
+            "column": 78,
+            "line": 83,
+            "offset": 3814
+          },
+          "end": {
+            "column": 101,
+            "line": 83,
+            "offset": 3837
+          },
+          "text": "limits.Records <= 1<<20"
+        },
+        {
+          "begin": {
+            "column": 105,
+            "line": 83,
+            "offset": 3841
+          },
+          "end": {
+            "column": 121,
+            "line": 83,
+            "offset": 3857
+          },
+          "text": "limits.Bytes > 0"
+        },
+        {
+          "begin": {
+            "column": 125,
+            "line": 83,
+            "offset": 3861
+          },
+          "end": {
+            "column": 146,
+            "line": 83,
+            "offset": 3882
+          },
+          "text": "limits.Bytes <= 1<<30"
+        },
+        {
+          "begin": {
+            "column": 150,
+            "line": 83,
+            "offset": 3886
+          },
+          "end": {
+            "column": 178,
+            "line": 83,
+            "offset": 3914
+          },
+          "text": "limits.Total >= limits.Bytes"
+        },
+        {
+          "begin": {
+            "column": 182,
+            "line": 83,
+            "offset": 3918
+          },
+          "end": {
+            "column": 203,
+            "line": 83,
+            "offset": 3939
+          },
+          "text": "limits.Total <= 4<<30"
+        },
+        {
+          "begin": {
+            "column": 207,
+            "line": 83,
+            "offset": 3943
+          },
+          "end": {
+            "column": 226,
+            "line": 83,
+            "offset": 3962
+          },
+          "text": "limits.History >= 0"
+        },
+        {
+          "begin": {
+            "column": 230,
+            "line": 83,
+            "offset": 3966
+          },
+          "end": {
+            "column": 253,
+            "line": 83,
+            "offset": 3989
+          },
+          "text": "limits.History <= 65536"
+        },
+        {
+          "begin": {
+            "column": 257,
+            "line": 83,
+            "offset": 3993
+          },
+          "end": {
+            "column": 276,
+            "line": 83,
+            "offset": 4012
+          },
+          "text": "limits.Backlog >= 0"
+        },
+        {
+          "begin": {
+            "column": 280,
+            "line": 83,
+            "offset": 4016
+          },
+          "end": {
+            "column": 304,
+            "line": 83,
+            "offset": 4040
+          },
+          "text": "limits.Backlog <= 64<<20"
+        },
+        {
+          "begin": {
+            "column": 308,
+            "line": 83,
+            "offset": 4044
+          },
+          "end": {
+            "column": 326,
+            "line": 83,
+            "offset": 4062
+          },
+          "text": "limits.Timeout > 0"
+        },
+        {
+          "begin": {
+            "column": 330,
+            "line": 83,
+            "offset": 4066
+          },
+          "end": {
+            "column": 362,
+            "line": 83,
+            "offset": 4098
+          },
+          "text": "limits.Timeout <= 30*time.Second"
+        },
+        {
+          "begin": {
+            "column": 366,
+            "line": 83,
+            "offset": 4102
+          },
+          "end": {
+            "column": 385,
+            "line": 83,
+            "offset": 4121
+          },
+          "text": "limits.WAL >= 1<<20"
+        },
+        {
+          "begin": {
+            "column": 389,
+            "line": 83,
+            "offset": 4125
+          },
+          "end": {
+            "column": 408,
+            "line": 83,
+            "offset": 4144
+          },
+          "text": "limits.WAL <= 4<<30"
+        }
+      ],
+      "begin": {
+        "column": 9,
+        "line": 83,
+        "offset": 3745
+      },
+      "end": {
+        "column": 408,
+        "line": 83,
+        "offset": 4144
+      },
+      "id": "polaris/internal/storage/model.go:3745",
+      "kind": "return",
+      "root": 30,
+      "text": "limits.Scopes > 0 && limits.Scopes <= 16384 && limits.Records > 0 && limits.Records <= 1<<20 && limits.Bytes > 0 && limits.Bytes <= 1<<30 && limits.Total >= limits.Bytes && limits.Total <= 4<<30 && limits.History >= 0 && limits.History <= 65536 && limits.Backlog >= 0 && limits.Backlog <= 64<<20 && limits.Timeout > 0 && limits.Timeout <= 30*time.Second && limits.WAL >= 1<<20 && limits.WAL <= 4<<30",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            6,
+            7
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 5,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            8,
+            9
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 6,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            10,
+            11
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 7,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            12,
+            13
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 8,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            14,
+            15
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 9,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            16,
+            17
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 10,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            18,
+            19
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 11,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            20,
+            21
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 12,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            22,
+            23
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 13,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            24,
+            25
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 14,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            26,
+            27
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 15,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            28,
+            29
+          ],
+          "kind": "and"
+        }
+      ]
+    },
+    "polaris/internal/storage/model.go:5585": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 9,
+            "line": 120,
+            "offset": 5585
+          },
+          "end": {
+            "column": 23,
+            "line": 120,
+            "offset": 5599
+          },
+          "text": "len(value) > 0"
+        },
+        {
+          "begin": {
+            "column": 27,
+            "line": 120,
+            "offset": 5603
+          },
+          "end": {
+            "column": 48,
+            "line": 120,
+            "offset": 5624
+          },
+          "text": "len(value) <= maximum"
+        },
+        {
+          "begin": {
+            "column": 53,
+            "line": 120,
+            "offset": 5629
+          },
+          "end": {
+            "column": 83,
+            "line": 120,
+            "offset": 5659
+          },
+          "text": "strings.ContainsRune(value, 0)"
+        },
+        {
+          "begin": {
+            "column": 87,
+            "line": 120,
+            "offset": 5663
+          },
+          "end": {
+            "column": 110,
+            "line": 120,
+            "offset": 5686
+          },
+          "text": "utf8.ValidString(value)"
+        }
+      ],
+      "begin": {
+        "column": 9,
+        "line": 120,
+        "offset": 5585
+      },
+      "end": {
+        "column": 110,
+        "line": 120,
+        "offset": 5686
+      },
+      "id": "polaris/internal/storage/model.go:5585",
+      "kind": "return",
+      "root": 7,
+      "text": "len(value) > 0 && len(value) <= maximum && !strings.ContainsRune(value, 0) && utf8.ValidString(value)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            2,
+            4
+          ],
+          "kind": "and"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            5,
+            6
+          ],
+          "kind": "and"
+        }
+      ]
+    }
+  },
+  "frames": {
+    "change": {
+      "basis": "immutable semantic inputs; scan type/length uses short-circuit masking",
+      "conditions": [
+        "key",
+        "payload-bounded",
+        "set",
+        "empty"
+      ],
+      "id": "change",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "rows": [
+        {
+          "input": {
+            "bytes": 1,
+            "erase": false,
+            "key": "key"
+          },
+          "name": "0",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            false
+          ]
+        },
+        {
+          "input": {
+            "bytes": 1,
+            "erase": false,
+            "key": ""
+          },
+          "name": "1",
+          "result": false,
+          "values": [
+            false,
+            true,
+            true,
+            false
+          ]
+        },
+        {
+          "input": {
+            "bytes": 1048577,
+            "erase": false,
+            "key": "key"
+          },
+          "name": "2",
+          "result": false,
+          "values": [
+            true,
+            false,
+            true,
+            false
+          ]
+        },
+        {
+          "input": {
+            "bytes": 1,
+            "erase": true,
+            "key": "key"
+          },
+          "name": "3",
+          "result": false,
+          "values": [
+            true,
+            true,
+            false,
+            false
+          ]
+        },
+        {
+          "input": {
+            "bytes": 0,
+            "erase": true,
+            "key": "key"
+          },
+          "name": "4",
+          "result": true,
+          "values": [
+            true,
+            true,
+            false,
+            true
+          ]
+        }
+      ]
+    },
+    "limits": {
+      "basis": "immutable semantic inputs; scan type/length uses short-circuit masking",
+      "conditions": [
+        "scopes-positive",
+        "scopes-bounded",
+        "records-positive",
+        "records-bounded",
+        "bytes-positive",
+        "bytes-bounded",
+        "total-covers-scope",
+        "total-bounded",
+        "history-nonnegative",
+        "history-bounded",
+        "backlog-nonnegative",
+        "backlog-bounded",
+        "timeout-positive",
+        "timeout-bounded",
+        "wal-minimum",
+        "wal-bounded"
+      ],
+      "id": "limits",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          14,
+          15
+        ],
+        [
+          16,
+          17
+        ],
+        [
+          18,
+          19
+        ],
+        [
+          20,
+          21
+        ],
+        [
+          22,
+          23
+        ],
+        [
+          24,
+          25
+        ],
+        [
+          26,
+          27
+        ],
+        [
+          28,
+          29
+        ],
+        [
+          30,
+          31
+        ]
+      ],
+      "rows": [
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 1,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "scopes-positive/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 0,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "scopes-positive/refused",
+          "result": false,
+          "values": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 16384,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "scopes-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 16385,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "scopes-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 1,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "records-positive/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 0,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "records-positive/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 1048576,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "records-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 1048577,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "records-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 1,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "bytes-positive/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 0,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "bytes-positive/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 1073741824,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 4294967296,
+            "WAL": 134217728
+          },
+          "name": "bytes-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 1073741825,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 4294967296,
+            "WAL": 134217728
+          },
+          "name": "bytes-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 67108864,
+            "WAL": 134217728
+          },
+          "name": "total-covers-scope/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 67108863,
+            "WAL": 134217728
+          },
+          "name": "total-covers-scope/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 4294967296,
+            "WAL": 134217728
+          },
+          "name": "total-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 4294967297,
+            "WAL": 134217728
+          },
+          "name": "total-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 0,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "history-nonnegative/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": -1,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "history-nonnegative/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 65536,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "history-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 65537,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "history-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 0,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "backlog-nonnegative/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": -1,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "backlog-nonnegative/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 67108864,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "backlog-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 67108865,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "backlog-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 1,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "timeout-positive/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 0,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "timeout-positive/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 30000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "timeout-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 30000000001,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "name": "timeout-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 1048576
+          },
+          "name": "wal-minimum/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 1048575
+          },
+          "name": "wal-minimum/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 4294967296
+          },
+          "name": "wal-bounded/valid",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 4294967297
+          },
+          "name": "wal-bounded/refused",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false
+          ]
+        }
+      ]
+    },
+    "scan": {
+      "basis": "immutable semantic inputs; scan type/length uses short-circuit masking",
+      "conditions": [
+        "wrong-type",
+        "wrong-size"
+      ],
+      "id": "scan",
+      "pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "rows": [
+        {
+          "input": "12345678",
+          "name": "0",
+          "result": true,
+          "values": [
+            true,
+            null
+          ]
+        },
+        {
+          "input": "AQIDBAUGBw==",
+          "name": "1",
+          "result": true,
+          "values": [
+            false,
+            true
+          ]
+        },
+        {
+          "input": "AAAAAAAAAAc=",
+          "name": "2",
+          "result": false,
+          "values": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    "scope": {
+      "basis": "immutable semantic inputs; scan type/length uses short-circuit masking",
+      "conditions": [
+        "sector",
+        "spectrum"
+      ],
+      "id": "scope",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "rows": [
+        {
+          "input": {
+            "Sector": "sector",
+            "Spectrum": "spectrum"
+          },
+          "name": "0",
+          "result": true,
+          "values": [
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Sector": "",
+            "Spectrum": "spectrum"
+          },
+          "name": "1",
+          "result": false,
+          "values": [
+            false,
+            true
+          ]
+        },
+        {
+          "input": {
+            "Sector": "sector",
+            "Spectrum": ""
+          },
+          "name": "2",
+          "result": false,
+          "values": [
+            true,
+            false
+          ]
+        }
+      ]
+    },
+    "text": {
+      "basis": "immutable semantic inputs; scan type/length uses short-circuit masking",
+      "conditions": [
+        "nonempty",
+        "bounded",
+        "nul-free",
+        "utf8"
+      ],
+      "id": "text",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "rows": [
+        {
+          "input": {
+            "bytes": "6f6b",
+            "maximum": 4
+          },
+          "name": "0",
+          "result": true,
+          "values": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "bytes": "",
+            "maximum": 4
+          },
+          "name": "1",
+          "result": false,
+          "values": [
+            false,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "bytes": "6162636465",
+            "maximum": 4
+          },
+          "name": "2",
+          "result": false,
+          "values": [
+            true,
+            false,
+            true,
+            true
+          ]
+        },
+        {
+          "input": {
+            "bytes": "780079",
+            "maximum": 4
+          },
+          "name": "3",
+          "result": false,
+          "values": [
+            true,
+            true,
+            false,
+            true
+          ]
+        },
+        {
+          "input": {
+            "bytes": "ff",
+            "maximum": 4
+          },
+          "name": "4",
+          "result": false,
+          "values": [
+            true,
+            true,
+            true,
+            false
+          ]
+        }
+      ]
+    }
+  },
+  "label": "Synthetic parser fixture based on frozen native input/AST formats; never application or acceptance evidence.",
+  "vectors": {
+    "polaris/internal/storage/batch.go:1347": [
+      {
+        "hits": 89510,
+        "result": true,
+        "values": "2210"
+      },
+      {
+        "hits": 6,
+        "result": false,
+        "values": "1000"
+      },
+      {
+        "hits": 2,
+        "result": false,
+        "values": "2100"
+      },
+      {
+        "hits": 7,
+        "result": false,
+        "values": "2221"
+      },
+      {
+        "hits": 17624,
+        "result": true,
+        "values": "2222"
+      }
+    ],
+    "polaris/internal/storage/model.go:1846": [
+      {
+        "hits": 67494,
+        "result": false,
+        "values": "21"
+      },
+      {
+        "hits": 8,
+        "result": true,
+        "values": "22"
+      },
+      {
+        "hits": 10,
+        "result": true,
+        "values": "10"
+      }
+    ],
+    "polaris/internal/storage/model.go:2338": [
+      {
+        "hits": 51252,
+        "result": true,
+        "values": "22"
+      },
+      {
+        "hits": 7,
+        "result": false,
+        "values": "10"
+      },
+      {
+        "hits": 7,
+        "result": false,
+        "values": "21"
+      }
+    ],
+    "polaris/internal/storage/model.go:3745": [
+      {
+        "hits": 413,
+        "result": true,
+        "values": "2222222222222222"
+      },
+      {
+        "hits": 5,
+        "result": false,
+        "values": "1000000000000000"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "2100000000000000"
+      },
+      {
+        "hits": 5,
+        "result": false,
+        "values": "2210000000000000"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "2221000000000000"
+      },
+      {
+        "hits": 5,
+        "result": false,
+        "values": "2222100000000000"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "2222210000000000"
+      },
+      {
+        "hits": 7,
+        "result": false,
+        "values": "2222221000000000"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "2222222100000000"
+      },
+      {
+        "hits": 4,
+        "result": false,
+        "values": "2222222210000000"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "2222222221000000"
+      },
+      {
+        "hits": 4,
+        "result": false,
+        "values": "2222222222100000"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "2222222222210000"
+      },
+      {
+        "hits": 5,
+        "result": false,
+        "values": "2222222222221000"
+      },
+      {
+        "hits": 4,
+        "result": false,
+        "values": "2222222222222100"
+      },
+      {
+        "hits": 5,
+        "result": false,
+        "values": "2222222222222210"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "2222222222222221"
+      }
+    ],
+    "polaris/internal/storage/model.go:5585": [
+      {
+        "hits": 234256,
+        "result": true,
+        "values": "2212"
+      },
+      {
+        "hits": 19,
+        "result": false,
+        "values": "1000"
+      },
+      {
+        "hits": 4,
+        "result": false,
+        "values": "2100"
+      },
+      {
+        "hits": 8,
+        "result": false,
+        "values": "2211"
+      },
+      {
+        "hits": 5,
+        "result": false,
+        "values": "2220"
+      }
+    ]
+  }
+}

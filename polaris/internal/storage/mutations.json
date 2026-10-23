@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "scope": "The original 28 Boolean conditions in text, Scope.Valid, Limits.valid, Version.Scan and validChange, plus eleven length/ASCII-name conditions. This finite pure-validator scope is not whole Storage mutation coverage. TestDecisions or TestNames must reject the altered production predicate; static inventory is excluded from mutant selection.",
+  "package": "./polaris/internal/storage",
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "mutations": [
+    {
+      "id": "text-empty",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "len(value) > 0",
+      "after": "len(value) <= 0"
+    },
+    {
+      "id": "text-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "len(value) <= maximum",
+      "after": "len(value) > maximum"
+    },
+    {
+      "id": "text-nul",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "!strings.ContainsRune(value, 0)",
+      "after": "strings.ContainsRune(value, 0)"
+    },
+    {
+      "id": "text-utf8",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "utf8.ValidString(value)",
+      "after": "!utf8.ValidString(value)"
+    },
+    {
+      "id": "scope-sector",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "text(scope.Sector, 128)",
+      "after": "!text(scope.Sector, 128)"
+    },
+    {
+      "id": "scope-spectrum",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "text(scope.Spectrum, 128)",
+      "after": "!text(scope.Spectrum, 128)"
+    },
+    {
+      "id": "scopes-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Scopes > 0",
+      "after": "limits.Scopes <= 0"
+    },
+    {
+      "id": "scopes-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Scopes <= 16384",
+      "after": "limits.Scopes > 16384"
+    },
+    {
+      "id": "records-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Records > 0",
+      "after": "limits.Records <= 0"
+    },
+    {
+      "id": "records-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Records <= 1<<20",
+      "after": "limits.Records > 1<<20"
+    },
+    {
+      "id": "bytes-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Bytes > 0",
+      "after": "limits.Bytes <= 0"
+    },
+    {
+      "id": "bytes-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Bytes <= 1<<30",
+      "after": "limits.Bytes > 1<<30"
+    },
+    {
+      "id": "total-covers-scope",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Total >= limits.Bytes",
+      "after": "limits.Total < limits.Bytes"
+    },
+    {
+      "id": "total-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Total <= 4<<30",
+      "after": "limits.Total > 4<<30"
+    },
+    {
+      "id": "history-nonnegative",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.History >= 0",
+      "after": "limits.History < 0"
+    },
+    {
+      "id": "history-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.History <= 65536",
+      "after": "limits.History > 65536"
+    },
+    {
+      "id": "backlog-nonnegative",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Backlog >= 0",
+      "after": "limits.Backlog < 0"
+    },
+    {
+      "id": "backlog-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Backlog <= 64<<20",
+      "after": "limits.Backlog > 64<<20"
+    },
+    {
+      "id": "timeout-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Timeout > 0",
+      "after": "limits.Timeout <= 0"
+    },
+    {
+      "id": "timeout-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Timeout <= 30*time.Second",
+      "after": "limits.Timeout > 30*time.Second"
+    },
+    {
+      "id": "wal-minimum",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.WAL >= 1<<20",
+      "after": "limits.WAL < 1<<20"
+    },
+    {
+      "id": "wal-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.WAL <= 4<<30",
+      "after": "limits.WAL > 4<<30"
+    },
+    {
+      "id": "version-type",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "!ok",
+      "after": "ok"
+    },
+    {
+      "id": "version-size",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "len(bytes) != 8",
+      "after": "len(bytes) == 8"
+    },
+    {
+      "id": "change-key",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "text(change.Key, 1024)",
+      "after": "!text(change.Key, 1024)"
+    },
+    {
+      "id": "change-payload",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "len(change.Value) <= 1<<20",
+      "after": "len(change.Value) > 1<<20"
+    },
+    {
+      "id": "change-set",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "!change.Erase",
+      "after": "change.Erase"
+    },
+    {
+      "id": "change-empty",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "len(change.Value) == 0",
+      "after": "len(change.Value) != 0"
+    },
+    {
+      "id": "name-empty",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "len(value) == 0",
+      "after": "len(value) != 0"
+    },
+    {
+      "id": "name-size",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "len(value) > 64",
+      "after": "len(value) >= 64"
+    },
+    {
+      "id": "name-lower-start",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char >= 'a'",
+      "after": "char > 'a'"
+    },
+    {
+      "id": "name-lower-end",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char <= 'z'",
+      "after": "char < 'z'"
+    },
+    {
+      "id": "name-upper-start",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char >= 'A'",
+      "after": "char > 'A'"
+    },
+    {
+      "id": "name-upper-end",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char <= 'Z'",
+      "after": "char < 'Z'"
+    },
+    {
+      "id": "name-digit-start",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char >= '0'",
+      "after": "char > '0'"
+    },
+    {
+      "id": "name-digit-end",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char <= '9'",
+      "after": "char < '9'"
+    },
+    {
+      "id": "name-dot",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char == '.'",
+      "after": "char != '.'"
+    },
+    {
+      "id": "name-underscore",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char == '_'",
+      "after": "char != '_'"
+    },
+    {
+      "id": "name-hyphen",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char == '-'",
+      "after": "char != '-'"
+    }
+  ]
+}

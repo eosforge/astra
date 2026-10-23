@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "scope": "SQL durable-statement fault supplement: eight native write sites, two failure/failure/recovery cycles per site, unchanged live store and subscriber; initialization, read, finalization, cleanup, native I/O and process-death domains remain separate full-matrix requirements.",
+  "package": "./polaris/internal/storage",
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "fixtures": [
+    {
+      "source": "tests/fixtures/failures.go.in",
+      "target": "polaris/internal/storage/failures_test.go"
+    }
+  ],
+  "mutations": [
+    {
+      "id": "ignore-write-error",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFaultCycles",
+      "before": "if err != nil {\n\t\t\t\treturn ErrUnavailable\n\t\t\t}\n\t\t}",
+      "after": "if err != nil {\n\t\t\t\treturn nil\n\t\t\t}\n\t\t}"
+    }
+  ]
+}

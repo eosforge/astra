@@ -1,0 +1,21 @@
+[package]
+name = "astra-protocol-generator"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT"
+publish = false
+
+[dependencies]
+prost = "=0.14.4"
+prost-build = "=0.14.4"
+prost-types = "=0.14.4"
+tonic-prost-build = "=0.14.6"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = "deny"
+unwrap_used = "deny"
+expect_used = "deny"

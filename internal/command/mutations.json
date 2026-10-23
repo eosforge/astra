@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "scope": "Eleven explicit core flag-wrapper mutations covering nil display, delegation, consumed attempts, delegate error identity, optional boolean dispatch, registration wrapping parse-error propagation, pre-callback admission and escaping parser panic. Completeness is bound separately to the owned source inventory; this does not qualify unrelated maintenance rules.",
+  "package": "./internal/command",
+  "import": "github.com/eosforge/astra/internal/command",
+  "mutations": [
+    {
+      "id": "nil-display",
+      "file": "internal/command/flags.go",
+      "test": "TestDecisions",
+      "before": "return \"\" // flag",
+      "after": "return \"invalid\" // flag"
+    },
+    {
+      "id": "display-delegate",
+      "file": "internal/command/flags.go",
+      "test": "TestDecisions",
+      "before": "return value.Value.String()",
+      "after": "return \"\""
+    },
+    {
+      "id": "duplicate-admission",
+      "file": "internal/command/flags.go",
+      "test": "TestDecisions",
+      "before": "if value.set {",
+      "after": "if false {"
+    },
+    {
+      "id": "attempt-consumption",
+      "file": "internal/command/flags.go",
+      "test": "TestDecisions",
+      "before": "value.set = true",
+      "after": "value.set = false"
+    },
+    {
+      "id": "delegate-error",
+      "file": "internal/command/flags.go",
+      "test": "TestDecisions",
+      "before": "return value.Value.Set(text)",
+      "after": "value.Value.Set(text)\n\treturn nil"
+    },
+    {
+      "id": "boolean-evaluation",
+      "file": "internal/command/flags.go",
+      "test": "TestDecisions",
+      "before": "return ok && boolean.IsBoolFlag()",
+      "after": "_ = boolean\n\treturn ok"
+    },
+    {
+      "id": "boolean-result",
+      "file": "internal/command/flags.go",
+      "test": "TestDecisions",
+      "before": "return ok && boolean.IsBoolFlag()",
+      "after": "return ok && !boolean.IsBoolFlag()"
+    },
+    {
+      "id": "skip-wrapping",
+      "file": "internal/command/flags.go",
+      "test": "TestVerification",
+      "before": "flags.VisitAll(func(option *flag.Flag) { option.Value = &once{Value: option.Value} })",
+      "after": "flags.VisitAll(func(option *flag.Flag) { _ = option })"
+    },
+    {
+      "id": "discard-parse-error",
+      "file": "internal/command/flags.go",
+      "test": "TestVerification",
+      "before": "return flags.Parse(arguments)",
+      "after": "_ = flags.Parse(arguments)\n\treturn nil"
+    },
+    {
+      "id": "late-admission",
+      "file": "internal/command/flags.go",
+      "test": "TestFault",
+      "before": "value.set = true\n\treturn value.Value.Set(text)",
+      "after": "result := value.Value.Set(text)\n\tvalue.set = true\n\treturn result"
+    },
+    {
+      "id": "swallow-parser-panic",
+      "file": "internal/command/flags.go",
+      "test": "TestFault",
+      "before": "return flags.Parse(arguments)",
+      "after": "defer func() { _ = recover() }()\n\treturn flags.Parse(arguments)"
+    }
+  ]
+}

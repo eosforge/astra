@@ -1,0 +1,327 @@
+//go:build linux && cgo
+
+// Verify read-pool deadlines and cooperative opening cancellation with native SQLite and an explicitly stepped clock.
+package storage
+
+import (
+	"bytes"
+	"context"
+	"database/sql"
+	"errors"
+	"os"
+	"path/filepath"
+	"sync"
+	"testing"
+	"testing/synctest"
+	"time"
+)
+
+// TestReadTimeouts exhausts the real read pool; a deadline cannot publish data, steal a connection, or prevent recovery.
+func TestReadTimeouts(t *testing.T) {
+	verified := verification(t, "STORAGE-TIME")
+	for _, mode := range []string{"permit", "minimum", "maximum", "parent", "cancel", "past", "jump"} {
+		verified(t.Run(mode, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				limits := Default()
+				if mode == "minimum" {
+					limits.Timeout = time.Nanosecond
+				} else if mode == "maximum" {
+					limits.Timeout = 30 * time.Second
+				}
+				store, _, _ := fixture(t, limits)
+				scope := Scope{"time", "reading"}
+				if version, err := store.CommitBatch(t.Context(), scope, 1, []Change{{Key: "a", Value: []byte("old")}, {Key: "b", Value: []byte("old")}}); err != nil || version != 1 {
+					t.Fatal("initial durable receipt", version, err)
+				}
+				changed := store.Changed()
+				start := time.Now()
+				ctx, cancel := context.WithCancel(t.Context())
+				budget := limits.Timeout
+				if mode == "parent" {
+					cancel()
+					budget = 2 * time.Second
+					ctx, cancel = context.WithTimeout(t.Context(), budget)
+				} else if mode == "past" {
+					cancel()
+					ctx, cancel = context.WithDeadline(t.Context(), start.Add(-time.Nanosecond))
+					budget = 0
+				} else if mode == "cancel" || mode == "permit" {
+					budget = 0
+				}
+				var held *sql.Conn
+				if mode != "permit" {
+					store.readSQL.SetMaxOpenConns(1)
+					var err error
+					held, err = store.readSQL.Conn(t.Context())
+					if err != nil {
+						t.Fatal("reserve native read connection", err)
+					}
+				}
+				var work sync.WaitGroup
+				t.Cleanup(func() {
+					cancel()
+					if held != nil {
+						held.Close()
+					}
+					work.Wait()
+				})
+				type result struct {
+					view    Snapshot      // The public result must stay empty when acquisition fails.
+					err     error         // Preserve the deadline or explicit cancellation cause.
+					elapsed time.Duration // Observe the operation before any later virtual jump.
+				}
+				done := make(chan result, 1)
+				work.Add(1)
+				go func() {
+					defer work.Done()
+					view, err := store.Load(ctx, scope)
+					done <- result{view, err, time.Since(start)}
+				}()
+				synctest.Wait()
+				synctest.Sleep(-time.Nanosecond)
+				synctest.Sleep(0)
+				if time.Since(start) != 0 {
+					t.Fatal("nonpositive step changed virtual time")
+				}
+				before := time.Duration(0)
+				if budget > 0 {
+					if mode == "jump" {
+						synctest.Sleep(24 * time.Hour)
+					} else {
+						synctest.Sleep(budget - time.Nanosecond)
+						before = time.Since(start)
+						select {
+						case actual := <-done:
+							t.Fatal("read completed before its exact deadline", actual)
+						default:
+						}
+						if before != budget-time.Nanosecond || store.readSQL.Stats().InUse != 1 {
+							t.Fatal("read deadline boundary or connection ownership changed")
+						}
+						synctest.Sleep(time.Nanosecond)
+					}
+				} else if mode == "cancel" {
+					cancel()
+					synctest.Wait()
+				}
+				var actual result
+				select {
+				case actual = <-done:
+				default:
+					t.Fatal("read did not finish at the controlled boundary")
+				}
+				if actual.elapsed != budget {
+					t.Fatal("read used a different elapsed-time domain", actual.elapsed, budget)
+				}
+				if mode == "permit" {
+					if actual.err != nil || actual.view.Version != 1 || len(actual.view.Records) != 2 {
+						t.Fatal("healthy read failed", actual)
+					}
+				} else {
+					wanted := context.DeadlineExceeded
+					if mode == "cancel" {
+						wanted = context.Canceled
+					}
+					if !errors.Is(actual.err, wanted) || actual.view.Version != 0 || len(actual.view.Records) != 0 || store.readSQL.Stats().InUse != 1 {
+						t.Fatal("wrong read refusal or lost connection ownership", actual)
+					}
+					if err := held.Close(); err != nil {
+						t.Fatal("return held connection", err)
+					}
+					held = nil
+				}
+				select {
+				case <-changed:
+					t.Fatal("read published a change")
+				default:
+				}
+				view, err := store.Load(t.Context(), scope)
+				inUse := store.readSQL.Stats().InUse + store.writeSQL.Stats().InUse
+				if err != nil || view.Version != 1 || len(view.Records) != 2 || !bytes.Equal(view.Records[0].Value, []byte("old")) || !bytes.Equal(view.Records[1].Value, []byte("old")) || len(store.writer) != 0 || inUse != 0 {
+					t.Fatal("read refusal changed durable state or prevented recovery", view, err, inUse)
+				}
+				t.Logf("STORAGE-TIME scope=read mode=%s budget=%d before=%d elapsed=%d recovered=%d records=%d writer=%d in_use=%d", mode, budget, before, actual.elapsed, view.Version, len(view.Records), len(store.writer), inUse)
+			})
+		}), "complete virtual-time read history "+mode)
+	}
+}
+
+// pausing pauses only the real initialization directory sync, retaining native files and SQLite ownership until resumed.
+type pausing struct {
+	arrived chan struct{} // The opening operation has reached directory synchronization.
+	resume  chan struct{} // The test owns release of the outstanding native operation.
+	closed  int           // Count actual directory-handle release after native Sync returns.
+}
+
+// open transfers a real native handle and intercepts only the read-only directory handle.
+func (files *pausing) open(path string, flags int, mode os.FileMode) (handle, error) {
+	file, err := os.OpenFile(path, flags, mode)
+	if err != nil || flags != os.O_RDONLY {
+		return file, err
+	}
+	return &directory{file, files}, nil
+}
+
+// directory keeps the native descriptor alive throughout the controlled interruption.
+type directory struct {
+	*os.File          // The real initialization directory, including native Sync and Close.
+	owner    *pausing // This operation's private schedule and release observation.
+}
+
+// Sync models an outstanding external operation whose cancellation is cooperative rather than immediate.
+func (file *directory) Sync() error {
+	close(file.owner.arrived)
+	<-file.owner.resume
+	return file.File.Sync()
+}
+
+// Close records release only after the actual descriptor has been returned.
+func (file *directory) Close() error {
+	err := file.File.Close()
+	file.owner.closed++
+	return err
+}
+
+// TestOpenTimeouts preserves the initialized file on refusal and proves lock release before healthy recovery.
+func TestOpenTimeouts(t *testing.T) {
+	verified := verification(t, "STORAGE-TIME")
+	for _, mode := range []string{"permit", "before", "default", "minimum", "maximum", "parent", "cancel", "jump"} {
+		verified(t.Run(mode, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				limits := Default()
+				if mode == "minimum" {
+					limits.Timeout = time.Nanosecond
+				} else if mode == "maximum" {
+					limits.Timeout = 30 * time.Second
+				}
+				path := filepath.Join(t.TempDir(), "opening.db")
+				binding := Binding{Galaxy: "test", Username: "polaris", Advertise: "127.0.0.1:45101"}
+				files := &pausing{arrived: make(chan struct{}), resume: make(chan struct{})}
+				start := time.Now()
+				ctx, cancel := context.WithCancel(t.Context())
+				budget := limits.Timeout
+				if mode == "parent" {
+					cancel()
+					budget = 2 * time.Second
+					ctx, cancel = context.WithTimeout(t.Context(), budget)
+				} else if mode == "cancel" || mode == "permit" {
+					budget = 0
+				}
+				type result struct {
+					store   *Store        // Successful ownership must be explicitly closed before recovery.
+					err     error         // Opening preserves its stable unavailable result after cancellation.
+					elapsed time.Duration // Completion can follow the deadline while native I/O drains.
+				}
+				done := make(chan result, 1)
+				var work sync.WaitGroup
+				var released sync.Once
+				t.Cleanup(func() {
+					cancel()
+					released.Do(func() { close(files.resume) })
+					work.Wait()
+					select {
+					case actual := <-done:
+						if actual.store != nil {
+							actual.store.Close()
+						}
+					default:
+					}
+				})
+				work.Add(1)
+				go func() {
+					defer work.Done()
+					store, err := open(ctx, path, binding, limits, true, files)
+					done <- result{store, err, time.Since(start)}
+				}()
+				synctest.Wait()
+				select {
+				case <-files.arrived:
+				default:
+					t.Fatal("opening did not reach native directory synchronization")
+				}
+				before := time.Duration(0)
+				if budget > 0 {
+					if mode == "jump" {
+						synctest.Sleep(24 * time.Hour)
+					} else {
+						synctest.Sleep(budget - time.Nanosecond)
+						before = time.Since(start)
+						if before != budget-time.Nanosecond {
+							t.Fatal("opening pre-deadline boundary changed", before)
+						}
+						if mode != "before" {
+							synctest.Sleep(time.Nanosecond)
+						}
+					}
+				} else if mode == "cancel" {
+					cancel()
+					synctest.Wait()
+				}
+				select {
+				case actual := <-done:
+					if actual.store != nil {
+						actual.store.Close()
+					}
+					t.Fatal("opening abandoned outstanding I/O before drain")
+				default:
+				}
+				if files.closed != 0 {
+					t.Fatal("opening closed an active native descriptor")
+				}
+				if duplicate, err := lock(path); err == nil {
+					duplicate.Close()
+					t.Fatal("opening released its database lock before I/O drain")
+				}
+				released.Do(func() { close(files.resume) })
+				synctest.Wait()
+				var actual result
+				select {
+				case actual = <-done:
+				default:
+					t.Fatal("opening did not finish after native I/O drain")
+				}
+				if actual.store != nil {
+					t.Cleanup(func() { actual.store.Close() })
+				}
+				wanted := budget
+				if mode == "before" {
+					wanted--
+				} else if mode == "jump" {
+					wanted = 24 * time.Hour
+				}
+				if actual.elapsed != wanted || files.closed != 1 {
+					t.Fatal("opening completion or descriptor drain changed", actual.elapsed, wanted, files.closed)
+				}
+				if mode == "permit" || mode == "before" {
+					if actual.store == nil || actual.err != nil {
+						t.Fatal("opening rejected before its configured deadline", actual.err)
+					}
+					if err := actual.store.Close(); err != nil {
+						t.Fatal("close successful opening", err)
+					}
+				} else if actual.store != nil || !errors.Is(actual.err, ErrUnavailable) {
+					t.Fatal("opening ignored the expired context", actual.err)
+				}
+				if info, err := os.Stat(path); err != nil || info.Size() == 0 {
+					t.Fatal("refused opening discarded the initialized database", info, err)
+				}
+				recovered, err := Open(t.Context(), path, binding, Default(), false)
+				if err != nil {
+					t.Fatal("opening did not release ownership for recovery", err)
+				}
+				t.Cleanup(func() { recovered.Close() })
+				scope := Scope{"time", "opening"}
+				view, err := recovered.Load(t.Context(), scope)
+				if err != nil || view.Version != 0 || len(view.Records) != 0 {
+					t.Fatal("initialized database recovered partial business data", view, err)
+				}
+				version, err := recovered.CommitBatch(t.Context(), scope, 1, []Change{{Key: "a", Value: []byte("new")}, {Key: "b", Value: []byte("new")}})
+				inUse := recovered.readSQL.Stats().InUse + recovered.writeSQL.Stats().InUse
+				if err != nil || version != 1 || inUse != 0 || len(recovered.writer) != 0 {
+					t.Fatal("healthy opening recovery failed", version, err, inUse)
+				}
+				t.Logf("STORAGE-TIME scope=open mode=%s budget=%d before=%d elapsed=%d recovered=%d records=2 writer=%d in_use=%d closed=%d", mode, budget, before, actual.elapsed, version, len(recovered.writer), inUse, files.closed)
+			})
+		}), "complete virtual-time opening history "+mode)
+	}
+}

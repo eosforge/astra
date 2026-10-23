@@ -1,0 +1,103 @@
+//go:build linux && cgo
+
+// Isolate five mutation-sensitive authority, accounting, receipt and retained-prefix contracts.
+package storage
+
+import (
+	"bytes"
+	"errors"
+	"testing"
+)
+
+// TestMutationBoundaries keeps unrelated limits and receipt fields valid while changing one boundary.
+func TestMutationBoundaries(t *testing.T) {
+	t.Run("scopes", func(t *testing.T) {
+		check := verification(t, "STORAGE-MUTATION-BOUNDARIES")
+		limits := Default()
+		limits.Scopes, limits.Records, limits.Bytes, limits.Total = 1, 16, 128, 256
+		store, _, _ := fixture(t, limits)
+		first, second := Scope{"scope", "first"}, Scope{"scope", "second"}
+		requireCommit(t, store, first, Change{Version: 1, Key: "a", Value: []byte{1}})
+		changed := store.Changed()
+		_, err := store.Commit(t.Context(), second, Change{Version: 1, Key: "b", Value: []byte{2}})
+		check(errors.Is(err, ErrCapacity), "scope admission rejects a second scope with spare record and byte budgets")
+		version, err := store.Version(t.Context(), second)
+		check(err == nil && version == 0, "rejected scope has no committed version")
+		select {
+		case <-changed:
+			check(false, "rejected scope must not publish a change")
+		default:
+			check(true, "rejected scope preserves the notification boundary")
+		}
+		snapshot, err := store.Load(t.Context(), first)
+		check(err == nil && snapshot.Version == 1 && len(snapshot.Records) == 1, "rejected admission preserves the original scope")
+	})
+
+	t.Run("total", func(t *testing.T) {
+		check := verification(t, "STORAGE-MUTATION-BOUNDARIES")
+		store, path, binding := fixture(t, Default())
+		scope := Scope{"accounting", "total"}
+		requireCommit(t, store, scope, Change{Version: 1, Key: "k", Value: []byte("one")})
+		requireCommit(t, store, scope, Change{Version: 2, Key: "k", Value: []byte("two")})
+		var total int64
+		err := store.readSQL.QueryRowContext(t.Context(), "SELECT bytes FROM meta WHERE id=1").Scan(&total)
+		check(err == nil && total == 4, "replacement accounts for the current key and value exactly once")
+		snapshot, err := store.Load(t.Context(), scope)
+		check(err == nil && snapshot.Version == 2 && len(snapshot.Records) == 1, "replacement publishes one record and one new version")
+		check(bytes.Equal(snapshot.Records[0].Value, []byte("two")), "replacement retains the new value")
+		check(store.Close() == nil, "replacement drains before recovery")
+		reopened, err := Open(t.Context(), path, binding, Default(), false)
+		check(err == nil && reopened != nil, "replacement accounting remains recoverable")
+		t.Cleanup(func() { check(reopened.Close() == nil, "recovered accounting releases ownership") })
+	})
+
+	t.Run("key", func(t *testing.T) {
+		check := verification(t, "STORAGE-MUTATION-BOUNDARIES")
+		store, _, _ := fixture(t, Default())
+		scope := Scope{"receipt", "key"}
+		requireCommit(t, store, scope, Change{Version: 1, Key: "a", Value: []byte("same")})
+		requireCommit(t, store, scope, Change{Version: 1, Key: "a", Value: []byte("same")})
+		_, err := store.Commit(t.Context(), scope, Change{Version: 1, Key: "b", Value: []byte("same")})
+		check(errors.Is(err, ErrVersion), "a retry cannot change only its key while keeping version, erase and payload equal")
+		snapshot, err := store.Load(t.Context(), scope)
+		check(err == nil && snapshot.Version == 1 && len(snapshot.Records) == 1, "key conflict preserves the committed state")
+		check(snapshot.Records[0].Key == "a" && bytes.Equal(snapshot.Records[0].Value, []byte("same")), "key conflict preserves the original receipt content")
+	})
+
+	t.Run("erase", func(t *testing.T) {
+		check := verification(t, "STORAGE-MUTATION-BOUNDARIES")
+		store, _, _ := fixture(t, Default())
+		scope := Scope{"receipt", "erase"}
+		requireCommit(t, store, scope, Change{Version: 1, Key: "a", Value: []byte{}})
+		_, err := store.Commit(t.Context(), scope, Change{Version: 1, Key: "a", Erase: true})
+		check(errors.Is(err, ErrVersion), "an empty assignment and deletion are different retry intents")
+		snapshot, err := store.Load(t.Context(), scope)
+		check(err == nil && len(snapshot.Records) == 1, "conflicting deletion preserves the empty assigned record")
+		requireCommit(t, store, scope, Change{Version: 2, Key: "a", Erase: true})
+		_, err = store.Commit(t.Context(), scope, Change{Version: 2, Key: "a", Value: []byte{}})
+		check(errors.Is(err, ErrVersion), "a deletion receipt cannot become an empty assignment on retry")
+		snapshot, err = store.Load(t.Context(), scope)
+		check(err == nil && snapshot.Version == 2 && len(snapshot.Records) == 0, "conflicting assignment preserves the deletion")
+	})
+
+	t.Run("prefix", func(t *testing.T) {
+		check := verification(t, "STORAGE-MUTATION-BOUNDARIES")
+		limits := Default()
+		limits.History, limits.Backlog = 2, 1024
+		store, path, binding := fixture(t, limits)
+		scope := Scope{"history", "prefix"}
+		for version := Version(1); version <= 3; version++ {
+			requireCommit(t, store, scope, Change{Version: version, Key: "k", Value: []byte{byte(version)}})
+		}
+		var count int64
+		err := store.readSQL.QueryRowContext(t.Context(), "SELECT COUNT(*) FROM history WHERE sector=? AND spectrum=?", scope.Sector, scope.Spectrum).Scan(&count)
+		check(err == nil && count == 2, "prefix pruning removes the inclusive boundary row from physical history")
+		replay, err := store.Since(t.Context(), scope, 1)
+		check(err == nil && replay.Version == 3 && len(replay.Changes) == 2, "retained replay contains the complete two-version suffix")
+		check(replay.Changes[0].Version == 2 && replay.Changes[1].Version == 3, "prefix pruning preserves suffix order")
+		check(store.Close() == nil, "retained state drains before recovery")
+		reopened, err := Open(t.Context(), path, binding, limits, false)
+		check(err == nil && reopened != nil, "physical and logical retained counts agree after recovery")
+		t.Cleanup(func() { check(reopened.Close() == nil, "recovered history releases ownership") })
+	})
+}

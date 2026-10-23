@@ -1,0 +1,146 @@
+// Verify bounded shutdown over real HTTP and cancellation schedules without changing production decisions.
+package main
+
+import (
+	"bufio"
+	"context"
+	"errors"
+	"fmt"
+	"io"
+	"net"
+	"net/http"
+	"strconv"
+	"sync"
+	"testing"
+	"time"
+)
+
+// checkpoint is inserted only around the existing parent.Done expression by the owned test overlay.
+// It always returns that identical channel; all original select cases and native selection remain intact.
+var checkpoint = func(done <-chan struct{}, _ chan error) <-chan struct{} { return done }
+
+// stopEntry starts one existing entry with public TLS fixtures and joins it on every test outcome.
+func stopEntry(t *testing.T) (options, context.CancelFunc, <-chan error, *registrar, *bool) {
+	t.Helper()
+	config, listener, identity := deployment(t)
+	service := launch(t, &config, identity, "cancel")
+	if err := listener.Close(); err != nil {
+		t.Fatal(err)
+	}
+	ctx, cancel := context.WithCancel(t.Context())
+	done := make(chan error, 1)
+	joined := false
+	go func() { done <- run(ctx, config) }()
+	t.Cleanup(func() {
+		cancel()
+		if !joined {
+			select {
+			case <-done:
+			case <-time.After(8 * time.Second):
+				t.Error("entry did not drain after fixture cancellation")
+			}
+		}
+	})
+	select {
+	case <-service.entered:
+	case <-time.After(8 * time.Second):
+		t.Fatal("entry did not reach its owned admission request")
+	}
+	return config, cancel, done, service, &joined
+}
+
+// TestStopBody forces the five-second graceful limit using an acknowledged, incomplete HTTP body.
+// Expect: 100-continue is a real handler-read barrier; no sleep guesses whether the request is active.
+func TestStopBody(t *testing.T) {
+	check := counter(t)
+	config, cancel, done, service, joined := stopEntry(t)
+	connection, err := net.DialTimeout("tcp", config.listen, 5*time.Second)
+	check(err == nil, "cannot open the owned slow-body connection")
+	t.Cleanup(func() { _ = connection.Close() })
+	check(connection.SetDeadline(time.Now().Add(12*time.Second)) == nil, "cannot bound the slow-body exchange")
+	request, err := http.NewRequest(http.MethodPost, "http://"+config.listen+"/api/session", nil)
+	check(err == nil, "cannot describe the native HTTP request")
+	_, err = fmt.Fprintf(connection, "POST /api/session HTTP/1.1\r\nHost: %s\r\nOrigin: %s\r\nX-Astra-Request: 1\r\nContent-Type: application/json\r\nContent-Length: 32\r\nExpect: 100-continue\r\n\r\n", config.listen, config.public)
+	check(err == nil, "cannot write the complete slow-body headers")
+	reader := bufio.NewReader(connection)
+	response, err := http.ReadResponse(reader, request)
+	check(err == nil && response.StatusCode == http.StatusContinue, "handler did not acknowledge its first body read")
+	check(response.Body.Close() == nil, "cannot close the interim response")
+	cancel()
+	select {
+	case err := <-done:
+		*joined = true
+		check(err == nil, "bounded owner shutdown became an entry failure")
+	case <-time.After(8 * time.Second):
+		t.Fatal("shutdown failed to close the incomplete request within its budget")
+	}
+	_, err = reader.ReadByte()
+	check(errors.Is(err, io.EOF), "forced shutdown retained the client stream or exposed a partial response")
+	select {
+	case <-service.exited:
+	case <-time.After(5 * time.Second):
+		t.Fatal("shutdown left the admission handler running")
+	}
+	check(service.calls.Load() == 1, "shutdown repeated admission")
+	rebound, err := net.Listen("tcp", config.listen)
+	check(err == nil, "shutdown retained the management listener")
+	check(rebound.Close() == nil, "cannot release the rebound management listener")
+}
+
+// TestStopResult uses a fixed 32-round budget, never repeats until a desired select outcome appears.
+// Both ready cases are legal; every round requires the same normal exit regardless of runtime selection.
+func TestStopResult(t *testing.T) {
+	defer func() { checkpoint = func(done <-chan struct{}, _ chan error) <-chan struct{} { return done } }()
+	for round := range 32 {
+		if !t.Run(strconv.Itoa(round), func(t *testing.T) {
+			check := counter(t)
+			ready := make(chan chan error, 1)
+			released := make(chan struct{})
+			release := sync.OnceFunc(func() { close(released) })
+			// Goexit runs this before the owner's cleanup, including failures during startup.
+			defer release()
+			checkpoint = func(done <-chan struct{}, refresh chan error) <-chan struct{} {
+				ready <- refresh
+				<-released
+				return done
+			}
+			config, cancel, done, service, joined := stopEntry(t)
+			var refresh chan error
+			select {
+			case refresh = <-ready:
+			case <-time.After(5 * time.Second):
+				t.Fatal("entry did not reach the select checkpoint")
+			}
+			cancel()
+			// The entry is held before select and is the sole consumer. Observe and restore the exact
+			// native cancellation result before release; no error is manufactured or reclassified.
+			select {
+			case err := <-refresh:
+				check(errors.Is(err, context.Canceled), "admission did not preserve its owner cancellation")
+				refresh <- err
+			case <-time.After(5 * time.Second):
+				t.Fatal("cancelled admission did not publish its result")
+			}
+			check(len(refresh) == 1, "checkpoint did not restore the original pending result")
+			release()
+			select {
+			case err := <-done:
+				*joined = true
+				check(err == nil, "a legal cancellation selection became an entry failure")
+			case <-time.After(8 * time.Second):
+				t.Fatal("entry did not join after releasing the checkpoint")
+			}
+			select {
+			case <-service.exited:
+			case <-time.After(5 * time.Second):
+				t.Fatal("checkpoint left the admission handler running")
+			}
+			check(service.calls.Load() == 1, "cancellation retried admission")
+			rebound, err := net.Listen("tcp", config.listen)
+			check(err == nil, "cancelled entry retained its management listener")
+			check(rebound.Close() == nil, "cannot close the rebound listener")
+		}) {
+			return
+		}
+	}
+}

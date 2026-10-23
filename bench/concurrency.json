@@ -1,0 +1,54 @@
+[
+  {
+    "domain": "catalog",
+    "records": 100,
+    "bytes": 128,
+    "attr": 256,
+    "watchers": 1,
+    "writers": 16,
+    "seconds": 5,
+    "ttl": 180000,
+    "rate": 0,
+    "stars": 1,
+    "tls": false
+  },
+  {
+    "domain": "catalog",
+    "records": 100,
+    "bytes": 128,
+    "attr": 256,
+    "watchers": 1,
+    "writers": 32,
+    "seconds": 5,
+    "ttl": 180000,
+    "rate": 0,
+    "stars": 1,
+    "tls": false
+  },
+  {
+    "domain": "catalog",
+    "records": 100,
+    "bytes": 128,
+    "attr": 256,
+    "watchers": 4,
+    "writers": 32,
+    "seconds": 5,
+    "ttl": 180000,
+    "rate": 0,
+    "stars": 4,
+    "tls": false
+  },
+  {
+    "domain": "ephemeris",
+    "records": 500,
+    "bytes": 128,
+    "attr": 256,
+    "watchers": 1,
+    "writers": 32,
+    "seconds": 5,
+    "ttl": 1000,
+    "rate": 0,
+    "stars": 1,
+    "tls": false
+  }
+]

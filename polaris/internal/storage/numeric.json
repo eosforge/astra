@@ -1,0 +1,32 @@
+{
+  "allocation_bits": 48,
+  "assumptions": [
+    "Valid caller-owned arguments remain read-only for their documented lifetime; fabricated unsafe descriptors and data races are excluded.",
+    "The admitted initial SQLite state passes schema, bounded counts and complete accounting validation. Only owned transactional writers alter it.",
+    "A successful bytes.Clone before transaction accounting has admitted the original encoded-body length under the pinned runtime allocation bound.",
+    "Inactive lock_other.go remains in source identity but gains no fictitious Linux execution. No floating arithmetic is owned by this storage component."
+  ],
+  "platform": "linux-amd64-cgo",
+  "runtime_sources": {
+    "internal/goarch/goarch.go": "4ba164d62956cbf38638637453837789c39761e739aeff267702b33bdf5908a9",
+    "internal/goarch/zgoarch_amd64.go": "e066117a2c61ae2aa5f4bcc817d75e91506094ba7cb721deb644bca314eeb1b6",
+    "internal/goos/goos.go": "2594d66acfc7136883b255809773c23c44f67d22c9fd7ca849a653991081f27e",
+    "internal/goos/zgoos_linux.go": "5feca66bd7d6b109a6148fa229713908ca12ea80501895777684c6502f89fb4f",
+    "runtime/malloc.go": "69e2dc64c34699e7fb8dcaae3eafd396834f42755ef3ad0b1e287ae43198bcea"
+  },
+  "runtime_version": "go1.27.2",
+  "schema_version": 1,
+  "sources": {
+    "batch.go": "5b8cd9339d4edd1aae9f302be22689348d14415891f4f8529776dd1934079a64",
+    "commit.go": "49153eefce9c8c490bad43374c2f7fe69460a2059eb9d7ff0927ddd2c2d204cd",
+    "feed.go": "dfbf8ae0b9384fd8823b9e498015466d38d6641d9b26c6960e7fd8b13baf6447",
+    "files.go": "2bc30c66a4e6cdb84c898627b26fcd8aad3ea182750e1170ced49fa7f55cd2cf",
+    "lock_linux.go": "58cd2bd20c3b8854a52b5fa088b8b653685fcc4fed0dc4807a646f877dc35cd4",
+    "lock_other.go": "c8ed15718e983c5bc919d00a541d51f9dbed53f9d9056c0bd67c7349d0895436",
+    "maintenance.go": "6db7bce0a96825f996cc3d50f3b5a12c7b205b51266b21987642ea319fcf3314",
+    "model.go": "c9a311552d7bb80540c1fff71116228109b19105a63ebd6a04aca92dc1f45e4e",
+    "read.go": "c81b9b809a7ecd67b8599cf61526b3aa752accae66bc8b715c7fea2a1efab926",
+    "schema.go": "8049a032034b1e1b37f136636a9c1029a07ce0345cb9b7fb348d876ce333f8ab",
+    "store.go": "1b6854d0ebf89d2d2ba16cc282794b5e3486aee542eeb54e1fe1a496eda87279"
+  }
+}

@@ -1,0 +1,701 @@
+{
+  "version": 1,
+  "scope": "Linux/cgo Storage critical semantic operators, preserving the existing 30 state/fault operators and 39 pure-validator operators, plus 30 distinct batch/version/receipt/accounting/history/feed/native-lock operators. The separate ten numeric boundary operators are required by policy and retain their own evidence. Named test baselines must pass and every selected non-equivalent mutant must fail a real executed oracle. Compilation errors, timeout, missing test terminal, cancellation and unexecuted inputs never count as kills. This is the declared finite high-risk operator corpus, not arbitrary program mutation. Standard-library forwarding with no independent decision, non-Linux build fallback and equivalent deletion of redundant checks are outside this operator selection; complete structural/MC/DC/fault/platform obligations remain independently required.",
+  "package": "./polaris/internal/storage",
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "mutations": [
+    {
+      "id": "skip-version",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "change.Version != state.Version+1",
+      "after": "change.Version == state.Version+1"
+    },
+    {
+      "id": "advance-retry",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "change.Version <= state.Version",
+      "after": "change.Version < state.Version"
+    },
+    {
+      "id": "drop-history",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "store.limits.History == 0 || cost > store.limits.Backlog",
+      "after": "store.limits.History >= 0 || cost > store.limits.Backlog"
+    },
+    {
+      "id": "keep-extra-history",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "state.Retained <= store.limits.History && state.Backlog <= store.limits.Backlog",
+      "after": "state.Retained <= store.limits.History+1 && state.Backlog <= store.limits.Backlog"
+    },
+    {
+      "id": "omit-delete",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "if entry.Erase {\n\t\t\t\terr = tx.Exec",
+      "after": "if false {\n\t\t\t\terr = tx.Exec"
+    },
+    {
+      "id": "ignore-write-error",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFault",
+      "before": "if err != nil {\n\t\t\t\treturn ErrUnavailable\n\t\t\t}\n\t\t}",
+      "after": "if err != nil {\n\t\t\t\treturn nil\n\t\t\t}\n\t\t}"
+    },
+    {
+      "id": "accept-poisoned-write",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "if store.poisoned.Load() {",
+      "after": "if false {"
+    },
+    {
+      "id": "misclassify-begin",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "if tx.Error != nil {\n\t\treturn ErrUnavailable\n\t}",
+      "after": "if tx.Error != nil {\n\t\treturn ErrUncertain\n\t}"
+    },
+    {
+      "id": "unfreeze-rollback",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "store.poisoned.Store(true)\n\t\t\treturn ErrUncertain",
+      "after": "store.poisoned.Store(false)\n\t\t\treturn ErrUncertain"
+    },
+    {
+      "id": "unfreeze-commit",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "store.poisoned.Store(true)\n\t\treturn ErrUncertain",
+      "after": "store.poisoned.Store(false)\n\t\treturn ErrUncertain"
+    },
+    {
+      "id": "accept-failed-commit",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "store.poisoned.Store(true)\n\t\treturn ErrUncertain",
+      "after": "store.poisoned.Store(true)\n\t\treturn nil"
+    },
+    {
+      "id": "commit-on-panic",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestTransactionPanic",
+      "before": "defer tx.Rollback()",
+      "after": "defer tx.Commit()"
+    },
+    {
+      "id": "accept-invalid-record",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestCorruption",
+      "before": "!text(record.Key, 1024)",
+      "after": "(false && !text(record.Key, 1024))"
+    },
+    {
+      "id": "accept-history-tail",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestCorruption",
+      "before": "if position != state.Version {",
+      "after": "if false {"
+    },
+    {
+      "id": "accept-orphan",
+      "file": "polaris/internal/storage/schema.go",
+      "test": "TestCorruption",
+      "before": "if invalid || err != nil || closed != nil {",
+      "after": "if (invalid && false) || err != nil || closed != nil {"
+    },
+    {
+      "id": "accept-corrupt-open",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestCorruption",
+      "before": "if err = store.validate(ctx, binding); err != nil {",
+      "after": "if err = store.validate(ctx, binding); err != nil && false {"
+    },
+    {
+      "id": "publish-partial-snapshot",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestReadStep",
+      "before": "if rows.Err() != nil {\n\t\treturn Snapshot{}, ErrUnavailable\n\t}",
+      "after": "if rows.Err() != nil {\n\t\treturn result, nil\n\t}"
+    },
+    {
+      "id": "publish-partial-history",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestReadStep",
+      "before": "if rows.Err() != nil {\n\t\treturn Replay{}, ErrUnavailable\n\t}",
+      "after": "if rows.Err() != nil {\n\t\treturn result, nil\n\t}"
+    },
+    {
+      "id": "ignore-pinned-reader",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestCheckpoint",
+      "before": "progress.Log > progress.Checkpointed",
+      "after": "(false && progress.Log > progress.Checkpointed)"
+    },
+    {
+      "id": "accept-connection-drift",
+      "file": "polaris/internal/storage/schema.go",
+      "test": "TestConnection",
+      "before": "value[0] != expected",
+      "after": "(false && value[0] != expected)"
+    },
+    {
+      "id": "ignore-metadata-read",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if err := tx.Table(\"meta\").Where(\"id=1\").Take(&meta).Error; err != nil {\n\t\t\treturn ErrUnavailable\n\t\t}",
+      "after": "if err := tx.Table(\"meta\").Where(\"id=1\").Take(&meta).Error; err != nil {\n\t\t\treturn nil\n\t\t}"
+    },
+    {
+      "id": "ignore-record-size",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if row.Error != nil {\n\t\t\t\treturn ErrUnavailable\n\t\t\t}",
+      "after": "if row.Error != nil {\n\t\t\t\treturn nil\n\t\t\t}"
+    },
+    {
+      "id": "ignore-retry-query",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if err != nil {\n\t\treturn ErrUnavailable\n\t}\n\tif actual.Key",
+      "after": "if err != nil {\n\t\treturn nil\n\t}\n\tif actual.Key"
+    },
+    {
+      "id": "ignore-retained-scan",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestRetainScan",
+      "before": "if err := rows.Scan(&version, &cost); err != nil {\n\t\t\treturn ErrUnavailable\n\t\t}",
+      "after": "if err := rows.Scan(&version, &cost); err != nil {\n\t\t\treturn nil\n\t\t}"
+    },
+    {
+      "id": "retain-step-error",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if rows.Err() != nil {\n\t\treturn ErrUnavailable\n\t}",
+      "after": "if false {\n\t\treturn ErrUnavailable\n\t}"
+    },
+    {
+      "id": "retain-close-error",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if err := rows.Close(); err != nil {\n\t\treturn ErrUnavailable\n\t}",
+      "after": "_ = rows.Close()"
+    },
+    {
+      "id": "created-close-error",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "if err = created.Close(); err != nil {",
+      "after": "if err = created.Close(); err != nil && false {"
+    },
+    {
+      "id": "directory-sync-error",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "if synced != nil || closed != nil {",
+      "after": "if synced != nil && false || closed != nil {"
+    },
+    {
+      "id": "directory-close-error",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "if synced != nil || closed != nil {",
+      "after": "if synced != nil || closed != nil && false {"
+    },
+    {
+      "id": "open-error-class",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "pool, err := sql.Open(\"astra-polaris\", location.String())\n\tif err != nil {\n\t\treturn nil, nil, ErrUnavailable",
+      "after": "pool, err := sql.Open(\"astra-polaris\", location.String())\n\tif err != nil {\n\t\treturn nil, nil, ErrCorrupt"
+    },
+    {
+      "id": "text-empty",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "len(value) > 0",
+      "after": "len(value) <= 0"
+    },
+    {
+      "id": "text-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "len(value) <= maximum",
+      "after": "len(value) > maximum"
+    },
+    {
+      "id": "text-nul",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "!strings.ContainsRune(value, 0)",
+      "after": "strings.ContainsRune(value, 0)"
+    },
+    {
+      "id": "text-utf8",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "utf8.ValidString(value)",
+      "after": "!utf8.ValidString(value)"
+    },
+    {
+      "id": "scope-sector",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "text(scope.Sector, 128)",
+      "after": "!text(scope.Sector, 128)"
+    },
+    {
+      "id": "scope-spectrum",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "text(scope.Spectrum, 128)",
+      "after": "!text(scope.Spectrum, 128)"
+    },
+    {
+      "id": "scopes-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Scopes > 0",
+      "after": "limits.Scopes <= 0"
+    },
+    {
+      "id": "scopes-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Scopes <= 16384",
+      "after": "limits.Scopes > 16384"
+    },
+    {
+      "id": "records-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Records > 0",
+      "after": "limits.Records <= 0"
+    },
+    {
+      "id": "records-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Records <= 1<<20",
+      "after": "limits.Records > 1<<20"
+    },
+    {
+      "id": "bytes-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Bytes > 0",
+      "after": "limits.Bytes <= 0"
+    },
+    {
+      "id": "bytes-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Bytes <= 1<<30",
+      "after": "limits.Bytes > 1<<30"
+    },
+    {
+      "id": "total-covers-scope",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Total >= limits.Bytes",
+      "after": "limits.Total < limits.Bytes"
+    },
+    {
+      "id": "total-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Total <= 4<<30",
+      "after": "limits.Total > 4<<30"
+    },
+    {
+      "id": "history-nonnegative",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.History >= 0",
+      "after": "limits.History < 0"
+    },
+    {
+      "id": "history-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.History <= 65536",
+      "after": "limits.History > 65536"
+    },
+    {
+      "id": "backlog-nonnegative",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Backlog >= 0",
+      "after": "limits.Backlog < 0"
+    },
+    {
+      "id": "backlog-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Backlog <= 64<<20",
+      "after": "limits.Backlog > 64<<20"
+    },
+    {
+      "id": "timeout-positive",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Timeout > 0",
+      "after": "limits.Timeout <= 0"
+    },
+    {
+      "id": "timeout-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.Timeout <= 30*time.Second",
+      "after": "limits.Timeout > 30*time.Second"
+    },
+    {
+      "id": "wal-minimum",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.WAL >= 1<<20",
+      "after": "limits.WAL < 1<<20"
+    },
+    {
+      "id": "wal-bounded",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "limits.WAL <= 4<<30",
+      "after": "limits.WAL > 4<<30"
+    },
+    {
+      "id": "version-type",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "!ok",
+      "after": "ok"
+    },
+    {
+      "id": "version-size",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestDecisions",
+      "before": "len(bytes) != 8",
+      "after": "len(bytes) == 8"
+    },
+    {
+      "id": "change-key",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "text(change.Key, 1024)",
+      "after": "!text(change.Key, 1024)"
+    },
+    {
+      "id": "change-payload",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "len(change.Value) <= 1<<20",
+      "after": "len(change.Value) > 1<<20"
+    },
+    {
+      "id": "change-set",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "!change.Erase",
+      "after": "change.Erase"
+    },
+    {
+      "id": "change-empty",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestDecisions",
+      "before": "len(change.Value) == 0",
+      "after": "len(change.Value) != 0"
+    },
+    {
+      "id": "name-empty",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "len(value) == 0",
+      "after": "len(value) != 0"
+    },
+    {
+      "id": "name-size",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "len(value) > 64",
+      "after": "len(value) >= 64"
+    },
+    {
+      "id": "name-lower-start",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char >= 'a'",
+      "after": "char > 'a'"
+    },
+    {
+      "id": "name-lower-end",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char <= 'z'",
+      "after": "char < 'z'"
+    },
+    {
+      "id": "name-upper-start",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char >= 'A'",
+      "after": "char > 'A'"
+    },
+    {
+      "id": "name-upper-end",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char <= 'Z'",
+      "after": "char < 'Z'"
+    },
+    {
+      "id": "name-digit-start",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char >= '0'",
+      "after": "char > '0'"
+    },
+    {
+      "id": "name-digit-end",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char <= '9'",
+      "after": "char < '9'"
+    },
+    {
+      "id": "name-dot",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char == '.'",
+      "after": "char != '.'"
+    },
+    {
+      "id": "name-underscore",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char == '_'",
+      "after": "char != '_'"
+    },
+    {
+      "id": "name-hyphen",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestNames",
+      "before": "char == '-'",
+      "after": "char != '-'"
+    },
+    {
+      "id": "batch-magic",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestBatchEncoding",
+      "before": "string(data[:4]) != \"AB02\"",
+      "after": "string(data[:4]) == \"AB02\""
+    },
+    {
+      "id": "batch-entry-version",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestBatchEncoding",
+      "before": "Version: change.Version, Key: string(data[:key])",
+      "after": "Version: 0, Key: string(data[:key])"
+    },
+    {
+      "id": "batch-version",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestBatchGuard",
+      "before": "change.Version != version",
+      "after": "change.Version == version"
+    },
+    {
+      "id": "batch-erase-tag",
+      "file": "polaris/internal/storage/batch.go",
+      "test": "TestBatchPersistence",
+      "before": "Erase: erase == 1",
+      "after": "Erase: erase != 1"
+    },
+    {
+      "id": "commit-old-record",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestBatchPersistence",
+      "before": "state.Records--",
+      "after": "state.Records++"
+    },
+    {
+      "id": "commit-new-record",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestBatchPersistence",
+      "before": "state.Records++",
+      "after": "state.Records += 0"
+    },
+    {
+      "id": "commit-new-bytes",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestBatchPersistence",
+      "before": "state.Bytes += int64(len(entry.Key) + len(entry.Value))",
+      "after": "state.Bytes += int64(len(entry.Key))"
+    },
+    {
+      "id": "commit-scope-limit",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestLimits",
+      "before": "meta.Scopes >= store.limits.Scopes",
+      "after": "meta.Scopes > store.limits.Scopes"
+    },
+    {
+      "id": "commit-record-limit",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestLimits",
+      "before": "state.Records > store.limits.Records",
+      "after": "state.Records >= store.limits.Records"
+    },
+    {
+      "id": "commit-byte-limit",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestLimits",
+      "before": "state.Bytes > store.limits.Bytes",
+      "after": "state.Bytes >= store.limits.Bytes"
+    },
+    {
+      "id": "commit-total-limit",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestLimits",
+      "before": "meta.Bytes+state.Bytes-previous > store.limits.Total",
+      "after": "meta.Bytes+state.Bytes-previous >= store.limits.Total"
+    },
+    {
+      "id": "commit-old-bytes",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestCommit",
+      "before": "state.Bytes -= int64(len(entry.Key)) + old.Size",
+      "after": "state.Bytes += int64(len(entry.Key)) + old.Size"
+    },
+    {
+      "id": "commit-record-exists",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestCommit",
+      "before": "row.RowsAffected != 0",
+      "after": "row.RowsAffected == 0"
+    },
+    {
+      "id": "commit-total-write",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestCommit",
+      "before": "meta.Scopes, meta.Bytes+state.Bytes-previous,",
+      "after": "meta.Scopes, meta.Bytes+state.Bytes+previous,"
+    },
+    {
+      "id": "commit-owned-event",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFeedBoundary",
+      "before": "event.Value = bytes.Clone(change.Value)",
+      "after": "event.Value = change.Value"
+    },
+    {
+      "id": "commit-notification",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFeedBoundary",
+      "before": "applied = true",
+      "after": "applied = false"
+    },
+    {
+      "id": "receipt-key",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestRetryIdentity",
+      "before": "actual.Key != expected.Key",
+      "after": "false"
+    },
+    {
+      "id": "receipt-erase",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestRetryIdentity",
+      "before": "actual.Erase != expected.Erase",
+      "after": "false"
+    },
+    {
+      "id": "receipt-payload",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestRetryIdentity",
+      "before": "!bytes.Equal(actual.Value, expected.Value)",
+      "after": "false"
+    },
+    {
+      "id": "history-two-budgets",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestHistoryPrefix",
+      "before": "state.Retained <= store.limits.History && state.Backlog <= store.limits.Backlog",
+      "after": "state.Retained <= store.limits.History || state.Backlog <= store.limits.Backlog"
+    },
+    {
+      "id": "history-prefix-order",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestHistoryPrefix",
+      "before": ".Order(\"version\").Limit(int(state.Retained))",
+      "after": ".Order(\"version DESC\").Limit(int(state.Retained))"
+    },
+    {
+      "id": "history-prefix-delete",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestHistoryPrefix",
+      "before": "AND version<=?",
+      "after": "AND version<?"
+    },
+    {
+      "id": "replay-ahead",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestHistory",
+      "before": "after > state.Version",
+      "after": "after >= state.Version"
+    },
+    {
+      "id": "replay-window",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestHistory",
+      "before": "after < state.Version-Version(state.Retained)",
+      "after": "after <= state.Version-Version(state.Retained)"
+    },
+    {
+      "id": "replay-cost",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestHistory",
+      "before": "cost != int64(64+len(change.Key)+len(change.Value))",
+      "after": "cost != int64(65+len(change.Key)+len(change.Value))"
+    },
+    {
+      "id": "feed-take-transfer",
+      "file": "polaris/internal/storage/feed.go",
+      "test": "TestFeedBoundary",
+      "before": "feed.queue = nil\n\tfeed.bytes = 0\n\treturn result",
+      "after": "feed.queue = result\n\tfeed.bytes = 0\n\treturn result"
+    },
+    {
+      "id": "feed-byte-capacity",
+      "file": "polaris/internal/storage/feed.go",
+      "test": "TestFeedCapacity",
+      "before": "cost > feed.limit-feed.bytes",
+      "after": "cost < feed.limit-feed.bytes"
+    },
+    {
+      "id": "feed-terminal-cause",
+      "file": "polaris/internal/storage/feed.go",
+      "test": "TestFeedCapacity",
+      "before": "if feed.err == nil {",
+      "after": "if feed.err != nil {"
+    },
+    {
+      "id": "lock-exclusive",
+      "file": "polaris/internal/storage/lock_linux.go",
+      "test": "TestBoundary",
+      "before": "unix.LOCK_EX|unix.LOCK_NB",
+      "after": "unix.LOCK_SH|unix.LOCK_NB"
+    },
+    {
+      "id": "lock-regular-file",
+      "file": "polaris/internal/storage/lock_linux.go",
+      "test": "TestBoundary",
+      "before": "!info.Mode().IsRegular()",
+      "after": "info.Mode().IsRegular()"
+    }
+  ]
+}

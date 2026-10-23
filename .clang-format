@@ -1,0 +1,41 @@
+BasedOnStyle: LLVM
+AccessModifierOffset: -4
+AllowShortBlocksOnASingleLine: Empty
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+BreakBeforeBraces: Attach
+BreakAdjacentStringLiterals: false
+BreakAfterReturnType: None
+BreakFunctionDefinitionParameters: false
+BreakStringLiterals: false
+ColumnLimit: 0
+IndentWidth: 4
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^"'
+    Priority: 1
+  - Regex: '^<(astra|comet)/'
+    Priority: 1
+  - Regex: '^<(absl|google|grpc|grpcpp|hiredis|openssl|sqlite3|verdandi|yyjson)(/|[.>])'
+    Priority: 2
+  - Regex: '^<'
+    Priority: 3
+  - Regex: '.*'
+    Priority: 4
+InsertBraces: true
+LineEnding: LF
+KeepEmptyLines:
+  AtStartOfBlock: true
+  AtStartOfFile: false
+  AtEndOfFile: false
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: None
+PointerAlignment: Left
+ReferenceAlignment: Left
+ReflowComments: Never
+RequiresClausePosition: SingleLine
+SeparateDefinitionBlocks: Always
+SortIncludes: CaseSensitive
+Standard: Latest
+TabWidth: 4
+UseTab: Never

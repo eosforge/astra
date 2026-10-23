@@ -1,0 +1,88 @@
+// Inject independent metadata-kind failure into the existing private loader boundary.
+// The pinned Linux Go runtime layout is checked before touching a private fixture copy.
+package admission
+
+import (
+	"encoding/json"
+	"errors"
+	"os"
+	"path/filepath"
+	"reflect"
+	"testing"
+	"unsafe"
+)
+
+// restated retains a native handle and inode while changing only the returned kind observation.
+type restated struct {
+	*os.File
+	t        *testing.T
+	regular  bool
+	before   os.FileInfo
+	observed os.FileInfo
+	reads    int
+}
+
+// Read counts attempts through the real file; a rejected metadata result must prevent every read.
+func (stream *restated) Read(data []byte) (int, error) {
+	stream.reads++
+	return stream.File.Read(data)
+}
+
+// Stat changes a private FileInfo copy, not the file, OS state, runtime code or production methods.
+// Wrapping FileInfo would also change os.SameFile's concrete-type result and invalidate this pair.
+func (stream *restated) Stat() (os.FileInfo, error) {
+	info, err := stream.File.Stat()
+	if err != nil {
+		return nil, err
+	}
+	if !stream.regular {
+		value := reflect.ValueOf(info)
+		if value.Kind() != reflect.Pointer || value.IsNil() || value.Elem().Type().PkgPath() != "os" || value.Elem().Type().Name() != "fileStat" {
+			stream.t.Fatal("unsupported native FileInfo representation")
+		}
+		mode := value.Elem().FieldByName("mode")
+		if !mode.IsValid() || !mode.CanAddr() || mode.Type() != reflect.TypeFor[os.FileMode]() {
+			stream.t.Fatal("unsupported native FileMode representation")
+		}
+		*(*os.FileMode)(unsafe.Pointer(mode.UnsafeAddr())) = os.ModeDir | info.Mode().Perm()
+	}
+	stream.observed = info
+	return info, nil
+}
+
+// TestLoadMetadata keeps stat success and inode equality fixed while toggling the regular-file predicate.
+// This is deterministic boundary injection, not a claim that a live regular inode changes filesystem kind.
+func TestLoadMetadata(t *testing.T) {
+	check := counter(t, "ADMISSION-METADATA")
+	directory := material(t)
+	for _, regular := range []bool{true, false} {
+		var stream *restated
+		inspect := func(path string) (os.FileInfo, error) {
+			return os.Lstat(path)
+		}
+		open := func(path string) (file, error) {
+			input, err := Acquire(path)
+			if err != nil || filepath.Base(path) != "ca.pem" {
+				return input, err
+			}
+			before, err := input.Stat()
+			if err != nil {
+				_ = input.Close()
+				return nil, err
+			}
+			stream = &restated{File: input, t: t, regular: regular, before: before}
+			t.Cleanup(func() { _ = input.Close() })
+			return stream, nil
+		}
+		value, err := load(directory, "127.0.0.1:7443", inspect, open)
+		check(stream != nil && stream.observed != nil, "native metadata was not observed")
+		check(stream.before.Mode().IsRegular() && stream.observed.Mode().IsRegular() == regular && os.SameFile(stream.before, stream.observed), "injection changed a nontarget metadata predicate")
+		check((value != nil && err == nil) == regular && (regular || errors.Is(err, ErrIdentity)), "metadata kind did not control publication")
+		check((stream.reads > 0) == regular, "metadata failure did not prevent reading")
+		_, closed := stream.File.Stat()
+		check(errors.Is(closed, os.ErrClosed), "loader retained the native handle")
+		row, marshal := json.Marshal(map[string]bool{"regular": regular, "same_file": os.SameFile(stream.before, stream.observed), "accepted": value != nil, "read": stream.reads > 0, "closed": errors.Is(closed, os.ErrClosed)})
+		check(marshal == nil, "metadata observation could not be encoded")
+		t.Logf("ADMISSION-METADATA %s", row)
+	}
+}

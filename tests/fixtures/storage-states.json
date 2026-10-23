@@ -1,0 +1,2142 @@
+{
+  "cases": {
+    "history-byte-capacity": [
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            8388609
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            8388609
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            8388609
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            8388609
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      }
+    ],
+    "history-count-capacity": [
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "00000000000003e9",
+              "sha256": "ce43c3353a7ad7aac3408cad0bf921b6a7dda89be75d9cb2b3b5a152cefc8afd",
+              "type": "blob"
+            },
+            2,
+            4,
+            1001,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "00000000000003e9",
+              "sha256": "ce43c3353a7ad7aac3408cad0bf921b6a7dda89be75d9cb2b3b5a152cefc8afd",
+              "type": "blob"
+            },
+            2,
+            4,
+            1001,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "00000000000003e9",
+              "sha256": "ce43c3353a7ad7aac3408cad0bf921b6a7dda89be75d9cb2b3b5a152cefc8afd",
+              "type": "blob"
+            },
+            2,
+            4,
+            1001,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "00000000000003e9",
+              "sha256": "ce43c3353a7ad7aac3408cad0bf921b6a7dda89be75d9cb2b3b5a152cefc8afd",
+              "type": "blob"
+            },
+            2,
+            4,
+            1001,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      }
+    ],
+    "history-version-count": [
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            4,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            4,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            4,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            4,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      }
+    ],
+    "record-byte-capacity": [
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            67108865,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            67108865,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            67108865,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            67108865,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      }
+    ],
+    "record-count-capacity": [
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            65537,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            65537,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            65537,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            65537,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      }
+    ],
+    "scope-invalid": [
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "73",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      },
+      {
+        "columns": [
+          "sector",
+          "spectrum",
+          "version",
+          "records",
+          "bytes",
+          "retained",
+          "backlog"
+        ],
+        "query": "SELECT * FROM scopes ORDER BY sector,spectrum",
+        "rows": [
+          [
+            {
+              "hex": "",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000003",
+              "sha256": "d5688a52d55a02ec4aea5ec1eadfffe1c9e0ee6a4ddbe2377f98326d42dfc975",
+              "type": "blob"
+            },
+            2,
+            4,
+            3,
+            198
+          ],
+          [
+            {
+              "hex": "7a",
+              "type": "text"
+            },
+            {
+              "hex": "70",
+              "type": "text"
+            },
+            {
+              "bytes": 8,
+              "hex": "0000000000000001",
+              "sha256": "cd2662154e6d76b2b2b92e70c0cac3ccf534f9b74eb5b89819ec509083d00a50",
+              "type": "blob"
+            },
+            1,
+            5,
+            1,
+            69
+          ]
+        ]
+      }
+    ]
+  },
+  "decisions": {
+    "polaris/internal/storage/read.go:3265": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 95,
+            "offset": 3265
+          },
+          "end": {
+            "column": 41,
+            "line": 95,
+            "offset": 3301
+          },
+          "text": "state.Records > store.limits.Records"
+        },
+        {
+          "begin": {
+            "column": 45,
+            "line": 95,
+            "offset": 3305
+          },
+          "end": {
+            "column": 77,
+            "line": 95,
+            "offset": 3337
+          },
+          "text": "state.Bytes > store.limits.Bytes"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 95,
+        "offset": 3265
+      },
+      "end": {
+        "column": 77,
+        "line": 95,
+        "offset": 3337
+      },
+      "id": "polaris/internal/storage/read.go:3265",
+      "kind": "if",
+      "root": 2,
+      "text": "state.Records > store.limits.Records || state.Bytes > store.limits.Bytes",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/read.go:5624": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 155,
+            "offset": 5624
+          },
+          "end": {
+            "column": 23,
+            "line": 155,
+            "offset": 5642
+          },
+          "text": "state.Retained < 0"
+        },
+        {
+          "begin": {
+            "column": 27,
+            "line": 155,
+            "offset": 5646
+          },
+          "end": {
+            "column": 73,
+            "line": 155,
+            "offset": 5692
+          },
+          "text": "uint64(state.Retained) > uint64(state.Version)"
+        },
+        {
+          "begin": {
+            "column": 77,
+            "line": 155,
+            "offset": 5696
+          },
+          "end": {
+            "column": 114,
+            "line": 155,
+            "offset": 5733
+          },
+          "text": "state.Retained > store.limits.History"
+        },
+        {
+          "begin": {
+            "column": 118,
+            "line": 155,
+            "offset": 5737
+          },
+          "end": {
+            "column": 135,
+            "line": 155,
+            "offset": 5754
+          },
+          "text": "state.Backlog < 0"
+        },
+        {
+          "begin": {
+            "column": 139,
+            "line": 155,
+            "offset": 5758
+          },
+          "end": {
+            "column": 175,
+            "line": 155,
+            "offset": 5794
+          },
+          "text": "state.Backlog > store.limits.Backlog"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 155,
+        "offset": 5624
+      },
+      "end": {
+        "column": 175,
+        "line": 155,
+        "offset": 5794
+      },
+      "id": "polaris/internal/storage/read.go:5624",
+      "kind": "if",
+      "root": 8,
+      "text": "state.Retained < 0 || uint64(state.Retained) > uint64(state.Version) || state.Retained > store.limits.History || state.Backlog < 0 || state.Backlog > store.limits.Backlog",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            6,
+            7
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:5601": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 8,
+            "line": 113,
+            "offset": 5602
+          },
+          "end": {
+            "column": 27,
+            "line": 113,
+            "offset": 5621
+          },
+          "text": "scope.Scope.Valid()"
+        },
+        {
+          "begin": {
+            "column": 31,
+            "line": 113,
+            "offset": 5625
+          },
+          "end": {
+            "column": 49,
+            "line": 113,
+            "offset": 5643
+          },
+          "text": "state.Version == 0"
+        },
+        {
+          "begin": {
+            "column": 53,
+            "line": 113,
+            "offset": 5647
+          },
+          "end": {
+            "column": 89,
+            "line": 113,
+            "offset": 5683
+          },
+          "text": "state.Records > store.limits.Records"
+        },
+        {
+          "begin": {
+            "column": 93,
+            "line": 113,
+            "offset": 5687
+          },
+          "end": {
+            "column": 125,
+            "line": 113,
+            "offset": 5719
+          },
+          "text": "state.Bytes > store.limits.Bytes"
+        },
+        {
+          "begin": {
+            "column": 129,
+            "line": 113,
+            "offset": 5723
+          },
+          "end": {
+            "column": 166,
+            "line": 113,
+            "offset": 5760
+          },
+          "text": "state.Retained > store.limits.History"
+        },
+        {
+          "begin": {
+            "column": 170,
+            "line": 113,
+            "offset": 5764
+          },
+          "end": {
+            "column": 206,
+            "line": 113,
+            "offset": 5800
+          },
+          "text": "state.Backlog > store.limits.Backlog"
+        },
+        {
+          "begin": {
+            "column": 210,
+            "line": 113,
+            "offset": 5804
+          },
+          "end": {
+            "column": 228,
+            "line": 113,
+            "offset": 5822
+          },
+          "text": "state.Retained < 0"
+        },
+        {
+          "begin": {
+            "column": 232,
+            "line": 113,
+            "offset": 5826
+          },
+          "end": {
+            "column": 278,
+            "line": 113,
+            "offset": 5872
+          },
+          "text": "uint64(state.Retained) > uint64(state.Version)"
+        }
+      ],
+      "begin": {
+        "column": 7,
+        "line": 113,
+        "offset": 5601
+      },
+      "end": {
+        "column": 278,
+        "line": 113,
+        "offset": 5872
+      },
+      "id": "polaris/internal/storage/schema.go:5601",
+      "kind": "if",
+      "root": 15,
+      "text": "!scope.Scope.Valid() || state.Version == 0 || state.Records > store.limits.Records || state.Bytes > store.limits.Bytes || state.Retained > store.limits.History || state.Backlog > store.limits.Backlog || state.Retained < 0 || uint64(state.Retained) > uint64(state.Version)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3,
+            4
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            5,
+            6
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            7,
+            8
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 5,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            9,
+            10
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 6,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            11,
+            12
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 7,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            13,
+            14
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "label": "Synthetic SQL-input/AST parser fixture; never application or native acceptance evidence.",
+  "vectors": {
+    "polaris/internal/storage/read.go:3265": [
+      {
+        "hits": 21622,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/read.go:5624": [
+      {
+        "hits": 19881,
+        "result": false,
+        "values": "11111"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "20000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "11120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "11112"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "11200"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12000"
+      }
+    ],
+    "polaris/internal/storage/schema.go:5601": [
+      {
+        "hits": 224,
+        "result": false,
+        "values": "21111111"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21111120"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "10000000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21111112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21111200"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21112000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21120000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21200000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "22000000"
+      }
+    ]
+  }
+}

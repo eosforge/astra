@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package proto.astra.bench.v1;
+
+// Synthetic transport-comparison data, separate from production Star/Planet protocols.
+message Transfer {
+    uint64 sequence = 1;
+    bytes body = 2;
+}
+
+// One long-lived bidirectional stream reuses one authenticated connection instead of starting an RPC per message.
+service TransportProbe {
+    rpc Exchange(stream Transfer) returns (stream Transfer);
+    // Star-to-client updates carry the main load; upstream traffic carries control and publication requests.
+    rpc Synchronize(stream Control) returns (stream Event);
+}
+
+message Forward {
+    uint64 request = 1;
+    bytes data = 2;
+}
+
+message Update {
+    uint64 revision = 1;
+    string key = 2;
+    bytes data = 3;
+    Domain domain = 4;
+}
+
+enum Domain {
+    DOMAIN_UNSPECIFIED = 0;
+    DOMAIN_REGISTRY = 1;
+    DOMAIN_CATALOG = 2;
+}
+
+// Report the application watermark every 128 updates; final means all updates are applied, without per-update ACKs.
+message Progress {
+    uint64 revision = 1;
+    bool final = 2;
+}
+
+message Completed {
+    uint64 revision = 1;
+    uint64 sampled_updates = 2;
+    uint64 update_p50_micros = 3;
+    uint64 update_p95_micros = 4;
+    uint64 update_p99_micros = 5;
+    uint64 expired_samples = 6;
+}
+
+// Normal synchronization has no per-update ACK; send join once at session startup.
+message Control {
+    oneof command {
+        bool join = 1;
+        uint64 ping = 2;
+        Forward publish = 3;
+        Progress progress = 4;
+    }
+}
+
+// queue_micros measures publication enqueue to transport handoff, not cross-machine one-way latency.
+message Event {
+    uint64 queue_micros = 1;
+    oneof event {
+        bool ready = 2;
+        Update update = 3;
+        uint64 pong = 4;
+        uint64 accepted = 5;
+        bytes snapshot = 6;
+        Completed completed = 7;
+        uint64 rejected = 8;
+        uint64 drained = 9;
+    }
+}

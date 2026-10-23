@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "scope": "Seventeen targeted mutations in the outbound acknowledgement window: item and byte admission, deadline release, receive/control/cancellation failures, credit positions and accounting, scope/version release boundaries, and update/snapshot delivery commitment. Existing native contract oracles remain unchanged. This scope does not qualify the remaining Server production files, full mutation coverage, MC/DC, concurrency or platform obligations.",
+  "package": "./polaris/internal/server",
+  "import": "github.com/eosforge/astra/polaris/internal/server",
+  "mutations": [
+    {
+      "id": "credit-capacity",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestCreditCapacity",
+      "before": "len(transfer.credits) >= 128",
+      "after": "len(transfer.credits) > 128"
+    },
+    {
+      "id": "byte-capacity",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestControl",
+      "before": "cost > 8<<20-transfer.bytes",
+      "after": "cost > 8<<20"
+    },
+    {
+      "id": "wait-release",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestControl",
+      "before": "defer transfer.wait(0)",
+      "after": "defer func() {}()"
+    },
+    {
+      "id": "wait-error",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestWindow",
+      "before": "packet, err := transfer.next()\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}",
+      "after": "packet, err := transfer.next()\n\t\tif err != nil {\n\t\t\treturn nil\n\t\t}"
+    },
+    {
+      "id": "control-error",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestControl",
+      "before": "if err := transfer.control(packet); err != nil {\n\t\t\treturn err\n\t\t}",
+      "after": "if err := transfer.control(packet); err != nil {\n\t\t\treturn nil\n\t\t}"
+    },
+    {
+      "id": "cancel-result",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestWindow",
+      "before": "return transfer.ctx.Err()",
+      "after": "return nil"
+    },
+    {
+      "id": "sent-position",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestVerification",
+      "before": "transfer.sent[scope] = max(transfer.sent[scope], version)",
+      "after": "transfer.sent[scope] = 0"
+    },
+    {
+      "id": "credit-register",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestVerification",
+      "before": "transfer.credits = append(transfer.credits, credit{scope: scope, version: version, bytes: cost})",
+      "after": "transfer.credits = transfer.credits"
+    },
+    {
+      "id": "credit-account",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestVerification",
+      "before": "transfer.bytes += cost",
+      "after": "transfer.bytes -= cost"
+    },
+    {
+      "id": "release-scope",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestVerification",
+      "before": "item.scope == scope && item.version <= version",
+      "after": "item.scope != scope && item.version <= version"
+    },
+    {
+      "id": "release-boundary",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestVerification",
+      "before": "item.scope == scope && item.version <= version",
+      "after": "item.scope == scope && item.version < version"
+    },
+    {
+      "id": "release-account",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestVerification",
+      "before": "transfer.bytes -= item.bytes",
+      "after": "transfer.bytes += item.bytes"
+    },
+    {
+      "id": "updates-premature",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestEmission",
+      "before": "if err := transfer.send(packet); err != nil {\n\t\treturn err\n\t}\n\ttransfer.charge(scope, storage.Version(page.Patches[len(page.Patches)-1].Version), cost)",
+      "after": "transfer.charge(scope, storage.Version(page.Patches[len(page.Patches)-1].Version), cost)\n\tif err := transfer.send(packet); err != nil {\n\t\treturn err\n\t}"
+    },
+    {
+      "id": "updates-refusal",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestEmission",
+      "before": "if err := transfer.send(packet); err != nil {\n\t\treturn err\n\t}",
+      "after": "if err := transfer.send(packet); err != nil {\n\t\treturn nil\n\t}"
+    },
+    {
+      "id": "snapshot-refusal",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestEmission",
+      "before": "if err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Snapshot{Snapshot: page}}); err != nil {\n\t\t\treturn err\n\t\t}",
+      "after": "if err := transfer.send(&polaris.Packet{Body: &polaris.Packet_Snapshot{Snapshot: page}}); err != nil {\n\t\t\treturn nil\n\t\t}"
+    },
+    {
+      "id": "snapshot-control",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestEmission",
+      "before": "return transfer.drain()",
+      "after": "return nil"
+    },
+    {
+      "id": "snapshot-prefix",
+      "file": "polaris/internal/server/window.go",
+      "test": "TestEmission",
+      "before": "if !page.Complete {",
+      "after": "if page.Complete {"
+    }
+  ]
+}

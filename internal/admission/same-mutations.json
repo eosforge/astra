@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "scope": "Nine member-equality predicate omissions. Nil guards are masking conditions; seven business fields have independent opposite-result input pairs. This named function scope does not establish whole-Admission mutation coverage.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "same-0",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn true && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group"
+    },
+    {
+      "id": "same-1",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && true && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group"
+    },
+    {
+      "id": "same-2",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && b != nil && true && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group"
+    },
+    {
+      "id": "same-3",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && true && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group"
+    },
+    {
+      "id": "same-4",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && true && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group"
+    },
+    {
+      "id": "same-5",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && true && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group"
+    },
+    {
+      "id": "same-6",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && true && a.Role == b.Role && a.Group == b.Group"
+    },
+    {
+      "id": "same-7",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && true && a.Group == b.Group"
+    },
+    {
+      "id": "same-8",
+      "file": "internal/admission/directory.go",
+      "test": "TestSame",
+      "before": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && a.Group == b.Group",
+      "after": "\treturn a != nil && b != nil && a.Galaxy == b.Galaxy && bytes.Equal(a.Id, b.Id) && bytes.Equal(a.Principal, b.Principal) && a.Advertise == b.Advertise && a.Epoch == b.Epoch && a.Role == b.Role && true"
+    }
+  ]
+}

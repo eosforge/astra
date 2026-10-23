@@ -1,0 +1,52 @@
+{
+  "artifact_retention_days": null,
+  "checks": {
+    "admission-gap-adoption": {
+      "component": "admission",
+      "rule": "DEV-ADOPTION"
+    },
+    "admission-gap-release": {
+      "component": "admission",
+      "rule": "DEV-RELEASE"
+    },
+    "gap-adoption": {
+      "component": "polaris-storage",
+      "rule": "DEV-ADOPTION"
+    },
+    "gap-release": {
+      "component": "polaris-storage",
+      "rule": "DEV-RELEASE"
+    }
+  },
+  "design": "docs/features/verification.md#protected-collection",
+  "dispatch_authorized": false,
+  "event": "workflow_dispatch",
+  "observed_protected_run": null,
+  "origin_reader": {
+    "capability": "provider-origin-only",
+    "path": "tools/actions.py",
+    "sha256": "613d03df0c4549ed00e25977ed5f75f262512edc55a31064cc8020cf0e44b211"
+  },
+  "protected_environment": null,
+  "provider": "github-actions",
+  "provider_origin_is_release_authority": false,
+  "qualification": "not-issued",
+  "repository": "eosforge/astra",
+  "repository_id": null,
+  "required_protected_bindings": [
+    "repository-id",
+    "workflow-bytes-and-protected-ref",
+    "run-id-and-attempt",
+    "exact-source-policy-collector-and-schema-digests",
+    "native-platform-and-delivery-matrix",
+    "isolated-producer-and-independent-collector",
+    "independent-immutable-custody-and-retention",
+    "qualified-candidate-rollout-rollback-recovery",
+    "independent-release-approval",
+    "protected-pilot-and-issued-adoption-date"
+  ],
+  "scope": "Static linkage to the selected GitHub Actions specification only. No real workflow, protected settings, run, artifact custody, pilot, adoption date or release signature is asserted. Existing local immutable evidence remains local.",
+  "version": 1,
+  "workflow_path": null,
+  "workflow_sha256": null
+}

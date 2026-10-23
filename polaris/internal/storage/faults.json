@@ -1,0 +1,489 @@
+{
+  "composition": [
+    {
+      "id": "repeated-statement-recovery",
+      "reason": "Two refusal/refusal/recovery cycles at every mutating SQL class complement the retained suite.",
+      "requirement": "polaris-storage/DEV-FAULT/STORAGE-SQL-FAULT/linux-amd64-cgo/sql-recovery"
+    },
+    {
+      "id": "repeated-finalization",
+      "reason": "Each of six finalization selections fails twice with close/reopen recovery; failed and durable-lost-receipt outcomes remain distinct.",
+      "tests": [
+        "TestFinalization"
+      ]
+    },
+    {
+      "id": "teardown-products",
+      "reason": "All eight combinations of read-pool, write-pool and lock-close failures prove later cleanup despite earlier refusal.",
+      "tests": [
+        "TestTermination"
+      ]
+    },
+    {
+      "id": "cancelled-finalization",
+      "reason": "Controlled barriers hold actual database/sql background rollback until the operation has demonstrated ownership retention.",
+      "tests": [
+        "TestDraining/read",
+        "TestDraining/write"
+      ]
+    },
+    {
+      "id": "opening-recovery",
+      "reason": "Separate native-driver children preserve initialization refusal, descriptor-close and parent-directory sync/close failures, including repeated selected failures and retained-cursor cleanup.",
+      "tests": [
+        "TestWriteFault"
+      ]
+    }
+  ],
+  "equivalence": [
+    {
+      "id": "sql-cut-classes",
+      "reason": "Every mutating statement class has its own reached SQL fault and repeated recovery case. Repeated rows using the same statement/error branch do not create additional control-flow classes; partial writes are checked against full durable snapshots."
+    },
+    {
+      "id": "native-driver-boundary",
+      "reason": "Pinned SQLite remains real. API and OS receipt faults qualify only their reached storage boundary, never all internal SQLite paths or simulated power-loss durability."
+    },
+    {
+      "id": "finite-products",
+      "reason": "Selected critical cancellation/finalization and cleanup products are explicit. This is a finite boundary inventory, not exhaustive enumeration of arbitrary faults in unrelated operations."
+    }
+  ],
+  "expectation": "Previously versioned storage-examples case declarations and independently specified assertions in the byte-frozen native test closure; outcomes are not learned from the captured output.",
+  "groups": [
+    {
+      "cases": [
+        "TestBorrowing",
+        "TestBorrowing/read/cancelled",
+        "TestBorrowing/read/closed",
+        "TestBorrowing/read/expired",
+        "TestBorrowing/validation/cancelled",
+        "TestBorrowing/validation/closed",
+        "TestBorrowing/validation/expired",
+        "TestBorrowing/write/cancelled",
+        "TestBorrowing/write/closed",
+        "TestBorrowing/write/expired"
+      ],
+      "contract": "STORAGE-BORROWING",
+      "id": "borrowing",
+      "minimum_hits": 9,
+      "test": "TestBorrowing"
+    },
+    {
+      "cases": [
+        "TestFault",
+        "TestFault/history-delete",
+        "TestFault/history-insert",
+        "TestFault/meta-update",
+        "TestFault/record-delete",
+        "TestFault/record-insert",
+        "TestFault/record-update",
+        "TestFault/scope-insert",
+        "TestFault/scope-update"
+      ],
+      "contract": "STORAGE-FAULT",
+      "id": "statements",
+      "minimum_hits": 1,
+      "test": "TestFault"
+    },
+    {
+      "cases": [
+        "TestReadFault",
+        "TestReadFault/list",
+        "TestReadFault/load-records",
+        "TestReadFault/load-state",
+        "TestReadFault/since-history",
+        "TestReadFault/since-state",
+        "TestReadFault/validate-foreign",
+        "TestReadFault/validate-quick",
+        "TestReadFault/validate-scopes",
+        "TestReadFault/version"
+      ],
+      "contract": "STORAGE-READ-FAULT",
+      "id": "read-preparation",
+      "minimum_hits": 9,
+      "test": "TestReadFault"
+    },
+    {
+      "cases": [
+        "TestReadStep",
+        "TestReadStep/history-cancel",
+        "TestReadStep/history-cancel-replace",
+        "TestReadStep/history-error",
+        "TestReadStep/records-cancel",
+        "TestReadStep/records-cancel-replace",
+        "TestReadStep/records-error"
+      ],
+      "contract": "STORAGE-READ-STEP",
+      "id": "read-iteration",
+      "minimum_hits": 6,
+      "test": "TestReadStep"
+    },
+    {
+      "cases": [
+        "TestCheckpoint"
+      ],
+      "contract": "STORAGE-CHECKPOINT",
+      "id": "checkpoint",
+      "minimum_hits": 14,
+      "test": "TestCheckpoint"
+    },
+    {
+      "cases": [
+        "TestConnection",
+        "TestConnection/foreign-keys",
+        "TestConnection/read-mode",
+        "TestConnection/set-checkpoint",
+        "TestConnection/set-trust",
+        "TestConnection/synchronous"
+      ],
+      "contract": "STORAGE-CONNECTION",
+      "id": "connection-settings",
+      "minimum_hits": 5,
+      "test": "TestConnection"
+    },
+    {
+      "cases": [
+        "TestConnectionFault",
+        "TestConnectionFault/PRAGMA_foreign_keys/both",
+        "TestConnectionFault/PRAGMA_foreign_keys/close",
+        "TestConnectionFault/PRAGMA_foreign_keys/next",
+        "TestConnectionFault/PRAGMA_journal_mode/both",
+        "TestConnectionFault/PRAGMA_journal_mode/close",
+        "TestConnectionFault/PRAGMA_journal_mode/next",
+        "TestConnectionFault/PRAGMA_synchronous/both",
+        "TestConnectionFault/PRAGMA_synchronous/close",
+        "TestConnectionFault/PRAGMA_synchronous/next",
+        "TestConnectionFault/PRAGMA_wal_autocheckpoint/both",
+        "TestConnectionFault/PRAGMA_wal_autocheckpoint/close",
+        "TestConnectionFault/PRAGMA_wal_autocheckpoint/next",
+        "TestConnectionFault/release"
+      ],
+      "contract": "STORAGE-CONNECTION",
+      "id": "connection-completion",
+      "minimum_hits": 13,
+      "test": "TestConnectionFault"
+    },
+    {
+      "cases": [
+        "TestFinalization",
+        "TestFinalization/begin",
+        "TestFinalization/cancel-record",
+        "TestFinalization/commit-after",
+        "TestFinalization/commit-before",
+        "TestFinalization/commit-cancel",
+        "TestFinalization/rollback-after"
+      ],
+      "contract": "STORAGE-FINALIZE",
+      "id": "transaction-completion",
+      "minimum_hits": 200,
+      "test": "TestFinalization"
+    },
+    {
+      "cases": [
+        "TestTransactionPanic"
+      ],
+      "contract": "STORAGE-PANIC",
+      "id": "transaction-panic",
+      "minimum_hits": 6,
+      "test": "TestTransactionPanic"
+    },
+    {
+      "cases": [
+        "TestCrash",
+        "TestCrash/durable",
+        "TestCrash/prefix",
+        "TestCrash/prepared"
+      ],
+      "contract": "STORAGE-CRASH",
+      "id": "process-death",
+      "minimum_hits": 1,
+      "test": "TestCrash"
+    },
+    {
+      "cases": [
+        "TestWriteFault",
+        "TestWriteFault/clear-history",
+        "TestWriteFault/current",
+        "TestWriteFault/metadata",
+        "TestWriteFault/open-control",
+        "TestWriteFault/open-created-close",
+        "TestWriteFault/open-directory",
+        "TestWriteFault/open-directory-both",
+        "TestWriteFault/open-directory-close",
+        "TestWriteFault/open-directory-sync",
+        "TestWriteFault/open-orm",
+        "TestWriteFault/open-path",
+        "TestWriteFault/open-read",
+        "TestWriteFault/open-retain-both",
+        "TestWriteFault/open-retain-close",
+        "TestWriteFault/open-retain-control",
+        "TestWriteFault/open-retain-next",
+        "TestWriteFault/open-schema",
+        "TestWriteFault/open-sql-open",
+        "TestWriteFault/prune-history",
+        "TestWriteFault/record-size",
+        "TestWriteFault/retry-history",
+        "TestWriteFault/wal-path"
+      ],
+      "contract": "STORAGE-WRITE-FAULT",
+      "id": "opening-and-write-preparation",
+      "minimum_hits": 22,
+      "test": "TestWriteFault"
+    },
+    {
+      "cases": [
+        "TestWriteDamage",
+        "TestWriteDamage/UPDATE_scopes_SET_records=0,bytes=0",
+        "TestWriteDamage/UPDATE_scopes_SET_retained=3"
+      ],
+      "contract": "STORAGE-WRITE-DAMAGE",
+      "id": "write-corruption",
+      "minimum_hits": 2,
+      "test": "TestWriteDamage"
+    },
+    {
+      "cases": [
+        "TestBoundary",
+        "TestBoundary/encoding",
+        "TestBoundary/feeds",
+        "TestBoundary/lifecycle",
+        "TestBoundary/locks"
+      ],
+      "contract": "STORAGE-BOUNDARY",
+      "id": "public-resources",
+      "minimum_hits": 4,
+      "test": "TestBoundary"
+    },
+    {
+      "cases": [
+        "TestRetainScan"
+      ],
+      "contract": "STORAGE-RETAIN-SCAN",
+      "id": "retained-prefix",
+      "minimum_hits": 3,
+      "test": "TestRetainScan"
+    },
+    {
+      "cases": [
+        "TestLockFault"
+      ],
+      "contract": "STORAGE-BOUNDARY",
+      "id": "native-lock",
+      "minimum_hits": 9,
+      "test": "TestLockFault"
+    },
+    {
+      "cases": [
+        "TestNativeIO/write"
+      ],
+      "contract": "STORAGE-BOUNDARY",
+      "id": "native-wal-write",
+      "minimum_hits": 18,
+      "test": "TestNativeIO/write"
+    },
+    {
+      "cases": [
+        "TestNativeIO/sync"
+      ],
+      "contract": "STORAGE-BOUNDARY",
+      "id": "native-wal-sync",
+      "minimum_hits": 18,
+      "test": "TestNativeIO/sync"
+    },
+    {
+      "cases": [
+        "TestDraining",
+        "TestDraining/read",
+        "TestDraining/write"
+      ],
+      "contract": "STORAGE-DRAINING",
+      "id": "cancellation-drain",
+      "minimum_hits": 2,
+      "test": "TestDraining"
+    },
+    {
+      "cases": [
+        "TestLifecycle",
+        "TestLifecycle/cancel",
+        "TestLifecycle/commit",
+        "TestLifecycle/feed"
+      ],
+      "contract": "STORAGE-LIFETIME",
+      "id": "concurrent-close",
+      "minimum_hits": 58,
+      "test": "TestLifecycle"
+    },
+    {
+      "cases": [
+        "TestTermination",
+        "TestTermination/0",
+        "TestTermination/1",
+        "TestTermination/2",
+        "TestTermination/3",
+        "TestTermination/4",
+        "TestTermination/5",
+        "TestTermination/6",
+        "TestTermination/7"
+      ],
+      "contract": "STORAGE-TERMINATION",
+      "id": "cleanup-combinations",
+      "minimum_hits": 132,
+      "test": "TestTermination"
+    },
+    {
+      "cases": [
+        "TestCursorCompletion",
+        "TestCursorCompletion/both",
+        "TestCursorCompletion/cancel",
+        "TestCursorCompletion/eof",
+        "TestCursorCompletion/eof-close",
+        "TestCursorCompletion/next",
+        "TestCursorCompletion/result-set-control",
+        "TestCursorCompletion/row",
+        "TestCursorCompletion/row-close"
+      ],
+      "contract": "STORAGE-READ-FAULT",
+      "id": "cursor-completion",
+      "minimum_hits": 8,
+      "test": "TestCursorCompletion"
+    },
+    {
+      "cases": [
+        "TestCursorGuard",
+        "TestCursorGuard/checkpoint-busy",
+        "TestCursorGuard/foreign-close",
+        "TestCursorGuard/foreign-next",
+        "TestCursorGuard/format",
+        "TestCursorGuard/history-value",
+        "TestCursorGuard/history-version",
+        "TestCursorGuard/snapshot-key",
+        "TestCursorGuard/snapshot-value",
+        "TestCursorGuard/state-backlog",
+        "TestCursorGuard/state-retained",
+        "TestCursorGuard/state-validation"
+      ],
+      "contract": "STORAGE-READ-FAULT",
+      "id": "cursor-corruption",
+      "minimum_hits": 11,
+      "test": "TestCursorGuard"
+    },
+    {
+      "cases": [
+        "TestCorruption",
+        "TestCorruption/history-ahead",
+        "TestCorruption/history-batch",
+        "TestCorruption/history-byte-capacity",
+        "TestCorruption/history-cost",
+        "TestCorruption/history-count-capacity",
+        "TestCorruption/history-erase-value",
+        "TestCorruption/history-extra",
+        "TestCorruption/history-gap",
+        "TestCorruption/history-over-bytes",
+        "TestCorruption/history-shifted",
+        "TestCorruption/history-tail",
+        "TestCorruption/history-under-bytes",
+        "TestCorruption/history-version-count",
+        "TestCorruption/meta-bytes",
+        "TestCorruption/meta-capacity",
+        "TestCorruption/meta-missing",
+        "TestCorruption/meta-scopes",
+        "TestCorruption/orphan-history",
+        "TestCorruption/orphan-record",
+        "TestCorruption/record-byte-capacity",
+        "TestCorruption/record-count-capacity",
+        "TestCorruption/record-empty-key",
+        "TestCorruption/record-long-key",
+        "TestCorruption/record-long-value",
+        "TestCorruption/record-over-bytes",
+        "TestCorruption/record-over-count",
+        "TestCorruption/record-under-bytes",
+        "TestCorruption/record-under-count",
+        "TestCorruption/record-utf8",
+        "TestCorruption/record-zero-key",
+        "TestCorruption/schema-changed",
+        "TestCorruption/schema-extra",
+        "TestCorruption/scope-invalid",
+        "TestCorruption/scope-zero-version"
+      ],
+      "contract": "STORAGE-CORRUPTION",
+      "id": "persisted-corruption",
+      "minimum_hits": 34,
+      "test": "TestCorruption"
+    },
+    {
+      "cases": [
+        "TestAccountingGuard",
+        "TestAccountingGuard/excess-backlog",
+        "TestAccountingGuard/negative-backlog",
+        "TestAccountingGuard/record-bytes",
+        "TestAccountingGuard/zero-prefix"
+      ],
+      "contract": "STORAGE-CORRUPTION",
+      "id": "accounting-corruption",
+      "minimum_hits": 4,
+      "test": "TestAccountingGuard"
+    },
+    {
+      "cases": [
+        "TestValidationGuard",
+        "TestValidationGuard/history",
+        "TestValidationGuard/records",
+        "TestValidationGuard/sqlite_master"
+      ],
+      "contract": "STORAGE-CORRUPTION",
+      "id": "validation-completion",
+      "minimum_hits": 15,
+      "test": "TestValidationGuard"
+    },
+    {
+      "cases": [
+        "TestIdleCheckpoint"
+      ],
+      "contract": "STORAGE-CHECKPOINT",
+      "id": "idlecheckpoint",
+      "minimum_hits": 1,
+      "test": "TestIdleCheckpoint"
+    },
+    {
+      "cases": [
+        "TestMaintenanceFailure"
+      ],
+      "contract": "STORAGE-CHECKPOINT",
+      "id": "maintenancefailure",
+      "minimum_hits": 1,
+      "test": "TestMaintenanceFailure"
+    },
+    {
+      "cases": [
+        "TestMaintenancePoison"
+      ],
+      "contract": "STORAGE-LIFETIME",
+      "id": "maintenancepoison",
+      "minimum_hits": 1,
+      "test": "TestMaintenancePoison"
+    },
+    {
+      "cases": [
+        "TestMaintenanceDeadline"
+      ],
+      "contract": "STORAGE-TIME",
+      "id": "maintenancedeadline",
+      "minimum_hits": 1,
+      "test": "TestMaintenanceDeadline"
+    },
+    {
+      "cases": [
+        "TestMaintenanceClose"
+      ],
+      "contract": "STORAGE-LIFETIME",
+      "id": "maintenanceclose",
+      "minimum_hits": 1,
+      "test": "TestMaintenanceClose"
+    }
+  ],
+  "package": "github.com/eosforge/astra/polaris/internal/storage",
+  "platform": "linux-amd64-cgo",
+  "scope": "Owned Storage admission, initialization, SQL preparation/iteration/finalization, native WAL write/sync and lock receipts, recovery, cancellation and teardown boundaries. Physical power-loss behavior and third-party internal allocation sites are outside this component fixture, not claimed as verified. The maintenance revision also covers idle retry, checkpoint refusal/recovery, poisoned-owner suppression, bounded connection waits and cancellation/drain before pool destruction.",
+  "version": 2
+}

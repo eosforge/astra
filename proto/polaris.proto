@@ -1,0 +1,95 @@
+// Internal Polaris authority commits and Almanac synchronization, registered only on protected internal endpoints.
+syntax = "proto3";
+package proto.polaris.v1;
+option go_package = "github.com/eosforge/astra/internal/generated/polaris;polaris";
+
+import "astra.proto";
+import "comet.proto";
+
+// Astrolabe administrative calls require valid infrastructure admission metadata; Comet Sessions are not accepted.
+service Authority {
+    rpc Commit(CommitRequest) returns (Position);
+    rpc Batch(stream BatchRequest) returns (Position);
+    rpc List(proto.comet.v1.Empty) returns (Inventory);
+    rpc Load(proto.comet.v1.Scope) returns (stream Snapshot);
+}
+
+// Star opens one bidirectional stream for all groups. Both sides send Hello first; streams are not opened per Scope.
+service Almanac {
+    rpc Open(stream Packet) returns (stream Packet);
+}
+
+// Atomic single-key or multi-key mutation within a Scope, requiring current version +1. Retained complete commit evidence can confirm old requests.
+message CommitRequest {
+    proto.comet.v1.Scope scope = 1;
+    uint64 version = 2;
+    proto.comet.v1.AlmanacChange change = 3;
+    // Exclusive with change. Nonempty batch of unique keys advances the version once. Large batches use Batch pages; internal credential Scopes are excluded.
+    repeated proto.comet.v1.AlmanacChange changes = 4;
+}
+
+// Transport page of one atomic batch. Total key count and bytes are unbounded; each page still obeys the RPC frame limit.
+// All pages share scope/version. Commit once only after complete on the last page followed by normal EOF.
+// Cancellation, missing complete, extra pages, or any invalid item prevent committing the received prefix.
+message BatchRequest {
+    proto.comet.v1.Scope scope = 1;
+    uint64 version = 2;
+    repeated proto.comet.v1.AlmanacChange changes = 3;
+    bool complete = 4;
+}
+
+// Only fully installed or durably committed versions. An omitted Scope has no baseline; explicit zero is a complete empty baseline.
+message Position {
+    proto.comet.v1.Scope scope = 1;
+    uint64 version = 2;
+}
+
+// Paged metadata-only directory, staged until complete. The entire directory is required for this round's inventory.
+message Inventory {
+    repeated Position positions = 1;
+    bool complete = 2;
+}
+
+// Immutable single-Scope snapshot with value-only entries. Every page shares a version; install and ACK only after complete.
+message Snapshot {
+    proto.comet.v1.Scope scope = 1;
+    repeated proto.comet.v1.AlmanacChange entries = 2;
+    bool complete = 3;
+    optional uint64 version = 4;
+}
+
+// Ordered authoritative patches preserve intermediate commits, including same-value Set and missing-key Delete.
+message Patch {
+    uint64 version = 1;
+    proto.comet.v1.AlmanacChange change = 2;
+    // Exclusive with change. One complete authoritative transaction, installed atomically without paging or per-key installation.
+    repeated proto.comet.v1.AlmanacChange changes = 3;
+}
+
+// One Scope per batch, with strictly contiguous entries. Replay does not create a new commit.
+message Updates {
+    proto.comet.v1.Scope scope = 1;
+    repeated Patch patches = 2;
+}
+
+// Mutually exclusive messages on one typed stream. The initial plan fixes minimum versions; ready cannot expand the inventory.
+message Packet {
+    oneof body {
+        // Sent only as each side's first frame, reusing the signature format and protocol major version.
+        proto.astra.v1.Hello hello = 1;
+        // Star reports complete installed positions initially and after probe; an omitted Scope differs from version zero.
+        Inventory inventory = 2;
+        // Polaris declares the initial Scope inventory and minimum versions; the complete inventory cannot subsequently expand.
+        Inventory plan = 3;
+        // Polaris prepares a complete Scope for Star; failure preserves the old state.
+        Snapshot snapshot = 4;
+        // Polaris sends contiguous +1 patches, optionally several per message.
+        Updates updates = 5;
+        // Star acknowledges only completed installation, never staging or send queuing.
+        Position acknowledged = 6;
+        // Polaris occasionally requests actual complete positions, with at most one check in flight.
+        proto.comet.v1.Empty probe = 7;
+        // Polaris confirms installation of every Scope in this round's plan; required even for a valid empty inventory.
+        proto.comet.v1.Empty ready = 8;
+    }
+}

@@ -1,0 +1,218 @@
+{
+  "version": 1,
+  "scope": "Storage batch validation, retry identity, version ordering, retained history, transaction finalization, persisted corruption, read iteration, WAL checkpointing, connection configuration and native write preparation/prefix scan defenses explicitly listed below; not whole-component mutation coverage. Retained-prefix iteration/finalization receipt guards also have explicit boundary mutations. Initialization file close, directory sync/close and SQL connector preparation guards also have explicit boundary mutations.",
+  "package": "./polaris/internal/storage",
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "mutations": [
+    {
+      "id": "skip-version",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "change.Version != state.Version+1",
+      "after": "change.Version == state.Version+1"
+    },
+    {
+      "id": "advance-retry",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "change.Version <= state.Version",
+      "after": "change.Version < state.Version"
+    },
+    {
+      "id": "drop-history",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "store.limits.History == 0 || cost > store.limits.Backlog",
+      "after": "store.limits.History >= 0 || cost > store.limits.Backlog"
+    },
+    {
+      "id": "keep-extra-history",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "state.Retained <= store.limits.History && state.Backlog <= store.limits.Backlog",
+      "after": "state.Retained <= store.limits.History+1 && state.Backlog <= store.limits.Backlog"
+    },
+    {
+      "id": "omit-delete",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFinite",
+      "before": "if entry.Erase {\n\t\t\t\terr = tx.Exec",
+      "after": "if false {\n\t\t\t\terr = tx.Exec"
+    },
+    {
+      "id": "ignore-write-error",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestFault",
+      "before": "if err != nil {\n\t\t\t\treturn ErrUnavailable\n\t\t\t}\n\t\t}",
+      "after": "if err != nil {\n\t\t\t\treturn nil\n\t\t\t}\n\t\t}"
+    },
+    {
+      "id": "accept-poisoned-write",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "if store.poisoned.Load() {",
+      "after": "if false {"
+    },
+    {
+      "id": "misclassify-begin",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "if tx.Error != nil {\n\t\treturn ErrUnavailable\n\t}",
+      "after": "if tx.Error != nil {\n\t\treturn ErrUncertain\n\t}"
+    },
+    {
+      "id": "unfreeze-rollback",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "store.poisoned.Store(true)\n\t\t\treturn ErrUncertain",
+      "after": "store.poisoned.Store(false)\n\t\t\treturn ErrUncertain"
+    },
+    {
+      "id": "unfreeze-commit",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "store.poisoned.Store(true)\n\t\treturn ErrUncertain",
+      "after": "store.poisoned.Store(false)\n\t\treturn ErrUncertain"
+    },
+    {
+      "id": "accept-failed-commit",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestFinalization",
+      "before": "store.poisoned.Store(true)\n\t\treturn ErrUncertain",
+      "after": "store.poisoned.Store(true)\n\t\treturn nil"
+    },
+    {
+      "id": "commit-on-panic",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestTransactionPanic",
+      "before": "defer tx.Rollback()",
+      "after": "defer tx.Commit()"
+    },
+    {
+      "id": "accept-invalid-record",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestCorruption",
+      "before": "!text(record.Key, 1024)",
+      "after": "(false && !text(record.Key, 1024))"
+    },
+    {
+      "id": "accept-history-tail",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestCorruption",
+      "before": "if position != state.Version {",
+      "after": "if false {"
+    },
+    {
+      "id": "accept-orphan",
+      "file": "polaris/internal/storage/schema.go",
+      "test": "TestCorruption",
+      "before": "if invalid || err != nil || closed != nil {",
+      "after": "if (invalid && false) || err != nil || closed != nil {"
+    },
+    {
+      "id": "accept-corrupt-open",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestCorruption",
+      "before": "if err = store.validate(ctx, binding); err != nil {",
+      "after": "if err = store.validate(ctx, binding); err != nil && false {"
+    },
+    {
+      "id": "publish-partial-snapshot",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestReadStep",
+      "before": "if rows.Err() != nil {\n\t\treturn Snapshot{}, ErrUnavailable\n\t}",
+      "after": "if rows.Err() != nil {\n\t\treturn result, nil\n\t}"
+    },
+    {
+      "id": "publish-partial-history",
+      "file": "polaris/internal/storage/read.go",
+      "test": "TestReadStep",
+      "before": "if rows.Err() != nil {\n\t\treturn Replay{}, ErrUnavailable\n\t}",
+      "after": "if rows.Err() != nil {\n\t\treturn result, nil\n\t}"
+    },
+    {
+      "id": "ignore-pinned-reader",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestCheckpoint",
+      "before": "progress.Log > progress.Checkpointed",
+      "after": "(false && progress.Log > progress.Checkpointed)"
+    },
+    {
+      "id": "accept-connection-drift",
+      "file": "polaris/internal/storage/schema.go",
+      "test": "TestConnection",
+      "before": "value[0] != expected",
+      "after": "(false && value[0] != expected)"
+    },
+    {
+      "id": "ignore-metadata-read",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if err := tx.Table(\"meta\").Where(\"id=1\").Take(&meta).Error; err != nil {\n\t\t\treturn ErrUnavailable\n\t\t}",
+      "after": "if err := tx.Table(\"meta\").Where(\"id=1\").Take(&meta).Error; err != nil {\n\t\t\treturn nil\n\t\t}"
+    },
+    {
+      "id": "ignore-record-size",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if row.Error != nil {\n\t\t\t\treturn ErrUnavailable\n\t\t\t}",
+      "after": "if row.Error != nil {\n\t\t\t\treturn nil\n\t\t\t}"
+    },
+    {
+      "id": "ignore-retry-query",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if err != nil {\n\t\treturn ErrUnavailable\n\t}\n\tif actual.Key",
+      "after": "if err != nil {\n\t\treturn nil\n\t}\n\tif actual.Key"
+    },
+    {
+      "id": "ignore-retained-scan",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestRetainScan",
+      "before": "if err := rows.Scan(&version, &cost); err != nil {\n\t\t\treturn ErrUnavailable\n\t\t}",
+      "after": "if err := rows.Scan(&version, &cost); err != nil {\n\t\t\treturn nil\n\t\t}"
+    },
+    {
+      "id": "retain-step-error",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if rows.Err() != nil {\n\t\treturn ErrUnavailable\n\t}",
+      "after": "if false {\n\t\treturn ErrUnavailable\n\t}"
+    },
+    {
+      "id": "retain-close-error",
+      "file": "polaris/internal/storage/commit.go",
+      "test": "TestWriteFault",
+      "before": "if err := rows.Close(); err != nil {\n\t\treturn ErrUnavailable\n\t}",
+      "after": "_ = rows.Close()"
+    },
+    {
+      "id": "created-close-error",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "if err = created.Close(); err != nil {",
+      "after": "if err = created.Close(); err != nil && false {"
+    },
+    {
+      "id": "directory-sync-error",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "if synced != nil || closed != nil {",
+      "after": "if synced != nil && false || closed != nil {"
+    },
+    {
+      "id": "directory-close-error",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "if synced != nil || closed != nil {",
+      "after": "if synced != nil || closed != nil && false {"
+    },
+    {
+      "id": "open-error-class",
+      "file": "polaris/internal/storage/store.go",
+      "test": "TestWriteFault",
+      "before": "pool, err := sql.Open(\"astra-polaris\", location.String())\n\tif err != nil {\n\t\treturn nil, nil, ErrUnavailable",
+      "after": "pool, err := sql.Open(\"astra-polaris\", location.String())\n\tif err != nil {\n\t\treturn nil, nil, ErrCorrupt"
+    }
+  ]
+}

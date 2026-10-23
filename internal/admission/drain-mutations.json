@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "scope": "Five owned lifecycle changes: omitted channel close, lost parent cancellation for each RPC, and retained permit for each operation. Actual bounded liveness or state assertions must fail under the unchanged native TLS fixture; compiler/command timeout failures do not count.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "channel-close",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeDrain",
+      "before": "func (node *Node) Close() error { return node.channel.Close() }",
+      "after": "func (node *Node) Close() error { return nil }"
+    },
+    {
+      "id": "register-cancel",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeDrain",
+      "before": "context.WithTimeout(ctx, 10*time.Second)",
+      "after": "context.WithTimeout(context.Background(), 10*time.Second)"
+    },
+    {
+      "id": "refresh-cancel",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeDrain",
+      "before": "context.WithTimeout(ctx, 5*time.Second)",
+      "after": "context.WithTimeout(context.Background(), 5*time.Second)"
+    },
+    {
+      "id": "register-permit",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeDrain",
+      "before": "func (node *Node) Register(ctx context.Context) error {\n\tselect {\n\tcase node.gate <- struct{}{}:\n\t\tdefer func() { <-node.gate }()",
+      "after": "func (node *Node) Register(ctx context.Context) error {\n\tselect {\n\tcase node.gate <- struct{}{}:\n\t\tdefer func() {}()"
+    },
+    {
+      "id": "refresh-permit",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeDrain",
+      "before": "func (node *Node) Refresh(ctx context.Context) error {\n\tselect {\n\tcase node.gate <- struct{}{}:\n\t\tdefer func() { <-node.gate }()",
+      "after": "func (node *Node) Refresh(ctx context.Context) error {\n\tselect {\n\tcase node.gate <- struct{}{}:\n\t\tdefer func() {}()"
+    }
+  ]
+}

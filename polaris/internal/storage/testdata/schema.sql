@@ -1,0 +1,6 @@
+-- Frozen pre-batch DDL from 08554baf79617b69c210d04e595a8e7ebd7e0494.
+-- Historical input fixture, not proof that an old executable ran.
+CREATE TABLE meta (id INTEGER PRIMARY KEY CHECK(id=1), format INTEGER NOT NULL CHECK(format=1), galaxy TEXT NOT NULL, username TEXT NOT NULL, advertise TEXT NOT NULL, scopes INTEGER NOT NULL CHECK(scopes>=0), bytes INTEGER NOT NULL CHECK(bytes>=0)) STRICT;
+CREATE TABLE scopes (sector TEXT NOT NULL, spectrum TEXT NOT NULL, version BLOB NOT NULL CHECK(length(version)=8), records INTEGER NOT NULL CHECK(records>=0), bytes INTEGER NOT NULL CHECK(bytes>=0), retained INTEGER NOT NULL CHECK(retained>=0), backlog INTEGER NOT NULL CHECK(backlog>=0), PRIMARY KEY(sector,spectrum)) STRICT, WITHOUT ROWID;
+CREATE TABLE records (sector TEXT NOT NULL, spectrum TEXT NOT NULL, key TEXT NOT NULL, value BLOB NOT NULL, PRIMARY KEY(sector,spectrum,key), FOREIGN KEY(sector,spectrum) REFERENCES scopes(sector,spectrum)) STRICT, WITHOUT ROWID;
+CREATE TABLE history (sector TEXT NOT NULL, spectrum TEXT NOT NULL, version BLOB NOT NULL CHECK(length(version)=8), key TEXT NOT NULL, value BLOB NOT NULL, erase INTEGER NOT NULL CHECK(erase IN (0,1)), cost INTEGER NOT NULL CHECK(cost>0), PRIMARY KEY(sector,spectrum,version), FOREIGN KEY(sector,spectrum) REFERENCES scopes(sector,spectrum)) STRICT, WITHOUT ROWID;

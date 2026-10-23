@@ -1,0 +1,305 @@
+// Comet v1 public application contract. Pulsar, internal credential tables, and administrative writes are private.
+syntax = "proto3";
+package proto.comet.v1;
+option go_package = "github.com/eosforge/astra/internal/generated/comet;comet";
+
+// Confirms login once and maintains its Session while the stream is alive; closing the stream invalidates it.
+service Gateway {
+    rpc Session(SessionRequest) returns (stream SessionReply);
+}
+
+// Read-only Almanac; Polaris is the publication authority.
+service Almanac {
+    rpc Watch(WatchRequest) returns (stream AlmanacWatchReply);
+}
+
+// Applications ensure one publisher per Catalog key. Publish/Renew commit in the connected Star's memory.
+service Catalog {
+    // Queries known per-key watermarks, including expired bodies; allocates no global version or writer lock.
+    rpc Query(CatalogQueryRequest) returns (CatalogQueryReply);
+    rpc Publish(PublishRequest) returns (PublishReply);
+    rpc Renew(CatalogRenewRequest) returns (Empty);
+    rpc Watch(WatchRequest) returns (stream CatalogWatchReply);
+}
+
+// Registrations can be updated or renewed only at their source Star, with independent orders. Switching Star requires a new Create.
+service Ephemeris {
+    rpc Create(CreateRequest) returns (CreateReply);
+    rpc Update(UpdateRequest) returns (UpdateReply);
+    rpc Renew(RenewRequest) returns (RenewReply);
+    rpc Remove(RemoveRequest) returns (Empty);
+    rpc Watch(WatchRequest) returns (stream EphemerisWatchReply);
+}
+
+// No application response fields; the final RPC status confirms the result.
+message Empty {}
+
+// Byte-exact Scope; both fields are required. Public interfaces reject sectors with the __ prefix.
+message Scope {
+    // UTF-8 text encoded as bytes to avoid duplicate Protobuf validation; each domain validates its input shape.
+    bytes sector = 1;
+    bytes spectrum = 2;
+}
+
+// Values may be empty. Action presence distinguishes deletion, empty values, and invalid missing operations.
+message AlmanacChange {
+    string key = 1;
+    oneof action {
+        bytes value = 2;
+        Empty erase = 3;
+    }
+}
+
+// Positive per-key application version; local expiration uses zero for erase. This is not a Watch cursor.
+message CatalogChange {
+    string key = 1;
+    oneof action {
+        bytes value = 2;
+        Empty erase = 3;
+    }
+    uint64 version = 4;
+}
+
+// Full registrations are sent on first appearance, snapshot, or repair; data replaces only an existing UUID's Data.
+message EphemerisChange {
+    // Attr and data may both be empty; child records do not repeat the UUID.
+    message Record {
+        bytes attr = 1;
+        bytes data = 2;
+    }
+    // Raw 16-byte UUIDv4 with fixed version and variant bits, without hyphenated text encoding.
+    bytes uuid = 1;
+    oneof action {
+        Record record = 2;
+        Empty erase = 3;
+        bytes data = 4;
+    }
+}
+
+// APIKEY is bounded nonempty UTF-8 text; SECRET is nonempty opaque bytes. Neither is included in diagnostics.
+message SessionRequest {
+    string key = 1;
+    bytes secret = 2;
+}
+
+// Exactly 32 random bytes, submitted on later RPCs through comet-session-bin initial metadata.
+message SessionReply {
+    bytes instance = 1;
+    bytes session = 2;
+}
+
+// Uses Publish's authentication and Scope boundary. Requires 1..128 unique keys; empty instance is allowed only for initial discovery.
+message CatalogQueryRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    repeated string keys = 3;
+}
+
+// Per-key watermarks at one local capture boundary, in request order. Unknown keys explicitly return zero.
+message CatalogQueryReply {
+    message Entry {
+        string key = 1;
+        uint64 version = 2;
+    }
+    bytes instance = 1;
+    repeated Entry entries = 2;
+}
+
+// Initial discovery permits an empty instance; version must be positive and TTL is an explicit integer number of milliseconds.
+message PublishRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    uint64 version = 3;
+    string key = 4;
+    bytes value = 5;
+    uint32 ttl_ms = 6;
+    // Exclusive with key/value. Requires 1..128 unique keys sharing Scope, application version, and TTL; keys and bodies total at most 1 MiB.
+    repeated CatalogEntry entries = 7;
+}
+
+// Complete batch publication value. Empty bytes still mean present; deletion is never implicit.
+message CatalogEntry {
+    string key = 1;
+    bytes value = 2;
+}
+
+// Confirms acceptance by the current instance, without guaranteeing peer replication or a fixed retry window.
+message PublishReply {
+    bytes instance = 1;
+    uint64 version = 2;
+}
+
+// Renews only this Star's live local-source records; missing records require a full Publish.
+message CatalogRenewRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    string key = 3;
+    uint64 version = 4;
+    uint32 ttl_ms = 5;
+    // Exclusive with key. Renewals for the same Star's local source succeed or fail atomically for the entire batch.
+    repeated string keys = 6;
+}
+
+// First creation uses generation 1 with empty uuid/capability. Recovery accepts only the logical ID bound to the original capability.
+message CreateRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    bytes attr = 3;
+    bytes data = 4;
+    uint32 ttl_ms = 5;
+    bytes uuid = 6;
+    bytes capability = 7;
+    uint64 generation = 8;
+    uint64 order = 9;
+}
+
+// Raw 16-byte UUIDv4. Creation fixes TTL and initializes both orders to zero.
+message CreateReply {
+    bytes instance = 1;
+    bytes uuid = 2;
+    uint32 ttl_ms = 3;
+    bytes capability = 4;
+    uint64 generation = 5;
+    uint64 order = 6;
+    bytes data = 7;
+}
+
+// A new Data order atomically replaces data and extends the fixed TTL; repeating an order does not extend it again.
+message UpdateRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    bytes uuid = 3;
+    uint64 order = 4;
+    bytes data = 5;
+    bytes capability = 6;
+    uint64 generation = 7;
+}
+
+// Identity comes from the RPC context; replies echo only the successfully confirmed positive order.
+message UpdateReply {
+    uint64 order = 1;
+}
+
+// Uses the TTL saved at creation. Repeated orders confirm the previous result without extending it again.
+message RenewRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    bytes uuid = 3;
+    uint64 order = 4;
+    bytes capability = 5;
+    uint64 generation = 6;
+}
+
+// Renew and Data use independent order sequences.
+message RenewReply {
+    uint64 order = 1;
+}
+
+// Ends only this instance/Scope/UUID. Missing records return ended; removal tombstones are not retained permanently.
+message RemoveRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    bytes uuid = 3;
+    bytes capability = 4;
+    uint64 generation = 5;
+}
+
+// Empty target selects the whole Scope; otherwise an exact key or raw 16-byte UUID. Absent version differs from explicit zero.
+message WatchRequest {
+    bytes instance = 1;
+    Scope scope = 2;
+    bytes target = 3;
+    optional uint64 version = 4;
+}
+
+// Stage pages until complete; only the last page includes instance and a version with explicit presence.
+message AlmanacWatchReply {
+    Mode mode = 1;
+    repeated AlmanacChange changes = 2;
+    bool complete = 3;
+    optional uint64 version = 4;
+    bytes instance = 5;
+}
+
+// Local view cursor, distinct from per-key application versions in changes.
+message CatalogWatchReply {
+    Mode mode = 1;
+    repeated CatalogChange changes = 2;
+    bool complete = 3;
+    optional uint64 version = 4;
+    bytes instance = 5;
+}
+
+// Reset permits only record; apply permits record/data/erase. Partial registrations are never exposed.
+message EphemerisWatchReply {
+    Mode mode = 1;
+    repeated EphemerisChange changes = 2;
+    bool complete = 3;
+    optional uint64 version = 4;
+    bytes instance = 5;
+}
+
+// Mode is fixed within a batch. Reset is allowed only for a new stream's first batch; gaps require closing and recovering the stream.
+enum Mode {
+    // Not a valid batch mode.
+    MODE_UNSPECIFIED = 0;
+    // Replaces the current Scope with the complete staged view.
+    MODE_RESET = 1;
+    // Applies changes to an existing complete baseline.
+    MODE_APPLY = 2;
+}
+
+// Non-OK trailing metadata comet-error-bin; encoded size at most 4 KiB, without payloads or secrets.
+message Failure {
+    Reason reason = 1;
+    Effect effect = 2;
+    optional uint64 version = 3;
+    optional uint64 order = 4;
+    optional uint32 ttl_min_ms = 5;
+    optional uint32 ttl_max_ms = 6;
+    optional uint32 retry_ms = 7;
+    string limit = 8;
+    optional uint64 maximum = 9;
+    string message = 10;
+    bytes instance = 11;
+}
+
+// Classification does not determine commit effect. One unapplied attempt cannot clear uncertainty from earlier attempts.
+enum Reason {
+    // Missing or unrecognized application classification.
+    REASON_UNSPECIFIED = 0;
+    // Invalid request format or Scope.
+    REASON_INPUT = 1;
+    // Login session is missing or invalid.
+    REASON_SESSION = 2;
+    // A fixed access boundary, such as an internal Scope, was rejected; this does not imply fine-grained ACLs.
+    REASON_DENIED = 3;
+    // Content version conflict or lagging Almanac replica.
+    REASON_VERSION = 4;
+    // Registration or active source record has ended.
+    REASON_ENDED = 5;
+    // Data update or renewal order is stale.
+    REASON_OBSOLETE = 6;
+    // The cursor can no longer be recovered continuously.
+    REASON_HISTORY = 7;
+    // Input or resource budget exceeded.
+    REASON_LIMIT = 8;
+    // No current admission capacity; bounded backoff is permitted.
+    REASON_BUSY = 9;
+    // Actual instance differs from the requested instance.
+    REASON_INSTANCE = 10;
+    // Local application time is not yet established or is unavailable.
+    REASON_CLOCK = 11;
+    // An earlier commit result cannot be confirmed.
+    REASON_UNCERTAIN = 12;
+    // The same logical identity or operation version has different content.
+    REASON_CONFLICT = 13;
+}
+
+// Describes this attempt alone, without resolving the entire logical operation.
+enum Effect {
+    // Commit status is unproven, including missing or unknown details.
+    EFFECT_UNKNOWN = 0;
+    // The server confirms that this attempt's application mutation did not commit.
+    EFFECT_UNAPPLIED = 1;
+}

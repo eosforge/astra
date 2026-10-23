@@ -1,0 +1,105 @@
+# Run bounded Go and harness checks for contributions; native qualification remains a separate selection.
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  python:
+    name: Python harness
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Record existing runner tools
+        run: |
+          set -euo pipefail
+          python3 --version
+          cmake --version
+          ctest --version
+      - name: Run harness and package-document controls
+        run: python3 -B -m unittest tests.test_build tests.test_pulsar_harness tests.test_benchmark tests.test_release -v
+
+  go:
+    name: Go build and unit tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GOTOOLCHAIN: local
+      GOWORK: 'off'
+      GOMAXPROCS: '2'
+      CGO_ENABLED: '1'
+      GOPATH: ${{ github.workspace }}/build/deps/go
+      GOMODCACHE: ${{ github.workspace }}/build/deps/go/pkg/mod
+      GOCACHE: ${{ github.workspace }}/build/cache/go
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Preparation may fetch this exact Go toolchain; subsequent build/test steps disable module acquisition.
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: '1.27.2'
+          check-latest: false
+          cache: false
+      - name: Explicitly prepare locked Go modules
+        env:
+          GOPROXY: https://proxy.golang.org
+          GOSUMDB: sum.golang.org
+        run: |
+          set -euo pipefail
+          go version
+          gcc --version
+          go mod download
+          go -C comet/go mod download
+          git diff --exit-code -- go.mod go.sum comet/go/go.mod comet/go/go.sum
+      - name: Compile services and SDK offline
+        env:
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+        run: |
+          set -euo pipefail
+          go build -mod=readonly -p=2 ./polaris ./astrolabe
+          go -C comet/go build -mod=readonly -p=2 ./...
+      - name: Run root Go units offline
+        env:
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+        run: |
+          set -euo pipefail
+          mkdir -p build/results/ci
+          go test -json -mod=readonly -count=1 -p=2 -parallel=1 -timeout=180s \
+            ./internal/... ./polaris/... ./astrolabe/... | tee build/results/ci/go-root.jsonl
+      - name: Run SDK Go units offline
+        env:
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+        run: |
+          set -euo pipefail
+          go -C comet/go test -json -mod=readonly -count=1 -p=2 -parallel=1 -timeout=180s ./... \
+            | tee build/results/ci/go-sdk.jsonl
+      - name: Preserve available Go results, including skips and failures
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: go-test-results
+          path: build/results/ci/*.jsonl
+          if-no-files-found: ignore
+          retention-days: 14

@@ -1,0 +1,323 @@
+//go:build linux && cgo
+
+// Capture actual native transaction inputs, receipts and consumed history prefixes at independent rejection boundaries.
+package storage
+
+import (
+	"bytes"
+	"context"
+	"database/sql/driver"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"reflect"
+	"strings"
+	"testing"
+
+	"github.com/mattn/go-sqlite3"
+	"gorm.io/gorm"
+)
+
+// transactionProbe owns one fixture's active capture and completed native prefix observations.
+type transactionProbe struct {
+	active bool             // Capture only the challenged serialized write, excluding diagnostic reads and repair.
+	rows   []map[string]any // Native next/close receipts in their original order, including terminal EOF.
+}
+
+// transactionConnection preserves the native driver's optional interfaces while observing retained-prefix queries.
+type transactionConnection struct {
+	*sqlite3.SQLiteConn                   // Real SQLite connection, transactions and context cancellation.
+	probe               *transactionProbe // Fixture-owned capture scope.
+}
+
+// QueryContext wraps only the production retention query after actual native execution succeeds.
+func (conn *transactionConnection) QueryContext(ctx context.Context, query string, arguments []driver.NamedValue) (driver.Rows, error) {
+	rows, err := conn.SQLiteConn.QueryContext(ctx, query, arguments)
+	if err != nil || !conn.probe.active || !strings.HasPrefix(query, "SELECT version,cost FROM `history`") {
+		return rows, err
+	}
+	return &transactionCursor{Rows: rows, probe: conn.probe}, nil
+}
+
+// transactionCursor records each actual consumed row without advancing or reevaluating the native cursor.
+type transactionCursor struct {
+	driver.Rows                   // Original native cursor and column metadata.
+	probe       *transactionProbe // Ordered observations belonging to this write alone.
+}
+
+// Next records successful version/cost values and distinguishes EOF from a native error.
+func (rows *transactionCursor) Next(values []driver.Value) error {
+	err := rows.Rows.Next(values)
+	frame := map[string]any{"kind": "next", "outcome": "nil"}
+	if err == nil {
+		if len(values) != 2 {
+			panic("unexpected native retained-prefix width")
+		}
+		version, ok := values[0].([]byte)
+		cost, integer := values[1].(int64)
+		if !ok || !integer || len(version) != 8 {
+			panic("unexpected native retained-prefix shape")
+		}
+		frame["version"], frame["cost"] = fmt.Sprintf("%x", version), cost
+	} else if errors.Is(err, io.EOF) {
+		frame["outcome"] = "eof"
+	} else {
+		frame["outcome"] = "error"
+	}
+	rows.probe.rows = append(rows.probe.rows, frame)
+	return err
+}
+
+// Close records finalization after releasing the real native cursor.
+func (rows *transactionCursor) Close() error {
+	err := rows.Rows.Close()
+	outcome := "nil"
+	if err != nil {
+		outcome = "error"
+	}
+	rows.probe.rows = append(rows.probe.rows, map[string]any{"kind": "close", "outcome": outcome})
+	return err
+}
+
+// transactionSnapshot reads exact durable inputs before the single serialized production write.
+func transactionSnapshot(t *testing.T, store *Store, scope Scope) map[string]any {
+	t.Helper()
+	state, exists, err := current(store.write, scope)
+	if err != nil {
+		t.Fatal("capture actual current state", err)
+	}
+	var meta metadata
+	if err := store.write.Table("meta").Where("id=1").Take(&meta).Error; err != nil {
+		t.Fatal("capture actual metadata", err)
+	}
+	var records []struct {
+		Key   string // Actual persisted record key.
+		Value []byte // Actual persisted record payload, copied by GORM before capture returns.
+	}
+	var history []struct {
+		Version Version // Actual ordered retained version.
+		Key     string  // Original submitted key.
+		Value   []byte  // Original submitted value.
+		Erase   bool    // Original mutation kind.
+		Cost    int64   // Persisted history accounting.
+	}
+	if err := store.write.Table("records").Select("key,value").Where("sector=? AND spectrum=?", scope.Sector, scope.Spectrum).Order("key").Find(&records).Error; err != nil {
+		t.Fatal("capture actual records", err)
+	}
+	if err := store.write.Table("history").Select("version,key,value,erase,cost").Where("sector=? AND spectrum=?", scope.Sector, scope.Spectrum).Order("version").Find(&history).Error; err != nil {
+		t.Fatal("capture actual history", err)
+	}
+	return map[string]any{"state": state, "exists": exists, "meta": meta, "records": records, "history": history, "limits": store.limits}
+}
+
+// transactionOutcome exposes stable public error classes, rejecting any unexpected result in the fixture itself.
+func transactionOutcome(err error) string {
+	for _, item := range []struct {
+		err  error  // Published authority error.
+		name string // Stable evidence classification.
+	}{{nil, "nil"}, {ErrVersion, "version"}, {ErrCorrupt, "corrupt"}, {ErrCapacity, "capacity"}} {
+		if item.err == nil && err == nil || item.err != nil && errors.Is(err, item.err) {
+			return item.name
+		}
+	}
+	panic(fmt.Sprintf("unexpected transaction result: %v", err))
+}
+
+// TestTransactionInputs batches receipt, retry, accounting and retention mechanisms without altering production or ordinary discovery.
+func TestTransactionInputs(t *testing.T) {
+	check := verification(t, "STORAGE-BOUNDARY")
+	// Returned ORM receipts are changed only after a real successful native update with RowsAffected=1.
+	for _, table := range []string{"scopes", "meta"} {
+		check(t.Run(table+"-receipt", func(t *testing.T) {
+			check := verification(t, "STORAGE-BOUNDARY")
+			store, _, binding := fixture(t, Default())
+			scope := Scope{"transaction", "receipt"}
+			requireCommit(t, store, scope, Change{Version: 1, Key: "k", Value: []byte("old")})
+			before, saved, changed := transactionSnapshot(t, store, scope), contents(t, store.writeSQL), store.Changed()
+			feed, err := store.Subscribe(4096, 8)
+			check(err == nil, "admit isolated receipt feed")
+			t.Cleanup(feed.Close)
+			ready := feed.Ready()
+			active := true
+			var receipts []map[string]any
+			err = store.write.Callback().Raw().After("gorm:raw").Register("assurance:transaction", func(tx *gorm.DB) {
+				if strings.HasPrefix(tx.Statement.SQL.String(), "UPDATE "+table+" SET") {
+					if tx.Error != nil || tx.RowsAffected != 1 {
+						t.Fatal("receipt injection did not follow a successful native update")
+					}
+					if active {
+						tx.AddError(errors.New("assurance-completed-update"))
+					}
+					receipts = append(receipts, map[string]any{"rows": tx.RowsAffected, "error": tx.Error != nil, "injected": active, "sql": tx.Statement.SQL.String()})
+				}
+			})
+			check(err == nil, "register completed-update receipt injection")
+			t.Cleanup(func() { store.write.Callback().Raw().Remove("assurance:transaction") })
+			request := Change{Version: 2, Key: "z", Value: []byte("new")}
+			for range 2 {
+				version, err := store.Commit(t.Context(), scope, request)
+				want := ErrVersion
+				if table == "meta" {
+					want = ErrCorrupt
+				}
+				check(version == 0 && errors.Is(err, want), "completed-update error rejects the whole commit")
+				check(contents(t, store.writeSQL) == saved && reflect.DeepEqual(transactionSnapshot(t, store, scope), before), "completed-update error preserves every durable row")
+				check(!store.poisoned.Load() && len(store.writer) == 0 && store.writeSQL.Stats().InUse == 0 && store.readSQL.Stats().InUse == 0, "completed-update error releases admission, transactions and cursors")
+				for _, signal := range []<-chan struct{}{changed, ready} {
+					select {
+					case <-signal:
+						t.Fatal("rejected update published a notification")
+					default:
+					}
+				}
+				events, err := feed.Take()
+				check(err == nil && len(events) == 0, "rejected update publishes no feed prefix")
+			}
+			active = false
+			requireCommit(t, store, scope, request)
+			check(store.validate(t.Context(), binding) == nil, "healthy receipt recovers exact durable consistency")
+			events, err := feed.Take()
+			check(err == nil && len(events) == 1 && events[0].Version == 2, "healthy recovery publishes exactly one complete event")
+			check(len(receipts) == 3, "capture two real failures and one healthy update")
+			data, err := json.Marshal(map[string]any{"point": table + "-receipt", "before": before, "request": request, "receipts": receipts})
+			check(err == nil, "encode actual completed-update facts")
+			fmt.Println("STORAGE-TRANSACTION-INPUT " + string(data))
+		}), "completed update receipt")
+	}
+	// Empty payloads allow mutation kind to vary independently from key and value.
+	for _, point := range []string{"retry-same", "retry-key", "retry-erase", "retry-value"} {
+		check(t.Run(point, func(t *testing.T) {
+			check := verification(t, "STORAGE-BOUNDARY")
+			store, _, _ := fixture(t, Default())
+			scope := Scope{"transaction", "retry"}
+			requireCommit(t, store, scope, Change{Version: 1, Key: "k", Value: []byte{}})
+			before, saved, changed := transactionSnapshot(t, store, scope), contents(t, store.writeSQL), store.Changed()
+			request := Change{Version: 1, Key: "k", Value: []byte{}}
+			switch point {
+			case "retry-key":
+				request.Key = "z"
+			case "retry-erase":
+				request.Erase = true
+			case "retry-value":
+				request.Value = []byte("v")
+			}
+			for attempt := range 2 {
+				version, err := store.Commit(t.Context(), scope, request)
+				if point == "retry-same" {
+					check(err == nil && version == 1, "exact retry returns the original receipt")
+				} else {
+					check(errors.Is(err, ErrVersion) && version == 0, "single-field retry conflict is rejected")
+				}
+				check(contents(t, store.writeSQL) == saved && reflect.DeepEqual(transactionSnapshot(t, store, scope), before), "retry preserves the original full state and history")
+				check(!store.poisoned.Load() && len(store.writer) == 0 && store.writeSQL.Stats().InUse == 0, "retry releases its native transaction and admission")
+				select {
+				case <-changed:
+					t.Fatal("retry published a fresh commit")
+				default:
+				}
+				data, encoded := json.Marshal(map[string]any{"point": point, "attempt": attempt, "before": before, "request": request, "version": version, "outcome": transactionOutcome(err)})
+				check(encoded == nil, "encode actual retry facts")
+				fmt.Println("STORAGE-TRANSACTION-INPUT " + string(data))
+			}
+		}), "retry identity")
+	}
+	// Each case fixes all non-target comparisons to their healthy Boolean values.
+	for _, point := range []string{
+		"scope-existing-full", "scope-new-full", "scope-new-space", "capacity-fit", "capacity-records", "capacity-bytes", "negative-records",
+		"history-off", "history-within", "history-count", "history-bytes", "history-both", "history-zero-prefix", "history-short-prefix", "history-negative", "history-excess",
+	} {
+		check(t.Run(point, func(t *testing.T) {
+			check := verification(t, "STORAGE-BOUNDARY")
+			limits := Default()
+			limits.History, limits.Backlog = 2, 256
+			switch point {
+			case "scope-existing-full", "scope-new-full":
+				limits.Scopes = 1
+			case "scope-new-space":
+				limits.Scopes = 2
+			case "capacity-fit", "capacity-records":
+				limits.Records, limits.Bytes = 1, 8
+			case "capacity-bytes":
+				limits.Records, limits.Bytes = 3, 4
+			case "history-off":
+				limits.History = 0
+			case "history-count", "history-zero-prefix", "history-negative":
+				limits.History = 1
+			case "history-bytes", "history-excess":
+				limits.History, limits.Backlog = 3, 100
+			case "history-both":
+				limits.History, limits.Backlog = 1, 100
+			}
+			store, _, binding := fixture(t, limits)
+			scope := Scope{"transaction", "state"}
+			requireCommit(t, store, scope, Change{Version: 1, Key: "k", Value: []byte("old")})
+			request := Change{Version: 2, Key: "k", Value: []byte("n")}
+			wanted := "nil"
+			var damage, repair string
+			switch point {
+			case "scope-new-full", "scope-new-space":
+				scope.Spectrum, request.Version = "new", 1
+				if point == "scope-new-full" {
+					wanted = "capacity"
+				}
+			case "capacity-records":
+				request.Key, request.Value, wanted = "z", []byte{}, "capacity"
+			case "capacity-bytes":
+				request.Value, wanted = []byte("four"), "capacity"
+			case "negative-records":
+				damage, repair, wanted = "UPDATE scopes SET records=0", "UPDATE scopes SET records=1", "corrupt"
+				request.Value, request.Erase = []byte{}, true
+			case "history-zero-prefix":
+				damage, repair, wanted = "UPDATE history SET version=zeroblob(8)", "UPDATE history SET version=X'0000000000000001'", "corrupt"
+			case "history-short-prefix":
+				damage, repair, wanted = "UPDATE scopes SET retained=4", "UPDATE scopes SET retained=1", "corrupt"
+			case "history-negative":
+				damage, repair, wanted = "UPDATE history SET cost=999", "UPDATE history SET cost=68", "corrupt"
+			case "history-excess":
+				damage, repair, wanted = "UPDATE scopes SET backlog=1000", "UPDATE scopes SET backlog=68", "corrupt"
+			}
+			if damage != "" {
+				check(store.write.Exec(damage).Error == nil, "install exact persisted accounting damage")
+			}
+			before, saved, changed := transactionSnapshot(t, store, scope), contents(t, store.writeSQL), store.Changed()
+			probe := &transactionProbe{}
+			adapt(t, store, func(conn *sqlite3.SQLiteConn) driver.Conn {
+				return &transactionConnection{SQLiteConn: conn, probe: probe}
+			})
+			attempts := 1
+			if wanted != "nil" {
+				attempts = 2
+			}
+			for attempt := range attempts {
+				probe.active, probe.rows = true, nil
+				version, err := store.Commit(t.Context(), scope, request)
+				probe.active = false
+				outcome := transactionOutcome(err)
+				check(outcome == wanted, "exact independent guard outcome")
+				check(wanted == "nil" && version == request.Version || wanted != "nil" && version == 0, "commit receipt agrees with the public result")
+				check(!store.poisoned.Load() && len(store.writer) == 0 && store.writeSQL.Stats().InUse == 0 && store.readSQL.Stats().InUse == 0, "state boundary releases all native work")
+				if wanted != "nil" {
+					check(contents(t, store.writeSQL) == saved && reflect.DeepEqual(transactionSnapshot(t, store, scope), before), "rejection preserves all original damage without a partial commit")
+					select {
+					case <-changed:
+						t.Fatal("rejected state boundary published a commit")
+					default:
+					}
+				} else {
+					check(store.validate(t.Context(), binding) == nil, "healthy state boundary preserves complete native consistency")
+					image, loaded := store.Load(t.Context(), scope)
+					check(loaded == nil && image.Version == version && len(image.Records) == 1 && image.Records[0].Key == request.Key && bytes.Equal(image.Records[0].Value, request.Value), "healthy state boundary publishes the exact requested value")
+				}
+				data, encoded := json.Marshal(map[string]any{"point": point, "attempt": attempt, "before": before, "request": request, "version": version, "outcome": outcome, "prefix": probe.rows})
+				check(encoded == nil, "encode actual state and consumed prefix facts")
+				fmt.Println("STORAGE-TRANSACTION-INPUT " + string(data))
+			}
+			if repair != "" {
+				check(store.write.Exec(repair).Error == nil, "restore exact damaged fields after preserving rejection evidence")
+				requireCommit(t, store, scope, request)
+				check(store.validate(t.Context(), binding) == nil, "repaired accounting recovers healthy durable state")
+			}
+		}), "state and history boundary")
+	}
+}

@@ -1,0 +1,32 @@
+// Supply process-local clock fault models only for the isolated SDK unit tests.
+package unix
+
+import "os"
+
+// ClockGettime preserves the original API outside explicitly selected BOOTTIME unit cases.
+func ClockGettime(clockid int32, stamp *Timespec) error {
+	mode := os.Getenv("ASTRA_UNIT_CLOCK_CASE")
+	if clockid != CLOCK_BOOTTIME || mode == "" {
+		return astraOriginalClockGettime(clockid, stamp)
+	}
+	if mode == "error" {
+		return EINVAL
+	}
+	stamp.Sec, stamp.Nsec = 1, 0
+	switch mode {
+	case "negative-seconds":
+		stamp.Sec = -1
+	case "negative-nanos":
+		stamp.Nsec = -1
+	case "overflow-nanos":
+		stamp.Nsec = 1_000_000_000
+	case "overflow-seconds":
+		stamp.Sec = int64(^uint64(0) >> 1)
+	case "maximum":
+		stamp.Sec, stamp.Nsec = (int64(^uint64(0)>>1)-999)/1000, 999_999_999
+	case "valid":
+	default:
+		return EINVAL
+	}
+	return nil
+}

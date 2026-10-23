@@ -1,0 +1,40 @@
+[
+  {
+    "name": "coalesced",
+    "domain": "ephemeris",
+    "mode": "receipt",
+    "records": 256,
+    "groups": 1,
+    "fanout": 8,
+    "clients": 1,
+    "writers": 8,
+    "bytes": 128,
+    "attr": 256,
+    "seconds": 5,
+    "ttl": 30000,
+    "rate": 0,
+    "poll": 1000,
+    "legacy_view_ms": 10,
+    "stars": 1,
+    "diagnostic": true
+  },
+  {
+    "name": "coalesced",
+    "domain": "ephemeris",
+    "mode": "visible",
+    "records": 256,
+    "groups": 1,
+    "fanout": 8,
+    "clients": 1,
+    "writers": 8,
+    "bytes": 128,
+    "attr": 256,
+    "seconds": 5,
+    "ttl": 30000,
+    "rate": 0,
+    "poll": 1000,
+    "legacy_view_ms": 10,
+    "stars": 1,
+    "diagnostic": true
+  }
+]

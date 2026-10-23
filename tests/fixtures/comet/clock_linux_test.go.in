@@ -1,0 +1,65 @@
+// Verify Linux clock rejection with a compiler overlay stub, without changing kernel or host clocks.
+package comet
+
+import (
+	"context"
+	"testing"
+	"time"
+)
+
+// TestIsolatedClockFailure retains every arithmetic guard, including malformed kernel-return models.
+func TestIsolatedClockFailure(t *testing.T) {
+	for _, name := range []string{"error", "negative-seconds", "negative-nanos", "overflow-nanos", "overflow-seconds"} {
+		t.Run(name, func(t *testing.T) {
+			t.Setenv("ASTRA_UNIT_CLOCK_CASE", name)
+			if value, valid := leaseNow(); valid || value != 0 {
+				t.Fatal("clock stub failure or malformed stamp was accepted")
+			}
+		})
+	}
+	t.Setenv("ASTRA_UNIT_CLOCK_CASE", "valid")
+	if value, valid := leaseNow(); !valid || value != 1000 {
+		t.Fatal("valid modeled clock was rejected")
+	}
+	t.Setenv("ASTRA_UNIT_CLOCK_CASE", "maximum")
+	if value, valid := leaseNow(); !valid || value != ((int64(^uint64(0)>>1)-999)/1000)*1000+999 {
+		t.Fatal("largest safe modeled timestamp was rejected")
+	}
+	t.Setenv("ASTRA_UNIT_CLOCK_CASE", "error")
+	client := isolatedClient(t)
+	selected := isolatedRPC(t, client, func(string, any, any) error { t.Fatal("clock failure performed RPC"); return nil })
+	beacon := isolatedBeacon(t, client, selected)
+	reserved := int64(0)
+	isolatedCode(t, beacon.create(context.Background(), selected, 1, &reserved), CodeClock)
+	_, cause := beacon.Update(context.Background(), []byte("new"))
+	isolatedCode(t, cause, CodeClock)
+	beacon.advance()
+	isolatedCode(t, beacon.State().Error, CodeClock)
+	beacon.renew(context.Background(), selected, 2)
+	if beacon.lease.known || beacon.data.String() != "confirmed" {
+		t.Fatal("failed clock confirmed a lease or recovery data")
+	}
+}
+
+// TestIsolatedRestoreClock keeps a failed simulated clock from bypassing restoration backoff.
+func TestIsolatedRestoreClock(t *testing.T) {
+	t.Setenv("ASTRA_UNIT_CLOCK_CASE", "error")
+	client := isolatedClient(t)
+	selected := isolatedRPC(t, client, func(string, any, any) error { t.Fatal("clock failure performed restoration RPC"); return nil })
+	beacon := isolatedBeacon(t, client, selected)
+	beacon.mu.Lock()
+	beacon.launchLocked(selected, true)
+	quiet := beacon.quiet
+	beacon.mu.Unlock()
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	if cause := waitDone(ctx, quiet); cause != nil {
+		t.Fatal(cause)
+	}
+	beacon.mu.Lock()
+	defer beacon.mu.Unlock()
+	isolatedCode(t, beacon.state.Error, CodeClock)
+	if beacon.retry.IsZero() || beacon.failures != 1 || beacon.data.String() != "confirmed" {
+		t.Fatal("modeled clock failure lost backoff or acknowledged data")
+	}
+}

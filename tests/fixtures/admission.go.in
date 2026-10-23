@@ -1,0 +1,64 @@
+// Exercise the two remaining concrete admission inputs without changing production sources.
+package admission
+
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"testing"
+
+	"google.golang.org/protobuf/proto"
+
+	"github.com/eosforge/astra/internal/generated/orbit"
+)
+
+// TestAdmissionEdges separates equal-epoch replacement from malformed signed payloads.
+// This fixture is compiled through the existing overlay mechanism, never linked into services.
+func TestAdmissionEdges(t *testing.T) {
+	check := counter(t, "ADMISSION-EDGE")
+	for _, epoch := range []uint64{2, 1} {
+		value := directory(t, orbit.Role_ROLE_POLARIS, 4)
+		old, candidate := member(1, 1, orbit.Role_ROLE_STAR), member(1, 2, orbit.Role_ROLE_STAR)
+		candidate.Epoch = epoch
+		check(value.Install([]*orbit.Member{old}) == nil, "edge baseline was rejected")
+		check(!bytes.Equal(candidate.Id, old.Id), "epoch inputs must retain distinct instance IDs")
+		err := value.observe(candidate)
+		check((err == nil) == (epoch == 2), "equal epoch accepted another instance or newer epoch was rejected")
+		if epoch == 1 {
+			check(errors.Is(err, ErrIdentity), "equal-epoch refusal lost its identity error")
+		}
+		expected := old
+		if epoch == 2 {
+			expected = candidate
+		}
+		snapshot := value.Members()
+		check(len(snapshot) == 1 && proto.Equal(snapshot[0], expected), "epoch decision committed an unexpected directory")
+		row, marshal := json.Marshal(map[string]any{"kind": "epoch", "old": old, "candidate": candidate, "accepted": err == nil, "snapshot": snapshot})
+		check(marshal == nil, "epoch observation could not be encoded")
+		t.Logf("ADMISSION-EDGE %s", row)
+	}
+	identity := identity(t)
+	original := member(1, 1, orbit.Role_ROLE_STAR)
+	data, err := proto.Marshal(original)
+	check(err == nil, "valid edge member could not be encoded")
+	for _, malformed := range []bool{false, true} {
+		input := bytes.Clone(data)
+		if malformed {
+			// Field zero is forbidden after a complete valid message; known fields remain populated.
+			input = append(input, 0)
+		}
+		partial := new(orbit.Member)
+		decode := proto.Unmarshal(input, partial)
+		check((decode != nil) == malformed, "trailing zero tag did not distinguish decoding success")
+		check(proto.Equal(partial, original) && Valid(partial), "decoder edge failed to retain the same valid public fields")
+		decoded, verify := identity.Verify(input, sign(t, input, "proto.orbit.v1.admission\x00"))
+		if malformed {
+			check(decoded == nil && errors.Is(verify, ErrIdentity), "signed malformed bytes escaped with a partial identity")
+		} else {
+			check(verify == nil && proto.Equal(decoded, original), "valid signed edge member was rejected")
+		}
+		row, marshal := json.Marshal(map[string]any{"kind": "wire", "input": input, "malformed": decode != nil, "partial": partial, "accepted": verify == nil, "returned": decoded})
+		check(marshal == nil, "wire observation could not be encoded")
+		t.Logf("ADMISSION-EDGE %s", row)
+	}
+}

@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "scope": "Eighteen explicit Node mutations: two original membership/callback guards, nine finite retry-model counterexamples and seven finite publication/replacement counterexamples. This supplements, not replaces, whole-Admission mutation qualification.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "membership-equality",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRegistration",
+      "before": "if same(member, local) {",
+      "after": "if same(member, local) || true {"
+    },
+    {
+      "id": "callback-presence",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRun",
+      "before": "if changed != nil {",
+      "after": "if true {"
+    },
+    {
+      "id": "join-initial",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "delay := 500 * time.Millisecond",
+      "after": "delay := time.Second"
+    },
+    {
+      "id": "join-progress",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "delay = min(delay*2, 30*time.Second)",
+      "after": "delay = min(delay, 30*time.Second)"
+    },
+    {
+      "id": "join-success",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "if err == nil || fatal(err) {",
+      "after": "if fatal(err) {"
+    },
+    {
+      "id": "join-permanent",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "if err == nil || fatal(err) {",
+      "after": "if err == nil {"
+    },
+    {
+      "id": "refresh-initial",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "delay := 30 * time.Second",
+      "after": "delay := time.Minute"
+    },
+    {
+      "id": "refresh-reset",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "if err == nil {\n\t\t\tdelay = 30 * time.Second",
+      "after": "if err == nil {\n\t\t\tdelay = time.Minute"
+    },
+    {
+      "id": "refresh-cap",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "delay = min(delay*2, 2*time.Minute)",
+      "after": "delay = min(delay*2, 3*time.Minute)"
+    },
+    {
+      "id": "refresh-callback",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "changed(err)",
+      "after": "changed(nil)"
+    },
+    {
+      "id": "refresh-permanent",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeModel",
+      "before": "if fatal(err) {",
+      "after": "if false {"
+    },
+    {
+      "id": "registration-replay",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeTransitions",
+      "before": "if node.Member() != nil {",
+      "after": "if false {"
+    },
+    {
+      "id": "member-publication",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeTransitions",
+      "before": "node.member = member",
+      "after": "node.member = nil"
+    },
+    {
+      "id": "hello-publication",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeTransitions",
+      "before": "node.hello = &astra.Hello{ProtocolMajor: 1, MaxFrameBytes: 8 << 20, Admission: response.Admission, AdmissionSignature: response.Signature}",
+      "after": "node.hello = nil"
+    },
+    {
+      "id": "registration-current",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeTransitions",
+      "before": "if !node.directory.Current(member) {\n\t\treturn ErrIdentity",
+      "after": "if false {\n\t\treturn ErrIdentity"
+    },
+    {
+      "id": "refresh-membership",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeTransitions",
+      "before": "if !slicesContains(response.Members, member) {\n\t\treturn status.Error(codes.Unauthenticated, \"Process admission replaced\")",
+      "after": "if false {\n\t\treturn status.Error(codes.Unauthenticated, \"Process admission replaced\")"
+    },
+    {
+      "id": "refresh-install",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeTransitions",
+      "before": "if err := node.directory.Install(response.Members); err != nil {\n\t\treturn err\n\t}\n\tif !node.directory.Current(member) {\n\t\treturn status.Error",
+      "after": "if err := node.directory.Install(response.Members); err != nil && false {\n\t\treturn err\n\t}\n\tif !node.directory.Current(member) {\n\t\treturn status.Error"
+    },
+    {
+      "id": "refresh-current",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeTransitions",
+      "before": "if !node.directory.Current(member) {\n\t\treturn status.Error(codes.Unauthenticated, \"Process admission replaced\")",
+      "after": "if false {\n\t\treturn status.Error(codes.Unauthenticated, \"Process admission replaced\")"
+    }
+  ]
+}

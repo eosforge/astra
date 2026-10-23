@@ -1,0 +1,619 @@
+{
+  "component": "polaris-storage",
+  "contracts": [
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-ATOMIC",
+      "obligations": [
+        "polaris-storage/DEV-CONTRACT/STORAGE-ATOMIC/linux-amd64-cgo/bounded-example"
+      ],
+      "statement_sha256": "ce6a70e60a47d2ac3dec69aa3c6a676e826ad6035a19b4e792e0fb01fe8d4f43",
+      "symbols": [
+        "polaris/internal/storage/batch.go::*Store.CommitBatch",
+        "polaris/internal/storage/commit.go::*Store.Commit",
+        "polaris/internal/storage/commit.go::*Store.commit"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-RETRY",
+      "obligations": [
+        "polaris-storage/DEV-RETRY/STORAGE-RETRY/linux-amd64-cgo/bounded-example"
+      ],
+      "statement_sha256": "7ba2e47adc617727c77076c4a2f792a426906e9169d3d91942f8e89ce1403c27",
+      "symbols": [
+        "polaris/internal/storage/commit.go::*Store.commit",
+        "polaris/internal/storage/commit.go::current",
+        "polaris/internal/storage/commit.go::confirm"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-ROLLBACK",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-ROLLBACK/linux-amd64-cgo/bounded-example"
+      ],
+      "statement_sha256": "d988b64bacba06fb368f55781b5ac388918f49ddf47997bef122e382575cdb83",
+      "symbols": [
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/store.go::session",
+        "polaris/internal/storage/commit.go::*Store.commit"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-HISTORY",
+      "obligations": [
+        "polaris-storage/DEV-COMPAT/STORAGE-HISTORY/linux-amd64-cgo/bounded-example"
+      ],
+      "statement_sha256": "2b1f4b9e4c51e2edaef6d3ab0aee348936f7c894c97245c69d22b15d1d8b05d6",
+      "symbols": [
+        "polaris/internal/storage/commit.go::*Store.retain",
+        "polaris/internal/storage/read.go::*Store.Since",
+        "polaris/internal/storage/read.go::*Store.history",
+        "polaris/internal/storage/batch.go::Change.Entries"
+      ]
+    },
+    {
+      "checks": [
+        "gap-adoption",
+        "gap-audit",
+        "gap-capacity",
+        "gap-compat",
+        "gap-compat-race",
+        "gap-config",
+        "gap-delivery-matrix",
+        "gap-evidence",
+        "gap-failure",
+        "gap-fault-matrix",
+        "gap-gate",
+        "gap-impact",
+        "gap-operate",
+        "gap-redgreen",
+        "gap-release",
+        "gap-replay",
+        "gap-scope",
+        "gap-supply",
+        "gap-trace",
+        "storage-core-mutants",
+        "storage-examples",
+        "storage-independence",
+        "storage-structure"
+      ],
+      "id": "STORAGE-ASSURANCE",
+      "obligations": [
+        "polaris-storage/DEV-ADOPTION/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-ASYNC/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-AUDIT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-CAPACITY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-COMPAT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-CONFIG/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-CONTRACT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-CORE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-COVERAGE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-COVERAGE/STORAGE-ASSURANCE/linux-amd64-cgo/mcdc",
+        "polaris-storage/DEV-COVERAGE/STORAGE-ASSURANCE/linux-amd64-cgo/mutation",
+        "polaris-storage/DEV-COVERAGE/STORAGE-ASSURANCE/linux-amd64-cgo/structure",
+        "polaris-storage/DEV-EVIDENCE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-FAILURE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-FAULT/STORAGE-ASSURANCE/linux-amd64-cgo/fault-matrix",
+        "polaris-storage/DEV-FAULT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-GATE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-IMPACT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-MATRIX/STORAGE-ASSURANCE/linux-amd64-cgo/delivery-matrix",
+        "polaris-storage/DEV-MATRIX/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-MODEL/STORAGE-ASSURANCE/linux-amd64-cgo/finite-model",
+        "polaris-storage/DEV-MODEL/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-NUMERIC/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-OPERATE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-ORACLE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-REDGREEN/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-RELEASE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-REPLAY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-RETRY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-SCOPE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-SCOPE/STORAGE-ASSURANCE/linux-amd64-cgo/source-inventory",
+        "polaris-storage/DEV-SECURITY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-STOP/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-SUPPLY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-TIME/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule",
+        "polaris-storage/DEV-TRACE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule"
+      ],
+      "statement_sha256": "3c8629384defe663f6ee922dd208eac0d418ef952b50518e8608f6a102170b54",
+      "symbols": [
+        "polaris/internal/storage/store.go::Open",
+        "polaris/internal/storage/commit.go::*Store.Commit",
+        "polaris/internal/storage/batch.go::*Store.CommitBatch",
+        "polaris/internal/storage/read.go::*Store.Load",
+        "polaris/internal/storage/read.go::*Store.Since"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-FINITE",
+      "obligations": [
+        "polaris-storage/DEV-ORACLE/STORAGE-FINITE/linux-amd64-cgo/two-key-finite-model"
+      ],
+      "statement_sha256": "81d82e092e41681bc5805ec6d4ac1140ef1635f003d079ba7a01850dc2ab6210",
+      "symbols": [
+        "polaris/internal/storage/store.go::Open",
+        "polaris/internal/storage/commit.go::*Store.commit",
+        "polaris/internal/storage/read.go::*Store.snapshot",
+        "polaris/internal/storage/read.go::*Store.history"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-FAULT",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-FAULT/linux-amd64-cgo/sql-write-boundaries"
+      ],
+      "statement_sha256": "3054149bec9bda2d374349222b6e72708b13c59cd6a24667b0ee899a41aa8061",
+      "symbols": [
+        "polaris/internal/storage/store.go::open",
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/commit.go::*Store.commit",
+        "polaris/internal/storage/read.go::*Store.readOnly"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-SCHEDULE",
+      "obligations": [
+        "polaris-storage/DEV-MODEL/STORAGE-SCHEDULE/linux-amd64-cgo/two-writer-pair-histories"
+      ],
+      "statement_sha256": "79a1101949a9fdb5b2be5727f423c4b119342df768dc716407e08f67ec845752",
+      "symbols": [
+        "polaris/internal/storage/store.go::*Store.Close",
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/commit.go::*Store.commit",
+        "polaris/internal/storage/read.go::*Store.readOnly"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-ORACLE",
+      "obligations": [
+        "polaris-storage/DEV-ORACLE/STORAGE-ORACLE/linux-amd64-cgo/fixed-journal-axioms"
+      ],
+      "statement_sha256": "bcaa9fa08403e5e35e765f043aadc60c573508adb80e9ad32b72d0f4c3989d5d",
+      "symbols": [
+        "polaris/internal/storage/model.go::Version.Value",
+        "polaris/internal/storage/model.go::*Version.Scan",
+        "polaris/internal/storage/model.go::Scope.Valid",
+        "polaris/internal/storage/model.go::Limits.valid"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-FINALIZE",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-FINALIZE/linux-amd64-cgo/transaction-finalization"
+      ],
+      "statement_sha256": "87a8ba2add7bd75e300a285955374b13d6adf38c63c440a8209a2a674de13fb3",
+      "symbols": [
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/store.go::session"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-PANIC",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-PANIC/linux-amd64-cgo/transaction-panic"
+      ],
+      "statement_sha256": "2d2c64bc9d7ec69da8483188ea45132dc3979a37785d24231791c1a4b8ec9d84",
+      "symbols": [
+        "polaris/internal/storage/store.go::*Store.transaction"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-CRASH",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-CRASH/linux-amd64-cgo/process-death"
+      ],
+      "statement_sha256": "4e7dc3ddcb0287554c6cd8c4caaa2ab529a01673f774c65028e967c99a8f430d",
+      "symbols": [
+        "polaris/internal/storage/store.go::open",
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/schema.go::*Store.validate",
+        "polaris/internal/storage/commit.go::*Store.commit"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-CORRUPTION",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-CORRUPTION/linux-amd64-cgo/persisted-corruption"
+      ],
+      "statement_sha256": "5bb0e6b75abc67c62ad56837b165140b23db37a06cfe26a2441bba08d70d6671",
+      "symbols": [
+        "polaris/internal/storage/schema.go::*Store.validate",
+        "polaris/internal/storage/read.go::*Store.snapshot",
+        "polaris/internal/storage/read.go::*Store.history",
+        "polaris/internal/storage/batch.go::Change.Entries"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-READ",
+      "obligations": [
+        "polaris-storage/DEV-CONTRACT/STORAGE-READ/linux-amd64-cgo/read-boundaries"
+      ],
+      "statement_sha256": "3595817c6085303a1126dc271e0a1653571252fc20deb5dad00c8029e1e372d5",
+      "symbols": [
+        "polaris/internal/storage/read.go::*Store.readOnly",
+        "polaris/internal/storage/read.go::*Store.List",
+        "polaris/internal/storage/read.go::*Store.Version",
+        "polaris/internal/storage/read.go::*Store.Load",
+        "polaris/internal/storage/read.go::*Store.Since",
+        "polaris/internal/storage/read.go::*Store.snapshot",
+        "polaris/internal/storage/read.go::*Store.history"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-READ-FAULT",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-READ-FAULT/linux-amd64-cgo/read-preparation"
+      ],
+      "statement_sha256": "cee3d7a5d1aa0a913f99b46e7165c6e7a115ef37f17bf01333d7ee00979f494d",
+      "symbols": [
+        "polaris/internal/storage/read.go::*Store.readOnly",
+        "polaris/internal/storage/read.go::*Store.List",
+        "polaris/internal/storage/read.go::*Store.Load",
+        "polaris/internal/storage/read.go::*Store.Since",
+        "polaris/internal/storage/schema.go::*Store.validate"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-READ-STEP",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-READ-STEP/linux-amd64-cgo/read-iteration"
+      ],
+      "statement_sha256": "62c12b598e258d1b9098698b25a1addea1c2e51617e93c8634eff20d5fc83733",
+      "symbols": [
+        "polaris/internal/storage/read.go::*Store.snapshot",
+        "polaris/internal/storage/read.go::*Store.history"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-CHECKPOINT",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-CHECKPOINT/linux-amd64-cgo/wal-checkpoint"
+      ],
+      "statement_sha256": "1423d1f796b4086fa9e120c4bbaecc05903f846f48c5daf11832ca7a56021d6a",
+      "symbols": [
+        "polaris/internal/storage/store.go::*Store.maintain",
+        "polaris/internal/storage/store.go::database",
+        "polaris/internal/storage/schema.go::connection",
+        "polaris/internal/storage/maintenance.go::*Store.maintenance"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-CONNECTION",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-CONNECTION/linux-amd64-cgo/sqlite-connection"
+      ],
+      "statement_sha256": "b8c3e1e3420ee9015b8800f2d6944ed2881b398b61c2e5bc6f37e3ea500bc73d",
+      "symbols": [
+        "polaris/internal/storage/store.go::database",
+        "polaris/internal/storage/schema.go::connection",
+        "polaris/internal/storage/schema.go::configure",
+        "polaris/internal/storage/store.go::session"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-WRITE-FAULT",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-WRITE-FAULT/linux-amd64-cgo/write-preparation"
+      ],
+      "statement_sha256": "f05cf8429c461566e79bed84deb0ffb2cb25bae0885b9189cf03a7492166fd54",
+      "symbols": [
+        "polaris/internal/storage/files.go::system.open",
+        "polaris/internal/storage/lock_linux.go::lock",
+        "polaris/internal/storage/store.go::open",
+        "polaris/internal/storage/commit.go::*Store.commit",
+        "polaris/internal/storage/commit.go::*Store.retain"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-WRITE-DAMAGE",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-WRITE-DAMAGE/linux-amd64-cgo/write-accounting-rejection"
+      ],
+      "statement_sha256": "7236fd3bec59d13c99775359f31f30169f5d7011840c44a55db8847512c0c6fa",
+      "symbols": [
+        "polaris/internal/storage/schema.go::*Store.validate",
+        "polaris/internal/storage/commit.go::*Store.commit",
+        "polaris/internal/storage/commit.go::*Store.retain"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples",
+        "storage-io",
+        "storage-lock"
+      ],
+      "id": "STORAGE-BOUNDARY",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-BOUNDARY/linux-amd64-cgo/native-lock-fault",
+        "polaris-storage/DEV-FAULT/STORAGE-BOUNDARY/linux-amd64-cgo/native-wal-write-sync",
+        "polaris-storage/DEV-FAULT/STORAGE-BOUNDARY/linux-amd64-cgo/public-resource-boundaries"
+      ],
+      "statement_sha256": "30c4a6e9ee8cb23caeabc1de77e2b788bbf1710bb11244e845adfefd3cf420ca",
+      "symbols": [
+        "polaris/internal/storage/feed.go::*Store.Subscribe",
+        "polaris/internal/storage/feed.go::*Feed.Close",
+        "polaris/internal/storage/feed.go::*Feed.Ready",
+        "polaris/internal/storage/feed.go::*Feed.Take",
+        "polaris/internal/storage/feed.go::*Feed.push",
+        "polaris/internal/storage/feed.go::*Feed.stop",
+        "polaris/internal/storage/batch.go::validChange",
+        "polaris/internal/storage/model.go::text",
+        "polaris/internal/storage/store.go::name",
+        "polaris/internal/storage/store.go::*Store.Limits",
+        "polaris/internal/storage/store.go::*Store.Changed",
+        "polaris/internal/storage/lock_other.go::lock",
+        "polaris/internal/storage/commit.go::boolint"
+      ]
+    },
+    {
+      "checks": [
+        "storage-examples"
+      ],
+      "id": "STORAGE-RETAIN-SCAN",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-RETAIN-SCAN/linux-amd64-cgo/retained-prefix-type"
+      ],
+      "statement_sha256": "86337fc693d8b4dfd057c35214108fc9d728d5bf45fb7497978b002e6d283928",
+      "symbols": [
+        "polaris/internal/storage/commit.go::*Store.retain",
+        "polaris/internal/storage/read.go::*Store.history"
+      ]
+    },
+    {
+      "checks": [
+        "storage-names"
+      ],
+      "id": "STORAGE-NAMES",
+      "obligations": [
+        "polaris-storage/DEV-SECURITY/STORAGE-NAMES/linux-amd64-cgo/authority-name-alphabet"
+      ],
+      "statement_sha256": "f5d49de94a40bd79ad29d5120da3c2d4abe38b43f5415fdad6e7790992d6ffad",
+      "symbols": [
+        "polaris/internal/storage/model.go::Scope.Valid",
+        "polaris/internal/storage/model.go::text",
+        "polaris/internal/storage/store.go::name"
+      ]
+    },
+    {
+      "checks": [
+        "storage-numeric"
+      ],
+      "id": "STORAGE-NUMERIC",
+      "obligations": [
+        "polaris-storage/DEV-NUMERIC/STORAGE-NUMERIC/linux-amd64-cgo/integer-boundaries"
+      ],
+      "statement_sha256": "56c918fa5fc26ba22538816d2cadc5ac15cff1a0a1a5c7e044ad1f07da6e5c2e",
+      "symbols": [
+        "polaris/internal/storage/model.go::Default",
+        "polaris/internal/storage/model.go::Limits.valid",
+        "polaris/internal/storage/model.go::Version.Value",
+        "polaris/internal/storage/model.go::*Version.Scan",
+        "polaris/internal/storage/commit.go::boolint"
+      ]
+    },
+    {
+      "checks": [
+        "storage-numeric-mutants"
+      ],
+      "id": "STORAGE-NUMERIC-SENSITIVITY",
+      "obligations": [
+        "polaris-storage/DEV-ORACLE/STORAGE-NUMERIC-SENSITIVITY/linux-amd64-cgo/integer-mutations"
+      ],
+      "statement_sha256": "124f467df9e9f6cc83e964717f25356ee5b1a2f3286e0fac0e3eadff3065fd53",
+      "symbols": [
+        "polaris/internal/storage/model.go::Limits.valid",
+        "polaris/internal/storage/model.go::*Version.Scan",
+        "polaris/internal/storage/commit.go::*Store.commit"
+      ]
+    },
+    {
+      "checks": [
+        "storage-numeric-source"
+      ],
+      "id": "STORAGE-NUMERIC-SOURCE",
+      "obligations": [
+        "polaris-storage/DEV-NUMERIC/STORAGE-NUMERIC-SOURCE/linux-amd64-cgo/typed-source"
+      ],
+      "statement_sha256": "055617dba4d81bcedfed8f16a0da920f9dbdc3eb61b86b867c4183241cce1413",
+      "symbols": [
+        "polaris/internal/storage/model.go::Default",
+        "polaris/internal/storage/model.go::Limits.valid",
+        "polaris/internal/storage/model.go::Version.Value",
+        "polaris/internal/storage/model.go::*Version.Scan"
+      ]
+    },
+    {
+      "checks": [
+        "storage-numeric-source"
+      ],
+      "id": "STORAGE-NUMERIC-CONTROLS",
+      "obligations": [
+        "polaris-storage/DEV-ORACLE/STORAGE-NUMERIC-CONTROLS/linux-amd64-cgo/typed-controls"
+      ],
+      "statement_sha256": "94a580caf6335250fede3339bf7ecb23dfbf732febaa3ed4d62917d19dd5dfac",
+      "symbols": [
+        "polaris/internal/storage/model.go::Default",
+        "polaris/internal/storage/model.go::Limits.valid",
+        "polaris/internal/storage/model.go::*Version.Scan"
+      ]
+    },
+    {
+      "checks": [
+        "storage-retry"
+      ],
+      "id": "STORAGE-RETRY-IDENTITY",
+      "obligations": [
+        "polaris-storage/DEV-RETRY/STORAGE-RETRY-IDENTITY/linux-amd64-cgo/intent-window-grid"
+      ],
+      "statement_sha256": "c1b336d67b2f77d737b6ad12858d1186d4f22586ff910c5bc1f1327abf645db2",
+      "symbols": [
+        "polaris/internal/storage/commit.go::current",
+        "polaris/internal/storage/commit.go::confirm",
+        "polaris/internal/storage/commit.go::*Store.commit"
+      ]
+    },
+    {
+      "checks": [
+        "storage-lifecycle"
+      ],
+      "id": "STORAGE-LIFETIME",
+      "obligations": [
+        "polaris-storage/DEV-ASYNC/STORAGE-LIFETIME/linux-amd64-cgo/controlled-close"
+      ],
+      "statement_sha256": "8d4ccc94debd95839838fc3aa10ce29471c5b0bc4a784a7d2d9e5139ed5352fa",
+      "symbols": [
+        "polaris/internal/storage/store.go::open",
+        "polaris/internal/storage/store.go::*Store.Close",
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/read.go::*Store.readOnly",
+        "polaris/internal/storage/maintenance.go::*Store.maintenance"
+      ]
+    },
+    {
+      "checks": [
+        "storage-termination"
+      ],
+      "id": "STORAGE-TERMINATION",
+      "obligations": [
+        "polaris-storage/DEV-STOP/STORAGE-TERMINATION/linux-amd64-cgo/close-receipt-grid"
+      ],
+      "statement_sha256": "68d29a623a7dc4b2fcbb09308b168bab3762b7694ecef15582b674ff7c83d246",
+      "symbols": [
+        "polaris/internal/storage/store.go::*Store.Close",
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/read.go::*Store.readOnly",
+        "polaris/internal/storage/commit.go::*Store.commit"
+      ]
+    },
+    {
+      "checks": [
+        "storage-draining"
+      ],
+      "id": "STORAGE-DRAINING",
+      "obligations": [
+        "polaris-storage/DEV-ASYNC/STORAGE-DRAINING/linux-amd64-cgo/cancelled-native-rollback"
+      ],
+      "statement_sha256": "edb2441d96af3dccc61166f81b272b8060bf3f3e04a7dc4deb485115974da1e8",
+      "symbols": [
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/store.go::session",
+        "polaris/internal/storage/read.go::*Store.readOnly"
+      ]
+    },
+    {
+      "checks": [
+        "storage-borrowing"
+      ],
+      "id": "STORAGE-BORROWING",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-BORROWING/linux-amd64-cgo/refused-connection-acquisition"
+      ],
+      "statement_sha256": "fa54e7c2d6960830d59a1608d87bb49d1a4c8d463e363e3cd565360697d12c42",
+      "symbols": [
+        "polaris/internal/storage/store.go::open",
+        "polaris/internal/storage/schema.go::*Store.validate",
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/read.go::*Store.readOnly"
+      ]
+    },
+    {
+      "checks": [
+        "storage-sql-inputs-python",
+        "storage-sql-recovery"
+      ],
+      "id": "STORAGE-SQL-FAULT",
+      "obligations": [
+        "polaris-storage/DEV-FAULT/STORAGE-SQL-FAULT/linux-amd64-cgo/sql-recovery",
+        "polaris-storage/DEV-ORACLE/STORAGE-SQL-FAULT/linux-amd64-cgo/sql-recovery-inputs"
+      ],
+      "statement_sha256": "49b671d73995f83238c93a7c868bc73ce51da4aa7d4ae7bb14d3506639432ecf",
+      "symbols": [
+        "polaris/internal/storage/commit.go::current",
+        "polaris/internal/storage/commit.go::confirm",
+        "polaris/internal/storage/commit.go::*Store.commit",
+        "polaris/internal/storage/commit.go::*Store.retain"
+      ]
+    },
+    {
+      "checks": [
+        "gap-time"
+      ],
+      "id": "STORAGE-TIME",
+      "obligations": [
+        "polaris-storage/DEV-TIME/STORAGE-TIME/linux-amd64-cgo/virtual-and-host-deadlines"
+      ],
+      "statement_sha256": "8133f79acb378ea9afa5fae16475cf2cf13a56edd4e5e00d0aa34a458b183810",
+      "symbols": [
+        "polaris/internal/storage/store.go::open",
+        "polaris/internal/storage/store.go::*Store.transaction",
+        "polaris/internal/storage/read.go::*Store.readOnly",
+        "polaris/internal/storage/store.go::*Store.maintain",
+        "polaris/internal/storage/maintenance.go::*Store.maintenance"
+      ]
+    }
+  ],
+  "design": "docs/features/verification.md",
+  "platform": "linux-amd64-cgo",
+  "purpose": "Requirement, implementation and verification mapping only; native execution and rule fulfillment are independently checked.",
+  "source_only_variants": {
+    "polaris/internal/storage/lock_other.go": "The !linux implementation remains mapped, but is outside the only supported Storage platform and must appear in native IgnoredGoFiles."
+  },
+  "version": 1
+}

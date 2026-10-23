@@ -1,0 +1,20 @@
+# Consume only the relocated public package and its explicitly prepared dependencies.
+cmake_minimum_required(VERSION 3.28)
+project(AstraDeliveryConsumer LANGUAGES CXX)
+set(FETCHCONTENT_FULLY_DISCONNECTED ON CACHE BOOL "No dependency downloads" FORCE)
+find_package(Comet 0.1.0 EXACT CONFIG REQUIRED)
+add_executable(consumer main.cpp)
+target_link_libraries(consumer PRIVATE comet::comet)
+
+# Compile real TLS recovery clients against the installed public archive only.
+option(ASTRA_DELIVERY_CLUSTER "Build installed-SDK cluster probes" OFF)
+if(ASTRA_DELIVERY_CLUSTER)
+    add_executable(comet_batch_test ../../comet/cpp/tests/batch_test.cpp ../../comet/cpp/tests/batch.cpp)
+    target_include_directories(comet_batch_test PRIVATE ../../common/tests)
+    target_compile_features(comet_batch_test PRIVATE cxx_std_23)
+    target_link_libraries(comet_batch_test PRIVATE Threads::Threads)
+    add_executable(comet_process_probe ../../comet/cpp/tests/process_probe.cpp)
+    add_executable(comet_mesh_probe ../../comet/cpp/tests/mesh_probe.cpp ../../comet/cpp/tests/batch.cpp)
+    target_link_libraries(comet_process_probe PRIVATE comet::comet)
+    target_link_libraries(comet_mesh_probe PRIVATE comet::comet)
+endif()

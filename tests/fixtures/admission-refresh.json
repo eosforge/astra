@@ -1,0 +1,5 @@
+{
+  "Replace": {
+    "internal/admission/refresh_fault_test.go": "tests/fixtures/admission-refresh.go.in"
+  }
+}

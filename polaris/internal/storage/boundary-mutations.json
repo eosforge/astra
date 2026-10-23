@@ -1,0 +1,49 @@
+{
+  "fixtures": [
+    {
+      "source": "tests/fixtures/sensitivity.go.in",
+      "target": "polaris/internal/storage/sensitivity_test.go"
+    }
+  ],
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "mutations": [
+    {
+      "after": "meta.Scopes > store.limits.Scopes",
+      "before": "meta.Scopes >= store.limits.Scopes",
+      "file": "polaris/internal/storage/commit.go",
+      "id": "commit-scope-limit",
+      "test": "TestMutationBoundaries"
+    },
+    {
+      "after": "meta.Scopes, meta.Bytes+state.Bytes+previous,",
+      "before": "meta.Scopes, meta.Bytes+state.Bytes-previous,",
+      "file": "polaris/internal/storage/commit.go",
+      "id": "commit-total-write",
+      "test": "TestMutationBoundaries"
+    },
+    {
+      "after": "false",
+      "before": "actual.Key != expected.Key",
+      "file": "polaris/internal/storage/commit.go",
+      "id": "receipt-key",
+      "test": "TestMutationBoundaries"
+    },
+    {
+      "after": "false",
+      "before": "actual.Erase != expected.Erase",
+      "file": "polaris/internal/storage/commit.go",
+      "id": "receipt-erase",
+      "test": "TestMutationBoundaries"
+    },
+    {
+      "after": "AND version<?",
+      "before": "AND version<=?",
+      "file": "polaris/internal/storage/commit.go",
+      "id": "history-prefix-delete",
+      "test": "TestMutationBoundaries"
+    }
+  ],
+  "package": "./polaris/internal/storage",
+  "scope": "Strengthen only the five genuinely surviving operators from the sealed 99-operator Storage campaign. Preserve each operator and production source; isolate scope admission, physical accounting, retry key/erase identity and inclusive history deletion in one deterministic native fixture.",
+  "version": 1
+}

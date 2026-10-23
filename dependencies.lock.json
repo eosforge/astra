@@ -1,0 +1,69 @@
+{
+    "schema": 1,
+    "compiler": "gcc-16.2.0",
+    "sources": [
+        {
+            "name": "grpc",
+            "version": "1.84.0",
+            "repository": "grpc/grpc",
+            "commit": "3252a89f10d8e92997862167ca7d095ecda85973",
+            "sha256": "91596df6dea020520b8b7456b595561caca9f137aff095b04a9423bcca526c7b"
+        },
+        {
+            "name": "protobuf",
+            "version": "36.1",
+            "repository": "protocolbuffers/protobuf",
+            "commit": "f377bfefc5e2cfab68b816903c25b23e091c439d",
+            "sha256": "86ef5008dd555c399c576b36e5ee09ee9927af048e6b1cb3fab0f9e0a1bbf285"
+        },
+        {
+            "name": "abseil",
+            "version": "20260817.0",
+            "repository": "abseil/abseil-cpp",
+            "commit": "2065f4ded0558c6f89fee67c8e5228feb4eb960e",
+            "sha256": "7f4240fe135c0b0dcdd2efa664f1393b1da7e25031e17560515f452182aa0c5e"
+        },
+        {
+            "name": "cares",
+            "version": "1.34.8",
+            "repository": "c-ares/c-ares",
+            "commit": "c7a3138dcfe3bb0eaaf10c0c24c36dc66dc790ab",
+            "sha256": "c9ea1b3029b23b04376c229bd519489cee180874ec48cd863a5dcba628c0fe03"
+        },
+        {
+            "name": "re2",
+            "version": "2025-11-05",
+            "repository": "google/re2",
+            "commit": "927f5d53caf8111721e734cf24724686bb745f55",
+            "sha256": "8635bc46ac8d73974b4198229805287c8d620245f2081af155d7d96d4988a3a5"
+        },
+        {
+            "name": "zlib",
+            "version": "1.3.2",
+            "repository": "madler/zlib",
+            "commit": "da607da739fa6047df13e66a2af6b8bec7c2a498",
+            "sha256": "b9258cf6254e7f7c37f1cd61dba943a1c5ea3cff5718c789834dac359094f5f7"
+        },
+        {
+            "name": "yyjson",
+            "version": "0.13.0",
+            "repository": "ibireme/yyjson",
+            "commit": "6447536015f3d600f3d65323b10976103b337ca7",
+            "sha256": "13d53411c9d818836a2dc0b3f4be40c34ee4e0fcd21ff903e0aebbfd52e9e08d"
+        },
+        {
+            "name": "boringssl",
+            "version": "grpc-1.84.0",
+            "repository": "google/boringssl",
+            "commit": "2b44a3701a4788e1ef866ddc7f143060a3d196c9",
+            "sha256": "bacdc92ab6ee2e1b1047638ca0c830247bdf6f62be55081be0e319cfa3478719"
+        },
+        {
+            "name": "grpc-proto",
+            "version": "grpc-1.84.0",
+            "repository": "grpc/grpc-proto",
+            "commit": "ec30f589e2519d595688b9a42f88a91bdd6b733f",
+            "sha256": "5e9b520b22afbd53a662cc29017064be253c1dfa6df8958738594e7fec6ade33"
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "scope": "Unsigned Epoch narrowing and exact accepted integer/byte boundaries. These nine semantic mutations require an unchanged passing native baseline; compile failure and timeout do not count.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "install-signed",
+      "file": "internal/admission/directory.go",
+      "test": "TestNumeric",
+      "before": "incoming.Epoch < old.Epoch",
+      "after": "int64(incoming.Epoch) < int64(old.Epoch)"
+    },
+    {
+      "id": "install-truncated",
+      "file": "internal/admission/directory.go",
+      "test": "TestNumeric",
+      "before": "incoming.Epoch < old.Epoch",
+      "after": "uint32(incoming.Epoch) < uint32(old.Epoch)"
+    },
+    {
+      "id": "observe-signed",
+      "file": "internal/admission/directory.go",
+      "test": "TestNumeric",
+      "before": "member.Epoch < old.Epoch",
+      "after": "int64(member.Epoch) < int64(old.Epoch)"
+    },
+    {
+      "id": "observe-truncated",
+      "file": "internal/admission/directory.go",
+      "test": "TestNumeric",
+      "before": "member.Epoch < old.Epoch",
+      "after": "uint32(member.Epoch) < uint32(old.Epoch)"
+    },
+    {
+      "id": "maximum-inclusive",
+      "file": "internal/admission/directory.go",
+      "test": "TestNumeric",
+      "before": "maximum > 16384",
+      "after": "maximum >= 16384"
+    },
+    {
+      "id": "maximum-zero",
+      "file": "internal/admission/directory.go",
+      "test": "TestNumeric",
+      "before": "maximum < 1",
+      "after": "maximum < 0"
+    },
+    {
+      "id": "material-inclusive",
+      "file": "internal/admission/identity.go",
+      "test": "TestNumeric",
+      "before": "len(data) > 16384",
+      "after": "len(data) >= 16384"
+    },
+    {
+      "id": "payload-inclusive",
+      "file": "internal/admission/identity.go",
+      "test": "TestNumeric",
+      "before": "len(data) > 1024",
+      "after": "len(data) >= 1024"
+    },
+    {
+      "id": "id-inclusive",
+      "file": "internal/admission/identity.go",
+      "test": "TestNumeric",
+      "before": "len(member.Id) > 128",
+      "after": "len(member.Id) >= 128"
+    }
+  ]
+}

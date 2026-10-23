@@ -1,0 +1,25 @@
+{
+  "components": [
+    "comet",
+    "pulsar",
+    "star"
+  ],
+  "inputs": {
+    "archive": {
+      "bytes": 114876331,
+      "path": "build/results/assurance/reuse-plan/core-directed-second-current-1/raw-seal/evidence.tar.gz",
+      "sha256": "4a588adec8f14f1ec77159a59c48d13fe6d689d84d3b87a16719a509f8df4598"
+    },
+    "custody": {
+      "bytes": 1013,
+      "path": "build/results/assurance/reuse-plan/core-directed-second-current-1/raw-seal/sealed.native.json",
+      "sha256": "d3c51391d9eb70eebed305415d74a5836828ac066cb4b6065093b46c0570386c"
+    },
+    "manifest": {
+      "bytes": 210828,
+      "path": "build/results/assurance/reuse-plan/core-directed-second-current-1/raw-seal/manifest.json",
+      "sha256": "a1f0bb944b7b8821e5172d7d63418bbebf9209efeca4366e7787cedbfe954b6f"
+    }
+  },
+  "version": 1
+}

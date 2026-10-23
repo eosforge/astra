@@ -1,0 +1,18 @@
+[
+    {
+        "username": "stars",
+        "salt": "b2547aa06de503c7bd16e63ef3483e82",
+        "hash": "07f8ee031469e2f976145f3bac687ccfbacacb31a45ea481a5b49ec2d33b1f77",
+        "roles": [
+            "star"
+        ]
+    },
+    {
+        "username": "planets",
+        "salt": "9efa8ea33d7b77f9b562b3b548e9e2e7",
+        "hash": "988aaa792502f3b6c3bf4d7a3cb1a94812c8e49ba2ea414e7da9254c63c9cd4d",
+        "roles": [
+            "planet"
+        ]
+    }
+]

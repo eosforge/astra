@@ -1,0 +1,323 @@
+{
+  "version": 1,
+  "scope": "Targeted cache ownership and authority commit mutations cover scope/version pinning, resource reservation, cancellation, idempotent release, startup validation, admission, atomic multi-page completion, receipt ambiguity, credential boundaries and frozen-page delivery. This finite scope supplements the separate outbound window inventory; it does not qualify the complete Server component or stream state machine, MC/DC, race detection, protected CI or release.",
+  "package": "./polaris/internal/server",
+  "import": "github.com/eosforge/astra/polaris/internal/server",
+  "mutations": [
+    {
+      "id": "cache-version",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestCache",
+      "before": "key := position{Scope: scope, version: minimum}",
+      "after": "key := position{Scope: scope, version: 0}"
+    },
+    {
+      "id": "cache-scope",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestPreparation",
+      "before": "key := position{Scope: scope, version: minimum}",
+      "after": "key := position{version: minimum}"
+    },
+    {
+      "id": "cache-capacity",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestPreparation",
+      "before": "cache.reserve > cache.maximum-cache.used",
+      "after": "cache.reserve > cache.maximum"
+    },
+    {
+      "id": "cache-reservation",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestCache",
+      "before": "cache.used += cache.reserve",
+      "after": "cache.used += 0"
+    },
+    {
+      "id": "cache-reference",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestCache",
+      "before": "entry.references++",
+      "after": "entry.references += 2"
+    },
+    {
+      "id": "cache-minimum",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestPreparation",
+      "before": "entry.snapshot.Version < minimum",
+      "after": "entry.snapshot.Version > minimum"
+    },
+    {
+      "id": "cache-wait-release",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestSnapshotCancellation",
+      "before": "case <-ctx.Done():\n\t\tresult.release()",
+      "after": "case <-ctx.Done():\n\t\t// Deliberately retain the cancelled waiter's reservation."
+    },
+    {
+      "id": "cache-ready-cancel",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestSnapshotCancellation",
+      "before": "if err := ctx.Err(); err != nil {\n\t\t\tresult.release()",
+      "after": "if err := ctx.Err(); err != nil && false {\n\t\t\tresult.release()"
+    },
+    {
+      "id": "cache-failure",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestPreparation",
+      "before": "if entry.err != nil {",
+      "after": "if entry.err != nil && false {"
+    },
+    {
+      "id": "cache-last-reader",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestCache",
+      "before": "if pin.entry.references == 0 {",
+      "after": "if pin.entry.references != 0 {"
+    },
+    {
+      "id": "cache-retirement",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestCache",
+      "before": "delete(pin.cache.entries, pin.key)",
+      "after": "_ = pin.key"
+    },
+    {
+      "id": "cache-budget-return",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestCache",
+      "before": "pin.cache.used -= pin.cache.reserve",
+      "after": "pin.cache.used += pin.cache.reserve"
+    },
+    {
+      "id": "cache-release-once",
+      "file": "polaris/internal/server/cache.go",
+      "test": "TestCache",
+      "before": "func (pin *pin) release() {\n\tpin.once.Do(func() {\n\t\tpin.cache.mutex.Lock()\n\t\tdefer pin.cache.mutex.Unlock()\n\t\tpin.entry.references--\n\n\t\tif pin.entry.references == 0 {\n\t\t\tdelete(pin.cache.entries, pin.key)\n\t\t\tpin.cache.used -= pin.cache.reserve\n\t\t}\n\t})\n}",
+      "after": "func (pin *pin) release() {\n\tfunc() {\n\t\tpin.cache.mutex.Lock()\n\t\tdefer pin.cache.mutex.Unlock()\n\t\tpin.entry.references--\n\n\t\tif pin.entry.references == 0 {\n\t\t\tdelete(pin.cache.entries, pin.key)\n\t\t\tpin.cache.used -= pin.cache.reserve\n\t\t}\n\t}()\n}"
+    },
+    {
+      "id": "startup-credential",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestStartup",
+      "before": "if !credential(scope, storage.Change{Key: record.Key, Value: record.Value}) {",
+      "after": "if !credential(scope, storage.Change{Key: record.Key, Value: record.Value}) && false {"
+    },
+    {
+      "id": "authority-minimum",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestAuthorityLimits",
+      "before": "snapshotBytes < cache.reserve",
+      "after": "snapshotBytes <= cache.reserve"
+    },
+    {
+      "id": "authority-maximum",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestAuthorityLimits",
+      "before": "snapshotBytes > 1<<30",
+      "after": "snapshotBytes >= 1<<30"
+    },
+    {
+      "id": "authority-deadline",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestManagement",
+      "before": "time.Until(deadline) > 30*time.Second",
+      "after": "time.Until(deadline) > 60*time.Second"
+    },
+    {
+      "id": "authority-auth-release",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestManagement",
+      "before": "\t\t<-authority.slots\n\t\treturn nil, err",
+      "after": "\t\treturn nil, err"
+    },
+    {
+      "id": "authority-commit-release",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCommitInput",
+      "before": "defer func() { <-authority.slots }()\n\treturn authority.commit",
+      "after": "defer func() {}()\n\treturn authority.commit"
+    },
+    {
+      "id": "batch-eof",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestRefusal",
+      "before": "if errors.Is(err, io.EOF) {\n\t\t\tbreak",
+      "after": "if errors.Is(err, io.EOF) {\n\t\t\treturn err"
+    },
+    {
+      "id": "batch-admission",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchRevocation",
+      "before": "if !authority.directory.Current(member) {\n\t\t\treturn status.Error(codes.Unauthenticated, \"Management admission replaced\")\n\t\t}\n\t\tif complete",
+      "after": "if !authority.directory.Current(member) && false {\n\t\t\treturn status.Error(codes.Unauthenticated, \"Management admission replaced\")\n\t\t}\n\t\tif complete"
+    },
+    {
+      "id": "batch-final-page",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchTransport",
+      "before": "if complete || page == nil",
+      "after": "if page == nil"
+    },
+    {
+      "id": "batch-empty-page",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchTransport",
+      "before": " || len(page.Changes) == 0",
+      "after": " "
+    },
+    {
+      "id": "batch-scope",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchTransport",
+      "before": "!proto.Equal(request.Scope, page.Scope) || request.Version != page.Version",
+      "after": "request.Version != page.Version"
+    },
+    {
+      "id": "batch-version",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchTransport",
+      "before": "!proto.Equal(request.Scope, page.Scope) || request.Version != page.Version",
+      "after": "!proto.Equal(request.Scope, page.Scope)"
+    },
+    {
+      "id": "batch-accumulation",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchTransport",
+      "before": "request.Changes = append(request.Changes, page.Changes...)",
+      "after": "request.Changes = page.Changes"
+    },
+    {
+      "id": "batch-completion",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchTransport",
+      "before": "if !complete {",
+      "after": "if !complete && false {"
+    },
+    {
+      "id": "batch-receipt",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestRefusal",
+      "before": "return stream.SendAndClose(result)",
+      "after": "_ = stream.SendAndClose(result)\n\treturn nil"
+    },
+    {
+      "id": "batch-namespace",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchTransport",
+      "before": "if strings.HasPrefix(scope.Sector, \"__\") {",
+      "after": "if strings.HasPrefix(scope.Sector, \"__\") && false {"
+    },
+    {
+      "id": "batch-erase",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCommitInput",
+      "before": "entry.Erase = true",
+      "after": "entry.Erase = false"
+    },
+    {
+      "id": "batch-commit-admission",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCommitInput",
+      "before": "if !authority.directory.Current(member) {\n\t\t\treturn nil, status.Error",
+      "after": "if !authority.directory.Current(member) && false {\n\t\t\treturn nil, status.Error"
+    },
+    {
+      "id": "batch-receipt-version",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCommitInput",
+      "before": "\t\treturn &polaris.Position{Scope: request.Scope, Version: uint64(version)}, nil",
+      "after": "\t\treturn &polaris.Position{Scope: request.Scope, Version: uint64(version) + 1}, nil"
+    },
+    {
+      "id": "commit-erase",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCommitInput",
+      "before": "change.Erase = true",
+      "after": "change.Erase = false"
+    },
+    {
+      "id": "commit-credential",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCommitInput",
+      "before": "if !credential(scope, change) {",
+      "after": "if !credential(scope, change) && false {"
+    },
+    {
+      "id": "commit-admission",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCommitInput",
+      "before": "if !authority.directory.Current(member) {\n\t\treturn nil, status.Error",
+      "after": "if !authority.directory.Current(member) && false {\n\t\treturn nil, status.Error"
+    },
+    {
+      "id": "credential-namespace",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCredentialBounds",
+      "before": "scope.Sector != \"__auth\" || scope.Spectrum != \"comet\"",
+      "after": "scope.Sector != \"__auth\" && scope.Spectrum != \"comet\""
+    },
+    {
+      "id": "credential-encoding",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCredentialBounds",
+      "before": "len(change.Value) <= 8192",
+      "after": "len(change.Value) < 8192"
+    },
+    {
+      "id": "credential-text",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestCredentialBounds",
+      "before": " || !utf8.ValidString(change.Key)",
+      "after": " || (false && !utf8.ValidString(change.Key))"
+    },
+    {
+      "id": "inventory-complete",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestManagementRPC",
+      "before": "result := &polaris.Inventory{Complete: true}",
+      "after": "result := &polaris.Inventory{Complete: false}"
+    },
+    {
+      "id": "load-admission",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestManagement",
+      "before": "if !authority.directory.Current(member) {\n\t\t\treturn status.Error(codes.Unauthenticated, \"Management admission replaced\")\n\t\t}\n\t\treturn stream.Send(page)",
+      "after": "if !authority.directory.Current(member) && false {\n\t\t\treturn status.Error(codes.Unauthenticated, \"Management admission replaced\")\n\t\t}\n\t\treturn stream.Send(page)"
+    },
+    {
+      "id": "load-release",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestManagement",
+      "before": "\tdefer pin.release()\n\treturn pages",
+      "after": "\tdefer func() {}()\n\treturn pages"
+    },
+    {
+      "id": "page-completion",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestPages",
+      "before": "page.Complete = true",
+      "after": "page.Complete = false"
+    },
+    {
+      "id": "page-send-error",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestManagement",
+      "before": "if err := send(page); err != nil {\n\t\t\t\treturn err",
+      "after": "if err := send(page); err != nil {\n\t\t\t\treturn nil"
+    },
+    {
+      "id": "page-capacity",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestSmallPages",
+      "before": "proto.Size(scope)+32+cost > maximum",
+      "after": "proto.Size(scope)+32+cost > maximum && false"
+    },
+    {
+      "id": "failure-unknown",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestFailure",
+      "before": "return status.Error(codes.Unknown, \"Authority commit cannot be confirmed\")",
+      "after": "return status.Error(codes.Unavailable, \"Authority commit cannot be confirmed\")"
+    }
+  ]
+}

@@ -1,0 +1,2319 @@
+{
+  "basis": "Unchanged uninstrumented Admission sources and historical block coordinates. The independent syntax derivation was frozen before current native acquisition; native counters supply only current hit observations. Original source-block obligations and all exclusions remain unchanged.",
+  "packages": {
+    "internal/admission": {
+      "blocks": [
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            31,
+            2,
+            31,
+            121
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            32,
+            3,
+            33,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            34,
+            2,
+            34,
+            129
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            39,
+            2,
+            39,
+            38
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            40,
+            3,
+            41,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "internal/admission/directory.go",
+          "legacy": 4,
+          "span": [
+            42,
+            2,
+            45,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            46,
+            3,
+            46,
+            319
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            47,
+            4,
+            48,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/directory.go",
+          "legacy": 3,
+          "span": [
+            49,
+            3,
+            51,
+            75
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/directory.go",
+          "legacy": 3,
+          "span": [
+            53,
+            2,
+            55,
+            46
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/directory.go",
+          "legacy": 2,
+          "span": [
+            56,
+            3,
+            57,
+            52
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/directory.go",
+          "legacy": 2,
+          "span": [
+            58,
+            4,
+            59,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            61,
+            3,
+            61,
+            192
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            62,
+            4,
+            63,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            65,
+            2,
+            65,
+            39
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            66,
+            3,
+            67,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/directory.go",
+          "legacy": 3,
+          "span": [
+            69,
+            2,
+            71,
+            34
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            72,
+            3,
+            72,
+            60
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            73,
+            4,
+            74,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            75,
+            3,
+            75,
+            67
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/directory.go",
+          "legacy": 2,
+          "span": [
+            77,
+            2,
+            78,
+            12
+          ]
+        },
+        {
+          "current": 4,
+          "file": "internal/admission/directory.go",
+          "legacy": 4,
+          "span": [
+            83,
+            2,
+            86,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            87,
+            3,
+            87,
+            208
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            88,
+            4,
+            89,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            90,
+            3,
+            90,
+            24
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            91,
+            4,
+            92,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            93,
+            9,
+            93,
+            54
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            94,
+            3,
+            95,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            96,
+            2,
+            96,
+            48
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            97,
+            3,
+            97,
+            121
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            98,
+            4,
+            99,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/directory.go",
+          "legacy": 2,
+          "span": [
+            101,
+            2,
+            102,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/directory.go",
+          "legacy": 2,
+          "span": [
+            107,
+            2,
+            108,
+            93
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            109,
+            3,
+            110,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            111,
+            2,
+            111,
+            50
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            112,
+            3,
+            112,
+            50
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            113,
+            4,
+            114,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            115,
+            3,
+            115,
+            102
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            117,
+            2,
+            117,
+            20
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/directory.go",
+          "legacy": 3,
+          "span": [
+            122,
+            2,
+            124,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            125,
+            3,
+            126,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            127,
+            2,
+            127,
+            74
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            132,
+            2,
+            132,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            133,
+            3,
+            134,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/directory.go",
+          "legacy": 3,
+          "span": [
+            135,
+            2,
+            137,
+            64
+          ]
+        },
+        {
+          "current": 4,
+          "file": "internal/admission/directory.go",
+          "legacy": 4,
+          "span": [
+            142,
+            2,
+            145,
+            41
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            146,
+            3,
+            147,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            148,
+            2,
+            148,
+            55
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            149,
+            3,
+            150,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            151,
+            2,
+            151,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/directory.go",
+          "legacy": 1,
+          "span": [
+            156,
+            2,
+            157,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/file_linux.go",
+          "legacy": 1,
+          "span": [
+            12,
+            2,
+            13,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            41,
+            2,
+            41,
+            78
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            41,
+            80,
+            41,
+            102
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            46,
+            2,
+            47,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            48,
+            3,
+            49,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            50,
+            2,
+            51,
+            96
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/identity.go",
+          "legacy": 3,
+          "span": [
+            52,
+            3,
+            54,
+            47
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            55,
+            4,
+            56,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            57,
+            3,
+            58,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            59,
+            4,
+            60,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            61,
+            3,
+            62,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            63,
+            3,
+            63,
+            79
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            64,
+            4,
+            66,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/identity.go",
+          "legacy": 3,
+          "span": [
+            67,
+            3,
+            69,
+            61
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            70,
+            4,
+            71,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            72,
+            3,
+            72,
+            25
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            75,
+            2,
+            76,
+            101
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            77,
+            3,
+            78,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            79,
+            2,
+            80,
+            53
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            81,
+            3,
+            82,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            83,
+            2,
+            84,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            85,
+            3,
+            86,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            87,
+            2,
+            88,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            89,
+            3,
+            90,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            91,
+            2,
+            91,
+            51
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            92,
+            3,
+            93,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            94,
+            4,
+            95,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            96,
+            3,
+            96,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            98,
+            2,
+            98,
+            197
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            99,
+            3,
+            100,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/identity.go",
+          "legacy": 3,
+          "span": [
+            101,
+            2,
+            103,
+            22
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            108,
+            2,
+            108,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            109,
+            3,
+            110,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            111,
+            2,
+            112,
+            75
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            113,
+            3,
+            114,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            115,
+            2,
+            116,
+            21
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/identity.go",
+          "legacy": 3,
+          "span": [
+            117,
+            3,
+            119,
+            82
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            120,
+            4,
+            121,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/identity.go",
+          "legacy": 3,
+          "span": [
+            122,
+            3,
+            124,
+            48
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            125,
+            4,
+            126,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            127,
+            3,
+            127,
+            25
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            128,
+            4,
+            129,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            130,
+            4,
+            131,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            133,
+            2,
+            133,
+            75
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            134,
+            3,
+            135,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            136,
+            2,
+            136,
+            156
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            137,
+            3,
+            138,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            139,
+            2,
+            139,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            143,
+            50,
+            143,
+            82
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            146,
+            50,
+            146,
+            82
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            149,
+            47,
+            149,
+            73
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            153,
+            2,
+            155,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            159,
+            2,
+            159,
+            83
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            160,
+            3,
+            161,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            162,
+            2,
+            163,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            164,
+            3,
+            165,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            166,
+            2,
+            167,
+            60
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            168,
+            3,
+            169,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            170,
+            2,
+            170,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            175,
+            2,
+            175,
+            213
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            176,
+            3,
+            177,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            178,
+            2,
+            179,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            184,
+            2,
+            185,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            189,
+            2,
+            189,
+            40
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            190,
+            3,
+            191,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            192,
+            2,
+            192,
+            29
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            193,
+            3,
+            193,
+            141
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            194,
+            4,
+            195,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            197,
+            2,
+            197,
+            13
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/identity.go",
+          "legacy": 2,
+          "span": [
+            202,
+            2,
+            203,
+            198
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            204,
+            3,
+            205,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/identity.go",
+          "legacy": 1,
+          "span": [
+            206,
+            2,
+            206,
+            22
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            39,
+            2,
+            39,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            40,
+            3,
+            41,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            42,
+            2,
+            42,
+            171
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            43,
+            3,
+            44,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            45,
+            2,
+            46,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            47,
+            3,
+            48,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            49,
+            2,
+            50,
+            46
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            51,
+            3,
+            52,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            53,
+            2,
+            54,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            55,
+            3,
+            56,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            57,
+            2,
+            57,
+            331
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            61,
+            35,
+            61,
+            64
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            64,
+            44,
+            64,
+            67
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/node.go",
+          "legacy": 3,
+          "span": [
+            68,
+            2,
+            70,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            71,
+            3,
+            72,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            73,
+            2,
+            73,
+            47
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/node.go",
+          "legacy": 3,
+          "span": [
+            78,
+            2,
+            80,
+            24
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            81,
+            3,
+            82,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            83,
+            2,
+            83,
+            49
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            88,
+            2,
+            89,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            90,
+            3,
+            91,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            92,
+            2,
+            93,
+            96
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            94,
+            3,
+            95,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            96,
+            2,
+            96,
+            156
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            101,
+            2,
+            101,
+            9
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            103,
+            3,
+            103,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            103,
+            18,
+            103,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            105,
+            3,
+            105,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            107,
+            2,
+            107,
+            26
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            108,
+            3,
+            109,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "internal/admission/node.go",
+          "legacy": 4,
+          "span": [
+            110,
+            2,
+            113,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            114,
+            3,
+            115,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            116,
+            2,
+            117,
+            280
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            118,
+            3,
+            119,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            120,
+            2,
+            120,
+            47
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            121,
+            3,
+            122,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            123,
+            2,
+            123,
+            65
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            124,
+            3,
+            125,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            126,
+            2,
+            126,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            127,
+            3,
+            128,
+            1
+          ]
+        },
+        {
+          "current": 5,
+          "file": "internal/admission/node.go",
+          "legacy": 5,
+          "span": [
+            129,
+            2,
+            133,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            138,
+            2,
+            138,
+            9
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            140,
+            3,
+            140,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            140,
+            18,
+            140,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            142,
+            3,
+            142,
+            19
+          ]
+        },
+        {
+          "current": 4,
+          "file": "internal/admission/node.go",
+          "legacy": 4,
+          "span": [
+            144,
+            2,
+            147,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            148,
+            3,
+            149,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            150,
+            2,
+            151,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            152,
+            3,
+            153,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            154,
+            2,
+            155,
+            47
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            156,
+            3,
+            157,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            158,
+            2,
+            158,
+            65
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            159,
+            3,
+            160,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            161,
+            2,
+            161,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            162,
+            3,
+            163,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            164,
+            2,
+            164,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            169,
+            2,
+            170,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            174,
+            2,
+            175,
+            6
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            176,
+            3,
+            177,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            178,
+            4,
+            179,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            181,
+            3,
+            181,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            182,
+            4,
+            183,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            184,
+            3,
+            184,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            185,
+            4,
+            186,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            187,
+            3,
+            187,
+            39
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            194,
+            2,
+            195,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            199,
+            2,
+            200,
+            6
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            201,
+            3,
+            201,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            202,
+            4,
+            203,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "internal/admission/node.go",
+          "legacy": 2,
+          "span": [
+            204,
+            3,
+            205,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            206,
+            4,
+            207,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            208,
+            3,
+            208,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            209,
+            4,
+            210,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            211,
+            3,
+            211,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            212,
+            4,
+            213,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            214,
+            3,
+            214,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            215,
+            4,
+            216,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            217,
+            4,
+            218,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            224,
+            2,
+            224,
+            33
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            225,
+            3,
+            225,
+            26
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            226,
+            4,
+            227,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            229,
+            2,
+            229,
+            14
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            234,
+            2,
+            235,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "internal/admission/node.go",
+          "legacy": 3,
+          "span": [
+            239,
+            2,
+            241,
+            9
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            243,
+            3,
+            243,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "internal/admission/node.go",
+          "legacy": 1,
+          "span": [
+            245,
+            3,
+            245,
+            19
+          ]
+        }
+      ],
+      "shape_sha256": {
+        "1.27.1": "bdbf2ac34d5afe9d55fbe774391e8a2a3fe6cac0a0806a671f6908cc4bb81271",
+        "1.27.2": "50d5816d9f8fdbdf91306b25a34789c35da5fa8edb9f96fd9b42ca65ebdcbf1e"
+      }
+    }
+  },
+  "source_sha256": {
+    "internal/admission/directory.go": "935437c56a04d51978c2d2508b0c09b8f1dc51f03e58a6af089f926858ec068b",
+    "internal/admission/file_linux.go": "c099b58c8159d55be312ba7a8c8ef280821516a4832e769937b10177c348f8e1",
+    "internal/admission/identity.go": "d172cc85f0e6a6099699b0c4a3cea3813cbf5e7e04d7be23ffca464be56ea09b",
+    "internal/admission/node.go": "375da6dfab3ad7e58f8314e339c271e4ab3a8b50050a53cec765b2980249148c"
+  },
+  "version": 1
+}

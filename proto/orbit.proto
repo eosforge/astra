@@ -1,0 +1,92 @@
+// Orbit v1 control plane. Member and Role are the sole protocol definitions for admission credentials and membership.
+syntax = "proto3";
+package proto.orbit.v1;
+option go_package = "github.com/eosforge/astra/internal/generated/orbit;orbit";
+
+// Pulsar login, idempotent registration, and membership snapshots; no extra connection or second admission step.
+service Admission {
+    rpc Register(RegistrationRequest) returns (RegistrationResponse);
+    // Reads only the committed directory. Initial metadata carries current admission/signature without logging in again or allocating an epoch.
+    rpc List(DirectoryRequest) returns (DirectoryResponse);
+}
+
+// No application request fields. Identity comes from TLS-protected astra-admission-bin / astra-signature-bin metadata.
+message DirectoryRequest {}
+
+// Committed registration facts, without liveness probing, passwords, startup idempotency keys, or private signing keys.
+message DirectoryResponse {
+    // Sorted by id. Star/Polaris receive only Star and Polaris roles; Astrolabe may read all roles.
+    repeated Member members = 1;
+}
+
+// Value in internal Almanac[__auth][comet], keyed by APIKEY. Used only for Comet login, without permissions or ownership.
+message Credential {
+    // Nonempty opaque bytes, initially limited to 4096 bytes; never sent through public application Watch.
+    bytes secret = 1;
+}
+
+// Account is submitted over TLS; Pulsar derives a fingerprint from the verified account and canonical endpoint.
+message RegistrationRequest {
+    string galaxy = 1;
+    // Identity and epoch are assigned by the server; these field numbers are reserved.
+    reserved 2, 5, 11, 12;
+    reserved "id", "expected_epoch", "ticket", "ticket_signature";
+    // Canonical concrete IP:PORT. Startup and peer dialing both verify the server's IP SAN.
+    string advertise = 3;
+    reserved 4;
+    reserved "public_key";
+    // Must be a role allowed for the account; UNSPECIFIED is invalid.
+    Role role = 6;
+    // Connection preference group, such as a region; does not change Galaxy data or permission boundaries.
+    string group = 7;
+    // Planet only: increment after exhausting candidates to rotate the shortlist. Does not affect admission epochs or write versions.
+    uint32 candidate_round = 8;
+    // Sent only to Pulsar; excluded from member lists, logs, and node-to-node Hello.
+    string username = 9;
+    string password = 10;
+    // One random 32-byte idempotency key per startup, reused for retries and candidate refreshes. It is neither instance identity nor authorization.
+    // Pulsar persists committed requests; superseded requests cannot register again.
+    bytes request_id = 13;
+}
+
+// Returns a bounded directory after durable registration. Control roles are not Star peer targets.
+message RegistrationResponse {
+    // Star/Polaris receive Star and Polaris members; Astrolabe receives all roles, sorted by id.
+    // Planet receives at most eight Star candidates, preferring its own group and excluding itself.
+    repeated Member members = 1;
+    // Raw Member encoding and signature for this registration, returned together with the complete directory.
+    bytes admission = 2;
+    bytes signature = 3;
+    // HOST:PORT of Pulsar's separate time listener. Empty means Pulse is unavailable, not that time synchronization is ready.
+    // Clients still verify this endpoint's TLS certificate; it does not change node topology endpoints.
+    string pulse_endpoint = 4;
+}
+
+message Member {
+    string galaxy = 1;
+    // Opaque Pulsar-issued ID, currently p_-prefixed hexadecimal text, 1..128 bytes. No UUID version or character format is prescribed.
+    bytes id = 2;
+    // Raw 32-byte SHA-256(username + NUL + galaxy + NUL + advertise), without hexadecimal encoding. Does not replace this startup's id.
+    bytes principal = 3;
+    string advertise = 4;
+    // Restart epoch per deployment identity; never orders Catalog/Registry application versions.
+    uint64 epoch = 5;
+    reserved 6;
+    reserved "public_key";
+    Role role = 7;
+    string group = 8;
+}
+
+// Role is part of admission permission, never inferred from port, address, or storage mode.
+enum Role {
+    // Admission rejects the unspecified role.
+    ROLE_UNSPECIFIED = 0;
+    // Star maintains the peer topology and accepts Planet upstream connections.
+    ROLE_STAR = 1;
+    // Planet maintains one Star upstream selected from authorized candidates.
+    ROLE_PLANET = 2;
+    // Sole durable Almanac publication authority, outside the Star peer mesh.
+    ROLE_POLARIS = 3;
+    // Administrative endpoint and directory observer, outside the Star peer mesh.
+    ROLE_ASTROLABE = 4;
+}

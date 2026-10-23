@@ -1,0 +1,199 @@
+// Exercise a real final-symlink substitution immediately after the loader's native inspection.
+package admission
+
+import (
+	"bufio"
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"runtime"
+	"strconv"
+	"syscall"
+	"testing"
+	"time"
+)
+
+// TestLoadInspectionChild runs the unchanged public loader on a dedicated, parent-controlled thread.
+func TestLoadInspectionChild(t *testing.T) {
+	directory := os.Getenv("ASTRA_INSPECTION_DIRECTORY")
+	if directory == "" {
+		return
+	}
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+	ready, release := os.NewFile(3, "inspection-ready"), os.NewFile(4, "inspection-release")
+	defer ready.Close()
+	defer release.Close()
+	if _, err := fmt.Fprintln(ready, syscall.Gettid()); err != nil {
+		t.Fatal(err)
+	}
+	var token [1]byte
+	if _, err := release.Read(token[:]); err != nil || token[0] != 1 {
+		t.Fatal("inspection schedule was not released")
+	}
+	value, err := Load(directory, "127.0.0.1:7443")
+	data, encode := json.Marshal(struct {
+		Rejected  bool `json:"rejected"`
+		Published bool `json:"published"`
+	}{errors.Is(err, ErrIdentity), value != nil})
+	if encode != nil || os.WriteFile(filepath.Join(directory, "inspection-result.json"), data, 0600) != nil {
+		t.Fatal("inspection result was not retained")
+	}
+}
+
+// TestLoadInspection retains the real syscall result, replacing only the pathname before Go observes it.
+// The same schedule makes Lstat refuse the symlink and exposes Stat's admission of its replaced target.
+func TestLoadInspection(t *testing.T) {
+	check := counter(t, "ADMISSION-IDENTITY-FILES")
+	directory := material(t)
+	path, backing, replacement := filepath.Join(directory, "ca.pem"), filepath.Join(directory, "ca.saved"), filepath.Join(directory, "ca.next")
+	if os.Rename(path, backing) != nil || os.Symlink(backing, path) != nil || os.Link(backing, replacement) != nil {
+		t.Fatal("inspection link fixture could not be prepared")
+	}
+	ready, announce, err := os.Pipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer ready.Close()
+	defer announce.Close()
+	release, proceed, err := os.Pipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer release.Close()
+	defer proceed.Close()
+	output, err := os.Create(filepath.Join(directory, "inspection-child.log"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer output.Close()
+	executable, err := os.Executable()
+	if err != nil {
+		t.Fatal(err)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+	command := exec.CommandContext(ctx, executable, "-test.run=^TestLoadInspectionChild$", "-test.timeout=12s")
+	command.Env = append(os.Environ(), "ASTRA_INSPECTION_DIRECTORY="+directory)
+	command.ExtraFiles = []*os.File{announce, release}
+	command.Stdout, command.Stderr = output, output
+	if err := command.Start(); err != nil {
+		t.Fatal(err)
+	}
+	waited := false
+	defer func() {
+		if !waited {
+			_ = command.Process.Kill()
+			_ = command.Wait()
+		}
+	}()
+	_ = announce.Close()
+	_ = release.Close()
+	if err := ready.SetReadDeadline(time.Now().Add(10 * time.Second)); err != nil {
+		t.Fatal(err)
+	}
+	line, err := bufio.NewReader(ready).ReadString('\n')
+	tid, number := strconv.Atoi(line[:max(0, len(line)-1)])
+	if err != nil || number != nil || tid <= 0 {
+		t.Fatal("inspection child did not identify its locked thread")
+	}
+	thread, err := os.Stat(filepath.Join("/proc", strconv.Itoa(command.Process.Pid), "task", strconv.Itoa(tid)))
+	if err != nil || !thread.IsDir() {
+		t.Fatal("inspection thread does not belong to the owned child")
+	}
+	// Linux requires every ptrace operation to originate from the same native tracer thread.
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+	if err := syscall.PtraceAttach(tid); err != nil {
+		t.Fatal("inspection child could not be traced: ", err)
+	}
+	attached := true
+	defer func() {
+		if attached {
+			_ = syscall.PtraceDetach(tid)
+		}
+	}()
+	stop := func() syscall.WaitStatus {
+		for ctx.Err() == nil {
+			var status syscall.WaitStatus
+			pid, err := syscall.Wait4(tid, &status, syscall.WNOHANG|0x40000000, nil)
+			if err != nil {
+				t.Fatal("inspection wait failed: ", err)
+			}
+			if pid == tid {
+				if !status.Stopped() {
+					t.Fatal("inspection child exited before the scheduled boundary")
+				}
+				return status
+			}
+			time.Sleep(time.Millisecond)
+		}
+		t.Fatal("inspection schedule exceeded its finite budget")
+		return 0
+	}
+	_ = stop()
+	if err := syscall.PtraceSetOptions(tid, syscall.PTRACE_O_TRACESYSGOOD); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := proceed.Write([]byte{1}); err != nil {
+		t.Fatal(err)
+	}
+	selected, replaced, signal := false, false, 0
+	for !replaced {
+		if err := syscall.PtraceSyscall(tid, signal); err != nil {
+			t.Fatal(err)
+		}
+		status := stop()
+		signal = 0
+		if status.StopSignal() != syscall.SIGTRAP|0x80 {
+			if status.StopSignal() != syscall.SIGSTOP {
+				signal = int(status.StopSignal())
+			}
+			continue
+		}
+		var registers syscall.PtraceRegs
+		if err := syscall.PtraceGetRegs(tid, &registers); err != nil {
+			t.Fatal(err)
+		}
+		if selected {
+			if registers.Rax != 0 || os.Rename(replacement, path) != nil {
+				t.Fatal("native inspection did not complete before substitution")
+			}
+			replaced = true
+			break
+		}
+		if registers.Orig_rax != syscall.SYS_NEWFSTATAT || registers.Rax != ^uint64(syscall.ENOSYS-1) {
+			continue
+		}
+		// Read at most the known fixture pathname and terminator from this owned child.
+		data := make([]byte, len(path)+1)
+		if count, err := syscall.PtracePeekData(tid, uintptr(registers.Rsi), data); err == nil && count == len(data) && string(data[:len(path)]) == path && data[len(path)] == 0 {
+			selected = true
+		}
+	}
+	if err := syscall.PtraceDetach(tid); err != nil {
+		t.Fatal(err)
+	}
+	attached = false
+	err = command.Wait()
+	waited = true
+	check(err == nil, "inspection child did not drain normally")
+	data, err := os.ReadFile(filepath.Join(directory, "inspection-result.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var result struct {
+		Rejected  bool `json:"rejected"`
+		Published bool `json:"published"`
+	}
+	if err := json.Unmarshal(data, &result); err != nil {
+		t.Fatal(err)
+	}
+	check(selected && replaced, "inspection schedule did not hit its native boundary")
+	t.Logf("ADMISSION-INSPECTION boundary=1 replaced=%t rejected=%t published=%t child_drained=true", replaced, result.Rejected, result.Published)
+	check(result.Rejected && !result.Published, "pre-inspected symbolic link was admitted")
+}

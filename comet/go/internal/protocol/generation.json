@@ -1,0 +1,8 @@
+{
+  "source": "../../proto/comet.proto",
+  "sha256": "15adc325ff383db3160d5997c6a62e8542f9d5e759da879419a7c8ded7694d05",
+  "protoc": "libprotoc 36.1",
+  "go": "protoc-gen-go.exe v1.36.12",
+  "grpc": "protoc-gen-go-grpc 1.6.2",
+  "mapping": "Mcomet.proto=github.com/eosforge/astra/comet/go/internal/protocol;protocol"
+}

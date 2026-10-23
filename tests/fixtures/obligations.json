@@ -1,0 +1,700 @@
+{
+  "added": {
+    "polaris-storage/DEV-ASYNC/STORAGE-DRAINING/linux-amd64-cgo/cancelled-native-rollback": {
+      "checks": [
+        "storage-draining"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-DRAINING",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ASYNC",
+      "scenario": "cancelled-native-rollback"
+    },
+    "polaris-storage/DEV-ASYNC/STORAGE-LIFETIME/linux-amd64-cgo/controlled-close": {
+      "checks": [
+        "storage-lifecycle"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-LIFETIME",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ASYNC",
+      "scenario": "controlled-close"
+    },
+    "polaris-storage/DEV-FAULT/STORAGE-BORROWING/linux-amd64-cgo/refused-connection-acquisition": {
+      "checks": [
+        "storage-borrowing"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-BORROWING",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-FAULT",
+      "scenario": "refused-connection-acquisition"
+    },
+    "polaris-storage/DEV-NUMERIC/STORAGE-NUMERIC-SOURCE/linux-amd64-cgo/typed-source": {
+      "checks": [
+        "storage-numeric-source"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-NUMERIC-SOURCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-NUMERIC",
+      "scenario": "typed-source"
+    },
+    "polaris-storage/DEV-NUMERIC/STORAGE-NUMERIC/linux-amd64-cgo/integer-boundaries": {
+      "checks": [
+        "storage-numeric"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-NUMERIC",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-NUMERIC",
+      "scenario": "integer-boundaries"
+    },
+    "polaris-storage/DEV-ORACLE/STORAGE-NUMERIC-CONTROLS/linux-amd64-cgo/typed-controls": {
+      "checks": [
+        "storage-numeric-source"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-NUMERIC-CONTROLS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "typed-controls"
+    },
+    "polaris-storage/DEV-ORACLE/STORAGE-NUMERIC-SENSITIVITY/linux-amd64-cgo/integer-mutations": {
+      "checks": [
+        "storage-numeric-mutants"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-NUMERIC-SENSITIVITY",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "integer-mutations"
+    },
+    "polaris-storage/DEV-RETRY/STORAGE-RETRY-IDENTITY/linux-amd64-cgo/intent-window-grid": {
+      "checks": [
+        "storage-retry"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-RETRY-IDENTITY",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-RETRY",
+      "scenario": "intent-window-grid"
+    },
+    "polaris-storage/DEV-STOP/STORAGE-TERMINATION/linux-amd64-cgo/close-receipt-grid": {
+      "checks": [
+        "storage-termination"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-TERMINATION",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-STOP",
+      "scenario": "close-receipt-grid"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-ARGUMENTS/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-ARGUMENTS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-ARGUMENTS/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-ARGUMENTS",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-MASKS/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-MASKS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-MASKS/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-MASKS",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-PAIRS/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-PAIRS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-PAIRS/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-PAIRS",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-SOURCE/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-SOURCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-FEED-SOURCE/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-FEED-SOURCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-ARGUMENTS/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-ARGUMENTS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-ARGUMENTS/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-ARGUMENTS",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-MASKS/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-MASKS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-MASKS/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-MASKS",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-PAIRS/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-PAIRS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-PAIRS/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-PAIRS",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-PATHS/linux-amd64-cgo/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-PATHS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "tools/DEV-ORACLE/INPUT-OPEN-PATHS/windows-amd64/storage-input-controls": {
+      "checks": [
+        "storage-inputs-python"
+      ],
+      "component": "tools",
+      "contract": "INPUT-OPEN-PATHS",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "storage-input-controls"
+    },
+    "verification/DEV-ORACLE/GO-STORAGE-NUMERIC-CONFIGURATION/linux-amd64-cgo/negative-controls": {
+      "checks": [
+        "storage-numeric-python"
+      ],
+      "component": "verification",
+      "contract": "GO-STORAGE-NUMERIC-CONFIGURATION",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "negative-controls"
+    },
+    "verification/DEV-ORACLE/GO-STORAGE-NUMERIC-RANGES/linux-amd64-cgo/negative-controls": {
+      "checks": [
+        "storage-numeric-python"
+      ],
+      "component": "verification",
+      "contract": "GO-STORAGE-NUMERIC-RANGES",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "negative-controls"
+    },
+    "verification/DEV-ORACLE/GO-STORAGE-NUMERIC-SOURCE/linux-amd64-cgo/negative-controls": {
+      "checks": [
+        "storage-numeric-python"
+      ],
+      "component": "verification",
+      "contract": "GO-STORAGE-NUMERIC-SOURCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "negative-controls"
+    },
+    "verification/DEV-ORACLE/GO-STORAGE-NUMERIC-STREAM/linux-amd64-cgo/negative-controls": {
+      "checks": [
+        "storage-numeric-python"
+      ],
+      "component": "verification",
+      "contract": "GO-STORAGE-NUMERIC-STREAM",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "negative-controls"
+    },
+    "verification/DEV-ORACLE/GO-STORAGE-NUMERIC-WITNESSES/linux-amd64-cgo/negative-controls": {
+      "checks": [
+        "storage-numeric-python"
+      ],
+      "component": "verification",
+      "contract": "GO-STORAGE-NUMERIC-WITNESSES",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "negative-controls"
+    },
+    "verification/DEV-ORACLE/VERIFICATION-HOST-DISCOVERY/linux-amd64-cgo/negative-controls": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "VERIFICATION-HOST-DISCOVERY",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "negative-controls"
+    },
+    "verification/DEV-ORACLE/VERIFICATION-LIFECYCLE-DISCOVERY/linux-amd64-cgo/negative-controls": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "VERIFICATION-LIFECYCLE-DISCOVERY",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "negative-controls"
+    }
+  },
+  "conjunctions": {
+    "polaris-storage/DEV-FAULT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ROLLBACK",
+            "rule": "DEV-FAULT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "sql-write-boundaries"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "fault-matrix"
+          },
+          {
+            "contract": "STORAGE-FINALIZE",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-finalization"
+          },
+          {
+            "contract": "STORAGE-PANIC",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-panic"
+          },
+          {
+            "contract": "STORAGE-CRASH",
+            "rule": "DEV-FAULT",
+            "scenario": "process-death"
+          },
+          {
+            "contract": "STORAGE-CORRUPTION",
+            "rule": "DEV-FAULT",
+            "scenario": "persisted-corruption"
+          },
+          {
+            "contract": "STORAGE-READ-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "read-preparation"
+          },
+          {
+            "contract": "STORAGE-READ-STEP",
+            "rule": "DEV-FAULT",
+            "scenario": "read-iteration"
+          },
+          {
+            "contract": "STORAGE-CHECKPOINT",
+            "rule": "DEV-FAULT",
+            "scenario": "wal-checkpoint"
+          },
+          {
+            "contract": "STORAGE-CONNECTION",
+            "rule": "DEV-FAULT",
+            "scenario": "sqlite-connection"
+          },
+          {
+            "contract": "STORAGE-WRITE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "write-preparation"
+          },
+          {
+            "contract": "STORAGE-WRITE-DAMAGE",
+            "rule": "DEV-FAULT",
+            "scenario": "write-accounting-rejection"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "public-resource-boundaries"
+          },
+          {
+            "contract": "STORAGE-RETAIN-SCAN",
+            "rule": "DEV-FAULT",
+            "scenario": "retained-prefix-type"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-lock-fault"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-wal-write-sync"
+          },
+          {
+            "contract": "STORAGE-BORROWING",
+            "rule": "DEV-FAULT",
+            "scenario": "refused-connection-acquisition"
+          }
+        ],
+        "rule": "DEV-FAULT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ROLLBACK",
+            "rule": "DEV-FAULT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "sql-write-boundaries"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "fault-matrix"
+          },
+          {
+            "contract": "STORAGE-FINALIZE",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-finalization"
+          },
+          {
+            "contract": "STORAGE-PANIC",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-panic"
+          },
+          {
+            "contract": "STORAGE-CRASH",
+            "rule": "DEV-FAULT",
+            "scenario": "process-death"
+          },
+          {
+            "contract": "STORAGE-CORRUPTION",
+            "rule": "DEV-FAULT",
+            "scenario": "persisted-corruption"
+          },
+          {
+            "contract": "STORAGE-READ-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "read-preparation"
+          },
+          {
+            "contract": "STORAGE-READ-STEP",
+            "rule": "DEV-FAULT",
+            "scenario": "read-iteration"
+          },
+          {
+            "contract": "STORAGE-CHECKPOINT",
+            "rule": "DEV-FAULT",
+            "scenario": "wal-checkpoint"
+          },
+          {
+            "contract": "STORAGE-CONNECTION",
+            "rule": "DEV-FAULT",
+            "scenario": "sqlite-connection"
+          },
+          {
+            "contract": "STORAGE-WRITE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "write-preparation"
+          },
+          {
+            "contract": "STORAGE-WRITE-DAMAGE",
+            "rule": "DEV-FAULT",
+            "scenario": "write-accounting-rejection"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "public-resource-boundaries"
+          },
+          {
+            "contract": "STORAGE-RETAIN-SCAN",
+            "rule": "DEV-FAULT",
+            "scenario": "retained-prefix-type"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-lock-fault"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-wal-write-sync"
+          }
+        ],
+        "rule": "DEV-FAULT",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-NUMERIC/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-NUMERIC",
+            "rule": "DEV-NUMERIC",
+            "scenario": "integer-boundaries"
+          },
+          {
+            "contract": "STORAGE-NUMERIC-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "integer-mutations"
+          },
+          {
+            "contract": "STORAGE-NUMERIC-SOURCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "typed-source"
+          },
+          {
+            "contract": "STORAGE-NUMERIC-CONTROLS",
+            "rule": "DEV-ORACLE",
+            "scenario": "typed-controls"
+          }
+        ],
+        "rule": "DEV-NUMERIC",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-numeric"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-NUMERIC",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-RETRY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ATOMIC",
+            "rule": "DEV-CONTRACT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-RETRY",
+            "rule": "DEV-RETRY",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-RETRY-IDENTITY",
+            "rule": "DEV-RETRY",
+            "scenario": "intent-window-grid"
+          },
+          {
+            "contract": "STORAGE-ROLLBACK",
+            "rule": "DEV-FAULT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-HISTORY",
+            "rule": "DEV-COMPAT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-FINITE",
+            "rule": "DEV-ORACLE",
+            "scenario": "two-key-finite-model"
+          },
+          {
+            "contract": "STORAGE-SCHEDULE",
+            "rule": "DEV-MODEL",
+            "scenario": "two-writer-pair-histories"
+          },
+          {
+            "contract": "STORAGE-ORACLE",
+            "rule": "DEV-ORACLE",
+            "scenario": "fixed-journal-axioms"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "finite-model"
+          },
+          {
+            "contract": "STORAGE-FINALIZE",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-finalization"
+          },
+          {
+            "contract": "STORAGE-PANIC",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-panic"
+          },
+          {
+            "contract": "STORAGE-CRASH",
+            "rule": "DEV-FAULT",
+            "scenario": "process-death"
+          },
+          {
+            "contract": "STORAGE-CORRUPTION",
+            "rule": "DEV-FAULT",
+            "scenario": "persisted-corruption"
+          },
+          {
+            "contract": "STORAGE-READ",
+            "rule": "DEV-CONTRACT",
+            "scenario": "read-boundaries"
+          },
+          {
+            "contract": "STORAGE-WRITE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "write-preparation"
+          },
+          {
+            "contract": "STORAGE-WRITE-DAMAGE",
+            "rule": "DEV-FAULT",
+            "scenario": "write-accounting-rejection"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "public-resource-boundaries"
+          },
+          {
+            "contract": "STORAGE-RETAIN-SCAN",
+            "rule": "DEV-FAULT",
+            "scenario": "retained-prefix-type"
+          },
+          {
+            "contract": "STORAGE-CHECKPOINT",
+            "rule": "DEV-FAULT",
+            "scenario": "wal-checkpoint"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-wal-write-sync"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-RETRY",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-retry"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-RETRY",
+        "scenario": "full-rule"
+      }
+    }
+  },
+  "historical_configuration_sha256": "ad55f23b8ce50cfa5b8a9a0bae17d2c5370b518549175d41193e92bdc4994276",
+  "original_configuration_sha256": "4e7f0c0adc577b0a04e363a7c112b5de3f4265f790d325560bdca426e9e5d5b3",
+  "purpose": "Frozen policy-regression expectations for sixteen declared additions and three prerequisite migrations, including mandatory refused acquisition. Synthetic configuration data only; no native execution or qualification credit. The original 1090-object hash remains unchanged.",
+  "version": 2
+}

@@ -1,0 +1,246 @@
+// Astra v1 node control and source replication. Orbit alone defines admission credentials, transported as raw bytes.
+syntax = "proto3";
+package proto.astra.v1;
+option go_package = "github.com/eosforge/astra/internal/generated/astra;astra";
+
+// Exchanges signed bearer credentials after TLS 1.3 setup; carries no third-party directory or application data.
+message Hello {
+    // Major version 1. The admission signature binds role and group; older protocols cannot connect.
+    uint32 protocol_major = 1;
+    uint32 protocol_minor = 2;
+    // Identity is defined only by Orbit's signed Member, without duplication in Hello.
+    reserved 3, 4, 5, 6;
+    reserved "galaxy", "id", "boot_id", "advertise";
+    // Local payload capacity, at least 1024 bytes; phase-specific hard limits still apply.
+    uint32 max_frame_bytes = 7;
+    // Forwards the Member encoding returned by Pulsar unchanged; no field is trusted before verification.
+    bytes admission = 8;
+    // Ed25519 signature over the domain separator and raw admission bytes.
+    bytes admission_signature = 9;
+    // Admission uses signature verification; connection proof fields are reserved.
+    reserved 10;
+    reserved "session_proof";
+}
+
+// At most one outstanding heartbeat per direction. Timeout includes write waiting; ordinary input does not extend it.
+message Ping {
+    uint64 request_id = 1;
+}
+message Pong {
+    uint64 request_id = 1;
+}
+
+// Carries a bounded rejection code without echoing input or internal errors. Close on receipt without replying with another error.
+message ProtocolError {
+    ProtocolErrorCode code = 1;
+}
+enum ProtocolErrorCode {
+    // Not a valid rejection reason.
+    PROTOCOL_ERROR_CODE_UNSPECIFIED = 0;
+    // Incompatible control protocol major version.
+    PROTOCOL_ERROR_CODE_PROTOCOL_MISMATCH = 1;
+    // The signed member belongs to another Galaxy.
+    PROTOCOL_ERROR_CODE_CLUSTER_MISMATCH = 2;
+    // Missing Hello fields or invalid identity binding.
+    PROTOCOL_ERROR_CODE_INVALID_HELLO = 3;
+    // Rejects a connection to this running instance itself.
+    PROTOCOL_ERROR_CODE_SELF_CONNECTION = 4;
+    // Connection or message exceeds local capacity.
+    PROTOCOL_ERROR_CODE_RESOURCE_LIMIT = 5;
+    // Message type is invalid in the current phase.
+    PROTOCOL_ERROR_CODE_UNEXPECTED_MESSAGE = 6;
+    // Authentication handshake deadline exceeded.
+    PROTOCOL_ERROR_CODE_HANDSHAKE_TIMEOUT = 7;
+    // Account permission or admission credential verification failed.
+    PROTOCOL_ERROR_CODE_UNAUTHORIZED = 8;
+    // Member epoch or session ownership conflict.
+    PROTOCOL_ERROR_CODE_CONFLICT = 9;
+    // Admission persistence is temporarily unavailable.
+    PROTOCOL_ERROR_CODE_STORAGE_UNAVAILABLE = 10;
+}
+
+// Star/Planet transport. Pulsar admission uses the gRPC interface in orbit.proto.
+
+// One bidirectional logical session per Star pair. Both sides send Hello first; later messages are validated by phase.
+// Competing directions are resolved by initiator identity, independently of transport connection reuse.
+// The dialer sends Hello first; the receiver verifies admission before returning its bearer credential.
+service StarTransport {
+    rpc OpenSession(stream SessionPacket) returns (stream SessionPacket);
+}
+
+// Control messages get the next write opportunity but cannot preempt an in-flight frame. Source identity comes from this stream's verified Hello.
+message SessionPacket {
+    oneof body {
+        Hello hello = 1;
+        Ping ping = 2;
+        Pong pong = 3;
+        ProtocolError rejection = 4;
+        Position resume = 5;
+        Position ack = 6;
+        CatalogSnapshot catalog_snapshot = 7;
+        CatalogChanges catalog_changes = 8;
+        EphemerisSnapshot ephemeris_snapshot = 9;
+        EphemerisChanges ephemeris_changes = 10;
+        Repair repair = 11;
+        Repaired repaired = 12;
+    }
+}
+
+// Almanac is synchronized directly from Polaris to each Star, outside peer source domains.
+enum Domain {
+    // Recovery and acknowledgement messages reject this unspecified domain.
+    DOMAIN_UNSPECIFIED = 0;
+    // Published data with per-key application versions and TTLs.
+    DOMAIN_CATALOG = 1;
+    // Temporary registrations owned by the source Star.
+    DOMAIN_EPHEMERIS = 2;
+}
+
+// Contiguous installed position for a source domain across all Scopes. Zero is a valid empty prefix, distinct from application versions.
+message Position {
+    Domain domain = 1;
+    uint64 version = 2;
+}
+
+// Scope locates records; peer recovery spans the source domain.
+message Scope {
+    // UTF-8 text encoded as bytes to avoid duplicate Protobuf validation; each domain validates its input shape.
+    bytes sector = 1;
+    bytes spectrum = 2;
+}
+
+// Explicit absence of a body, distinct from a valid empty body, watermark, or deletion.
+message Empty {}
+
+// Active Catalog body with the original Unix nanosecond deadline; receivers must not recalculate TTL.
+message CatalogValue {
+    bytes value = 1;
+    uint64 deadline = 2;
+}
+
+// Snapshot or full publication with a positive content version; exactly one of value and watermark must be selected.
+message CatalogRecord {
+    uint64 version = 1;
+    oneof body {
+        CatalogValue value = 2;
+        Empty watermark = 3;
+    }
+}
+
+// One complete source inventory row, without third-party sources or merged views.
+message CatalogEntry {
+    Scope scope = 1;
+    string key = 2;
+    CatalogRecord record = 3;
+}
+
+// Pages share a source baseline; install and ACK only after complete. Position zero permits only an empty group.
+message CatalogSnapshot {
+    uint64 position = 1;
+    repeated CatalogEntry entries = 2;
+    bool complete = 3;
+}
+
+// Refreshes carry the current application version and original deadline. Missing bodies require targeted repair; this cannot create a record.
+message CatalogLease {
+    uint64 version = 1;
+    uint64 deadline = 2;
+}
+
+// One position denotes one atomic fact. Deadline and content changes both enter the source's contiguous sequence.
+message CatalogDelta {
+    uint64 position = 1;
+    Scope scope = 2;
+    string key = 3;
+    oneof action {
+        CatalogRecord record = 4;
+        CatalogLease lease = 5;
+    }
+}
+
+// Packing preserves commit boundaries; receivers ACK only the fully installed contiguous prefix.
+message CatalogChanges {
+    repeated CatalogDelta entries = 1;
+    // Source head at the same capture boundary. An initially empty group still sends one empty confirmation with head zero.
+    uint64 head = 2;
+}
+
+// Complete Ephemeris row. Attr is immutable; independent orders protect data updates and renewals from reordering.
+message EphemerisRecord {
+    bytes attr = 1;
+    bytes data = 2;
+    uint64 deadline = 3;
+    uint64 update = 4;
+    uint64 renewal = 5;
+    uint32 ttl_ms = 6;
+    uint64 generation = 7;
+}
+
+// Raw 16-byte UUIDv4 index, avoiding repeated formatting on renewal paths.
+message EphemerisEntry {
+    Scope scope = 1;
+    bytes uuid = 2;
+    EphemerisRecord record = 3;
+}
+
+// Complete group baseline. Missing entries end only this source's old records, preserving registrations from other Stars.
+message EphemerisSnapshot {
+    uint64 position = 1;
+    repeated EphemerisEntry entries = 2;
+    bool complete = 3;
+}
+
+// Data-only update with the absolute deadline from the original commit. Receivers grant no new TTL and repair missing full records.
+message EphemerisData {
+    bytes data = 1;
+    uint64 order = 2;
+    uint64 deadline = 3;
+}
+
+// Preserves the fixed TTL and updates only the original absolute deadline and independent renewal order.
+message EphemerisLease {
+    uint64 deadline = 1;
+    uint64 order = 2;
+}
+
+// Only source-Star removal or expiration broadcasts erase; receiver-local TTL expiration does not.
+message EphemerisDelta {
+    uint64 position = 1;
+    Scope scope = 2;
+    bytes uuid = 3;
+    oneof action {
+        EphemerisRecord record = 4;
+        EphemerisData data = 5;
+        EphemerisLease lease = 6;
+        Empty erase = 7;
+    }
+}
+
+// One send may carry multiple strictly contiguous commits, without combining them into a transaction.
+message EphemerisChanges {
+    repeated EphemerisDelta entries = 1;
+    // Marks initial recovery progress; cannot skip entries that have not been fully processed.
+    uint64 head = 2;
+}
+
+// Target and triggering position identify bounded repair without a global request sequence. Only Catalog uses version.
+message Repair {
+    Domain domain = 1;
+    Scope scope = 2;
+    // UTF-8 key for Catalog or raw 16-byte UUID for Ephemeris. The domain determines shape; this field has no text constraint.
+    bytes key = 3;
+    uint64 trigger = 4;
+    uint64 version = 5;
+}
+
+// Position covers only this target and cannot directly advance the cumulative source ACK.
+// Catalog must return a watermark for a known version without an active body; unknown means the target is truly unknown.
+message Repaired {
+    Repair request = 1;
+    uint64 position = 2;
+    oneof result {
+        CatalogRecord catalog = 3;
+        EphemerisRecord ephemeris = 4;
+        Empty unknown = 5;
+    }
+}

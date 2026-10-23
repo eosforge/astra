@@ -1,0 +1,147 @@
+//go:build linux && cgo
+
+// Exercise real Storage admission and recovery with standard-library virtual time; never wait for business time on the host clock.
+package storage
+
+import (
+	"bytes"
+	"context"
+	"errors"
+	"sync"
+	"testing"
+	"testing/synctest"
+	"time"
+)
+
+// TestTimeouts keeps native SQLite and pool ownership while stepping only the operation's deadline domain.
+func TestTimeouts(t *testing.T) {
+	verified := verification(t, "STORAGE-TIME")
+	for _, mode := range []string{"permit", "minimum", "maximum", "parent", "cancel", "past", "jump"} {
+		verified(t.Run(mode, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				limits := Default()
+				if mode == "minimum" {
+					limits.Timeout = time.Nanosecond
+				} else if mode == "maximum" {
+					limits.Timeout = 30 * time.Second
+				}
+				store, _, _ := fixture(t, limits)
+				scope := Scope{"time", "boundary"}
+				if version, err := store.CommitBatch(t.Context(), scope, 1, []Change{{Key: "a", Value: []byte("old")}, {Key: "b", Value: []byte("old")}}); err != nil || version != 1 {
+					t.Fatal("initial durable receipt", version, err)
+				}
+				changed := store.Changed()
+				start := time.Now()
+				ctx, cancel := context.WithCancel(t.Context())
+				budget := limits.Timeout
+				if mode == "parent" {
+					cancel()
+					budget = 2 * time.Second
+					ctx, cancel = context.WithTimeout(t.Context(), budget)
+				} else if mode == "past" {
+					cancel()
+					ctx, cancel = context.WithDeadline(t.Context(), start.Add(-time.Nanosecond))
+					budget = 0
+				} else if mode == "cancel" || mode == "permit" {
+					budget = 0
+				}
+				owned := mode != "permit"
+				if owned {
+					store.writer <- struct{}{}
+				}
+				var work sync.WaitGroup
+				t.Cleanup(func() {
+					cancel()
+					if owned {
+						<-store.writer
+					}
+					work.Wait()
+				})
+				type result struct {
+					version Version       // Actual durable receipt, including rejection's zero version.
+					err     error         // Original public-operation error.
+					elapsed time.Duration // Virtual monotonic time at operation completion, before any later jump.
+				}
+				done := make(chan result, 1)
+				work.Add(1)
+				go func() {
+					defer work.Done()
+					version, err := store.CommitBatch(ctx, scope, 2, []Change{{Key: "a", Value: []byte("new")}, {Key: "b", Value: []byte("new")}})
+					done <- result{version, err, time.Since(start)}
+				}()
+				synctest.Wait()
+				// Zero and negative requested steps cannot move elapsed time backwards or prematurely expire admission.
+				synctest.Sleep(-time.Nanosecond)
+				synctest.Sleep(0)
+				if elapsed := time.Since(start); elapsed != 0 {
+					t.Fatal("nonpositive step changed virtual time", elapsed)
+				}
+				before := time.Duration(0)
+				if budget > 0 {
+					if mode == "jump" {
+						synctest.Sleep(24 * time.Hour)
+					} else {
+						synctest.Sleep(budget - time.Nanosecond)
+						before = time.Since(start)
+						select {
+						case actual := <-done:
+							t.Fatal("operation completed before its exact deadline", actual)
+						default:
+						}
+						if before != budget-time.Nanosecond || len(store.writer) != 1 {
+							t.Fatal("deadline boundary or held writer changed", before, len(store.writer))
+						}
+						synctest.Sleep(time.Nanosecond)
+					}
+				} else if mode == "cancel" {
+					cancel()
+					synctest.Wait()
+				}
+				var actual result
+				select {
+				case actual = <-done:
+				default:
+					t.Fatal("operation did not finish at the controlled boundary")
+				}
+				if actual.elapsed != budget {
+					t.Fatal("completion used a different elapsed-time domain", actual.elapsed, budget)
+				}
+				expired := 1
+				if mode == "permit" {
+					expired = 0
+					if actual.err != nil || actual.version != 2 {
+						t.Fatal("healthy admission failed", actual)
+					}
+				} else {
+					wanted := context.DeadlineExceeded
+					if mode == "cancel" {
+						wanted = context.Canceled
+					}
+					if actual.version != 0 || !errors.Is(actual.err, wanted) || len(store.writer) != 1 {
+						t.Fatal("wrong refusal or lost admission ownership", actual, len(store.writer))
+					}
+					select {
+					case <-changed:
+						t.Fatal("refused operation published a change")
+					default:
+					}
+					view, err := store.Load(t.Context(), scope)
+					if err != nil || view.Version != 1 || len(view.Records) != 2 || !bytes.Equal(view.Records[0].Value, []byte("old")) || !bytes.Equal(view.Records[1].Value, []byte("old")) {
+						t.Fatal("refusal partially committed", view, err)
+					}
+					<-store.writer
+					owned = false
+					if version, err := store.CommitBatch(t.Context(), scope, 2, []Change{{Key: "a", Value: []byte("new")}, {Key: "b", Value: []byte("new")}}); err != nil || version != 2 {
+						t.Fatal("subsequent healthy admission did not recover", version, err)
+					}
+				}
+				view, err := store.Load(t.Context(), scope)
+				inUse := store.readSQL.Stats().InUse + store.writeSQL.Stats().InUse
+				if err != nil || view.Version != 2 || len(view.Records) != 2 || !bytes.Equal(view.Records[0].Value, []byte("new")) || !bytes.Equal(view.Records[1].Value, []byte("new")) || len(store.writer) != 0 || inUse != 0 {
+					t.Fatal("healthy final state or resource drain", view, err, len(store.writer), inUse)
+				}
+				t.Logf("STORAGE-TIME mode=%s budget=%d before=%d expired=%d elapsed=%d recovered=%d records=%d writer=%d in_use=%d", mode, budget, before, expired, actual.elapsed, view.Version, len(view.Records), len(store.writer), inUse)
+			})
+		}), "complete virtual-time history "+mode)
+	}
+}

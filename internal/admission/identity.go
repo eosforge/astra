@@ -1,0 +1,207 @@
+// Package admission shares Orbit signing and TLS rules for Go control services, outside Comet access.
+package admission
+
+import (
+	"bytes"
+	"crypto/ed25519"
+	"crypto/sha256"
+	"crypto/tls"
+	"crypto/x509"
+	"encoding/json"
+	"errors"
+	"io"
+	"net/netip"
+	"os"
+	"path/filepath"
+	"unicode/utf8"
+
+	"github.com/eosforge/astra/internal/generated/orbit"
+	"google.golang.org/protobuf/proto"
+)
+
+// ErrIdentity excludes credential payloads, file paths, and uncontrolled remote diagnostics.
+var ErrIdentity = errors.New("invalid infrastructure identity")
+
+// Identity is read-only after loading; TLS configuration is cloned and account material is used for login only.
+type Identity struct {
+	username, password string
+	public             ed25519.PublicKey
+	client, server     *tls.Config
+}
+
+// file is the owned read/stat/close boundary for one bounded identity material.
+type file interface {
+	io.Reader
+	Stat() (os.FileInfo, error)
+	Close() error
+}
+
+// Load reads bounded material and verifies certificate authorization before publishing an identity.
+func Load(directory, advertise string) (*Identity, error) {
+	return load(directory, advertise, os.Lstat, func(path string) (file, error) { return Acquire(path) })
+}
+
+// load keeps each file scoped to this call; injected boundaries never replace process-global operations.
+func load(directory, advertise string, inspect func(string) (os.FileInfo, error), open func(string) (file, error)) (*Identity, error) {
+	endpoint, err := Endpoint(advertise)
+	if err != nil {
+		return nil, ErrIdentity
+	}
+	materials := make(map[string][]byte, 5)
+	for _, name := range []string{"ca.pem", "cert.pem", "key.pem", "admission.pub", "login.json"} {
+		path := filepath.Join(directory, name)
+		before, err := inspect(path)
+		if err != nil || !before.Mode().IsRegular() {
+			return nil, ErrIdentity
+		}
+		file, err := open(path)
+		if err != nil {
+			return nil, ErrIdentity
+		}
+		info, staterr := file.Stat()
+		// Refuse replacement before reading, including a regular target reached through a changed path.
+		if staterr != nil || !info.Mode().IsRegular() || !os.SameFile(before, info) {
+			_ = file.Close()
+			return nil, ErrIdentity
+		}
+		data, readerr := io.ReadAll(io.LimitReader(file, 16385))
+		closeerr := file.Close()
+		if readerr != nil || closeerr != nil || len(data) > 16384 {
+			return nil, ErrIdentity
+		}
+		materials[name] = data
+	}
+	// Parse account JSON field by field, rejecting duplicates/unknown fields instead of accepting encoding/json's last-value behavior.
+	identity := &Identity{public: ed25519.PublicKey(materials["admission.pub"])}
+	if len(identity.public) != ed25519.PublicKeySize || identity.login(materials["login.json"]) != nil {
+		return nil, ErrIdentity
+	}
+	certificate, err := tls.X509KeyPair(materials["cert.pem"], materials["key.pem"])
+	if err != nil || len(certificate.Certificate) == 0 {
+		return nil, ErrIdentity
+	}
+	roots, intermediates := x509.NewCertPool(), x509.NewCertPool()
+	if !roots.AppendCertsFromPEM(materials["ca.pem"]) {
+		return nil, ErrIdentity
+	}
+	leaf, err := x509.ParseCertificate(certificate.Certificate[0])
+	if err != nil {
+		return nil, ErrIdentity
+	}
+	for _, data := range certificate.Certificate[1:] {
+		certificate, err := x509.ParseCertificate(data)
+		if err != nil {
+			return nil, ErrIdentity
+		}
+		intermediates.AddCert(certificate)
+	}
+	if _, err := leaf.Verify(x509.VerifyOptions{DNSName: endpoint.Addr().String(), Roots: roots, Intermediates: intermediates, KeyUsages: []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth}}); err != nil {
+		return nil, ErrIdentity
+	}
+	identity.client = &tls.Config{RootCAs: roots, MinVersion: tls.VersionTLS13, MaxVersion: tls.VersionTLS13}
+	identity.server = &tls.Config{Certificates: []tls.Certificate{certificate}, MinVersion: tls.VersionTLS13, MaxVersion: tls.VersionTLS13}
+	return identity, nil
+}
+
+// login accepts exactly username/password and publishes Identity only after validation.
+func (identity *Identity) login(data []byte) error {
+	if !utf8.Valid(data) {
+		return ErrIdentity
+	}
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	if token, err := decoder.Token(); err != nil || token != json.Delim('{') {
+		return ErrIdentity
+	}
+	seen := make(map[string]bool, 2)
+	for decoder.More() {
+		token, err := decoder.Token()
+		name, ok := token.(string)
+		if err != nil || !ok || seen[name] || name != "username" && name != "password" {
+			return ErrIdentity
+		}
+		seen[name] = true
+		var value string
+		if err := decoder.Decode(&value); err != nil {
+			return ErrIdentity
+		}
+		if name == "username" {
+			identity.username = value
+		} else {
+			identity.password = value
+		}
+	}
+	if token, err := decoder.Token(); err != nil || token != json.Delim('}') {
+		return ErrIdentity
+	}
+	if _, err := decoder.Token(); err != io.EOF || len(seen) != 2 || !Name(identity.username) || len(identity.password) == 0 || len(identity.password) > 1024 {
+		return ErrIdentity
+	}
+	return nil
+}
+
+// Client returns independently configurable server-verifying TLS without client private keys or disabled hostname checks.
+func (identity *Identity) Client() *tls.Config { return identity.client.Clone() }
+
+// Server returns server-only TLS configuration; Orbit bearer admission verifies node identity.
+func (identity *Identity) Server() *tls.Config { return identity.server.Clone() }
+
+// Username supplies the authority's fixed deployment binding without exposing the password.
+func (identity *Identity) Username() string { return identity.username }
+
+// Principal returns the same raw 32-byte digest as C++; password rotation leaves the deployment slot unchanged.
+func (identity *Identity) Principal(galaxy, advertise string) []byte {
+	digest := sha256.Sum256([]byte(identity.username + "\x00" + galaxy + "\x00" + advertise))
+	return digest[:]
+}
+
+// Verify checks raw signatures and full identity shape; Directory's known replacement history still determines currency.
+func (identity *Identity) Verify(data, signature []byte) (*orbit.Member, error) {
+	if len(data) == 0 || len(data) > 1024 || len(signature) != ed25519.SignatureSize {
+		return nil, ErrIdentity
+	}
+	input := append([]byte("proto.orbit.v1.admission\x00"), data...)
+	if !ed25519.Verify(identity.public, input, signature) {
+		return nil, ErrIdentity
+	}
+	member := new(orbit.Member)
+	if proto.Unmarshal(data, member) != nil || !Valid(member) {
+		return nil, ErrIdentity
+	}
+	return member, nil
+}
+
+// Valid checks format only, without establishing signature validity or current identity.
+func Valid(member *orbit.Member) bool {
+	if member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {
+		return false
+	}
+	_, err := Endpoint(member.Advertise)
+	return err == nil
+}
+
+// Role accepts four explicit infrastructure roles; unknown values never default to Star.
+func Role(role orbit.Role) bool {
+	return role == orbit.Role_ROLE_STAR || role == orbit.Role_ROLE_PLANET || role == orbit.Role_ROLE_POLARIS || role == orbit.Role_ROLE_ASTROLABE
+}
+
+// Name checks existing 1..64-byte safe ASCII rules without case or Unicode normalization.
+func Name(value string) bool {
+	if len(value) == 0 || len(value) > 64 {
+		return false
+	}
+	for _, char := range value {
+		if !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {
+			return false
+		}
+	}
+	return true
+}
+
+// Endpoint requires canonical numeric IP:PORT, rejecting zero ports, wildcard/multicast, mapped IPv4, and zone aliases.
+func Endpoint(value string) (netip.AddrPort, error) {
+	endpoint, err := netip.ParseAddrPort(value)
+	if err != nil || endpoint.String() != value || endpoint.Port() == 0 || endpoint.Addr().IsUnspecified() || endpoint.Addr().IsMulticast() || endpoint.Addr().Is4In6() || endpoint.Addr().Zone() != "" {
+		return netip.AddrPort{}, ErrIdentity
+	}
+	return endpoint, nil
+}

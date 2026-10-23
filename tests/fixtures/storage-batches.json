@@ -1,0 +1,693 @@
+{
+  "basis": "Synthetic parser controls only. Fixed AB02/public-input cases and source AST shapes do not qualify application execution.",
+  "decisions": {
+    "polaris/internal/storage/batch.go:1756": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 47,
+            "offset": 1756
+          },
+          "end": {
+            "column": 17,
+            "line": 47,
+            "offset": 1768
+          },
+          "text": "change.Erase"
+        },
+        {
+          "begin": {
+            "column": 21,
+            "line": 47,
+            "offset": 1772
+          },
+          "end": {
+            "column": 35,
+            "line": 47,
+            "offset": 1786
+          },
+          "text": "len(data) < 12"
+        },
+        {
+          "begin": {
+            "column": 39,
+            "line": 47,
+            "offset": 1790
+          },
+          "end": {
+            "column": 65,
+            "line": 47,
+            "offset": 1816
+          },
+          "text": "string(data[:4]) != \"AB02\""
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 47,
+        "offset": 1756
+      },
+      "end": {
+        "column": 65,
+        "line": 47,
+        "offset": 1816
+      },
+      "id": "polaris/internal/storage/batch.go:1756",
+      "kind": "if",
+      "root": 4,
+      "text": "change.Erase || len(data) < 12 || string(data[:4]) != \"AB02\"",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/batch.go:2025": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 53,
+            "offset": 2025
+          },
+          "end": {
+            "column": 15,
+            "line": 53,
+            "offset": 2035
+          },
+          "text": "count == 0"
+        },
+        {
+          "begin": {
+            "column": 19,
+            "line": 53,
+            "offset": 2039
+          },
+          "end": {
+            "column": 46,
+            "line": 53,
+            "offset": 2066
+          },
+          "text": "count > uint64(len(data)/8)"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 53,
+        "offset": 2025
+      },
+      "end": {
+        "column": 46,
+        "line": 53,
+        "offset": 2066
+      },
+      "id": "polaris/internal/storage/batch.go:2025",
+      "kind": "if",
+      "root": 2,
+      "text": "count == 0 || count > uint64(len(data)/8)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/batch.go:2379": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 64,
+            "offset": 2379
+          },
+          "end": {
+            "column": 21,
+            "line": 64,
+            "offset": 2394
+          },
+          "text": "key > len(data)"
+        },
+        {
+          "begin": {
+            "column": 25,
+            "line": 64,
+            "offset": 2398
+          },
+          "end": {
+            "column": 63,
+            "line": 64,
+            "offset": 2436
+          },
+          "text": "uint64(length) > uint64(len(data)-key)"
+        },
+        {
+          "begin": {
+            "column": 67,
+            "line": 64,
+            "offset": 2440
+          },
+          "end": {
+            "column": 76,
+            "line": 64,
+            "offset": 2449
+          },
+          "text": "erase > 1"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 64,
+        "offset": 2379
+      },
+      "end": {
+        "column": 76,
+        "line": 64,
+        "offset": 2449
+      },
+      "id": "polaris/internal/storage/batch.go:2379",
+      "kind": "if",
+      "root": 4,
+      "text": "key > len(data) || uint64(length) > uint64(len(data)-key) || erase > 1",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/batch.go:2699": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 7,
+            "line": 69,
+            "offset": 2700
+          },
+          "end": {
+            "column": 25,
+            "line": 69,
+            "offset": 2718
+          },
+          "text": "validChange(entry)"
+        },
+        {
+          "begin": {
+            "column": 29,
+            "line": 69,
+            "offset": 2722
+          },
+          "end": {
+            "column": 44,
+            "line": 69,
+            "offset": 2737
+          },
+          "text": "seen[entry.Key]"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 69,
+        "offset": 2699
+      },
+      "end": {
+        "column": 44,
+        "line": 69,
+        "offset": 2737
+      },
+      "id": "polaris/internal/storage/batch.go:2699",
+      "kind": "if",
+      "root": 3,
+      "text": "!validChange(entry) || seen[entry.Key]",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/batch.go:730": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 7,
+            "line": 20,
+            "offset": 731
+          },
+          "end": {
+            "column": 26,
+            "line": 20,
+            "offset": 750
+          },
+          "text": "validChange(change)"
+        },
+        {
+          "begin": {
+            "column": 30,
+            "line": 20,
+            "offset": 754
+          },
+          "end": {
+            "column": 46,
+            "line": 20,
+            "offset": 770
+          },
+          "text": "seen[change.Key]"
+        },
+        {
+          "begin": {
+            "column": 50,
+            "line": 20,
+            "offset": 774
+          },
+          "end": {
+            "column": 69,
+            "line": 20,
+            "offset": 793
+          },
+          "text": "change.Version != 0"
+        },
+        {
+          "begin": {
+            "column": 73,
+            "line": 20,
+            "offset": 797
+          },
+          "end": {
+            "column": 98,
+            "line": 20,
+            "offset": 822
+          },
+          "text": "change.Version != version"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 20,
+        "offset": 730
+      },
+      "end": {
+        "column": 98,
+        "line": 20,
+        "offset": 822
+      },
+      "id": "polaris/internal/storage/batch.go:730",
+      "kind": "if",
+      "root": 7,
+      "text": "!validChange(change) || seen[change.Key] || change.Version != 0 && change.Version != version",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "and"
+        },
+        {
+          "children": [
+            3,
+            6
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "frames": [
+    {
+      "input": {
+        "erase": false,
+        "version": 1,
+        "wire": "414230320000000000000001000100000000006b"
+      },
+      "kind": "decode",
+      "name": "valid",
+      "refused": false
+    },
+    {
+      "input": {
+        "erase": true,
+        "version": 1,
+        "wire": "414230320000000000000001000100000000006b"
+      },
+      "kind": "decode",
+      "name": "erase",
+      "refused": true
+    },
+    {
+      "input": {
+        "erase": false,
+        "version": 1,
+        "wire": "4142303200000000"
+      },
+      "kind": "decode",
+      "name": "short",
+      "refused": true
+    },
+    {
+      "input": {
+        "erase": false,
+        "version": 1,
+        "wire": "414230320000000000000000"
+      },
+      "kind": "decode",
+      "name": "count-zero",
+      "refused": true
+    },
+    {
+      "input": {
+        "erase": false,
+        "version": 1,
+        "wire": "414230320000000000000001000200000000006b"
+      },
+      "kind": "decode",
+      "name": "key-bounds",
+      "refused": true
+    },
+    {
+      "input": {
+        "erase": false,
+        "version": 1,
+        "wire": "4142303200000000000000010001ffffffff006b"
+      },
+      "kind": "decode",
+      "name": "value-bounds",
+      "refused": true
+    },
+    {
+      "input": {
+        "erase": false,
+        "version": 1,
+        "wire": "414230320000000000000001000100000001016b76"
+      },
+      "kind": "decode",
+      "name": "invalid-entry",
+      "refused": true
+    },
+    {
+      "input": {
+        "erase": false,
+        "version": 1,
+        "wire": "414230320000000000000002000100000000006b000100000000006b"
+      },
+      "kind": "decode",
+      "name": "duplicate",
+      "refused": true
+    },
+    {
+      "input": {
+        "changes": [
+          {
+            "Erase": false,
+            "Key": "k",
+            "Value": null,
+            "Version": 0
+          }
+        ],
+        "scope": {
+          "Sector": "input",
+          "Spectrum": "valid"
+        },
+        "version": 1
+      },
+      "kind": "encode",
+      "name": "valid",
+      "refused": false
+    },
+    {
+      "input": {
+        "changes": [
+          {
+            "Erase": false,
+            "Key": "",
+            "Value": null,
+            "Version": 0
+          }
+        ],
+        "scope": {
+          "Sector": "input",
+          "Spectrum": "invalid-key"
+        },
+        "version": 1
+      },
+      "kind": "encode",
+      "name": "invalid-key",
+      "refused": true
+    },
+    {
+      "input": {
+        "changes": [
+          {
+            "Erase": false,
+            "Key": "k",
+            "Value": null,
+            "Version": 0
+          },
+          {
+            "Erase": false,
+            "Key": "k",
+            "Value": null,
+            "Version": 0
+          }
+        ],
+        "scope": {
+          "Sector": "input",
+          "Spectrum": "duplicate"
+        },
+        "version": 1
+      },
+      "kind": "encode",
+      "name": "duplicate",
+      "refused": true
+    },
+    {
+      "input": {
+        "changes": [
+          {
+            "Erase": false,
+            "Key": "k",
+            "Value": null,
+            "Version": 2
+          }
+        ],
+        "scope": {
+          "Sector": "input",
+          "Spectrum": "entry-version"
+        },
+        "version": 1
+      },
+      "kind": "encode",
+      "name": "entry-version",
+      "refused": true
+    }
+  ],
+  "vectors": {
+    "polaris/internal/storage/batch.go:1756": [
+      {
+        "hits": 67933,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 19,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/batch.go:2025": [
+      {
+        "hits": 67916,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 15,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/batch.go:2379": [
+      {
+        "hits": 92600,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 5,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/batch.go:2699": [
+      {
+        "hits": 1,
+        "result": true,
+        "values": "10"
+      },
+      {
+        "hits": 92598,
+        "result": false,
+        "values": "21"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22"
+      }
+    ],
+    "polaris/internal/storage/batch.go:730": [
+      {
+        "hits": 2,
+        "result": true,
+        "values": "1000"
+      },
+      {
+        "hits": 13311,
+        "result": false,
+        "values": "2110"
+      },
+      {
+        "hits": 7,
+        "result": false,
+        "values": "2121"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "2122"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "2200"
+      }
+    ]
+  }
+}

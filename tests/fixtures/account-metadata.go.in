@@ -1,0 +1,95 @@
+// Verify independent metadata-kind refusal at the private account acquisition boundary.
+// The pinned Linux runtime representation is checked before changing a private FileInfo copy.
+package web
+
+import (
+	"encoding/json"
+	"errors"
+	"os"
+	"path/filepath"
+	"reflect"
+	"testing"
+	"unsafe"
+
+	"github.com/eosforge/astra/internal/admission"
+)
+
+// metadataInput owns a real handle and changes only the reported regular-file predicate.
+type metadataInput struct {
+	*os.File
+	t        *testing.T  // Fixture owner for unsupported runtime diagnostics.
+	regular  bool        // Requested kind, without changing the native inode.
+	before   os.FileInfo // Original native metadata.
+	observed os.FileInfo // Privately returned metadata.
+	reads    int         // Read attempts after acquisition.
+	closes   int         // Close attempts made by the loader.
+}
+
+// Read observes whether refusal occurs before any account bytes are consumed.
+func (input *metadataInput) Read(data []byte) (int, error) {
+	input.reads++
+	return input.File.Read(data)
+}
+
+// Stat preserves os.SameFile's native concrete type and inode fields.
+func (input *metadataInput) Stat() (os.FileInfo, error) {
+	info, err := input.File.Stat()
+	if err != nil {
+		return nil, err
+	}
+	if !input.regular {
+		value := reflect.ValueOf(info)
+		if value.Kind() != reflect.Pointer || value.IsNil() || value.Elem().Type().PkgPath() != "os" || value.Elem().Type().Name() != "fileStat" {
+			input.t.Fatal("unsupported native FileInfo representation")
+		}
+		mode := value.Elem().FieldByName("mode")
+		if !mode.IsValid() || !mode.CanAddr() || mode.Type() != reflect.TypeFor[os.FileMode]() {
+			input.t.Fatal("unsupported native FileMode representation")
+		}
+		*(*os.FileMode)(unsafe.Pointer(mode.UnsafeAddr())) = os.ModeDir | info.Mode().Perm()
+	}
+	input.observed = info
+	return info, nil
+}
+
+// Close records the loader's ownership action and physically releases the descriptor.
+func (input *metadataInput) Close() error {
+	input.closes++
+	return input.File.Close()
+}
+
+// TestAccountMetadata holds stat success and inode equality fixed while varying the kind.
+// This is boundary injection, not a physical claim that a live inode changes filesystem kind.
+func TestAccountMetadata(t *testing.T) {
+	check := counter(t)
+	path := filepath.Join(t.TempDir(), "account.json")
+	const data = `{"username":"admin","salt":"000102030405060708090a0b0c0d0e0f","hash":"000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"}`
+	check(os.WriteFile(path, []byte(data), 0600) == nil, "could not prepare public account material")
+	for _, regular := range []bool{true, false, true} {
+		var stream *metadataInput
+		open := func(name string) (accountFile, error) {
+			file, err := admission.Acquire(name)
+			if err != nil {
+				return nil, err
+			}
+			before, err := file.Stat()
+			if err != nil {
+				_ = file.Close()
+				return nil, err
+			}
+			stream = &metadataInput{File: file, t: t, regular: regular, before: before}
+			t.Cleanup(func() { _ = file.Close() })
+			return stream, nil
+		}
+		value, err := loadAccount(path, os.Lstat, open)
+		check(stream != nil && stream.observed != nil, "native metadata was not observed")
+		check(stream.before.Mode().IsRegular() && stream.observed.Mode().IsRegular() == regular && os.SameFile(stream.before, stream.observed), "injection changed another metadata predicate")
+		check((value != nil && err == nil) == regular && (regular || errors.Is(err, errInput)), "metadata kind did not control publication")
+		check((stream.reads > 0) == regular, "metadata refusal consumed account bytes")
+		_, closed := stream.File.Stat()
+		check(stream.closes == 1 && errors.Is(closed, os.ErrClosed), "loader did not close its native handle exactly once")
+		row, marshal := json.Marshal(map[string]bool{"regular": regular, "same_file": os.SameFile(stream.before, stream.observed), "accepted": value != nil, "read": stream.reads > 0, "closed": errors.Is(closed, os.ErrClosed)})
+		check(marshal == nil, "could not encode metadata observation")
+		t.Logf("ASTROLABE-METADATA %s", row)
+	}
+}

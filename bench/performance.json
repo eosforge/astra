@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "approval": {
+    "request": "975948071",
+    "resource_request": "731666145",
+    "window": "01a144c0-cbc2-7792-97af-02da4651c617"
+  },
+  "sampling": {
+    "warmup_pairs": 16,
+    "measurement_pairs": 48,
+    "order": "alternating-baseline-candidate",
+    "block_pairs": 4,
+    "bootstrap_resamples": 20000,
+    "seed": 20261016,
+    "confidence": 0.95
+  },
+  "regression": {
+    "median_minimum": -0.05,
+    "confidence_lower_minimum": -0.10
+  },
+  "capacity": {
+    "throughput_minimum": {
+      "catalog/plain": 4000,
+      "catalog/tls": 3800,
+      "ephemeris/plain": 4500,
+      "ephemeris/tls": 4300
+    },
+    "latency_maximum_us": {
+      "comet.commit": {"p95_us": 2500, "p99_us": 4000},
+      "comet.visible": {"p95_us": 5000, "p99_us": 8000}
+    }
+  },
+  "deployment": {
+    "vcpus": 16,
+    "host_memory_maximum_bytes": 8589934592,
+    "services": {"star": 3, "pulsar": 1, "polaris": 1, "astrolabe": 1},
+    "memory_high_bytes": 2684354560,
+    "memory_maximum_bytes": 3758096384,
+    "service_peak_maximum_bytes": 400000000,
+    "resource_scope": "whole-test-tree-ceilings"
+  }
+}

@@ -1,0 +1,626 @@
+{
+  "decision": {
+    "atoms": [
+      {
+        "begin": {
+          "column": 6,
+          "line": 57,
+          "offset": 2675
+        },
+        "end": {
+          "column": 20,
+          "line": 57,
+          "offset": 2689
+        },
+        "text": "limits.valid()"
+      },
+      {
+        "begin": {
+          "column": 25,
+          "line": 57,
+          "offset": 2694
+        },
+        "end": {
+          "column": 45,
+          "line": 57,
+          "offset": 2714
+        },
+        "text": "name(binding.Galaxy)"
+      },
+      {
+        "begin": {
+          "column": 50,
+          "line": 57,
+          "offset": 2719
+        },
+        "end": {
+          "column": 72,
+          "line": 57,
+          "offset": 2741
+        },
+        "text": "name(binding.Username)"
+      },
+      {
+        "begin": {
+          "column": 76,
+          "line": 57,
+          "offset": 2745
+        },
+        "end": {
+          "column": 86,
+          "line": 57,
+          "offset": 2755
+        },
+        "text": "err != nil"
+      },
+      {
+        "begin": {
+          "column": 90,
+          "line": 57,
+          "offset": 2759
+        },
+        "end": {
+          "column": 128,
+          "line": 57,
+          "offset": 2797
+        },
+        "text": "endpoint.String() != binding.Advertise"
+      },
+      {
+        "begin": {
+          "column": 132,
+          "line": 57,
+          "offset": 2801
+        },
+        "end": {
+          "column": 152,
+          "line": 57,
+          "offset": 2821
+        },
+        "text": "endpoint.Port() == 0"
+      },
+      {
+        "begin": {
+          "column": 156,
+          "line": 57,
+          "offset": 2825
+        },
+        "end": {
+          "column": 187,
+          "line": 57,
+          "offset": 2856
+        },
+        "text": "endpoint.Addr().IsUnspecified()"
+      },
+      {
+        "begin": {
+          "column": 191,
+          "line": 57,
+          "offset": 2860
+        },
+        "end": {
+          "column": 220,
+          "line": 57,
+          "offset": 2889
+        },
+        "text": "endpoint.Addr().IsMulticast()"
+      },
+      {
+        "begin": {
+          "column": 224,
+          "line": 57,
+          "offset": 2893
+        },
+        "end": {
+          "column": 248,
+          "line": 57,
+          "offset": 2917
+        },
+        "text": "endpoint.Addr().Is4In6()"
+      },
+      {
+        "begin": {
+          "column": 252,
+          "line": 57,
+          "offset": 2921
+        },
+        "end": {
+          "column": 280,
+          "line": 57,
+          "offset": 2949
+        },
+        "text": "endpoint.Addr().Zone() != \"\""
+      },
+      {
+        "begin": {
+          "column": 284,
+          "line": 57,
+          "offset": 2953
+        },
+        "end": {
+          "column": 294,
+          "line": 57,
+          "offset": 2963
+        },
+        "text": "path == \"\""
+      }
+    ],
+    "begin": {
+      "column": 5,
+      "line": 57,
+      "offset": 2674
+    },
+    "end": {
+      "column": 294,
+      "line": 57,
+      "offset": 2963
+    },
+    "id": "polaris/internal/storage/store.go:2674",
+    "kind": "if",
+    "root": 23,
+    "text": "!limits.valid() || !name(binding.Galaxy) || !name(binding.Username) || err != nil || endpoint.String() != binding.Advertise || endpoint.Port() == 0 || endpoint.Addr().IsUnspecified() || endpoint.Addr().IsMulticast() || endpoint.Addr().Is4In6() || endpoint.Addr().Zone() != \"\" || path == \"\"",
+    "tree": [
+      {
+        "atom": 0,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          0
+        ],
+        "kind": "not"
+      },
+      {
+        "atom": 1,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          2
+        ],
+        "kind": "not"
+      },
+      {
+        "children": [
+          1,
+          3
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 2,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          5
+        ],
+        "kind": "not"
+      },
+      {
+        "children": [
+          4,
+          6
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 3,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          7,
+          8
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 4,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          9,
+          10
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 5,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          11,
+          12
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 6,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          13,
+          14
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 7,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          15,
+          16
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 8,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          17,
+          18
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 9,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          19,
+          20
+        ],
+        "kind": "or"
+      },
+      {
+        "atom": 10,
+        "kind": "atom"
+      },
+      {
+        "children": [
+          21,
+          22
+        ],
+        "kind": "or"
+      }
+    ]
+  },
+  "frames": [
+    {
+      "filesystem": 2,
+      "input": {
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "valid",
+      "refused": false
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 0,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "limits",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "galaxy",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "guard",
+          "Username": ""
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "username",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "invalid",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "parse",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "[2001:0db8::1]:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "canonical",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "127.0.0.1:0",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "port",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "0.0.0.0:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "unspecified",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "224.0.0.1:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "multicast",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "[::ffff:127.0.0.1]:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "mapped",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "[fe80::1%eth0]:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": "/fixture/database"
+      },
+      "name": "zone",
+      "refused": true
+    },
+    {
+      "filesystem": 0,
+      "input": {
+        "binding": {
+          "Advertise": "127.0.0.1:45101",
+          "Galaxy": "guard",
+          "Username": "polaris"
+        },
+        "limits": {
+          "Backlog": 8388608,
+          "Bytes": 67108864,
+          "History": 1000,
+          "Records": 65536,
+          "Scopes": 4096,
+          "Timeout": 5000000000,
+          "Total": 268435456,
+          "WAL": 134217728
+        },
+        "path": ""
+      },
+      "name": "path",
+      "refused": true
+    }
+  ],
+  "label": "Synthetic oracle data only; no native execution credit.",
+  "vectors": [
+    [
+      "22211111111",
+      false
+    ],
+    [
+      "10000000000",
+      true
+    ],
+    [
+      "21000000000",
+      true
+    ],
+    [
+      "22100000000",
+      true
+    ],
+    [
+      "22211111112",
+      true
+    ],
+    [
+      "22211111120",
+      true
+    ],
+    [
+      "22211111200",
+      true
+    ],
+    [
+      "22211112000",
+      true
+    ],
+    [
+      "22211120000",
+      true
+    ],
+    [
+      "22211200000",
+      true
+    ],
+    [
+      "22212000000",
+      true
+    ],
+    [
+      "22220000000",
+      true
+    ]
+  ]
+}

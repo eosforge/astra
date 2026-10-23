@@ -1,0 +1,4558 @@
+{
+  "basis": "Independent pre-execution AST derivation over all original block coordinates, with unchanged production sources; native Go 1.27.2 weights remain separate from every original fixed block obligation.",
+  "packages": {
+    "polaris/internal/storage": {
+      "blocks": [
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            13,
+            2,
+            13,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            14,
+            3,
+            15,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 4,
+          "span": [
+            16,
+            2,
+            19,
+            33
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            20,
+            3,
+            20,
+            99
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            21,
+            4,
+            22,
+            1
+          ]
+        },
+        {
+          "current": 6,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 6,
+          "span": [
+            23,
+            3,
+            28,
+            39
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            30,
+            2,
+            30,
+            72
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            35,
+            2,
+            36,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            40,
+            2,
+            40,
+            22
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            41,
+            3,
+            41,
+            27
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            42,
+            4,
+            43,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            44,
+            3,
+            44,
+            31
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 2,
+          "span": [
+            46,
+            2,
+            47,
+            66
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            48,
+            3,
+            49,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 3,
+          "span": [
+            50,
+            2,
+            52,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 3,
+          "span": [
+            53,
+            2,
+            53,
+            47
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            54,
+            3,
+            55,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 3,
+          "span": [
+            56,
+            2,
+            58,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            59,
+            3,
+            59,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            60,
+            4,
+            61,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 3,
+          "span": [
+            62,
+            3,
+            64,
+            77
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            65,
+            4,
+            66,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 3,
+          "span": [
+            67,
+            3,
+            69,
+            45
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            70,
+            4,
+            71,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 3,
+          "span": [
+            72,
+            3,
+            74,
+            26
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            76,
+            2,
+            76,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            77,
+            3,
+            78,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/batch.go",
+          "legacy": 1,
+          "span": [
+            79,
+            2,
+            79,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            18,
+            2,
+            18,
+            26
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            19,
+            3,
+            20,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            21,
+            2,
+            21,
+            41
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            26,
+            2,
+            27,
+            57
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            28,
+            3,
+            29,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            31,
+            2,
+            33,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            34,
+            3,
+            35,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            37,
+            2,
+            39,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            40,
+            2,
+            40,
+            9
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            42,
+            3,
+            42,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            42,
+            18,
+            42,
+            34
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            44,
+            3,
+            44,
+            22
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            47,
+            2,
+            47,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            48,
+            3,
+            49,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 4,
+          "span": [
+            52,
+            2,
+            55,
+            55
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            57,
+            3,
+            58,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            59,
+            4,
+            60,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            62,
+            3,
+            62,
+            38
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            63,
+            4,
+            64,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            66,
+            3,
+            66,
+            84
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            67,
+            4,
+            68,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            70,
+            3,
+            71,
+            74
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            72,
+            4,
+            73,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            74,
+            3,
+            74,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            75,
+            4,
+            76,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            78,
+            3,
+            79,
+            33
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            80,
+            4,
+            82,
+            24
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            83,
+            5,
+            84,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            85,
+            4,
+            85,
+            29
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            86,
+            5,
+            88,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            89,
+            4,
+            89,
+            20
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            90,
+            5,
+            92,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            94,
+            3,
+            94,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            95,
+            4,
+            96,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            98,
+            3,
+            98,
+            135
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            99,
+            4,
+            100,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            102,
+            3,
+            102,
+            14
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            103,
+            4,
+            103,
+            182
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            104,
+            5,
+            105,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            106,
+            4,
+            106,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            109,
+            3,
+            109,
+            33
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            110,
+            4,
+            111,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            112,
+            5,
+            113,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            114,
+            4,
+            114,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            115,
+            5,
+            116,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            117,
+            5,
+            118,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            119,
+            4,
+            119,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            120,
+            5,
+            121,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            123,
+            3,
+            124,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            125,
+            4,
+            126,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            128,
+            3,
+            128,
+            71
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            129,
+            4,
+            130,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            132,
+            3,
+            133,
+            54
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            134,
+            4,
+            135,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            137,
+            3,
+            138,
+            54
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            139,
+            4,
+            140,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            141,
+            3,
+            142,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            144,
+            2,
+            144,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            145,
+            3,
+            146,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            147,
+            2,
+            147,
+            13
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            149,
+            3,
+            150,
+            33
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            151,
+            4,
+            152,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            153,
+            3,
+            155,
+            24
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            157,
+            2,
+            157,
+            28
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            163,
+            2,
+            165,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            167,
+            3,
+            168,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            169,
+            2,
+            169,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            170,
+            3,
+            171,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            172,
+            2,
+            172,
+            25
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            178,
+            2,
+            180,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            182,
+            3,
+            183,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            184,
+            2,
+            184,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            185,
+            3,
+            186,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            187,
+            2,
+            187,
+            112
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            188,
+            3,
+            189,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            190,
+            2,
+            190,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            196,
+            2,
+            197,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            198,
+            2,
+            198,
+            62
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            199,
+            3,
+            199,
+            122
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            200,
+            4,
+            201,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            202,
+            3,
+            203,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            206,
+            2,
+            206,
+            214
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            207,
+            3,
+            208,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            209,
+            2,
+            211,
+            85
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            213,
+            3,
+            214,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 2,
+          "span": [
+            216,
+            2,
+            217,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            218,
+            3,
+            219,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            220,
+            2,
+            221,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            222,
+            2,
+            223,
+            101
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            224,
+            3,
+            226,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            227,
+            4,
+            228,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 3,
+          "span": [
+            229,
+            3,
+            231,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            233,
+            2,
+            233,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            234,
+            3,
+            235,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            236,
+            2,
+            236,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            237,
+            3,
+            238,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            240,
+            2,
+            240,
+            120
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            241,
+            3,
+            242,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            244,
+            2,
+            244,
+            145
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            245,
+            3,
+            246,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            247,
+            2,
+            247,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            253,
+            2,
+            253,
+            11
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            254,
+            3,
+            255,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/commit.go",
+          "legacy": 1,
+          "span": [
+            256,
+            2,
+            256,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 1,
+          "span": [
+            34,
+            2,
+            34,
+            63
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 1,
+          "span": [
+            35,
+            3,
+            36,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            38,
+            2,
+            40,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 1,
+          "span": [
+            41,
+            3,
+            42,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            43,
+            2,
+            45,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            46,
+            2,
+            46,
+            66
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 1,
+          "span": [
+            47,
+            3,
+            48,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 4,
+          "span": [
+            49,
+            2,
+            52,
+            18
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            58,
+            2,
+            60,
+            49
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 2,
+          "span": [
+            61,
+            3,
+            63,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            64,
+            2,
+            66,
+            22
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            72,
+            2,
+            75,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            81,
+            2,
+            83,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 1,
+          "span": [
+            84,
+            3,
+            85,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 4,
+          "span": [
+            87,
+            2,
+            90,
+            20
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            96,
+            2,
+            98,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 1,
+          "span": [
+            99,
+            3,
+            100,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 2,
+          "span": [
+            101,
+            2,
+            102,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 2,
+          "span": [
+            103,
+            2,
+            103,
+            67
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 2,
+          "span": [
+            104,
+            3,
+            106,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 3,
+          "span": [
+            107,
+            2,
+            109,
+            26
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 2,
+          "span": [
+            110,
+            3,
+            112,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 1,
+          "span": [
+            118,
+            2,
+            118,
+            21
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/feed.go",
+          "legacy": 4,
+          "span": [
+            119,
+            3,
+            123,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/files.go",
+          "legacy": 1,
+          "span": [
+            23,
+            2,
+            24,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/lock_linux.go",
+          "legacy": 2,
+          "span": [
+            15,
+            2,
+            16,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/lock_linux.go",
+          "legacy": 1,
+          "span": [
+            17,
+            3,
+            18,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/lock_linux.go",
+          "legacy": 2,
+          "span": [
+            20,
+            2,
+            21,
+            44
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/lock_linux.go",
+          "legacy": 2,
+          "span": [
+            22,
+            3,
+            24,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/lock_linux.go",
+          "legacy": 1,
+          "span": [
+            26,
+            2,
+            26,
+            77
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/lock_linux.go",
+          "legacy": 2,
+          "span": [
+            27,
+            3,
+            29,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/lock_linux.go",
+          "legacy": 1,
+          "span": [
+            30,
+            2,
+            30,
+            18
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/maintenance.go",
+          "legacy": 3,
+          "span": [
+            13,
+            2,
+            15,
+            6
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/maintenance.go",
+          "legacy": 1,
+          "span": [
+            16,
+            3,
+            16,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/maintenance.go",
+          "legacy": 1,
+          "span": [
+            18,
+            4,
+            18,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/maintenance.go",
+          "legacy": 1,
+          "span": [
+            20,
+            4,
+            20,
+            29
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/maintenance.go",
+          "legacy": 1,
+          "span": [
+            21,
+            5,
+            21,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/maintenance.go",
+          "legacy": 3,
+          "span": [
+            23,
+            4,
+            24,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/maintenance.go",
+          "legacy": 3,
+          "span": [
+            25,
+            4,
+            26,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 1,
+          "span": [
+            31,
+            2,
+            32,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 2,
+          "span": [
+            37,
+            2,
+            38,
+            28
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 1,
+          "span": [
+            39,
+            3,
+            40,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 2,
+          "span": [
+            41,
+            2,
+            42,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 1,
+          "span": [
+            53,
+            2,
+            54,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 1,
+          "span": [
+            78,
+            2,
+            79,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 1,
+          "span": [
+            83,
+            2,
+            84,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/model.go",
+          "legacy": 1,
+          "span": [
+            120,
+            2,
+            121,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            15,
+            2,
+            17,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            18,
+            3,
+            19,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            21,
+            2,
+            23,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            24,
+            2,
+            24,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            25,
+            3,
+            26,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            28,
+            2,
+            29,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            30,
+            3,
+            31,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            32,
+            2,
+            33,
+            29
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            39,
+            2,
+            39,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            41,
+            3,
+            41,
+            162
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            42,
+            4,
+            43,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            44,
+            3,
+            44,
+            50
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            45,
+            4,
+            46,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            47,
+            3,
+            47,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            49,
+            2,
+            49,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            50,
+            3,
+            51,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            52,
+            2,
+            52,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            58,
+            2,
+            58,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            59,
+            3,
+            60,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            61,
+            2,
+            61,
+            52
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            62,
+            3,
+            65,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            66,
+            2,
+            66,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            72,
+            2,
+            72,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            73,
+            3,
+            74,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            75,
+            2,
+            75,
+            52
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            76,
+            3,
+            78,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            79,
+            2,
+            79,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            80,
+            3,
+            81,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            82,
+            2,
+            82,
+            22
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            89,
+            2,
+            90,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            91,
+            3,
+            92,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            93,
+            2,
+            94,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            95,
+            2,
+            95,
+            78
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            96,
+            3,
+            97,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            99,
+            2,
+            100,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            101,
+            3,
+            102,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            103,
+            2,
+            104,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            105,
+            2,
+            106,
+            18
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            107,
+            3,
+            108,
+            142
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            109,
+            4,
+            110,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            111,
+            3,
+            112,
+            73
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            113,
+            4,
+            114,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            115,
+            3,
+            115,
+            50
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            117,
+            2,
+            117,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            118,
+            3,
+            119,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            121,
+            2,
+            121,
+            73
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            122,
+            3,
+            123,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            124,
+            2,
+            124,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            130,
+            2,
+            130,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            131,
+            3,
+            132,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            133,
+            2,
+            133,
+            52
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            134,
+            3,
+            135,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            136,
+            4,
+            137,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            138,
+            3,
+            139,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            141,
+            2,
+            141,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            142,
+            3,
+            143,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            144,
+            2,
+            144,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            151,
+            2,
+            151,
+            27
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            152,
+            3,
+            153,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            155,
+            2,
+            155,
+            176
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            156,
+            3,
+            157,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            159,
+            2,
+            159,
+            51
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            160,
+            3,
+            161,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            162,
+            2,
+            163,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            164,
+            2,
+            165,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            166,
+            3,
+            167,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 4,
+          "span": [
+            168,
+            2,
+            169,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 4,
+          "span": [
+            170,
+            2,
+            172,
+            18
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 3,
+          "span": [
+            173,
+            3,
+            175,
+            241
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            176,
+            4,
+            177,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            178,
+            3,
+            178,
+            45
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            179,
+            4,
+            180,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            181,
+            3,
+            182,
+            28
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            183,
+            4,
+            184,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 2,
+          "span": [
+            185,
+            3,
+            186,
+            50
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            188,
+            2,
+            188,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            189,
+            3,
+            190,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            192,
+            2,
+            192,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            193,
+            3,
+            194,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/read.go",
+          "legacy": 1,
+          "span": [
+            195,
+            2,
+            195,
+            20
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 3,
+          "span": [
+            32,
+            2,
+            35,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            40,
+            2,
+            40,
+            100
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            41,
+            3,
+            41,
+            54
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            42,
+            4,
+            43,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            46,
+            2,
+            46,
+            192
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            47,
+            3,
+            48,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            49,
+            4,
+            50,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 4,
+          "span": [
+            51,
+            3,
+            54,
+            58
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            55,
+            4,
+            56,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            58,
+            2,
+            58,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            65,
+            2,
+            66,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            67,
+            3,
+            68,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            69,
+            2,
+            70,
+            48
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            72,
+            3,
+            73,
+            98
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            74,
+            4,
+            75,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            77,
+            3,
+            78,
+            161
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            79,
+            4,
+            80,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            81,
+            3,
+            82,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            83,
+            4,
+            84,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            85,
+            3,
+            85,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            86,
+            4,
+            86,
+            66
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            87,
+            5,
+            88,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            91,
+            3,
+            92,
+            94
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            93,
+            4,
+            94,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            95,
+            3,
+            95,
+            112
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            96,
+            4,
+            97,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            99,
+            3,
+            102,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            103,
+            3,
+            103,
+            100
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            104,
+            4,
+            105,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            106,
+            3,
+            106,
+            119
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            107,
+            4,
+            108,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            109,
+            3,
+            110,
+            32
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            111,
+            4,
+            112,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            113,
+            4,
+            113,
+            279
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            114,
+            5,
+            115,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            117,
+            4,
+            120,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            121,
+            4,
+            121,
+            289
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            122,
+            5,
+            123,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            125,
+            4,
+            125,
+            61
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            126,
+            5,
+            127,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            129,
+            4,
+            132,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            133,
+            4,
+            133,
+            259
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            134,
+            5,
+            135,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            136,
+            4,
+            136,
+            106
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            137,
+            5,
+            138,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            139,
+            4,
+            139,
+            25
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            142,
+            3,
+            142,
+            26
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            143,
+            4,
+            144,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 2,
+          "span": [
+            146,
+            3,
+            147,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            148,
+            4,
+            149,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 4,
+          "span": [
+            150,
+            3,
+            153,
+            45
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            154,
+            4,
+            155,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/schema.go",
+          "legacy": 1,
+          "span": [
+            156,
+            3,
+            156,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            47,
+            39,
+            47,
+            60
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            52,
+            2,
+            53,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            58,
+            2,
+            59,
+            295
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            60,
+            3,
+            61,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            63,
+            2,
+            64,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            65,
+            3,
+            66,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            68,
+            2,
+            69,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            70,
+            3,
+            71,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            72,
+            2,
+            73,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            74,
+            2,
+            74,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            75,
+            3,
+            75,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            76,
+            4,
+            77,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            80,
+            2,
+            80,
+            16
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            81,
+            3,
+            82,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            83,
+            4,
+            84,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            85,
+            3,
+            85,
+            40
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            86,
+            4,
+            87,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            90,
+            2,
+            91,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            92,
+            3,
+            93,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            95,
+            2,
+            95,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            95,
+            25,
+            95,
+            104
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            96,
+            2,
+            98,
+            82
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            99,
+            3,
+            100,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            102,
+            2,
+            102,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            103,
+            3,
+            103,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            104,
+            4,
+            104,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            105,
+            5,
+            105,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            106,
+            6,
+            107,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            109,
+            4,
+            109,
+            169
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            111,
+            3,
+            111,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            112,
+            4,
+            113,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            115,
+            3,
+            116,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            117,
+            4,
+            118,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            119,
+            3,
+            121,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            122,
+            4,
+            123,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            126,
+            2,
+            126,
+            81
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            127,
+            3,
+            128,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            129,
+            2,
+            129,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            130,
+            3,
+            131,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 4,
+          "span": [
+            133,
+            2,
+            136,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            137,
+            3,
+            139,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            140,
+            2,
+            140,
+            19
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            147,
+            2,
+            149,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            150,
+            3,
+            152,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            153,
+            2,
+            155,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            156,
+            3,
+            157,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            159,
+            2,
+            161,
+            45
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            162,
+            3,
+            164,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            166,
+            2,
+            167,
+            16
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            168,
+            3,
+            170,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            171,
+            2,
+            171,
+            22
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            177,
+            2,
+            179,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            180,
+            3,
+            181,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 4,
+          "span": [
+            182,
+            2,
+            183,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 4,
+          "span": [
+            184,
+            2,
+            186,
+            32
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            187,
+            3,
+            190,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 4,
+          "span": [
+            191,
+            2,
+            194,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 4,
+          "span": [
+            195,
+            2,
+            195,
+            25
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            196,
+            3,
+            198,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            200,
+            2,
+            201,
+            26
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            202,
+            3,
+            203,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            204,
+            2,
+            204,
+            27
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            205,
+            3,
+            206,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            207,
+            2,
+            208,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            209,
+            3,
+            210,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            211,
+            2,
+            211,
+            12
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            217,
+            2,
+            220,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            226,
+            2,
+            226,
+            27
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            227,
+            3,
+            228,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            230,
+            2,
+            231,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            232,
+            3,
+            233,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            234,
+            2,
+            235,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            236,
+            2,
+            237,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            238,
+            3,
+            239,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            241,
+            2,
+            242,
+            34
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            244,
+            3,
+            244,
+            94
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            245,
+            4,
+            247,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            248,
+            3,
+            248,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            251,
+            2,
+            251,
+            42
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            252,
+            3,
+            254,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            255,
+            2,
+            255,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            261,
+            2,
+            262,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            264,
+            3,
+            264,
+            83
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            265,
+            4,
+            266,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            267,
+            3,
+            267,
+            34
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 3,
+          "span": [
+            269,
+            2,
+            271,
+            27
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            278,
+            2,
+            279,
+            72
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            280,
+            3,
+            281,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            282,
+            2,
+            282,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            283,
+            3,
+            284,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            286,
+            2,
+            290,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 2,
+          "span": [
+            291,
+            2,
+            291,
+            175
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            292,
+            3,
+            293,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            294,
+            2,
+            294,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            300,
+            2,
+            300,
+            40
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            301,
+            3,
+            302,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            303,
+            2,
+            303,
+            29
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            304,
+            3,
+            304,
+            141
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            305,
+            4,
+            306,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/storage/store.go",
+          "legacy": 1,
+          "span": [
+            308,
+            2,
+            308,
+            13
+          ]
+        }
+      ],
+      "shape_sha256": {
+        "1.27.1": "4fdeca4ed52287bfa27ae4fa6b6389c24760b0618a8bfd1fd267ee22d336e015",
+        "1.27.2": "5c47e3d1a23a93cce217042d59e38e2d2bc2e1cdfdd775526aef939a4e67fc83"
+      }
+    }
+  },
+  "source_sha256": {
+    "polaris/internal/storage/batch.go": "5b8cd9339d4edd1aae9f302be22689348d14415891f4f8529776dd1934079a64",
+    "polaris/internal/storage/commit.go": "49153eefce9c8c490bad43374c2f7fe69460a2059eb9d7ff0927ddd2c2d204cd",
+    "polaris/internal/storage/feed.go": "dfbf8ae0b9384fd8823b9e498015466d38d6641d9b26c6960e7fd8b13baf6447",
+    "polaris/internal/storage/files.go": "2bc30c66a4e6cdb84c898627b26fcd8aad3ea182750e1170ced49fa7f55cd2cf",
+    "polaris/internal/storage/lock_linux.go": "58cd2bd20c3b8854a52b5fa088b8b653685fcc4fed0dc4807a646f877dc35cd4",
+    "polaris/internal/storage/maintenance.go": "6db7bce0a96825f996cc3d50f3b5a12c7b205b51266b21987642ea319fcf3314",
+    "polaris/internal/storage/model.go": "c9a311552d7bb80540c1fff71116228109b19105a63ebd6a04aca92dc1f45e4e",
+    "polaris/internal/storage/read.go": "c81b9b809a7ecd67b8599cf61526b3aa752accae66bc8b715c7fea2a1efab926",
+    "polaris/internal/storage/schema.go": "8049a032034b1e1b37f136636a9c1029a07ce0345cb9b7fb348d876ce333f8ab",
+    "polaris/internal/storage/store.go": "1b6854d0ebf89d2d2ba16cc282794b5e3486aee542eeb54e1fe1a496eda87279"
+  },
+  "version": 1
+}

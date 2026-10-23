@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "engine": "cpp",
+  "scope": "Seven explicit four-timestamp Filter guards and sample-admission boundaries, checked by the unchanged native Clock assertion oracle. This finite campaign does not establish full Clock mutation coverage or independent feasibility of every short-circuit operand.",
+  "mutations": [
+    {
+      "id": "filter-precision",
+      "file": "common/src/clock.cpp",
+      "test": "star_clock_test",
+      "oracle": "common/tests/clock_test.cpp",
+      "before": "localPrecision == 0 || localPrecision > 20'000'000",
+      "after": "false"
+    },
+    {
+      "id": "filter-input",
+      "file": "common/src/clock.cpp",
+      "test": "star_clock_test",
+      "oracle": "common/tests/clock_test.cpp",
+      "before": "!synchronized || precision == 0 || precision > 20'000'000 || uncertainty > clockUncertaintyLimitNanoseconds || t0 > limit || t1 > limit || t2 > limit || t3 < 0 || t0 > static_cast<std::uint64_t>(t3) || t2 < t1",
+      "after": "(!synchronized || precision == 0 || precision > 20'000'000 || uncertainty > clockUncertaintyLimitNanoseconds || t0 > limit || t1 > limit || t2 > limit || t3 < 0 || t0 > static_cast<std::uint64_t>(t3) || t2 < t1) && false"
+    },
+    {
+      "id": "filter-roundtrip",
+      "file": "common/src/clock.cpp",
+      "test": "star_clock_test",
+      "oracle": "common/tests/clock_test.cpp",
+      "before": "elapsed > 200'000'000",
+      "after": "false"
+    },
+    {
+      "id": "filter-processing",
+      "file": "common/src/clock.cpp",
+      "test": "star_clock_test",
+      "oracle": "common/tests/clock_test.cpp",
+      "before": "processing > 200'000'000",
+      "after": "false"
+    },
+    {
+      "id": "filter-quantization",
+      "file": "common/src/clock.cpp",
+      "test": "star_clock_test",
+      "oracle": "common/tests/clock_test.cpp",
+      "before": "processing > elapsed && processing - elapsed > 2 * dispersion",
+      "after": "false"
+    },
+    {
+      "id": "filter-coordinate",
+      "file": "common/src/clock.cpp",
+      "test": "star_clock_test",
+      "oracle": "common/tests/clock_test.cpp",
+      "before": "(offset > 0 && t3 > maximum - offset) || (offset < 0 && offset < -t3)",
+      "after": "false"
+    },
+    {
+      "id": "filter-admission",
+      "file": "common/src/clock.cpp",
+      "test": "star_clock_test",
+      "oracle": "common/tests/clock_test.cpp",
+      "before": "count_ >= 3",
+      "after": "count_ >= 2"
+    }
+  ]
+}

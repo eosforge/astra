@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "admission-model",
+    "storage-examples"
+  ],
+  "custody": {
+    "bytes": 16704429,
+    "path": "build/results/assurance/reuse-plan/core-retained-entries-current-4/custody.tar.gz",
+    "sha256": "b14460630a927dee5fc3b002b400e5256f5d3ddf532cb10dd5d4adb0a6b17569"
+  },
+  "immutable": {
+    "bytes": 1204,
+    "path": "build/results/assurance/reuse-plan/core-retained-entries-current-4/immutable-received.json",
+    "sha256": "a85db2e20632248baec0d587e98f6af852d797a0cf6bdfa0568c2c34fb96671f"
+  },
+  "seal": {
+    "bytes": 1235,
+    "path": "build/results/assurance/reuse-plan/core-retained-entries-current-4/custody.sealed.json",
+    "sha256": "1eec8165907d00495326c2f0d6b8a9d11fe920f79c934fd21210786c0b3f3d14"
+  },
+  "version": 1
+}

@@ -1,0 +1,29 @@
+Astra 0.1.0 provides distributed service discovery and state synchronization.
+
+## Components
+
+- Star: replicated Almanac, Catalog and Ephemeris views.
+- Pulsar: infrastructure admission, persistent membership and continuous time.
+- Polaris: persistent configuration authority.
+- Astrolabe: authenticated management HTTP API.
+- Comet C++ and Go application SDKs.
+
+## Downloads
+
+Download `astra-0.1.0-linux-x86_64.tar.gz`, `build-manifest.json` and `SHA256SUMS` together. Run `sha256sum --check SHA256SUMS` before extraction.
+
+The Linux x86-64 archive includes all four services, Comet C++ development files, matching GCC runtimes, public guides and license notices. See [deployment](https://github.com/eosforge/astra/blob/v0.1.0/docs/deployment.md) and [C++ SDK setup](https://github.com/eosforge/astra/blob/v0.1.0/comet/cpp/README.md).
+
+The [Go SDK](https://github.com/eosforge/astra/blob/v0.1.0/comet/go/README.md) is a separate source module: `go get github.com/eosforge/astra/comet/go@v0.1.0`.
+
+## Compatibility and validation
+
+Binaries target Linux x86-64 using GCC 16.2.0 on Debian 13. The manifest records source identity, libc requirements, file hashes and linkage. The C++ SDK requires matching external development dependencies. No Windows binary is included.
+
+The packaging workflow checks installed linkage and uploaded checksums with product tests disabled. The manifest contains the actual file inventory. Local verification on 2026-10-23 covered Go/C++ selections, three-Star recovery, ten minutes of installed-runtime work and twelve short performance samples; see [the changelog](https://github.com/eosforge/astra/blob/v0.1.0/CHANGELOG.md#validation-summary) for results, the retained ASan/UBSan timeout and TSan interruption, and remaining failures. These local observations do not establish that the downloaded archive passed product tests. Full release qualification remains blocked; tags are unsigned.
+
+This republication replaces the earlier 0.1.0 source and assets. Download the archive, manifest and checksums as one set. Public C++ enum items now use PascalCase without compatibility aliases; rebuild callers using older spellings. Existing Go module caches or checksum records can still refer to earlier `v0.1.0` bytes; see [republication compatibility](https://github.com/eosforge/astra/blob/v0.1.0/docs/releases.md#republication-compatibility).
+
+Polaris is a single persistent authority. Catalog and Ephemeris hold finite-lifetime memory data. Admin, Planet and Moon are outside this release. See [release scope](https://github.com/eosforge/astra/blob/v0.1.0/docs/releases.md).
+
+Owned code and documentation use MIT; third-party notices and runtime exceptions still apply.

@@ -1,0 +1,150 @@
+{
+  "boundaries": [
+    {
+      "argument": "The first transport constructor must succeed and the second constructor using the same endpoint and explicit options must fail. Ordinary endpoint parse rejection fails the first call and cannot witness this branch. Installed grpc.NewClient performs no network I/O at construction, so starting a product server is not a direct witness for this constructor error.",
+      "assumptions": "Determinism is not proved: the installed constructor also consumes global and per-target dial options. No claim is made about concurrently changed defaults, credential state or allocation failure. This block remains unqualified.",
+      "classification": "dependency-constructor-failure-not-proven-infeasible",
+      "excluded_from_native_denominator": false,
+      "id": "COMET-GO-DEFENSE-1",
+      "native_hit_credit": 0,
+      "next_evidence": "A bounded, explicit unit dependency seam or a source-bound constructor-failure model must distinguish the first successful allocation from the second rejection and prove the first connection closes. Execution is not authorized in the current read-only mode.",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "proof_status": "infeasibility-not-proven",
+      "range": "connection.go:195.3,197.1",
+      "retained": true,
+      "source_path": "comet/go/connection.go",
+      "source_sha256": "e95f4847db425f8b15d108c1caa61e24e65b83c9f31ecdfd18edbe9f1272d83e",
+      "statements": 2
+    },
+    {
+      "argument": "The anonymous path must pass both transport-readiness checks, then observe a fired initial deadline or a canceled captured context at the final confirmation fence. A readiness failure earlier in login is a different branch.",
+      "assumptions": "The feasible schedule is inferred from the guard and Context boundaries, not witnessed by the retained native runs. Scheduling pressure alone is not deterministic coverage or MC/DC evidence.",
+      "classification": "anonymous-confirmation-cancellation-window",
+      "excluded_from_native_denominator": false,
+      "id": "COMET-GO-DEFENSE-2",
+      "native_hit_credit": 0,
+      "next_evidence": "A local unit stub must order readiness before cancellation and final disarm/context inspection, then assert CodeTimeout and no installed binding. No product-service start is required by this test design; no new test is run.",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "proof_status": "infeasibility-not-proven",
+      "range": "connection.go:209.4,210.1",
+      "retained": true,
+      "source_path": "comet/go/connection.go",
+      "source_sha256": "e95f4847db425f8b15d108c1caa61e24e65b83c9f31ecdfd18edbe9f1272d83e",
+      "statements": 1
+    },
+    {
+      "argument": "A structurally valid Session confirmation must be received before the final guard-disarm/context fence observes local cancellation or expiry. Malformed confirmation, Recv error and later client closure have separate branches and do not witness this fence.",
+      "assumptions": "No retained execution witnesses this ordering. The successful authenticated-close handoff test does not supply this missing outcome.",
+      "classification": "authenticated-confirmation-cancellation-window",
+      "excluded_from_native_denominator": false,
+      "id": "COMET-GO-DEFENSE-3",
+      "native_hit_credit": 0,
+      "next_evidence": "A local Session mock with an explicit cancellation boundary must retain the valid reply and actual guard ordering, then assert timeout and drained ownership. No new test is run.",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "proof_status": "infeasibility-not-proven",
+      "range": "connection.go:232.3,233.1",
+      "retained": true,
+      "source_path": "comet/go/connection.go",
+      "source_sha256": "e95f4847db425f8b15d108c1caa61e24e65b83c9f31ecdfd18edbe9f1272d83e",
+      "statements": 1
+    },
+    {
+      "argument": "Update loops with attempt equal to 0 and 1. Its only continue requires attempt == 0, CodeVersion and Unapplied. Every remaining normal path in the body returns a receipt or error. Therefore a non-returning first iteration reaches attempt 1, and attempt 1 cannot continue or fall through; the post-loop CodeInternal return has no normal predecessor.",
+      "assumptions": "Source-level control-flow reasoning assumes normal Go semantics, unchanged code, no unsafe control-flow corruption, and ordinary panic unwinding. It is not a native hit, a formal accepted exclusion or independent model qualification.",
+      "classification": "source-bound-infeasible-defense",
+      "excluded_from_native_denominator": false,
+      "id": "COMET-GO-DEFENSE-4",
+      "native_hit_credit": 0,
+      "next_evidence": "Review the explicit two-attempt control-flow argument and any required alternative checks under the existing development standard. Preserve this defensive return and the native denominator; no production edit or waiver is issued.",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "proof_status": "source-control-flow-argument",
+      "range": "publisher.go:221.2,221.44",
+      "retained": true,
+      "source_path": "comet/go/publisher.go",
+      "source_sha256": "77ee5abb971e92f47a229f8c96a991c0292c606e9eefb84c1fd503b5c8fb16ef",
+      "statements": 1
+    },
+    {
+      "argument": "In watching.run, an acquire failure is already non-nil; acquire success invokes receive. receive loops without a normal fallthrough and every normal return is a newly allocated localError/rpcError or a failure guarded by failure != nil. localError, contextError and rpcError always return non-nil pointers. Thus the post-receive failure == nil fallback has no normal predecessor.",
+      "assumptions": "Source-level reasoning covers the current concrete callees and normal return semantics only. Panics do not resume at the caller's next statement. This does not prove all stream behaviors correct, supply a native branch hit or grant an exclusion.",
+      "classification": "source-bound-infeasible-defense",
+      "excluded_from_native_denominator": false,
+      "id": "COMET-GO-DEFENSE-5",
+      "native_hit_credit": 0,
+      "next_evidence": "Review the source-bound non-nil return invariant and its helper closure. Keep the defensive fallback and raw denominator until an authorized formal alternative is accepted.",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "proof_status": "source-control-flow-argument",
+      "range": "watching.go:253.4,254.1",
+      "retained": true,
+      "source_path": "comet/go/watching.go",
+      "source_sha256": "e8c9c0089c56bd597284791a69763b67c2341a2fb89fbea0fd9b33e064bf4645",
+      "statements": 1
+    }
+  ],
+  "component": "comet-go",
+  "dependency_binding": {
+    "path": "existing module cache/google.golang.org/grpc@v1.83.2/clientconn.go",
+    "sha256": "56cd0e54cb9b44544353d9f385dcd55d31da12bd58d240667bce1d9fcb3e4ff1"
+  },
+  "evidence": {
+    "evidence.tar.gz": {
+      "bytes": 5851127,
+      "path": "build/results/assurance/reuse-plan/comet-go-isolated-coverage-current-1/evidence.tar.gz",
+      "sha256": "c60b6728e3a046458cf70ffb457f872f1ee99697bcca12d77b7e2c8d48aac8d7"
+    },
+    "mapping-1/coverage-to-obligations.json": {
+      "bytes": 233095,
+      "path": "build/results/assurance/reuse-plan/comet-go-isolated-coverage-current-1/mapping-1/coverage-to-obligations.json",
+      "sha256": "dcc57c33a34dc86eca7461520b114506d1dc9f2f2cc52d8b1d60ad6c09348649"
+    },
+    "read-only-review-1/residual-blocks.json": {
+      "bytes": 6670,
+      "path": "build/results/assurance/reuse-plan/comet-go-isolated-coverage-current-1/read-only-review-1/residual-blocks.json",
+      "sha256": "dacc6f3579d2daf55dd41da5436f652673df39585146f6539e26632c83b64749"
+    },
+    "review-evidence.tar.gz": {
+      "bytes": 1253731,
+      "path": "build/results/assurance/reuse-plan/comet-go-isolated-coverage-current-1/review-evidence.tar.gz",
+      "sha256": "c0932caead927d8f01d77af9f6be5bac706f19576e7c699e5e981145aadff3ac"
+    },
+    "review.sealed.native.json": {
+      "bytes": 818,
+      "path": "build/results/assurance/reuse-plan/comet-go-isolated-coverage-current-1/review.sealed.native.json",
+      "sha256": "c614fe2787bf62f5c3738e3e829a1f5b071a940bea19b4565b47e7caa53a3df1"
+    },
+    "sealed.native.json": {
+      "bytes": 199248,
+      "path": "build/results/assurance/reuse-plan/comet-go-isolated-coverage-current-1/sealed.native.json",
+      "sha256": "422514df52a3bbde498bf94462bbcf58efa77fb7f624e60501c5fea53f5768ae"
+    }
+  },
+  "scope": "Retained defenses and unresolved guards, with zero exclusions or new hits. Only two control-flow arguments support infeasibility; the other three remain unproven. No complete structural or MC/DC qualification is issued.",
+  "source_bindings": {
+    "comet/go/client.go": "8df6f704d7f8f4a03322315100725093b321439e95b4af06c4758cc3472e9b38",
+    "comet/go/connection.go": "e95f4847db425f8b15d108c1caa61e24e65b83c9f31ecdfd18edbe9f1272d83e",
+    "comet/go/deadline.go": "4413f8a4a705b51b1ed2552d70aa33717891bf68bbd86705468a58ce03d3a761",
+    "comet/go/error.go": "b0e137f84411e52d002d59eba2b5e479b072cbd77e139012385e34de28e27e5d",
+    "comet/go/publisher.go": "77ee5abb971e92f47a229f8c96a991c0292c606e9eefb84c1fd503b5c8fb16ef",
+    "comet/go/watching.go": "e8c9c0089c56bd597284791a69763b67c2341a2fb89fbea0fd9b33e064bf4645"
+  },
+  "statement_denominators": {
+    "linux-amd64-cgo": 1812,
+    "windows-amd64": 1810
+  },
+  "version": 1
+}

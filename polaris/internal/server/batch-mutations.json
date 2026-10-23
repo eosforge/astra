@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "scope": "Targeted authority upload admission: reject empty decoded entries immediately, enforce uniqueness within a page, and retain key identity across pages. The same independent 257-key healthy control must pass before these three variants run. This scope does not qualify aggregate valid-upload memory, all Server mutations, structural coverage, CI or release.",
+  "package": "./polaris/internal/server",
+  "import": "github.com/eosforge/astra/polaris/internal/server",
+  "fixtures": [
+    {
+      "source": "tests/fixtures/server-batch.go.in",
+      "target": "polaris/internal/server/batch_test.go"
+    }
+  ],
+  "mutations": [
+    {
+      "id": "batch-empty-entry",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchAdmission",
+      "before": "change == nil || change.Key == \"\"",
+      "after": "change == nil"
+    },
+    {
+      "id": "batch-duplicate-key",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchAdmission",
+      "before": "if _, exists := seen[change.Key]; exists {",
+      "after": "if _, exists := seen[change.Key]; exists && false {"
+    },
+    {
+      "id": "batch-page-identity",
+      "file": "polaris/internal/server/authority.go",
+      "test": "TestBatchAdmission",
+      "before": "for _, change := range page.Changes {",
+      "after": "clear(seen)\n\t\tfor _, change := range page.Changes {"
+    }
+  ]
+}

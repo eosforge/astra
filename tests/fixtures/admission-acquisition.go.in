@@ -1,0 +1,47 @@
+// Check native acquisition flags before opening a FIFO, so a blocking mutant fails without hanging.
+package admission
+
+import (
+	"errors"
+	"os"
+	"path/filepath"
+	"syscall"
+	"testing"
+)
+
+// TestAcquisition uses SyscallConn rather than Fd, which may itself change descriptor blocking mode.
+func TestAcquisition(t *testing.T) {
+	check := counter(t, "ADMISSION-IDENTITY-FILES")
+	directory := t.TempDir()
+	path := filepath.Join(directory, "material")
+	check(os.WriteFile(path, []byte("fixture"), 0600) == nil, "could not prepare regular material")
+	input, err := Acquire(path)
+	check(err == nil && input != nil, "regular acquisition failed")
+	t.Cleanup(func() { _ = input.Close() })
+	connection, err := input.SyscallConn()
+	check(err == nil, "could not observe acquired descriptor")
+	var flags uintptr
+	var failure syscall.Errno
+	err = connection.Control(func(fd uintptr) {
+		flags, _, failure = syscall.Syscall(syscall.SYS_FCNTL, fd, syscall.F_GETFL, 0)
+	})
+	check(err == nil && failure == 0, "could not read native acquisition flags")
+	check(flags&syscall.O_NONBLOCK != 0, "acquisition is blocking")
+	check(flags&syscall.O_ACCMODE == syscall.O_RDONLY, "acquisition permits writes")
+	check(input.Close() == nil, "regular handle did not close")
+	link := filepath.Join(directory, "link")
+	check(os.Symlink(path, link) == nil, "could not prepare final symlink")
+	linked, err := Acquire(link)
+	if linked != nil {
+		_ = linked.Close()
+	}
+	check(errors.Is(err, syscall.ELOOP) && linked == nil, "acquisition followed a final symlink")
+	fifo := filepath.Join(directory, "fifo")
+	check(syscall.Mkfifo(fifo, 0600) == nil, "could not prepare FIFO")
+	pipe, err := Acquire(fifo)
+	check(err == nil && pipe != nil, "nonblocking FIFO acquisition failed")
+	t.Cleanup(func() { _ = pipe.Close() })
+	info, err := pipe.Stat()
+	check(err == nil && info.Mode()&os.ModeNamedPipe != 0, "FIFO identity changed")
+	check(pipe.Close() == nil, "FIFO handle did not close")
+}

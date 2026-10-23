@@ -1,0 +1,22 @@
+//go:build linux && cgo
+
+// Verify the fixed-width database scanner before malformed input can obscure a reversed boundary.
+package storage
+
+import (
+	"errors"
+	"testing"
+)
+
+// TestVersionBoundary separates valid-width acceptance from malformed-width refusal and state preservation.
+func TestVersionBoundary(t *testing.T) {
+	check := verification(t, "STORAGE-MUTATION-VERSION")
+	version := Version(91)
+	err := version.Scan([]byte{0, 0, 0, 0, 0, 0, 0, 7})
+	check(err == nil && version == 7, "version scanner accepts the exact eight-byte BLOB")
+	for _, size := range []int{7, 9} {
+		version = 91
+		err = version.Scan(make([]byte, size))
+		check(errors.Is(err, ErrCorrupt) && version == 91, "malformed BLOB preserves the prior value and stable corruption error")
+	}
+}

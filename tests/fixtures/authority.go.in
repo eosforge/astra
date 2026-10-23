@@ -1,0 +1,1478 @@
+// Retain concrete public-input pairs for presence, capacity, scope and credential-key guards.
+//go:build linux && cgo
+
+package server
+
+import (
+	"bytes"
+	"context"
+	"database/sql"
+	"encoding/base64"
+	"encoding/json"
+	"errors"
+	"maps"
+	"path/filepath"
+	"reflect"
+	"strings"
+	"testing"
+	"testing/synctest"
+	"time"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/proto"
+
+	"github.com/eosforge/astra/internal/admission"
+	"github.com/eosforge/astra/internal/generated/astra"
+	"github.com/eosforge/astra/internal/generated/comet"
+	"github.com/eosforge/astra/internal/generated/orbit"
+	"github.com/eosforge/astra/internal/generated/polaris"
+	"github.com/eosforge/astra/polaris/internal/storage"
+)
+
+// TestPredicates records actual arguments and terminal results without evaluating skipped production operands.
+func TestPredicates(t *testing.T) {
+	// Emit complete paired observations only after the independent result expectations hold.
+	record := func(guard string, condition int, before, after any, first, second, expected bool) {
+		t.Helper()
+		if first != expected || second == expected {
+			t.Fatal("authority predicate lost its independent input boundary", guard, condition, first, second)
+		}
+		data, err := json.Marshal(map[string]any{
+			"guard": guard, "condition": condition,
+			"before": map[string]any{"input": before, "accepted": first},
+			"after":  map[string]any{"input": after, "accepted": second},
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log("AUTHORITY-PREDICATES " + string(data))
+	}
+	// Use real independently owned storage/admission; constructor acceptance must not consume a reservation.
+	limits := storage.Default()
+	limits.Bytes, limits.Records = 1048576, 3
+	system := environment(t, limits)
+	type construction struct {
+		Store     bool  `json:"store"`     // Presence of the actual durable-store argument.
+		Directory bool  `json:"directory"` // Presence of the actual admitted-directory argument.
+		Budget    int64 `json:"budget"`    // Total snapshot preparation bytes.
+	}
+	construct := func(input construction) bool {
+		t.Helper()
+		var store *storage.Store
+		var directory *admission.Directory
+		if input.Store {
+			store = system.store
+		}
+		if input.Directory {
+			directory = system.node.Directory()
+		}
+		authority, err := NewAuthority(store, directory, input.Budget)
+		if err != nil {
+			if authority != nil || !errors.Is(err, storage.ErrInput) {
+				t.Fatal("constructor refusal published partial state or changed its category", err)
+			}
+			return false
+		}
+		if authority == nil || authority.store != store || authority.directory != directory || authority.cache.maximum != input.Budget || authority.cache.reserve != 3146112 || authority.cache.used != 0 || len(authority.cache.entries) != 0 || len(authority.slots) != 0 || cap(authority.slots) != 16 {
+			t.Fatal("constructor changed its arguments or acquired resources before work")
+		}
+		return true
+	}
+	for condition := range 2 {
+		before := construction{true, true, 3146112}
+		after := before
+		if condition == 0 {
+			after.Store = false
+		} else {
+			after.Directory = false
+		}
+		record("dependencies", condition, before, after, construct(before), construct(after), true)
+	}
+	for condition, values := range [][2]int64{{3146112, 3146111}, {1073741824, 1073741825}} {
+		before := construction{true, true, values[0]}
+		after := construction{true, true, values[1]}
+		record("budget", condition, before, after, construct(before), construct(after), true)
+	}
+	// Byte slices preserve invalid UTF-8 and NUL inputs exactly in JSON instead of replacing them with text.
+	type entry struct {
+		Sector   string `json:"sector"`   // Literal namespace deciding whether credential rules apply.
+		Spectrum string `json:"spectrum"` // Literal stream name within that namespace.
+		Key      []byte `json:"key"`      // Exact credential-key bytes, including malformed text.
+		Erase    bool   `json:"erase"`    // Explicit erasure avoids the separate protobuf-value decision.
+	}
+	accept := func(input entry) bool {
+		return credential(storage.Scope{Sector: input.Sector, Spectrum: input.Spectrum}, storage.Change{Key: string(input.Key), Erase: input.Erase})
+	}
+	for condition := range 2 {
+		before := entry{"__auth", "comet", []byte{}, true}
+		after := before
+		if condition == 0 {
+			after.Sector = "business"
+		} else {
+			after.Spectrum = "other"
+		}
+		record("scope", condition, before, after, accept(before), accept(after), false)
+	}
+	for condition, values := range [][2][]byte{
+		{[]byte("a"), {}},
+		{[]byte(strings.Repeat("a", 128)), []byte(strings.Repeat("a", 129))},
+		{[]byte("a"), {0xff}},
+		{[]byte("a"), {0}},
+	} {
+		before := entry{"__auth", "comet", values[0], true}
+		after := entry{"__auth", "comet", values[1], true}
+		record("key", condition, before, after, accept(before), accept(after), true)
+	}
+	// An empty frozen snapshot permits one exact complete frame at either valid capacity endpoint.
+	page := func(maximum int) bool {
+		t.Helper()
+		snapshot := &storage.Snapshot{Position: storage.Position{Scope: storage.Scope{Sector: "s", Spectrum: "p"}, Version: 9}}
+		count := 0
+		err := pages(snapshot, maximum, func(value *polaris.Snapshot) error {
+			count++
+			if count != 1 || !value.Complete || value.Scope == nil || string(value.Scope.Sector) != "s" || string(value.Scope.Spectrum) != "p" || value.Version == nil || value.GetVersion() != 9 || len(value.Entries) != 0 {
+				t.Fatal("empty snapshot changed its frozen complete frame")
+			}
+			return nil
+		})
+		if err != nil {
+			if status.Code(err) != codes.InvalidArgument || count != 0 {
+				t.Fatal("invalid capacity sent data or changed its failure category", err, count)
+			}
+			return false
+		}
+		if count != 1 {
+			t.Fatal("valid empty snapshot did not complete exactly once", count)
+		}
+		return true
+	}
+	for condition, values := range [][2]int{{1024, 1023}, {8388608, 8388609}} {
+		record("frame", condition, values[0], values[1], page(values[0]), page(values[1]), true)
+	}
+	// Window admission either preserves its queued transport result or consumes that exact refusal.
+	type window struct {
+		Count int   `json:"count"` // Number of independent, equally charged boundaries.
+		Cost  int64 `json:"cost"`  // Proposed encoded cost; every existing credit costs 64 bytes.
+	}
+	scope := storage.Scope{Sector: "s", Spectrum: "p"}
+	admit := func(input window) bool {
+		t.Helper()
+		failure := errors.New("controlled blocked-window input")
+		state := &transfer{ctx: t.Context(), input: make(chan incoming, 1), wake: make(chan struct{}, 1), bytes: int64(input.Count) * 64}
+		state.credits = make([]credit, input.Count)
+		for index := range state.credits {
+			state.credits[index] = credit{scope: scope, version: storage.Version(index), bytes: 64}
+		}
+		state.input <- incoming{err: failure}
+		err := state.budget(input.Cost)
+		if state.deadline.Load() != nil || state.bytes != int64(input.Count)*64 || len(state.credits) != input.Count {
+			t.Fatal("window decision leaked its deadline or changed outstanding accounting")
+		}
+		for index, item := range state.credits {
+			if item != (credit{scope: scope, version: storage.Version(index), bytes: 64}) {
+				t.Fatal("window decision altered an outstanding credit")
+			}
+		}
+		if err != nil {
+			if err != failure || len(state.input) != 0 {
+				t.Fatal("blocked window lost its exact transport cause or failed to consume it", err)
+			}
+			return false
+		}
+		if len(state.input) != 1 || (<-state.input).err != failure {
+			t.Fatal("admitted window consumed an unrelated control result")
+		}
+		return true
+	}
+	for condition, values := range [][2]window{{{0, 8388609}, {1, 8388609}}, {{127, 1}, {128, 1}}, {{1, 8388544}, {1, 8388545}}} {
+		record("window", condition, values[0], values[1], admit(values[0]), admit(values[1]), true)
+	}
+	// Acknowledgement releases only the matching scope's installed prefix, including explicit version zero.
+	type acknowledgement struct {
+		Spectrum string `json:"spectrum"` // Scope of the already issued credit, not the ACK scope.
+		Version  uint64 `json:"version"`  // Issued boundary being retained or released.
+		Ack      uint64 `json:"ack"`      // Cumulative acknowledged version for s/p.
+	}
+	release := func(input acknowledgement) bool {
+		t.Helper()
+		item := credit{scope: storage.Scope{Sector: "s", Spectrum: input.Spectrum}, version: storage.Version(input.Version), bytes: 64}
+		state := &transfer{credits: []credit{item}, bytes: 64}
+		backing := state.credits
+		state.release(scope, storage.Version(input.Ack))
+		if len(state.credits) == 0 {
+			if state.bytes != 0 || backing[0] != (credit{}) {
+				t.Fatal("released credit retained bytes or its backing reference")
+			}
+			return true
+		}
+		if len(state.credits) != 1 || state.credits[0] != item || state.bytes != 64 {
+			t.Fatal("uncovered acknowledgement changed outstanding credit")
+		}
+		return false
+	}
+	for condition, values := range [][2]acknowledgement{{{"q", 0, 0}, {"p", 0, 0}}, {{"p", 1, 0}, {"p", 1, 1}}} {
+		record("release", condition, values[0], values[1], release(values[0]), release(values[1]), false)
+	}
+	// Real admission remains intact while Ready is observed directly on a controlled transport.
+	remote, err := system.node.Directory().Verify(system.star.Admission, system.star.AdmissionSignature, orbit.Role_ROLE_STAR)
+	if err != nil {
+		t.Fatal(err)
+	}
+	type installation struct {
+		Present bool   `json:"present"` // Explicit installed map entry; absence also reads as numeric zero.
+		Version uint64 `json:"version"` // Actual installed version for the sole planned scope.
+		Minimum uint64 `json:"minimum"` // Frozen first-sync requirement.
+	}
+	complete := func(input installation) bool {
+		t.Helper()
+		wire := &capture{ctx: t.Context()}
+		state := &transfer{owner: system.streams, remote: remote, wire: wire, ctx: wire.ctx, maximum: 1024, wake: make(chan struct{}, 1),
+			plan: map[storage.Scope]storage.Version{scope: storage.Version(input.Minimum)}, installed: make(map[storage.Scope]storage.Version)}
+		if input.Present {
+			state.installed[scope] = storage.Version(input.Version)
+		}
+		original := maps.Clone(state.installed)
+		if err := state.complete(); err != nil || !maps.Equal(original, state.installed) || state.plan[scope] != storage.Version(input.Minimum) || state.deadline.Load() != nil {
+			t.Fatal("completion changed installation facts or leaked its send deadline", err)
+		}
+		if len(wire.packets) == 0 {
+			if state.ready {
+				t.Fatal("completion advanced without sending Ready")
+			}
+			return false
+		}
+		if len(wire.packets) != 1 || wire.packets[0].GetReady() == nil || !state.ready {
+			t.Fatal("completion did not emit one exact Ready boundary")
+		}
+		return true
+	}
+	for condition, values := range [][2]installation{{{false, 0, 0}, {true, 0, 0}}, {{true, 0, 1}, {true, 1, 1}}} {
+		record("ready", condition, values[0], values[1], complete(values[0]), complete(values[1]), false)
+	}
+	// Inventory rejects a duplicate even at version zero, and rejects an empty sector without publishing it.
+	type inventory struct {
+		Duplicate bool   `json:"duplicate"` // Presence of an earlier position in the same inventory.
+		Sector    string `json:"sector"`    // Exact namespace; spectrum remains the valid literal p.
+	}
+	position := func(input inventory) bool {
+		t.Helper()
+		target := make(map[storage.Scope]storage.Version)
+		key := storage.Scope{Sector: input.Sector, Spectrum: "p"}
+		if input.Duplicate {
+			target[key] = 0
+		}
+		original := maps.Clone(target)
+		state := &transfer{owner: system.streams}
+		err := state.positions(target, &polaris.Inventory{Positions: []*polaris.Position{{Scope: &comet.Scope{Sector: []byte(input.Sector), Spectrum: []byte("p")}, Version: 9}}})
+		if err != nil {
+			if status.Code(err) != codes.InvalidArgument || !maps.Equal(original, target) {
+				t.Fatal("invalid inventory altered its preceding prefix or failure category", err)
+			}
+			return false
+		}
+		if len(target) != 1 || target[key] != 9 {
+			t.Fatal("valid inventory omitted its exact position")
+		}
+		return true
+	}
+	for condition, values := range [][2]inventory{{{false, "s"}, {true, "s"}}, {{false, "s"}, {false, ""}}} {
+		record("inventory", condition, values[0], values[1], position(values[0]), position(values[1]), true)
+	}
+
+	controlPredicates(t, system, record)
+	managementPredicates(t, system, record)
+	framingPredicates(t, system, record)
+	boundaryPredicates(t, system, record)
+	lifecyclePredicates(t, system, record)
+	record("suffix", 1, true, false, suffixPredicate(t, system, true, true), suffixPredicate(t, system, true, false), true)
+	guardedPredicates(t, system)
+	record("manifest-prefix", 0, false, true, manifestPredicate(t, system, false), manifestPredicate(t, system, true), false)
+	authenticationBoundary(t, system)
+}
+
+// manifestPredicate preserves an oversize persisted item while varying only the pending-page prefix.
+// Invalid metadata is a declared storage fault, not a claim that normal writes admit oversize Scope names.
+func manifestPredicate(t *testing.T, system *system, prefix bool) bool {
+	t.Helper()
+	ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+	defer cancel()
+	path := filepath.Join(t.TempDir(), "manifest.db")
+	store, err := storage.Open(ctx, path, storage.Binding{Galaxy: "alpha", Username: "polaris", Advertise: "127.0.0.1:7445"}, storage.Default(), true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer func() {
+		if err := store.Close(); err != nil {
+			t.Error(err)
+		}
+	}()
+	for _, sector := range []string{"a", "z"} {
+		if _, err := store.Commit(ctx, storage.Scope{Sector: sector, Spectrum: "p"}, storage.Change{Version: 1, Key: "key", Value: []byte("value")}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	database, err := sql.Open("sqlite3", path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	database.SetMaxOpenConns(1)
+	defer func() {
+		if err := database.Close(); err != nil {
+			t.Error(err)
+		}
+	}()
+	damaged := strings.Repeat("z", 1024)
+	if _, err := database.ExecContext(ctx, "UPDATE scopes SET sector=? WHERE sector='z'", damaged); err != nil {
+		t.Fatal(err)
+	}
+	positions, err := store.List(ctx)
+	want := []storage.Position{{Scope: storage.Scope{Sector: "a", Spectrum: "p"}, Version: 1}, {Scope: storage.Scope{Sector: damaged, Spectrum: "p"}, Version: 1}}
+	if err != nil || !reflect.DeepEqual(positions, want) || positions[1].Scope.Valid() {
+		t.Fatal("manifest fault did not preserve its exact captured positions", err)
+	}
+	item := &polaris.Position{Scope: &comet.Scope{Sector: []byte(damaged), Spectrum: []byte("p")}, Version: 1}
+	// The payload alone reaches the negotiated limit; positive framing makes both size predicates true.
+	if proto.Size(item) <= 1024 {
+		t.Fatal("damaged item did not exceed the fixed frame limit")
+	}
+	remote, err := system.node.Directory().Verify(system.star.Admission, system.star.AdmissionSignature, orbit.Role_ROLE_STAR)
+	if err != nil {
+		t.Fatal(err)
+	}
+	wire := &capture{ctx: ctx}
+	state := &transfer{owner: system.streams, remote: remote, wire: wire, ctx: ctx, maximum: 1024, wake: make(chan struct{}, 1),
+		sent: make(map[storage.Scope]storage.Version), installed: make(map[storage.Scope]storage.Version)}
+	selected := positions[1:]
+	if prefix {
+		selected = positions
+	}
+	if err := state.manifest(selected); status.Code(err) != codes.ResourceExhausted {
+		t.Fatal("damaged manifest lost its frame-capacity rejection", err)
+	}
+	count := 0
+	if prefix {
+		count = 1
+		expected := &polaris.Packet{Body: &polaris.Packet_Plan{Plan: &polaris.Inventory{Positions: []*polaris.Position{
+			{Scope: &comet.Scope{Sector: []byte("a"), Spectrum: []byte("p")}, Version: 1},
+		}}}}
+		if len(wire.packets) != 1 || !proto.Equal(wire.packets[0], expected) {
+			t.Fatal("damaged manifest changed its exact uncompleted valid prefix")
+		}
+	}
+	if len(wire.packets) != count || state.deadline.Load() != nil || state.bytes != 0 || len(state.credits) != 0 || len(state.sent) != 0 || len(state.installed) != 0 {
+		t.Fatal("damaged manifest emitted an empty plan, invented progress or retained resources")
+	}
+	current, err := store.List(ctx)
+	if err != nil || !reflect.DeepEqual(current, want) || !reflect.DeepEqual(positions, want) {
+		t.Fatal("manifest changed its durable inventory or captured input", err)
+	}
+	snapshot, err := store.Load(ctx, storage.Scope{Sector: "a", Spectrum: "p"})
+	expected := storage.Snapshot{Position: want[0], Records: []storage.Record{{Key: "key", Value: []byte("value")}}}
+	if err != nil || !reflect.DeepEqual(snapshot, expected) {
+		t.Fatal("manifest fault changed the healthy scope", err)
+	}
+	return len(wire.packets) != 0
+}
+
+// authenticationBoundary anchors the private send invariant in real signature verification and registration cleanup.
+func authenticationBoundary(t *testing.T, system *system) {
+	t.Helper()
+	for _, valid := range []bool{false, true} {
+		blocked := errors.New("controlled authenticated send")
+		calls := 0
+		first := proto.Clone(system.star).(*astra.Hello)
+		if !valid {
+			first.AdmissionSignature[0] ^= 1
+		}
+		wire := &dialogue{capture: capture{ctx: t.Context()}, step: func(packet *polaris.Packet) error {
+			calls++
+			if !proto.Equal(packet, &polaris.Packet{Body: &polaris.Packet_Hello{Hello: system.node.Hello()}}) {
+				t.Fatal("authenticated send changed the first output")
+			}
+			return blocked
+		}}
+		state := &transfer{owner: system.streams, wire: wire, ctx: wire.ctx, input: make(chan incoming, 1), wake: make(chan struct{}, 1)}
+		state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Hello{Hello: first}}}
+		err := state.run()
+		if valid {
+			if !errors.Is(err, blocked) || calls != 1 || state.remote == nil || !system.node.Directory().Current(state.remote) {
+				t.Fatal("successful authentication did not dominate the first send", err)
+			}
+		} else if status.Code(err) != codes.Unauthenticated || calls != 0 || state.remote != nil {
+			t.Fatal("invalid signature reached send or published an identity", err)
+		}
+		if len(wire.packets) != 0 || len(state.input) != 0 || len(system.streams.active) != 0 || state.deadline.Load() != nil || state.bytes != 0 || len(state.credits) != 0 {
+			t.Fatal("authentication boundary retained output, registration, input or send ownership")
+		}
+		data, err := json.Marshal(map[string]any{"valid": valid, "send_calls": calls, "remote": state.remote != nil, "retired": true})
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log("AUTHORITY-AUTHENTICATION " + string(data))
+	}
+}
+
+// suffixPredicate queues real commits before the first feed read and inspects its complete first output.
+func suffixPredicate(t *testing.T, system *system, second, same bool) bool {
+	t.Helper()
+	store := fixture(t, storage.Default())
+	defer func() {
+		if err := store.Close(); err != nil {
+			t.Fatal(err)
+		}
+	}()
+	p := storage.Scope{Sector: "s", Spectrum: "p"}
+	q := storage.Scope{Sector: "s", Spectrum: "q"}
+	for _, scope := range []storage.Scope{p, q} {
+		if _, err := store.Commit(t.Context(), scope, storage.Change{Version: 1, Key: "a", Value: []byte("0")}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	authority, err := NewAuthority(store, system.node.Directory(), 256<<20)
+	if err != nil {
+		t.Fatal(err)
+	}
+	owner := NewStreams(system.node, authority)
+	wire := &dialogue{capture: capture{ctx: t.Context()}}
+	stopped := errors.New("controlled suffix output boundary")
+	positions := []*polaris.Position{
+		{Scope: &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}, Version: 1},
+		{Scope: &comet.Scope{Sector: []byte("s"), Spectrum: []byte("q")}, Version: 1},
+	}
+	wanted := &polaris.Updates{Scope: proto.Clone(positions[0].Scope).(*comet.Scope), Patches: []*polaris.Patch{
+		{Version: 2, Change: &comet.AlmanacChange{Key: "a", Action: &comet.AlmanacChange_Value{Value: []byte("x")}}},
+	}}
+	if second && same {
+		wanted.Patches = append(wanted.Patches, &polaris.Patch{Version: 3, Change: &comet.AlmanacChange{Key: "a", Action: &comet.AlmanacChange_Value{Value: []byte("y")}}})
+	}
+	calls := 0
+	wire.step = func(packet *polaris.Packet) error {
+		calls++
+		switch calls {
+		case 1:
+			if !proto.Equal(packet, &polaris.Packet{Body: &polaris.Packet_Hello{Hello: system.node.Hello()}}) {
+				t.Fatal("suffix negotiation changed its complete Hello")
+			}
+		case 2:
+			if !proto.Equal(packet, &polaris.Packet{Body: &polaris.Packet_Plan{Plan: &polaris.Inventory{Complete: true, Positions: positions}}}) {
+				t.Fatal("suffix negotiation lost its frozen two-scope plan")
+			}
+		case 3:
+			if !proto.Equal(packet, &polaris.Packet{Body: &polaris.Packet_Ready{Ready: &comet.Empty{}}}) {
+				t.Fatal("already installed baseline did not produce one Ready")
+			}
+			if _, err := store.Commit(t.Context(), p, storage.Change{Version: 2, Key: "a", Value: []byte("x")}); err != nil {
+				t.Fatal(err)
+			}
+			if second {
+				scope, version := q, storage.Version(2)
+				if same {
+					scope, version = p, 3
+				}
+				if _, err := store.Commit(t.Context(), scope, storage.Change{Version: version, Key: "a", Value: []byte("y")}); err != nil {
+					t.Fatal(err)
+				}
+			}
+		case 4:
+			if !proto.Equal(packet, &polaris.Packet{Body: &polaris.Packet_Updates{Updates: wanted}}) {
+				t.Fatal("adjacent scope boundary lost complete literal suffix grouping", packet)
+			}
+			return stopped
+		default:
+			t.Fatal("suffix continued beyond its controlled first output")
+		}
+		return nil
+	}
+	state := &transfer{owner: owner, wire: wire, ctx: wire.ctx, input: make(chan incoming, 2), wake: make(chan struct{}, 1), sent: make(map[storage.Scope]storage.Version)}
+	state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Hello{Hello: proto.Clone(system.star).(*astra.Hello)}}}
+	state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Inventory{Inventory: &polaris.Inventory{Complete: true, Positions: positions}}}}
+	if err := state.run(); !errors.Is(err, stopped) {
+		t.Fatal("suffix did not terminate at its verified output", err)
+	}
+	baseline := map[storage.Scope]storage.Version{p: 1, q: 1}
+	if calls != 4 || len(wire.packets) != 3 || !state.ready || !maps.Equal(state.plan, baseline) || !maps.Equal(state.sent, baseline) || !maps.Equal(state.installed, baseline) || len(state.credits) != 0 || state.bytes != 0 || state.deadline.Load() != nil || len(state.input) != 0 || len(owner.active) != 0 || authority.cache.used != 0 || len(authority.cache.entries) != 0 {
+		t.Fatal("failed suffix send advanced installation or retained owned resources")
+	}
+	for _, scope := range []storage.Scope{p, q} {
+		version, value := storage.Version(1), "0"
+		if scope == p {
+			version, value = 2, "x"
+		}
+		if second && (same && scope == p || !same && scope == q) {
+			version++
+			value = "y"
+		}
+		actual, err := store.Load(t.Context(), scope)
+		wanted := storage.Snapshot{Position: storage.Position{Scope: scope, Version: version}, Records: []storage.Record{{Key: "a", Value: []byte(value)}}}
+		if err != nil || !reflect.DeepEqual(actual, wanted) {
+			t.Fatal("suffix grouping altered a complete durable scope", err)
+		}
+	}
+	for range 8 {
+		feed, err := store.Subscribe(16<<20, 1)
+		if err != nil {
+			t.Fatal("suffix termination retained its feed reservation", err)
+		}
+		defer feed.Close()
+	}
+	return second && same
+}
+
+// guardedPredicates keeps nullable inputs separate from fully defined Boolean independence.
+func guardedPredicates(t *testing.T, system *system) {
+	t.Helper()
+	record := func(guard string, call func(bool) bool) {
+		t.Helper()
+		before, after := call(true), call(false)
+		if !before || after {
+			t.Fatal("guarded input lost its exact acceptance boundary", guard)
+		}
+		data, err := json.Marshal(map[string]any{"guard": guard,
+			"before": map[string]bool{"present": true, "accepted": before},
+			"after":  map[string]bool{"present": false, "accepted": after}})
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log("AUTHORITY-GUARDED " + string(data))
+	}
+	for _, guard := range []string{"batch-null", "commit-null", "batch-erase", "single-erase"} {
+		record(guard, func(present bool) bool {
+			t.Helper()
+			store := fixture(t, storage.Default())
+			defer func() {
+				if err := store.Close(); err != nil {
+					t.Fatal(err)
+				}
+			}()
+			authority, err := NewAuthority(store, system.node.Directory(), 256<<20)
+			if err != nil {
+				t.Fatal(err)
+			}
+			ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+			defer cancel()
+			ctx = metadata.NewIncomingContext(ctx, metadata.Pairs("astra-admission-bin", string(system.manager.Admission), "astra-signature-bin", string(system.manager.AdmissionSignature)))
+			scope := storage.Scope{Sector: "s", Spectrum: "p"}
+			wireScope := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}
+			entry := &comet.AlmanacChange{Key: "a", Action: &comet.AlmanacChange_Value{Value: []byte("x")}}
+			version := uint64(1)
+			erase := guard == "batch-erase" || guard == "single-erase"
+			if erase {
+				if _, err := store.Commit(t.Context(), scope, storage.Change{Version: 1, Key: "a", Value: []byte("x")}); err != nil {
+					t.Fatal(err)
+				}
+				version = 2
+				var action *comet.AlmanacChange_Erase
+				if present {
+					action = &comet.AlmanacChange_Erase{Erase: &comet.Empty{}}
+				}
+				entry.Action = action // A typed nil reaches the real oneof type-switch arm.
+			}
+			var result *polaris.Position
+			if guard == "batch-null" {
+				var page *polaris.BatchRequest
+				if present {
+					page = &polaris.BatchRequest{Scope: wireScope, Version: version, Complete: true, Changes: []*comet.AlmanacChange{entry}}
+				}
+				wire := &upload{capture: capture{ctx: ctx}, receipt: true, pages: []*polaris.BatchRequest{page}}
+				err = authority.Batch(wire)
+				result = wire.result
+				reads := 1
+				if present {
+					reads = 2
+				}
+				if wire.reads != reads {
+					t.Fatal("nullable page consumed beyond rejection or omitted normal EOF")
+				}
+			} else {
+				request := &polaris.CommitRequest{Scope: wireScope, Version: version, Change: entry}
+				if guard == "batch-erase" {
+					request.Change, request.Changes = nil, []*comet.AlmanacChange{entry}
+				}
+				if guard == "commit-null" && !present {
+					request = nil
+				}
+				result, err = authority.Commit(ctx, request)
+			}
+			if present && err != nil || !present && status.Code(err) != codes.InvalidArgument {
+				t.Fatal("nullable management input changed its exact error", guard, err)
+			}
+			wanted := storage.Snapshot{Position: storage.Position{Scope: scope}}
+			if present {
+				wanted.Version = storage.Version(version)
+				if !erase {
+					wanted.Records = []storage.Record{{Key: "a", Value: []byte("x")}}
+				}
+			} else if erase {
+				wanted.Version, wanted.Records = 1, []storage.Record{{Key: "a", Value: []byte("x")}}
+			}
+			actual, failure := store.Load(t.Context(), scope)
+			if failure != nil || !reflect.DeepEqual(actual, wanted) || len(authority.slots) != 0 || authority.cache.used != 0 || len(authority.cache.entries) != 0 {
+				t.Fatal("nullable management input changed durable content or retained resources", guard, failure)
+			}
+			if present && !proto.Equal(result, &polaris.Position{Scope: wireScope, Version: version}) || !present && result != nil {
+				t.Fatal("nullable management input published an incorrect receipt", guard)
+			}
+			return present
+		})
+	}
+	record("position-null", func(present bool) bool {
+		wire := &capture{ctx: t.Context()}
+		state := &transfer{owner: system.streams, wire: wire, ctx: wire.ctx}
+		target := make(map[storage.Scope]storage.Version)
+		var position *polaris.Position
+		if present {
+			position = &polaris.Position{Scope: &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}, Version: 1}
+		}
+		err := state.positions(target, &polaris.Inventory{Complete: true, Positions: []*polaris.Position{position}})
+		wanted := make(map[storage.Scope]storage.Version)
+		if present {
+			wanted[storage.Scope{Sector: "s", Spectrum: "p"}] = 1
+		}
+		if present && err != nil || !present && status.Code(err) != codes.InvalidArgument || !maps.Equal(target, wanted) || len(wire.packets) != 0 {
+			t.Fatal("nullable inventory item changed its exact merge or rejection", err)
+		}
+		return present
+	})
+	record("hello-null", func(present bool) bool {
+		owner := NewStreams(system.node, system.streams.authority)
+		wire := &dialogue{capture: capture{ctx: t.Context()}}
+		stopped := errors.New("controlled admitted Hello output")
+		calls := 0
+		wire.step = func(packet *polaris.Packet) error {
+			calls++
+			if !present || calls != 1 || !proto.Equal(packet, &polaris.Packet{Body: &polaris.Packet_Hello{Hello: system.node.Hello()}}) {
+				t.Fatal("nullable Hello emitted an unexpected packet")
+			}
+			return stopped
+		}
+		state := &transfer{owner: owner, wire: wire, ctx: wire.ctx, input: make(chan incoming, 1), wake: make(chan struct{}, 1)}
+		var hello *astra.Hello
+		if present {
+			hello = proto.Clone(system.star).(*astra.Hello)
+		}
+		state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Hello{Hello: hello}}}
+		err := state.run()
+		if present && !errors.Is(err, stopped) || !present && status.Code(err) != codes.InvalidArgument || (calls == 1) != present || len(wire.packets) != 0 || len(owner.active) != 0 || state.deadline.Load() != nil || len(state.input) != 0 {
+			t.Fatal("nullable Hello retained ownership or lost its terminal boundary", err)
+		}
+		return present
+	})
+	record("ack-null", func(present bool) bool {
+		remote, err := system.node.Directory().Verify(system.star.Admission, system.star.AdmissionSignature, orbit.Role_ROLE_STAR)
+		if err != nil {
+			t.Fatal(err)
+		}
+		scope := storage.Scope{Sector: "s", Spectrum: "p"}
+		wire := &capture{ctx: t.Context()}
+		state := &transfer{owner: system.streams, remote: remote, wire: wire, ctx: wire.ctx, sent: map[storage.Scope]storage.Version{scope: 1}, installed: make(map[storage.Scope]storage.Version), credits: []credit{{scope: scope, version: 1, bytes: 64}}, bytes: 64}
+		var position *polaris.Position
+		if present {
+			position = &polaris.Position{Scope: &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}, Version: 1}
+		}
+		err = state.control(&polaris.Packet{Body: &polaris.Packet_Acknowledged{Acknowledged: position}})
+		wanted, credits, cost := make(map[storage.Scope]storage.Version), 1, int64(64)
+		if present {
+			wanted[scope], credits, cost = 1, 0, 0
+		}
+		if present && err != nil || !present && status.Code(err) != codes.InvalidArgument || !maps.Equal(state.installed, wanted) || !maps.Equal(state.sent, map[storage.Scope]storage.Version{scope: 1}) || len(state.credits) != credits || state.bytes != cost || state.deadline.Load() != nil || len(wire.packets) != 0 {
+			t.Fatal("nullable ACK changed send credit or installation outside its contract", err)
+		}
+		return present
+	})
+	record("suffix-end", func(present bool) bool { return suffixPredicate(t, system, present, true) })
+}
+
+// timed reports an explicit deadline tuple; other context operations retain their original owner.
+type timed struct {
+	context.Context           // Preserve metadata and cancellation without an implicit timer.
+	deadline        time.Time // Fixed logical instant, including when the deadline is absent.
+	present         bool      // Independent deadline availability.
+}
+
+// Deadline exposes the selected tuple without reading or advancing any clock.
+func (ctx timed) Deadline() (time.Time, bool) { return ctx.deadline, ctx.present }
+
+// lifecyclePredicates separates finite time, preparation failure and inventory presence.
+func lifecyclePredicates(t *testing.T, system *system, record func(string, int, any, any, bool, bool, bool)) {
+	t.Helper()
+	type duration struct {
+		Present bool `json:"present"` // Whether the caller supplies the fixed deadline.
+		Seconds int  `json:"seconds"` // Exactly zero or five seconds from the frozen logical instant.
+	}
+	begin := func(input duration) bool {
+		t.Helper()
+		accepted := false
+		synctest.Test(t, func(t *testing.T) {
+			at := time.Now()
+			base := metadata.NewIncomingContext(context.Background(), metadata.Pairs("astra-admission-bin", string(system.manager.Admission), "astra-signature-bin", string(system.manager.AdmissionSignature)))
+			ctx := timed{base, at.Add(time.Duration(input.Seconds) * time.Second), input.Present}
+			authority := system.streams.authority
+			member, err := authority.begin(ctx)
+			if !time.Now().Equal(at) || time.Until(ctx.deadline) != time.Duration(input.Seconds)*time.Second {
+				t.Fatal("deadline predicate escaped its fixed virtual instant")
+			}
+			if !input.Present || input.Seconds == 0 {
+				if status.Code(err) != codes.InvalidArgument || member != nil || len(authority.slots) != 0 {
+					t.Fatal("invalid deadline admitted work or retained a permit", err)
+				}
+				return
+			}
+			if err != nil || member == nil || member.Role != orbit.Role_ROLE_ASTROLABE || len(authority.slots) != 1 || !system.node.Directory().Current(member) {
+				t.Fatal("valid finite deadline lost authenticated permit ownership", err)
+			}
+			<-authority.slots
+			if len(authority.slots) != 0 {
+				t.Fatal("deadline fixture failed to release its acquired permit")
+			}
+			accepted = true
+		})
+		return accepted
+	}
+	for condition, after := range []duration{{false, 5}, {true, 0}} {
+		before := duration{true, 5}
+		record("deadline", condition, before, after, begin(before), begin(after), true)
+	}
+	prepared := func(open bool) bool {
+		t.Helper()
+		store := fixture(t, storage.Default())
+		defer func() {
+			if err := store.Close(); err != nil {
+				t.Fatal(err)
+			}
+		}()
+		if !open {
+			if err := store.Close(); err != nil {
+				t.Fatal(err)
+			}
+		}
+		scope := storage.Scope{Sector: "s", Spectrum: "p"}
+		snapshot, err := store.Load(t.Context(), scope)
+		expected := storage.Snapshot{}
+		if open {
+			expected.Scope = scope
+		}
+		if !reflect.DeepEqual(snapshot, expected) || open && err != nil || !open && !errors.Is(err, storage.ErrClosed) {
+			t.Fatal("preparation control lost its zero-version load result", err)
+		}
+		cache := newCache(store, storage.Default(), 256<<20)
+		pin, err := cache.acquire(t.Context(), scope, 1)
+		failure := storage.ErrClosed
+		if open {
+			failure = storage.ErrVersion
+		}
+		if pin != nil || !errors.Is(err, failure) || cache.used != 0 || len(cache.entries) != 0 {
+			t.Fatal("preparation comparison hid the load failure or retained its reservation", err)
+		}
+		return open
+	}
+	record("prepared", 0, false, true, prepared(false), prepared(true), false)
+	initial := func(present bool) bool {
+		t.Helper()
+		store := fixture(t, storage.Default())
+		defer func() {
+			if err := store.Close(); err != nil {
+				t.Fatal(err)
+			}
+		}()
+		scope := storage.Scope{Sector: "s", Spectrum: "p"}
+		expected := storage.Snapshot{Position: storage.Position{Scope: scope}}
+		if present {
+			if _, err := store.Commit(t.Context(), scope, storage.Change{Version: 1, Key: "a", Value: []byte("x")}); err != nil {
+				t.Fatal(err)
+			}
+			expected.Version, expected.Records = 1, []storage.Record{{Key: "a", Value: []byte("x")}}
+		}
+		authority, err := NewAuthority(store, system.node.Directory(), 256<<20)
+		if err != nil {
+			t.Fatal(err)
+		}
+		owner := NewStreams(system.node, authority)
+		stopped := errors.New("controlled plan send boundary")
+		wire := &dialogue{capture: capture{ctx: t.Context()}}
+		calls := 0
+		wire.step = func(packet *polaris.Packet) error {
+			calls++
+			if calls == 1 {
+				if !proto.Equal(packet.GetHello(), system.node.Hello()) {
+					t.Fatal("initial negotiation emitted an unexpected local identity")
+				}
+				return nil
+			}
+			want := &polaris.Inventory{Complete: true, Positions: []*polaris.Position{{Scope: &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}, Version: 1}}}
+			if !present || calls != 2 || !proto.Equal(packet.GetPlan(), want) {
+				t.Fatal("initial plan ignored its complete literal authority inventory")
+			}
+			return stopped
+		}
+		state := &transfer{owner: owner, wire: wire, ctx: wire.ctx, input: make(chan incoming, 2), wake: make(chan struct{}, 1), sent: make(map[storage.Scope]storage.Version)}
+		state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Hello{Hello: proto.Clone(system.star).(*astra.Hello)}}}
+		state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Inventory{Inventory: &polaris.Inventory{Complete: true, Positions: []*polaris.Position{{Scope: &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}}}}}}}
+		err = state.run()
+		if present && !errors.Is(err, stopped) || !present && status.Code(err) != codes.Aborted {
+			t.Fatal("initial inventory presence lost its exact terminal cause", err)
+		}
+		plan, sent := make(map[storage.Scope]storage.Version), make(map[storage.Scope]storage.Version)
+		if present {
+			plan[scope], sent[scope] = 1, 0
+		}
+		if !maps.Equal(state.plan, plan) || !maps.Equal(state.sent, sent) || !maps.Equal(state.installed, map[storage.Scope]storage.Version{scope: 0}) || len(wire.packets) != 1 || calls != 1+len(plan) || len(state.input) != 0 || state.deadline.Load() != nil || len(owner.active) != 0 || authority.cache.used != 0 || len(authority.cache.entries) != 0 || len(authority.slots) != 0 {
+			t.Fatal("initial rejection published progress or retained execution resources")
+		}
+		actual, err := store.Load(t.Context(), scope)
+		if err != nil || !reflect.DeepEqual(actual, expected) {
+			t.Fatal("initial planning modified durable authority state", err)
+		}
+		// All reservations coexist, exposing an unreleased initial subscription.
+		for range 8 {
+			feed, err := store.Subscribe(16<<20, 1)
+			if err != nil {
+				t.Fatal("initial planning leaked its feed reservation", err)
+			}
+			defer feed.Close()
+		}
+		return present
+	}
+	record("initial", 0, false, true, initial(false), initial(true), false)
+	remote, err := system.node.Directory().Verify(system.star.Admission, system.star.AdmissionSignature, orbit.Role_ROLE_STAR)
+	if err != nil {
+		t.Fatal(err)
+	}
+	probe := func(present bool) bool {
+		t.Helper()
+		wire := &capture{ctx: t.Context()}
+		state := &transfer{owner: system.streams, remote: remote, wire: wire, ctx: wire.ctx, maximum: 1024, probe: make(map[storage.Scope]storage.Version)}
+		packet := &polaris.Packet{}
+		if present {
+			packet.Body = &polaris.Packet_Inventory{Inventory: &polaris.Inventory{}}
+		}
+		err := state.control(packet)
+		if present && err != nil || !present && status.Code(err) != codes.InvalidArgument {
+			t.Fatal("probe presence lost its exact incomplete-inventory outcome", err)
+		}
+		if state.probe == nil || len(state.probe) != 0 || state.actual != nil || state.sent != nil || state.installed != nil || len(wire.packets) != 0 || state.bytes != 0 || len(state.credits) != 0 || state.deadline.Load() != nil {
+			t.Fatal("incomplete inventory published installation or changed owned control state")
+		}
+		return present
+	}
+	record("probe", 0, true, false, probe(true), probe(false), true)
+}
+
+// boundaryPredicates preserves exact wire bytes and rejected transaction/control side effects.
+func boundaryPredicates(t *testing.T, system *system, record func(string, int, any, any, bool, bool, bool)) {
+	t.Helper()
+	// Field one contains the secret; field 100 is a legal unknown bytes field, while tag zero is invalid.
+	secret := []byte{0x0a, 0x01, 0x01}
+	maximum := append([]byte{0x0a, 0x01, 0x01, 0xa2, 0x06, 0xf9, 0x3f}, make([]byte, 8185)...)
+	above := append([]byte{0x0a, 0x01, 0x01, 0xa2, 0x06, 0xfa, 0x3f}, make([]byte, 8186)...)
+	malformed := []byte{0x0a, 0x01, 0x01, 0x00}
+	if len(maximum) != 8192 || len(above) != 8193 {
+		t.Fatal("literal credential vectors missed the encoded capacity boundary")
+	}
+	payload := func(raw []byte, parsed bool, content []byte) bool {
+		t.Helper()
+		frozen := bytes.Clone(raw)
+		var decoded orbit.Credential
+		err := proto.Unmarshal(raw, &decoded)
+		if (err == nil) != parsed || !bytes.Equal(decoded.Secret, content) {
+			t.Fatal("literal credential decoder expectation changed", err)
+		}
+		accepted := credential(storage.Scope{Sector: "__auth", Spectrum: "comet"}, storage.Change{Key: "key", Value: raw})
+		if !bytes.Equal(raw, frozen) {
+			t.Fatal("credential validation modified its caller's bytes")
+		}
+		return accepted
+	}
+	for _, test := range []struct {
+		condition int    // Exactly one condition differs across these finite protocol vectors.
+		before    []byte // A valid one-byte secret inside the whole-message limit.
+		after     []byte // An oversized, malformed or empty credential.
+		parsed    bool   // Expected standalone decoder result for the second input.
+		content   []byte // Expected decoded field, including the prefix before the invalid tag.
+	}{{0, maximum, above, true, []byte{1}}, {1, secret, malformed, false, []byte{1}}, {2, secret, nil, true, nil}} {
+		record("payload", test.condition, base64.StdEncoding.EncodeToString(test.before), base64.StdEncoding.EncodeToString(test.after),
+			payload(test.before, true, []byte{1}), payload(test.after, test.parsed, test.content), true)
+	}
+	batch := func(same bool) bool {
+		t.Helper()
+		store := fixture(t, storage.Default())
+		defer func() {
+			if err := store.Close(); err != nil {
+				t.Fatal(err)
+			}
+		}()
+		authority, err := NewAuthority(store, system.node.Directory(), 256<<20)
+		if err != nil {
+			t.Fatal(err)
+		}
+		ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+		defer cancel()
+		ctx = metadata.NewIncomingContext(ctx, metadata.Pairs("astra-admission-bin", string(system.manager.Admission), "astra-signature-bin", string(system.manager.AdmissionSignature)))
+		first := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}
+		second := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("q")}
+		if same {
+			second = proto.Clone(first).(*comet.Scope)
+		}
+		receipt := &polaris.Position{Scope: proto.Clone(first).(*comet.Scope), Version: 1}
+		wire := &upload{capture: capture{ctx: ctx}, receipt: true, pages: []*polaris.BatchRequest{
+			{Scope: first, Version: 1, Changes: []*comet.AlmanacChange{{Key: "a", Action: &comet.AlmanacChange_Value{Value: []byte("x")}}}},
+			{Scope: second, Version: 1, Complete: true, Changes: []*comet.AlmanacChange{{Key: "b", Action: &comet.AlmanacChange_Value{Value: []byte("y")}}}},
+		}}
+		err = authority.Batch(wire)
+		if len(authority.slots) != 0 || authority.cache.used != 0 || len(authority.cache.entries) != 0 {
+			t.Fatal("cross-page validation retained management resources")
+		}
+		positions, failure := store.List(t.Context())
+		if failure != nil {
+			t.Fatal(failure)
+		}
+		for _, spectrum := range []string{"p", "q"} {
+			scope := storage.Scope{Sector: "s", Spectrum: spectrum}
+			actual, failure := store.Load(t.Context(), scope)
+			expected := storage.Snapshot{Position: storage.Position{Scope: scope}}
+			if same && spectrum == "p" {
+				expected.Version = 1
+				expected.Records = []storage.Record{{Key: "a", Value: []byte("x")}, {Key: "b", Value: []byte("y")}}
+			}
+			if failure != nil || !reflect.DeepEqual(actual, expected) {
+				t.Fatal("cross-page scope check lost atomic durable content", failure)
+			}
+		}
+		if !same {
+			if status.Code(err) != codes.InvalidArgument || wire.result != nil || wire.reads != 2 || len(positions) != 0 {
+				t.Fatal("changed scope committed a prefix or lost its exact rejection", err)
+			}
+			return false
+		}
+		expected := []storage.Position{{Scope: storage.Scope{Sector: "s", Spectrum: "p"}, Version: 1}}
+		if err != nil || wire.reads != 3 || !proto.Equal(wire.result, receipt) || !reflect.DeepEqual(positions, expected) {
+			t.Fatal("equal cross-page scopes failed their single durable commit", err)
+		}
+		return true
+	}
+	record("batch-position", 0, true, false, batch(true), batch(false), true)
+	remote, err := system.node.Directory().Verify(system.star.Admission, system.star.AdmissionSignature, orbit.Role_ROLE_STAR)
+	if err != nil {
+		t.Fatal(err)
+	}
+	control := func(present bool, sector string) bool {
+		t.Helper()
+		scope := storage.Scope{Sector: sector, Spectrum: "p"}
+		wire := &capture{ctx: t.Context()}
+		state := &transfer{owner: system.streams, remote: remote, wire: wire, ctx: wire.ctx, maximum: 1024,
+			sent: map[storage.Scope]storage.Version{scope: 0}, installed: make(map[storage.Scope]storage.Version)}
+		packet := &polaris.Packet{Body: &polaris.Packet_Acknowledged{Acknowledged: &polaris.Position{Scope: &comet.Scope{Sector: []byte(sector), Spectrum: []byte("p")}}}}
+		if !present {
+			packet = nil
+		}
+		if !system.node.Directory().Current(remote) {
+			t.Fatal("control fixture lost its fixed live admission")
+		}
+		err := state.control(packet)
+		if len(wire.packets) != 0 || state.bytes != 0 || len(state.credits) != 0 || state.deadline.Load() != nil || !maps.Equal(state.sent, map[storage.Scope]storage.Version{scope: 0}) {
+			t.Fatal("control refusal changed send state or retained window ownership")
+		}
+		if !present || sector == "" {
+			code := codes.InvalidArgument
+			if !present {
+				code = codes.Unauthenticated
+			}
+			if status.Code(err) != code || len(state.installed) != 0 {
+				t.Fatal("invalid control published an installation or changed its error category", err)
+			}
+			return false
+		}
+		if err != nil || !maps.Equal(state.installed, map[storage.Scope]storage.Version{scope: 0}) {
+			t.Fatal("valid control lost its explicit zero installation", err)
+		}
+		return true
+	}
+	record("packet", 0, true, false, control(true, "s"), control(false, "s"), true)
+	type acknowledgement struct {
+		Present bool   `json:"present"` // Even the defensive invalid scope is explicitly present in sent.
+		Sent    uint64 `json:"sent"`    // Fixed zero send version.
+		Version uint64 `json:"version"` // Fixed zero installation version.
+		Sector  string `json:"sector"`  // Valid s or an invalid empty sector; spectrum remains p.
+	}
+	record("ack", 0, acknowledgement{true, 0, 0, "s"}, acknowledgement{true, 0, 0, ""}, control(true, "s"), control(true, ""), true)
+}
+
+// managementPredicates checks page admission against complete durable results and permit ownership.
+func managementPredicates(t *testing.T, system *system, record func(string, int, any, any, bool, bool, bool)) {
+	t.Helper()
+	scope := storage.Scope{Sector: "s", Spectrum: "p"}
+	wireScope := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}
+	type batch struct {
+		Complete bool   `json:"complete"` // The preceding page already declared completion.
+		Scope    bool   `json:"scope"`    // The next nonnil page has the literal s/p scope.
+		Version  uint64 `json:"version"`  // Version of that next page; zero is never a commit.
+	}
+	apply := func(input batch, single bool) bool {
+		t.Helper()
+		store := fixture(t, storage.Default())
+		defer func() {
+			if err := store.Close(); err != nil {
+				t.Fatal(err)
+			}
+		}()
+		authority, err := NewAuthority(store, system.node.Directory(), 256<<20)
+		if err != nil {
+			t.Fatal(err)
+		}
+		ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+		defer cancel()
+		ctx = metadata.NewIncomingContext(ctx, metadata.Pairs("astra-admission-bin", string(system.manager.Admission), "astra-signature-bin", string(system.manager.AdmissionSignature)))
+		first := &comet.AlmanacChange{Key: "a", Action: &comet.AlmanacChange_Value{Value: []byte("x")}}
+		second := &comet.AlmanacChange{Key: "b", Action: &comet.AlmanacChange_Value{Value: []byte("y")}}
+		position := wireScope
+		if !input.Scope {
+			position = nil
+		}
+		var result *polaris.Position
+		if single {
+			result, err = authority.Commit(ctx, &polaris.CommitRequest{Scope: position, Version: 1, Change: first})
+		} else {
+			wire := &upload{capture: capture{ctx: ctx}, receipt: true, pages: []*polaris.BatchRequest{
+				{Scope: wireScope, Version: 1, Complete: input.Complete, Changes: []*comet.AlmanacChange{first}},
+				{Scope: position, Version: input.Version, Complete: true, Changes: []*comet.AlmanacChange{second}},
+			}}
+			err = authority.Batch(wire)
+			result = wire.result
+			reads := 2
+			if err == nil {
+				reads = 3 // The explicit EOF is required before durable commit and acknowledgement.
+			}
+			if wire.reads != reads {
+				t.Fatal("batch consumed input beyond refusal or committed before EOF")
+			}
+		}
+		if len(authority.slots) != 0 || authority.cache.used != 0 || len(authority.cache.entries) != 0 {
+			t.Fatal("management admission retained a permit or preparation reservation")
+		}
+		actual, failure := store.Load(t.Context(), scope)
+		if failure != nil {
+			t.Fatal(failure)
+		}
+		expected := storage.Snapshot{Position: storage.Position{Scope: scope}}
+		if err != nil {
+			if status.Code(err) != codes.InvalidArgument || result != nil || !reflect.DeepEqual(actual, expected) {
+				t.Fatal("rejected page or scope committed a prefix or changed its refusal category", err)
+			}
+			return false
+		}
+		expected.Version = 1
+		expected.Records = []storage.Record{{Key: "a", Value: []byte("x")}}
+		if !single {
+			expected.Records = append(expected.Records, storage.Record{Key: "b", Value: []byte("y")})
+		}
+		if !reflect.DeepEqual(actual, expected) || !proto.Equal(result, &polaris.Position{Scope: wireScope, Version: 1}) {
+			t.Fatal("accepted management request lost complete content or its durable receipt")
+		}
+		return true
+	}
+	for _, test := range []struct {
+		condition int   // Source operand changed while the nonnil page and nonempty changes remain fixed.
+		after     batch // Rejected second page, including the already-complete predecessor case.
+	}{{0, batch{true, true, 1}}, {2, batch{false, false, 1}}, {3, batch{false, true, 0}}} {
+		before := batch{false, true, 1}
+		record("batch", test.condition, before, test.after, apply(before, false), apply(test.after, false), true)
+	}
+	record("commit-scope", 1, true, false, apply(batch{false, true, 1}, true), apply(batch{false, false, 1}, true), true)
+}
+
+// framingPredicates checks real negotiation and paging with complete literal output expectations.
+func framingPredicates(t *testing.T, system *system, record func(string, int, any, any, bool, bool, bool)) {
+	t.Helper()
+	type hello struct {
+		Major   uint32 `json:"major"`   // Explicit protocol major in a nonnil, actually signed Hello.
+		Maximum uint32 `json:"maximum"` // Declared receiver frame capacity.
+	}
+	negotiate := func(input hello) bool {
+		t.Helper()
+		blocked := errors.New("controlled first Hello send")
+		wire := &capture{ctx: t.Context(), err: blocked}
+		state := &transfer{owner: system.streams, wire: wire, ctx: wire.ctx, input: make(chan incoming, 1), wake: make(chan struct{}, 1)}
+		first := proto.Clone(system.star).(*astra.Hello)
+		first.ProtocolMajor, first.MaxFrameBytes = input.Major, input.Maximum
+		state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Hello{Hello: first}}}
+		err := state.run()
+		if len(state.input) != 0 || state.deadline.Load() != nil || len(wire.packets) != 0 || len(system.streams.active) != 0 {
+			t.Fatal("negotiation retained queued input, deadline, registration or emitted rejected traffic")
+		}
+		if errors.Is(err, blocked) {
+			if state.remote == nil || state.maximum != int(input.Maximum) {
+				t.Fatal("negotiated Hello did not preserve authenticated identity or capacity")
+			}
+			return true
+		}
+		if status.Code(err) != codes.InvalidArgument || state.remote != nil || state.maximum != 0 {
+			t.Fatal("invalid Hello crossed authentication or changed its rejection category", err)
+		}
+		return false
+	}
+	for index, after := range []hello{{2, 1024}, {1, 1023}} {
+		before := hello{1, 1024}
+		record("hello", index+1, before, after, negotiate(before), negotiate(after), true)
+	}
+	remote, err := system.node.Directory().Verify(system.star.Admission, system.star.AdmissionSignature, orbit.Role_ROLE_STAR)
+	if err != nil {
+		t.Fatal(err)
+	}
+	scope := storage.Scope{Sector: "s", Spectrum: "p"}
+	wireScope := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}
+	type paging struct {
+		Prefix  bool `json:"prefix"`  // A prior small entry occupies the current page.
+		Bytes   int  `json:"bytes"`   // Legal large value exceeds the soft target, not receiver capacity.
+		Maximum int  `json:"maximum"` // Receiver limit remains eight MiB for both calls.
+	}
+	page := func(input paging, updates bool) bool {
+		t.Helper()
+		large := &comet.AlmanacChange{Key: "b", Action: &comet.AlmanacChange_Value{Value: []byte(strings.Repeat("y", input.Bytes))}}
+		small := &comet.AlmanacChange{Key: "a", Action: &comet.AlmanacChange_Value{Value: []byte("x")}}
+		entries := []*comet.AlmanacChange{large}
+		if input.Prefix {
+			entries = append([]*comet.AlmanacChange{small}, entries...)
+		}
+		if proto.Size(large)+6 <= 256<<10 || proto.Size(large)+128 >= input.Maximum {
+			t.Fatal("large literal does not cross only the soft page boundary")
+		}
+		wire := &capture{ctx: t.Context()}
+		state := &transfer{owner: system.streams, remote: remote, wire: wire, ctx: wire.ctx, maximum: input.Maximum,
+			wake: make(chan struct{}, 1), sent: make(map[storage.Scope]storage.Version), installed: make(map[storage.Scope]storage.Version)}
+		var expected []*polaris.Packet
+		if updates {
+			var changes []storage.Change
+			for index, entry := range entries {
+				version := uint64(index + 1)
+				changes = append(changes, storage.Change{Version: storage.Version(version), Key: entry.Key, Value: entry.GetValue()})
+				expected = append(expected, &polaris.Packet{Body: &polaris.Packet_Updates{Updates: &polaris.Updates{Scope: wireScope, Patches: []*polaris.Patch{{Version: version, Change: entry}}}}})
+			}
+			for index, packet := range expected {
+				expected[index] = proto.Clone(packet).(*polaris.Packet)
+			}
+			if err := state.update(scope, changes); err != nil {
+				t.Fatal("legal large update was rejected", err)
+			}
+			if len(state.credits) != len(expected) || len(state.sent) != 1 || state.sent[scope] != storage.Version(len(entries)) || len(state.installed) != 0 {
+				t.Fatal("paged update lost its final send boundary or invented installation")
+			}
+			var cost int64
+			for index, packet := range expected {
+				bytes := int64(proto.Size(packet))
+				cost += bytes
+				if state.credits[index] != (credit{scope: scope, version: storage.Version(index + 1), bytes: bytes}) {
+					t.Fatal("paged update has incorrect scope, version or byte credit")
+				}
+			}
+			if state.bytes != cost {
+				t.Fatal("paged update lost aggregate byte accounting")
+			}
+		} else {
+			snapshot := storage.Snapshot{Position: storage.Position{Scope: scope, Version: 9}}
+			for index, entry := range entries {
+				snapshot.Records = append(snapshot.Records, storage.Record{Key: entry.Key, Value: entry.GetValue()})
+				expected = append(expected, &polaris.Packet{Body: &polaris.Packet_Snapshot{Snapshot: &polaris.Snapshot{
+					Scope: wireScope, Version: proto.Uint64(9), Complete: index == len(entries)-1, Entries: []*comet.AlmanacChange{entry},
+				}}})
+			}
+			frozen := storage.Snapshot{Position: snapshot.Position}
+			for _, entry := range snapshot.Records {
+				frozen.Records = append(frozen.Records, storage.Record{Key: entry.Key, Value: append([]byte(nil), entry.Value...)})
+			}
+			for index, packet := range expected {
+				expected[index] = proto.Clone(packet).(*polaris.Packet)
+			}
+			if err := pages(&snapshot, input.Maximum, func(page *polaris.Snapshot) error {
+				return wire.Send(&polaris.Packet{Body: &polaris.Packet_Snapshot{Snapshot: page}})
+			}); err != nil || !reflect.DeepEqual(snapshot, frozen) {
+				t.Fatal("legal large snapshot was rejected or its frozen input changed", err)
+			}
+		}
+		if len(wire.packets) != len(expected) || state.deadline.Load() != nil {
+			t.Fatal("large-record pagination lost its exact frame count or retained a deadline")
+		}
+		for index, packet := range expected {
+			if !proto.Equal(wire.packets[index], packet) {
+				t.Fatal("large-record pagination changed content, ordering or completion")
+			}
+		}
+		return len(wire.packets) == 2
+	}
+	before, after := paging{false, 256 << 10, 8 << 20}, paging{true, 256 << 10, 8 << 20}
+	record("snapshot-prefix", 0, before, after, page(before, false), page(after, false), false)
+	record("updates-prefix", 0, before, after, page(before, true), page(after, true), false)
+}
+
+// controlPredicates checks literal ACK, assessment and reconciliation inputs against complete retained state.
+func controlPredicates(t *testing.T, system *system, record func(string, int, any, any, bool, bool, bool)) {
+	t.Helper()
+	scope := storage.Scope{Sector: "s", Spectrum: "p"}
+	wireScope := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}
+	remote, err := system.node.Directory().Verify(system.star.Admission, system.star.AdmissionSignature, orbit.Role_ROLE_STAR)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Keep actual admission and immutable literal scope inputs while replacing only the transport sink.
+	fresh := func() (*transfer, *capture) {
+		wire := &capture{ctx: t.Context()}
+		return &transfer{owner: system.streams, remote: remote, wire: wire, ctx: wire.ctx, maximum: 1024, wake: make(chan struct{}, 1),
+			sent: make(map[storage.Scope]storage.Version), installed: make(map[storage.Scope]storage.Version), ready: true}, wire
+	}
+	type progress struct {
+		Present bool   `json:"present"` // Presence in sent, independently of its zero default lookup value.
+		Sent    uint64 `json:"sent"`    // Last completely sent version of the literal s/p scope.
+		Version uint64 `json:"version"` // Peer-reported complete installed version.
+	}
+	ack := func(input progress) bool {
+		t.Helper()
+		state, wire := fresh()
+		if input.Present {
+			state.sent[scope] = storage.Version(input.Sent)
+		}
+		original := maps.Clone(state.sent)
+		err := state.control(&polaris.Packet{Body: &polaris.Packet_Acknowledged{Acknowledged: &polaris.Position{Scope: wireScope, Version: input.Version}}})
+		if !maps.Equal(original, state.sent) || len(wire.packets) != 0 || state.bytes != 0 || len(state.credits) != 0 || state.deadline.Load() != nil {
+			t.Fatal("ACK changed send ownership or emitted unsolicited data")
+		}
+		if err != nil {
+			if status.Code(err) != codes.InvalidArgument || len(state.installed) != 0 {
+				t.Fatal("rejected ACK published installation progress or changed its category", err)
+			}
+			return false
+		}
+		if version, present := state.installed[scope]; !present || version != storage.Version(input.Version) || len(state.installed) != 1 {
+			t.Fatal("accepted ACK failed to retain its explicit zero or actual version")
+		}
+		return true
+	}
+	for index, values := range [][2]progress{{{false, 0, 0}, {true, 0, 0}}, {{true, 0, 0}, {true, 0, 1}}} {
+		record("ack", index+1, values[0], values[1], ack(values[0]), ack(values[1]), index != 0)
+	}
+	type threshold struct {
+		Present bool   `json:"present"` // Explicit inclusion in the complete received inventory.
+		Version uint64 `json:"version"` // Received version; absence has the independently defined zero lookup value.
+		Minimum uint64 `json:"minimum"` // Previously acknowledged frozen lower bound.
+	}
+	floor := func(input threshold) bool {
+		t.Helper()
+		state, wire := fresh()
+		state.probe = make(map[storage.Scope]storage.Version)
+		state.floor = map[storage.Scope]storage.Version{scope: storage.Version(input.Minimum)}
+		state.sent[scope], state.installed[scope] = storage.Version(input.Minimum), storage.Version(input.Minimum)
+		page := &polaris.Inventory{Complete: true}
+		actual := make(map[storage.Scope]storage.Version)
+		if input.Present {
+			page.Positions = []*polaris.Position{{Scope: wireScope, Version: input.Version}}
+			actual[scope] = storage.Version(input.Version)
+		}
+		err := state.control(&polaris.Packet{Body: &polaris.Packet_Inventory{Inventory: page}})
+		if len(wire.packets) != 0 || state.deadline.Load() != nil || state.bytes != 0 || len(state.credits) != 0 || state.sent[scope] != storage.Version(input.Minimum) || state.installed[scope] != storage.Version(input.Minimum) || state.floor[scope] != storage.Version(input.Minimum) {
+			t.Fatal("assessment lower bound altered acknowledged state or sent traffic")
+		}
+		if err != nil {
+			if status.Code(err) != codes.DataLoss || state.actual != nil || state.probe == nil || !maps.Equal(state.probe, actual) {
+				t.Fatal("lost complete installation was accepted or changed its failure category", err)
+			}
+			return false
+		}
+		if state.probe != nil || state.actual == nil || !maps.Equal(state.actual, actual) {
+			t.Fatal("complete lower-bound inventory was not handed off intact")
+		}
+		return true
+	}
+	for condition, values := range [][2]threshold{{{false, 0, 0}, {true, 0, 0}}, {{true, 0, 1}, {true, 1, 1}}} {
+		record("floor", condition, values[0], values[1], floor(values[0]), floor(values[1]), false)
+	}
+	// A reported complete zero is still invalid when the sender has never sent that scope.
+	sent := func(input progress) bool {
+		t.Helper()
+		state, wire := fresh()
+		state.probe = make(map[storage.Scope]storage.Version)
+		if input.Present {
+			state.sent[scope] = storage.Version(input.Sent)
+		}
+		original := maps.Clone(state.sent)
+		page := &polaris.Inventory{Complete: true, Positions: []*polaris.Position{{Scope: wireScope, Version: input.Version}}}
+		err := state.control(&polaris.Packet{Body: &polaris.Packet_Inventory{Inventory: page}})
+		actual := map[storage.Scope]storage.Version{scope: storage.Version(input.Version)}
+		if !maps.Equal(original, state.sent) || len(wire.packets) != 0 || state.deadline.Load() != nil || state.bytes != 0 || len(state.credits) != 0 {
+			t.Fatal("assessment upper bound altered send ownership or emitted data")
+		}
+		if err != nil {
+			if status.Code(err) != codes.Aborted || state.actual != nil || state.probe == nil || !maps.Equal(state.probe, actual) || len(state.installed) != 0 {
+				t.Fatal("unsent installation became visible or changed its failure category", err)
+			}
+			return false
+		}
+		if state.probe != nil || state.actual == nil || !maps.Equal(state.actual, actual) || !maps.Equal(state.installed, actual) {
+			t.Fatal("accepted assessment omitted its explicit installation or handoff")
+		}
+		return true
+	}
+	for condition, values := range [][2]progress{{{false, 0, 0}, {true, 0, 0}}, {{true, 0, 0}, {true, 0, 1}}} {
+		record("sent", condition, values[0], values[1], sent(values[0]), sent(values[1]), condition != 0)
+	}
+	type assessment struct {
+		Probe  bool `json:"probe"`  // An earlier inventory is still being collected.
+		Actual bool `json:"actual"` // A completed earlier inventory still awaits reconciliation.
+	}
+	assess := func(input assessment) bool {
+		t.Helper()
+		state, wire := fresh()
+		state.sent[scope], state.installed[scope] = 0, 0
+		if input.Probe || input.Actual {
+			state.boundary = map[storage.Scope]storage.Version{scope: 0}
+			state.floor = map[storage.Scope]storage.Version{scope: 0}
+		}
+		if input.Probe {
+			state.probe = make(map[storage.Scope]storage.Version)
+		}
+		if input.Actual {
+			state.actual = make(map[storage.Scope]storage.Version)
+		}
+		err := state.assess()
+		literal := map[storage.Scope]storage.Version{scope: 0}
+		if !maps.Equal(state.sent, literal) || !maps.Equal(state.installed, literal) || !maps.Equal(state.boundary, literal) || !maps.Equal(state.floor, literal) || state.deadline.Load() != nil {
+			t.Fatal("assessment replaced frozen progress or retained a send deadline")
+		}
+		if err != nil {
+			if status.Code(err) != codes.DeadlineExceeded || len(wire.packets) != 0 || (state.probe != nil) != input.Probe || (state.actual != nil) != input.Actual {
+				t.Fatal("overlapping assessment emitted data or changed its owned work", err)
+			}
+			return false
+		}
+		if len(wire.packets) != 1 || wire.packets[0].GetProbe() == nil || state.probe == nil || len(state.probe) != 0 || state.actual != nil {
+			t.Fatal("fresh assessment did not emit one Probe with an empty owned inventory")
+		}
+		state.sent[scope], state.installed[scope] = 1, 1
+		if state.boundary[scope] != 0 || state.floor[scope] != 0 {
+			t.Fatal("assessment boundaries alias mutable send or installation maps")
+		}
+		return true
+	}
+	for condition, values := range [][2]assessment{{{false, false}, {true, false}}, {{false, false}, {false, true}}} {
+		record("assessment", condition, values[0], values[1], assess(values[0]), assess(values[1]), true)
+	}
+	// One durable literal commit anchors authority/version and exact recovery output expectations.
+	if _, err := system.store.Commit(t.Context(), scope, storage.Change{Version: 1, Key: "key", Value: []byte("v")}); err != nil {
+		t.Fatal(err)
+	}
+	frozen, err := system.store.Load(t.Context(), scope)
+	if err != nil || frozen.Version != 1 || len(frozen.Records) != 1 || frozen.Records[0].Key != "key" || string(frozen.Records[0].Value) != "v" {
+		t.Fatal("literal recovery authority was not established", err)
+	}
+	update := &polaris.Packet{Body: &polaris.Packet_Updates{Updates: &polaris.Updates{Scope: wireScope, Patches: []*polaris.Patch{{Version: 1, Change: &comet.AlmanacChange{Key: "key", Action: &comet.AlmanacChange_Value{Value: []byte("v")}}}}}}}
+	snapshot := &polaris.Packet{Body: &polaris.Packet_Snapshot{Snapshot: &polaris.Snapshot{Scope: wireScope, Version: proto.Uint64(1), Complete: true, Entries: []*comet.AlmanacChange{{Key: "key", Action: &comet.AlmanacChange_Value{Value: []byte("v")}}}}}}
+	unchanged := func() {
+		t.Helper()
+		current, err := system.store.Load(t.Context(), scope)
+		if err != nil || !reflect.DeepEqual(current, frozen) || system.streams.authority.cache.used != 0 || len(system.streams.authority.cache.entries) != 0 {
+			t.Fatal("reconciliation changed durable authority or retained snapshot preparation", err)
+		}
+	}
+	output := func(state *transfer, wire *capture, expected *polaris.Packet) {
+		t.Helper()
+		if state.deadline.Load() != nil {
+			t.Fatal("recovery retained an outbound deadline")
+		}
+		if expected == nil {
+			if len(wire.packets) != 0 || len(state.credits) != 0 || state.bytes != 0 {
+				t.Fatal("no-op or rejected recovery emitted data or retained send credit")
+			}
+			return
+		}
+		cost := int64(proto.Size(expected))
+		if expected.GetSnapshot() != nil {
+			cost = 102 // 64 bytes plus two scope bytes and a 32-byte record header plus key/value.
+		}
+		if len(wire.packets) != 1 || !proto.Equal(wire.packets[0], expected) || len(state.credits) != 1 || state.credits[0] != (credit{scope: scope, version: 1, bytes: cost}) || state.bytes != cost {
+			t.Fatal("recovery did not preserve its literal complete output and exact outstanding credit")
+		}
+	}
+	type authority struct {
+		Known   bool   `json:"known"`   // s/p exists at version one; s/other is absent and reads as version zero.
+		Sent    uint64 `json:"sent"`    // Prior send record; two explicitly exercises inconsistent-state defense.
+		Version uint64 `json:"version"` // Peer installation under examination.
+	}
+	confirmed := func(input authority) bool {
+		t.Helper()
+		state, wire := fresh()
+		key := scope
+		if !input.Known {
+			key.Spectrum = "other"
+		}
+		state.sent[key] = storage.Version(input.Sent)
+		state.boundary, state.floor = make(map[storage.Scope]storage.Version), make(map[storage.Scope]storage.Version)
+		actual := map[storage.Scope]storage.Version{key: storage.Version(input.Version)}
+		original := maps.Clone(actual)
+		err := state.reconcile(actual)
+		unchanged()
+		if !maps.Equal(actual, original) {
+			t.Fatal("authority comparison changed the caller's complete inventory")
+		}
+		if err != nil {
+			output(state, wire, nil)
+			if status.Code(err) != codes.Aborted || len(state.installed) != 0 || len(state.sent) != 1 || state.sent[key] != storage.Version(input.Sent) || state.boundary == nil || state.floor == nil {
+				t.Fatal("unconfirmed installation changed progress or its refusal category", err)
+			}
+			return false
+		}
+		if state.boundary != nil || state.floor != nil || !maps.Equal(state.installed, original) || len(state.sent) != 1 || state.sent[scope] != max(storage.Version(input.Sent), 1) {
+			t.Fatal("confirmed authority reconciliation omitted installed progress or retained frozen boundaries")
+		}
+		var expected *polaris.Packet
+		if input.Sent == 0 {
+			expected = update
+		}
+		output(state, wire, expected)
+		return true
+	}
+	for condition, values := range [][2]authority{{{false, 1, 0}, {true, 1, 0}}, {{true, 2, 1}, {true, 2, 2}}, {{true, 0, 0}, {true, 0, 1}}} {
+		record("authority", condition, values[0], values[1], confirmed(values[0]), confirmed(values[1]), condition != 0)
+	}
+	type repair struct {
+		Expected bool   `json:"expected"` // Scope belonged to the frozen send boundary.
+		Present  bool   `json:"present"`  // Explicit scope entry in the completed peer inventory.
+		Version  uint64 `json:"version"`  // Peer installation or zero for an absent map entry.
+		Minimum  uint64 `json:"minimum"`  // Frozen boundary, independent of later sent version one.
+	}
+	recover := func(input repair) bool {
+		t.Helper()
+		state, wire := fresh()
+		state.sent[scope] = 1
+		state.boundary, state.floor = make(map[storage.Scope]storage.Version), make(map[storage.Scope]storage.Version)
+		if input.Expected {
+			state.boundary[scope] = storage.Version(input.Minimum)
+		}
+		actual := make(map[storage.Scope]storage.Version)
+		if input.Present {
+			actual[scope] = storage.Version(input.Version)
+		}
+		original := maps.Clone(actual)
+		if err := state.reconcile(actual); err != nil {
+			t.Fatal("valid recovery input was rejected", err)
+		}
+		unchanged()
+		if state.boundary != nil || state.floor != nil || !maps.Equal(actual, original) || !maps.Equal(state.installed, original) || len(state.sent) != 1 || state.sent[scope] != 1 {
+			t.Fatal("recovery changed installation facts or retained completed assessment state")
+		}
+		if len(wire.packets) == 0 {
+			output(state, wire, nil)
+			return false
+		}
+		expected := snapshot
+		if input.Present {
+			expected = update
+		}
+		output(state, wire, expected)
+		return true
+	}
+	for condition, values := range [][2]repair{
+		{{false, false, 0, 0}, {true, false, 0, 0}},
+		{{true, false, 0, 0}, {true, true, 0, 0}},
+		{{true, true, 0, 1}, {true, true, 1, 1}},
+	} {
+		record("repair", condition, values[0], values[1], recover(values[0]), recover(values[1]), condition != 0)
+	}
+}

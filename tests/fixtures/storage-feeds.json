@@ -1,0 +1,213 @@
+{
+  "decisions": {
+    "polaris/internal/storage/feed.go:1615": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 34,
+            "offset": 1615
+          },
+          "end": {
+            "column": 14,
+            "line": 34,
+            "offset": 1624
+          },
+          "text": "limit < 1"
+        },
+        {
+          "begin": {
+            "column": 18,
+            "line": 34,
+            "offset": 1628
+          },
+          "end": {
+            "column": 32,
+            "line": 34,
+            "offset": 1642
+          },
+          "text": "limit > 16<<20"
+        },
+        {
+          "begin": {
+            "column": 36,
+            "line": 34,
+            "offset": 1646
+          },
+          "end": {
+            "column": 45,
+            "line": 34,
+            "offset": 1655
+          },
+          "text": "items < 1"
+        },
+        {
+          "begin": {
+            "column": 49,
+            "line": 34,
+            "offset": 1659
+          },
+          "end": {
+            "column": 62,
+            "line": 34,
+            "offset": 1672
+          },
+          "text": "items > 65536"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 34,
+        "offset": 1615
+      },
+      "end": {
+        "column": 62,
+        "line": 34,
+        "offset": 1672
+      },
+      "id": "polaris/internal/storage/feed.go:1615",
+      "kind": "if",
+      "root": 6,
+      "text": "limit < 1 || limit > 16<<20 || items < 1 || items > 65536",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/feed.go:4062": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 103,
+            "offset": 4062
+          },
+          "end": {
+            "column": 34,
+            "line": 103,
+            "offset": 4091
+          },
+          "text": "len(feed.queue) == feed.items"
+        },
+        {
+          "begin": {
+            "column": 38,
+            "line": 103,
+            "offset": 4095
+          },
+          "end": {
+            "column": 66,
+            "line": 103,
+            "offset": 4123
+          },
+          "text": "cost > feed.limit-feed.bytes"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 103,
+        "offset": 4062
+      },
+      "end": {
+        "column": 66,
+        "line": 103,
+        "offset": 4123
+      },
+      "id": "polaris/internal/storage/feed.go:4062",
+      "kind": "if",
+      "root": 2,
+      "text": "len(feed.queue) == feed.items || cost > feed.limit-feed.bytes",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "label": "Synthetic parser vectors copied from known feed shapes; not native execution evidence.",
+  "vectors": {
+    "polaris/internal/storage/feed.go:1615": [
+      [
+        "1111",
+        false
+      ],
+      [
+        "1112",
+        true
+      ],
+      [
+        "1120",
+        true
+      ],
+      [
+        "1200",
+        true
+      ],
+      [
+        "2000",
+        true
+      ]
+    ],
+    "polaris/internal/storage/feed.go:4062": [
+      [
+        "11",
+        false
+      ],
+      [
+        "12",
+        true
+      ],
+      [
+        "20",
+        true
+      ]
+    ]
+  }
+}

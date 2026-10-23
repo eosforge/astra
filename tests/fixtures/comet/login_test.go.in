@@ -1,0 +1,255 @@
+// Verify login refusal and confirmation fences using local dependencies without listeners or services.
+package comet
+
+import (
+	"context"
+	"errors"
+	"net"
+	"strings"
+	"sync/atomic"
+	"testing"
+	"time"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/connectivity"
+	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/metadata"
+
+	"github.com/eosforge/astra/comet/go/internal/protocol"
+)
+
+// boundaryConnection owns real, idle gRPC connections and refuses even an attempted dial.
+func boundaryConnection(t *testing.T, dials *atomic.Int32) *grpc.ClientConn {
+	t.Helper()
+	connection, cause := grpc.NewClient("passthrough:///login-boundary.invalid:1",
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithContextDialer(func(context.Context, string) (net.Conn, error) {
+			dials.Add(1)
+			return nil, errors.New("isolated login must not attempt a network connection")
+		}))
+	if cause != nil {
+		t.Fatal(cause)
+	}
+	t.Cleanup(func() {
+		if connection.GetState() != connectivity.Shutdown {
+			if cause := connection.Close(); cause != nil {
+				t.Error(cause)
+			}
+		}
+		if connection.GetState() != connectivity.Shutdown || dials.Load() != 0 {
+			t.Error("connection was not drained or attempted external I/O")
+		}
+	})
+	return connection
+}
+
+// boundaryInstall serializes the package seam to one case and restores every original callback.
+func boundaryInstall(t *testing.T) {
+	t.Helper()
+	original := loginBoundary
+	t.Cleanup(func() { loginBoundary = original })
+}
+
+// TestLoginBoundarySecondConstructorFailure requires success followed by failure and actual first-connection closure.
+func TestLoginBoundarySecondConstructorFailure(t *testing.T) {
+	boundaryInstall(t)
+	var dials atomic.Int32
+	first := boundaryConnection(t, &dials)
+	ctx, cancel := context.WithCancel(context.Background())
+	t.Cleanup(cancel)
+	client := &Client{ctx: ctx, options: Options{Timeout: time.Hour}}
+	constructors, readiness, sessions := 0, 0, 0
+	loginBoundary.transport = func(actual *Client, endpoint string) (*grpc.ClientConn, error) {
+		constructors++
+		if actual != client || endpoint != "constructor-target" || constructors > 2 {
+			t.Fatal("constructor selection changed")
+		}
+		if constructors == 1 {
+			return first, nil
+		}
+		return nil, errors.New("injected second-constructor refusal")
+	}
+	loginBoundary.ready = func(context.Context, *grpc.ClientConn) bool { readiness++; return false }
+	loginBoundary.session = func(*grpc.ClientConn, context.Context, *protocol.SessionRequest) (grpc.ServerStreamingClient[protocol.SessionReply], error) {
+		sessions++
+		return nil, errors.New("unexpected Session after constructor refusal")
+	}
+	selected, session, failure := client.login("constructor-target", nil)
+	if failure == nil || failure.Code != CodeInput || failure.Effect != Unapplied || selected != nil || session != nil {
+		t.Fatalf("second constructor failure lost refusal semantics: selected=%v session=%v failure=%v", selected, session, failure)
+	}
+	if constructors != 2 || readiness != 0 || sessions != 0 || first.GetState() != connectivity.Shutdown || dials.Load() != 0 || client.binding != nil {
+		t.Fatal("second constructor failure leaked the first connection or admitted later work")
+	}
+}
+
+// boundaryReply supplies exactly one valid confirmation and records every unexpected ClientStream operation.
+type boundaryReply struct {
+	ctx        context.Context        // Exact context supplied by login.
+	reply      *protocol.SessionReply // Valid immutable confirmation prepared before cancellation.
+	before     func()                 // Deterministic boundary after reply preparation, before return.
+	received   int                    // Exactly one Recv belongs to this login call.
+	unexpected int                    // Other streaming operations have no role in confirmation.
+}
+
+// Recv returns the prepared confirmation after the named boundary action.
+func (session *boundaryReply) Recv() (*protocol.SessionReply, error) {
+	session.received++
+	if session.before != nil {
+		session.before()
+	}
+	return session.reply, nil
+}
+
+// Context preserves the exact captured lifetime.
+func (session *boundaryReply) Context() context.Context { return session.ctx }
+
+// Header flags an unexpected metadata read without fabricating response headers.
+func (session *boundaryReply) Header() (metadata.MD, error) {
+	session.unexpected++
+	return nil, nil
+}
+
+// Trailer flags an unexpected metadata read without fabricating failure details.
+func (session *boundaryReply) Trailer() metadata.MD { session.unexpected++; return nil }
+
+// CloseSend flags an unexpected attempt to half-close this scripted receive-only confirmation.
+func (session *boundaryReply) CloseSend() error {
+	session.unexpected++
+	return errors.New("unexpected CloseSend")
+}
+
+// SendMsg flags an unexpected attempt to submit another request.
+func (session *boundaryReply) SendMsg(any) error {
+	session.unexpected++
+	return errors.New("unexpected SendMsg")
+}
+
+// RecvMsg flags an unexpected attempt to bypass the typed confirmation receiver.
+func (session *boundaryReply) RecvMsg(any) error {
+	session.unexpected++
+	return errors.New("unexpected RecvMsg")
+}
+
+// boundaryExpire waits for the actual production deadline callback, with a separate test hang bound.
+func boundaryExpire(t *testing.T, ctx context.Context) {
+	t.Helper()
+	select {
+	case <-ctx.Done():
+	case <-time.After(3 * time.Second):
+		t.Fatal("production initial deadline did not cancel its captured context")
+	}
+}
+
+// boundaryConfirm exercises unchanged login control flow with a positive case and two independent cancellation causes.
+func boundaryConfirm(t *testing.T, anonymous bool, mode string) {
+	t.Helper()
+	boundaryInstall(t)
+	ctx, cancel := context.WithCancel(context.Background())
+	t.Cleanup(cancel)
+	timeout := time.Hour
+	if mode == "deadline-expired" {
+		timeout = time.Second
+	}
+	client := &Client{ctx: ctx, options: Options{Anonymous: anonymous, Key: "fixture-key", Timeout: timeout}}
+	var dials atomic.Int32
+	connections := []*grpc.ClientConn{boundaryConnection(t, &dials), boundaryConnection(t, &dials)}
+	constructors, readiness, sessions := 0, 0, 0
+	var captured context.Context
+	var stream *boundaryReply
+	loginBoundary.transport = func(actual *Client, endpoint string) (*grpc.ClientConn, error) {
+		if actual != client || endpoint != "confirmation-target" || constructors >= len(connections) {
+			t.Fatal("unexpected constructor selection")
+		}
+		connection := connections[constructors]
+		constructors++
+		return connection, nil
+	}
+	action := func() {
+		if captured == nil || captured.Err() != nil {
+			t.Fatal("cancellation preceded the intended confirmation boundary")
+		}
+		switch mode {
+		case "parent-cancel":
+			cancel()
+		case "deadline-expired":
+			boundaryExpire(t, captured)
+		case "ready":
+		default:
+			t.Fatal("unknown boundary case")
+		}
+	}
+	loginBoundary.ready = func(actual context.Context, connection *grpc.ClientConn) bool {
+		if readiness >= 2 || connection != connections[readiness] || actual.Err() != nil || (captured != nil && captured != actual) {
+			t.Fatal("readiness identity or cancellation order changed")
+		}
+		captured = actual
+		readiness++
+		if anonymous && readiness == 2 {
+			action()
+		}
+		return true
+	}
+	loginBoundary.session = func(
+		connection *grpc.ClientConn, actual context.Context, request *protocol.SessionRequest,
+	) (grpc.ServerStreamingClient[protocol.SessionReply], error) {
+		sessions++
+		if anonymous || readiness != 2 || sessions != 1 || connection != connections[0] || actual != captured ||
+			request.Key != "fixture-key" || string(request.Secret) != "fixture-secret" {
+			t.Fatal("Session was admitted before readiness or received different credentials")
+		}
+		stream = &boundaryReply{
+			ctx: actual, reply: &protocol.SessionReply{Instance: []byte("boundary-star"), Session: []byte(strings.Repeat("x", 32))},
+			before: action,
+		}
+		return stream, nil
+	}
+	selected, session, failure := client.login("confirmation-target", []byte("fixture-secret"))
+	if selected == nil {
+		t.Fatal("successful constructors lost their owned binding")
+	}
+	t.Cleanup(func() {
+		selected.cancel()
+		selected.streams.Close()
+		selected.unary.Close()
+		if selected.ctx.Err() == nil || selected.streams.GetState() != connectivity.Shutdown || selected.unary.GetState() != connectivity.Shutdown {
+			t.Error("unit owner failed to drain the returned binding")
+		}
+	})
+	if constructors != 2 || readiness != 2 || selected.ctx != captured || selected.streams != connections[0] ||
+		selected.unary != connections[1] || client.binding != nil || dials.Load() != 0 {
+		t.Fatal("login changed dependency identities, installed a rejected binding or attempted I/O")
+	}
+	if mode == "ready" {
+		if failure != nil || selected.ctx.Err() != nil || (anonymous && session != nil) || (!anonymous && session != stream) {
+			t.Fatal("positive confirmation was rejected or canceled")
+		}
+	} else {
+		if failure == nil || failure.Code != CodeTimeout || failure.Effect != Unapplied || !errors.Is(failure, context.DeadlineExceeded) ||
+			selected.ctx.Err() == nil || session != nil {
+			t.Fatal("confirmation cancellation did not return the original unapplied timeout")
+		}
+	}
+	if anonymous {
+		if sessions != 0 || selected.session != "" {
+			t.Fatal("anonymous confirmation invoked or retained a Session")
+		}
+	} else if sessions != 1 || stream.received != 1 || stream.unexpected != 0 || selected.instance() != "boundary-star" ||
+		selected.session != strings.Repeat("x", 32) {
+		t.Fatal("authentication did not validate the one retained confirmation before its final fence")
+	}
+}
+
+// TestLoginBoundaryAnonymousConfirmation distinguishes a healthy confirmation, parent cancellation and actual deadline expiry.
+func TestLoginBoundaryAnonymousConfirmation(t *testing.T) {
+	for _, mode := range []string{"ready", "parent-cancel", "deadline-expired"} {
+		t.Run(mode, func(t *testing.T) { boundaryConfirm(t, true, mode) })
+	}
+}
+
+// TestLoginBoundaryAuthenticatedConfirmation validates a real-shaped reply before the same two final-fence refusals.
+func TestLoginBoundaryAuthenticatedConfirmation(t *testing.T) {
+	for _, mode := range []string{"ready", "parent-cancel", "deadline-expired"} {
+		t.Run(mode, func(t *testing.T) { boundaryConfirm(t, false, mode) })
+	}
+}

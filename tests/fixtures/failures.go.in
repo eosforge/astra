@@ -1,0 +1,157 @@
+//go:build linux && cgo
+
+// Exercise persistent SQL refusal, successful recovery, and renewed refusal at every durable write boundary.
+package storage
+
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"reflect"
+	"strings"
+	"sync/atomic"
+	"testing"
+
+	"gorm.io/gorm"
+)
+
+// TestFaultCycles keeps the database, connection pools and subscription alive across both recovery cycles.
+func TestFaultCycles(t *testing.T) {
+	verified := verification(t, "STORAGE-SQL-FAULT")
+	completed, injections := 0, 0
+	for _, point := range []struct {
+		name, event, table, condition string // Native SQLite statement boundary selected before any injection.
+		fresh                         bool   // Scope insertion needs a different new scope after recovery.
+	}{
+		{"scope-insert", "INSERT", "scopes", "1", true},
+		{"record-insert", "INSERT", "records", "NEW.key='a'", false},
+		{"record-update", "UPDATE", "records", "NEW.key='b'", false},
+		{"record-delete", "DELETE", "records", "OLD.key='c'", false},
+		{"history-insert", "INSERT", "history", "1", false},
+		{"history-delete", "DELETE", "history", "1", false},
+		{"scope-update", "UPDATE", "scopes", "1", false},
+		{"meta-update", "UPDATE", "meta", "1", false},
+	} {
+		verified(t.Run(point.name, func(t *testing.T) {
+			check := verification(t, "STORAGE-SQL-FAULT")
+			limits := Default()
+			limits.History = 1
+			store, _, binding := fixture(t, limits)
+			var hits atomic.Int32
+			callback := "assurance:cycles"
+			check(store.write.Callback().Raw().After("gorm:raw").Register(callback, func(tx *gorm.DB) {
+				if tx.Error != nil && strings.Contains(tx.Error.Error(), "assurance-cycle") {
+					hits.Add(1)
+				}
+			}) == nil, "install reached-error observer")
+			t.Cleanup(func() { store.write.Callback().Raw().Remove(callback) })
+			feed, err := store.Subscribe(4096, 8)
+			check(err == nil, "keep one original subscription for both cycles")
+			defer feed.Close()
+			scope := Scope{"cycles", "existing"}
+			for cycle := range 2 {
+				version := Version(cycle*2 + 2)
+				seed := Scope{"cycles", "existing"}
+				seedVersion := Version(cycle*2 + 1)
+				if point.fresh {
+					seedVersion = Version(cycle + 1)
+				}
+				got, err := store.CommitBatch(t.Context(), seed, seedVersion, []Change{{Key: "b", Value: []byte("old")}, {Key: "c", Value: []byte("keep")}})
+				check(err == nil && got == seedVersion, "seed the next owned recovery boundary")
+				events, err := feed.Take()
+				check(err == nil && len(events) == 1 && events[0].Version == seedVersion, "drain exactly one seed event")
+				if point.fresh {
+					scope.Spectrum = fmt.Sprintf("new-%d", cycle)
+					version = 1
+				}
+				before, err := store.Load(t.Context(), scope)
+				check(err == nil, "capture complete view before refusal")
+				cursor := Version(0)
+				if before.Version > 0 {
+					cursor = before.Version - 1
+				}
+				history, err := store.Since(t.Context(), scope, cursor)
+				check(err == nil, "capture retained replay before refusal")
+				durable := contents(t, store.writeSQL)
+				changes := []Change{{Key: "a", Value: []byte("new")}, {Key: "b", Value: []byte("new")}, {Key: "c", Erase: true}}
+				for attempt := range 2 {
+					changed, ready := store.Changed(), feed.Ready()
+					statement := fmt.Sprintf("CREATE TRIGGER assurance_cycle BEFORE %s ON %s WHEN %s BEGIN SELECT RAISE(ABORT,'assurance-cycle'); END", point.event, point.table, point.condition)
+					check(store.write.Exec(statement).Error == nil, "activate the same refusal for each attempt")
+					previous := hits.Load()
+					got, err := store.CommitBatch(t.Context(), scope, version, changes)
+					wanted := error(ErrUnavailable)
+					if point.name == "scope-update" {
+						wanted = ErrVersion
+					} else if point.name == "meta-update" {
+						wanted = ErrCorrupt
+					}
+					check(got == 0 && errors.Is(err, wanted), "statement refusal preserves its declared error class and publishes no version")
+					outcome := cycleClass(err)
+					check(hits.Load() == previous+1, "the selected native SQL failure executes exactly once")
+					check(store.write.Exec("DROP TRIGGER assurance_cycle").Error == nil, "remove only this owned refusal")
+					after, err := store.Load(t.Context(), scope)
+					check(err == nil && reflect.DeepEqual(before, after), "all keys and authority version survive refusal")
+					replay, err := store.Since(t.Context(), scope, cursor)
+					check(err == nil && reflect.DeepEqual(history, replay), "complete retained replay survives refusal")
+					actual := contents(t, store.writeSQL)
+					check(actual == durable, "all durable tables and global accounting survive refusal")
+					check(!store.poisoned.Load() && len(store.writer) == 0, "rollback releases admission without poisoning the store")
+					check(store.readSQL.Stats().InUse == 0 && store.writeSQL.Stats().InUse == 0, "both native pools release the failed operation")
+					for _, signal := range []<-chan struct{}{changed, ready} {
+						select {
+						case <-signal:
+							check(false, "a failed operation must not publish a notification")
+						default:
+							check(true, "failed operation leaves its original notification open")
+						}
+					}
+					events, err := feed.Take()
+					check(err == nil && len(events) == 0, "the original subscriber receives no partial commit")
+					check(store.validate(t.Context(), binding) == nil, "all durable invariants hold after each refusal")
+					frame, err := json.Marshal(map[string]any{"site": point.name, "cycle": cycle, "attempt": attempt, "phase": "failure", "reached": hits.Load() - previous, "outcome": outcome, "version": got, "before": durable, "after": actual, "writer": len(store.writer), "readers": store.readSQL.Stats().InUse, "writers": store.writeSQL.Stats().InUse, "events": len(events)})
+					check(err == nil, "encode observed refusal facts")
+					t.Log("STORAGE-SQL-FAULT " + string(frame))
+					completed++
+					injections++
+				}
+				previous := hits.Load()
+				got, err = store.CommitBatch(t.Context(), scope, version, changes)
+				check(err == nil && got == version && hits.Load() == previous, "the identical operation recovers without another injected failure")
+				outcome := cycleClass(err)
+				after, err := store.Load(t.Context(), scope)
+				check(err == nil && after.Version == version && len(after.Records) == 2, "recovery publishes one complete two-key snapshot")
+				seen := make(map[string]bool)
+				for _, record := range after.Records {
+					check((record.Key == "a" || record.Key == "b") && string(record.Value) == "new", "recovered snapshot matches the independent literal state")
+					seen[record.Key] = true
+				}
+				check(len(seen) == 2, "recovered keys contain exactly a and b")
+				events, err = feed.Take()
+				check(err == nil && len(events) == 1 && events[0].Version == version, "the same subscriber receives exactly one recovered commit")
+				check(store.validate(t.Context(), binding) == nil, "recovery restores all durable invariants")
+				frame, err := json.Marshal(map[string]any{"site": point.name, "cycle": cycle, "phase": "recovery", "outcome": outcome, "version": got, "events": len(events), "records": len(after.Records), "writer": len(store.writer), "readers": store.readSQL.Stats().InUse, "writers": store.writeSQL.Stats().InUse})
+				check(err == nil, "encode observed recovery facts")
+				t.Log("STORAGE-SQL-FAULT " + string(frame))
+				completed++
+			}
+		}), point.name)
+	}
+	verified(completed == 48 && injections == 32, "all eight sites complete two refusal/refusal/recovery cycles")
+}
+
+// cycleClass records the actual public error identity without sharing the production classifier.
+func cycleClass(err error) string {
+	switch {
+	case err == nil:
+		return "nil"
+	case errors.Is(err, ErrUnavailable):
+		return "unavailable"
+	case errors.Is(err, ErrVersion):
+		return "version"
+	case errors.Is(err, ErrCorrupt):
+		return "corrupt"
+	default:
+		return "other"
+	}
+}

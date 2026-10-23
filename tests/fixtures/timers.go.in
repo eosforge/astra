@@ -1,0 +1,82 @@
+//go:build linux && cgo
+
+// Exercise native host timers separately from deterministic business-time histories.
+package storage
+
+import (
+	"context"
+	"database/sql"
+	"errors"
+	"testing"
+	"time"
+)
+
+// TestTimers checks real elapsed cancellation without imposing a scheduler-latency performance threshold.
+func TestTimers(t *testing.T) {
+	verified := verification(t, "STORAGE-TIME")
+	for _, mode := range []string{"write", "read"} {
+		verified(t.Run(mode, func(t *testing.T) {
+			limits := Default()
+			limits.Timeout = 20 * time.Millisecond
+			store, _, _ := fixture(t, Default())
+			store.limits.Timeout = limits.Timeout
+			scope := Scope{"time", "native"}
+			ctx, cancel := context.WithCancel(t.Context())
+			defer cancel()
+			var held *sql.Conn
+			if mode == "write" {
+				store.writer <- struct{}{}
+			} else {
+				store.readSQL.SetMaxOpenConns(1)
+				var err error
+				held, err = store.readSQL.Conn(t.Context())
+				if err != nil {
+					t.Fatal("reserve native read connection", err)
+				}
+			}
+			type result struct {
+				version Version       // An expired operation has no durable receipt or partial snapshot.
+				err     error         // Native context cancellation must retain its stable cause.
+				elapsed time.Duration // Host monotonic duration, independent of civil timestamps.
+			}
+			done := make(chan result, 1)
+			joined := false
+			t.Cleanup(func() {
+				cancel()
+				if held != nil {
+					held.Close()
+				} else {
+					<-store.writer
+				}
+				if !joined {
+					<-done
+				}
+			})
+			start := time.Now()
+			go func() {
+				if mode == "write" {
+					version, err := store.CommitBatch(ctx, scope, 1, []Change{{Key: "a", Value: []byte("one")}, {Key: "b", Value: []byte("two")}})
+					done <- result{version, err, time.Since(start)}
+				} else {
+					view, err := store.Load(ctx, scope)
+					done <- result{view.Version, err, time.Since(start)}
+				}
+			}()
+			watch := time.NewTimer(5 * time.Second)
+			defer watch.Stop()
+			select {
+			case actual := <-done:
+				joined = true
+				if actual.version != 0 || !errors.Is(actual.err, context.DeadlineExceeded) || actual.elapsed < limits.Timeout {
+					t.Fatal("native timer expired early or returned the wrong result", actual)
+				}
+				if mode == "write" && len(store.writer) != 1 || mode == "read" && store.readSQL.Stats().InUse != 1 {
+					t.Fatal("native timer stole externally held admission")
+				}
+				t.Logf("STORAGE-TIME scope=native mode=%s budget=%d elapsed=%d version=%d", mode, limits.Timeout, actual.elapsed, actual.version)
+			case <-watch.C:
+				t.Fatal("native cancellation did not finish within the harness safety budget")
+			}
+		}), "complete native timer history "+mode)
+	}
+}

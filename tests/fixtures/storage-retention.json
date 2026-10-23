@@ -1,0 +1,1470 @@
+{
+  "decisions": {
+    "polaris/internal/storage/commit.go:2317": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 66,
+            "offset": 2317
+          },
+          "end": {
+            "column": 46,
+            "line": 66,
+            "offset": 2357
+          },
+          "text": "state.Version == Version(math.MaxUint64)"
+        },
+        {
+          "begin": {
+            "column": 50,
+            "line": 66,
+            "offset": 2361
+          },
+          "end": {
+            "column": 83,
+            "line": 66,
+            "offset": 2394
+          },
+          "text": "change.Version != state.Version+1"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 66,
+        "offset": 2317
+      },
+      "end": {
+        "column": 83,
+        "line": 66,
+        "offset": 2394
+      },
+      "id": "polaris/internal/storage/commit.go:2317",
+      "kind": "if",
+      "root": 2,
+      "text": "state.Version == Version(math.MaxUint64) || change.Version != state.Version+1",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:8972": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 7,
+            "line": 223,
+            "offset": 8973
+          },
+          "end": {
+            "column": 44,
+            "line": 223,
+            "offset": 9010
+          },
+          "text": "state.Retained > store.limits.History"
+        },
+        {
+          "begin": {
+            "column": 48,
+            "line": 223,
+            "offset": 9014
+          },
+          "end": {
+            "column": 84,
+            "line": 223,
+            "offset": 9050
+          },
+          "text": "state.Backlog > store.limits.Backlog"
+        },
+        {
+          "begin": {
+            "column": 89,
+            "line": 223,
+            "offset": 9055
+          },
+          "end": {
+            "column": 100,
+            "line": 223,
+            "offset": 9066
+          },
+          "text": "rows.Next()"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 223,
+        "offset": 8972
+      },
+      "end": {
+        "column": 100,
+        "line": 223,
+        "offset": 9066
+      },
+      "id": "polaris/internal/storage/commit.go:8972",
+      "kind": "for",
+      "root": 4,
+      "text": "(state.Retained > store.limits.History || state.Backlog > store.limits.Backlog) && rows.Next()",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "and"
+        }
+      ]
+    },
+    "polaris/internal/storage/lock_linux.go:636": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 21,
+            "offset": 636
+          },
+          "end": {
+            "column": 15,
+            "line": 21,
+            "offset": 646
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 20,
+            "line": 21,
+            "offset": 651
+          },
+          "end": {
+            "column": 43,
+            "line": 21,
+            "offset": 674
+          },
+          "text": "info.Mode().IsRegular()"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 21,
+        "offset": 636
+      },
+      "end": {
+        "column": 43,
+        "line": 21,
+        "offset": 674
+      },
+      "id": "polaris/internal/storage/lock_linux.go:636",
+      "kind": "if",
+      "root": 3,
+      "text": "err != nil || !info.Mode().IsRegular()",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            0,
+            2
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/read.go:3910": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 52,
+            "line": 108,
+            "offset": 3910
+          },
+          "end": {
+            "column": 62,
+            "line": 108,
+            "offset": 3920
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 67,
+            "line": 108,
+            "offset": 3925
+          },
+          "end": {
+            "column": 89,
+            "line": 108,
+            "offset": 3947
+          },
+          "text": "text(record.Key, 1024)"
+        },
+        {
+          "begin": {
+            "column": 93,
+            "line": 108,
+            "offset": 3951
+          },
+          "end": {
+            "column": 112,
+            "line": 108,
+            "offset": 3970
+          },
+          "text": "record.Value == nil"
+        },
+        {
+          "begin": {
+            "column": 116,
+            "line": 108,
+            "offset": 3974
+          },
+          "end": {
+            "column": 141,
+            "line": 108,
+            "offset": 3999
+          },
+          "text": "len(record.Value) > 1<<20"
+        }
+      ],
+      "begin": {
+        "column": 52,
+        "line": 108,
+        "offset": 3910
+      },
+      "end": {
+        "column": 141,
+        "line": 108,
+        "offset": 3999
+      },
+      "id": "polaris/internal/storage/read.go:3910",
+      "kind": "if",
+      "root": 7,
+      "text": "err != nil || !text(record.Key, 1024) || record.Value == nil || len(record.Value) > 1<<20",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            0,
+            2
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3,
+            4
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            5,
+            6
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/read.go:6637": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 91,
+            "line": 175,
+            "offset": 6637
+          },
+          "end": {
+            "column": 101,
+            "line": 175,
+            "offset": 6647
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 105,
+            "line": 175,
+            "offset": 6651
+          },
+          "end": {
+            "column": 130,
+            "line": 175,
+            "offset": 6676
+          },
+          "text": "position == state.Version"
+        },
+        {
+          "begin": {
+            "column": 134,
+            "line": 175,
+            "offset": 6680
+          },
+          "end": {
+            "column": 162,
+            "line": 175,
+            "offset": 6708
+          },
+          "text": "change.Version != position+1"
+        },
+        {
+          "begin": {
+            "column": 166,
+            "line": 175,
+            "offset": 6712
+          },
+          "end": {
+            "column": 185,
+            "line": 175,
+            "offset": 6731
+          },
+          "text": "change.Value == nil"
+        },
+        {
+          "begin": {
+            "column": 189,
+            "line": 175,
+            "offset": 6735
+          },
+          "end": {
+            "column": 240,
+            "line": 175,
+            "offset": 6786
+          },
+          "text": "cost != int64(64+len(change.Key)+len(change.Value))"
+        }
+      ],
+      "begin": {
+        "column": 91,
+        "line": 175,
+        "offset": 6637
+      },
+      "end": {
+        "column": 240,
+        "line": 175,
+        "offset": 6786
+      },
+      "id": "polaris/internal/storage/read.go:6637",
+      "kind": "if",
+      "root": 8,
+      "text": "err != nil || position == state.Version || change.Version != position+1 || change.Value == nil || cost != int64(64+len(change.Key)+len(change.Value))",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            6,
+            7
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/schema.go:7432": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 153,
+            "offset": 7432
+          },
+          "end": {
+            "column": 13,
+            "line": 153,
+            "offset": 7439
+          },
+          "text": "invalid"
+        },
+        {
+          "begin": {
+            "column": 17,
+            "line": 153,
+            "offset": 7443
+          },
+          "end": {
+            "column": 27,
+            "line": 153,
+            "offset": 7453
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 31,
+            "line": 153,
+            "offset": 7457
+          },
+          "end": {
+            "column": 44,
+            "line": 153,
+            "offset": 7470
+          },
+          "text": "closed != nil"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 153,
+        "offset": 7432
+      },
+      "end": {
+        "column": 44,
+        "line": 153,
+        "offset": 7470
+      },
+      "id": "polaris/internal/storage/schema.go:7432",
+      "kind": "if",
+      "root": 4,
+      "text": "invalid || err != nil || closed != nil",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:10634": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 264,
+            "offset": 10634
+          },
+          "end": {
+            "column": 23,
+            "line": 264,
+            "offset": 10652
+          },
+          "text": "os.IsNotExist(err)"
+        },
+        {
+          "begin": {
+            "column": 27,
+            "line": 264,
+            "offset": 10656
+          },
+          "end": {
+            "column": 37,
+            "line": 264,
+            "offset": 10666
+          },
+          "text": "err == nil"
+        },
+        {
+          "begin": {
+            "column": 41,
+            "line": 264,
+            "offset": 10670
+          },
+          "end": {
+            "column": 71,
+            "line": 264,
+            "offset": 10700
+          },
+          "text": "info.Size() < store.limits.WAL"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 264,
+        "offset": 10634
+      },
+      "end": {
+        "column": 71,
+        "line": 264,
+        "offset": 10700
+      },
+      "id": "polaris/internal/storage/store.go:10634",
+      "kind": "if",
+      "root": 4,
+      "text": "os.IsNotExist(err) || err == nil && info.Size() < store.limits.WAL",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "and"
+        },
+        {
+          "children": [
+            0,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:11406": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 10,
+            "line": 286,
+            "offset": 11406
+          },
+          "end": {
+            "column": 15,
+            "line": 286,
+            "offset": 11411
+          },
+          "text": "false"
+        }
+      ],
+      "begin": {
+        "column": 10,
+        "line": 286,
+        "offset": 11406
+      },
+      "end": {
+        "column": 15,
+        "line": 286,
+        "offset": 11411
+      },
+      "id": "polaris/internal/storage/store.go:11406",
+      "kind": "return",
+      "root": 0,
+      "text": "false",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:11597": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 11,
+            "line": 290,
+            "offset": 11597
+          },
+          "end": {
+            "column": 16,
+            "line": 290,
+            "offset": 11602
+          },
+          "text": "false"
+        }
+      ],
+      "begin": {
+        "column": 11,
+        "line": 290,
+        "offset": 11597
+      },
+      "end": {
+        "column": 16,
+        "line": 290,
+        "offset": 11602
+      },
+      "id": "polaris/internal/storage/store.go:11597",
+      "kind": "return",
+      "root": 0,
+      "text": "false",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:11618": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 9,
+            "line": 293,
+            "offset": 11618
+          },
+          "end": {
+            "column": 13,
+            "line": 293,
+            "offset": 11622
+          },
+          "text": "true"
+        }
+      ],
+      "begin": {
+        "column": 9,
+        "line": 293,
+        "offset": 11618
+      },
+      "end": {
+        "column": 13,
+        "line": 293,
+        "offset": 11622
+      },
+      "id": "polaris/internal/storage/store.go:11618",
+      "kind": "return",
+      "root": 0,
+      "text": "true",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:2674": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 57,
+            "offset": 2675
+          },
+          "end": {
+            "column": 20,
+            "line": 57,
+            "offset": 2689
+          },
+          "text": "limits.valid()"
+        },
+        {
+          "begin": {
+            "column": 25,
+            "line": 57,
+            "offset": 2694
+          },
+          "end": {
+            "column": 45,
+            "line": 57,
+            "offset": 2714
+          },
+          "text": "name(binding.Galaxy)"
+        },
+        {
+          "begin": {
+            "column": 50,
+            "line": 57,
+            "offset": 2719
+          },
+          "end": {
+            "column": 72,
+            "line": 57,
+            "offset": 2741
+          },
+          "text": "name(binding.Username)"
+        },
+        {
+          "begin": {
+            "column": 76,
+            "line": 57,
+            "offset": 2745
+          },
+          "end": {
+            "column": 86,
+            "line": 57,
+            "offset": 2755
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 90,
+            "line": 57,
+            "offset": 2759
+          },
+          "end": {
+            "column": 128,
+            "line": 57,
+            "offset": 2797
+          },
+          "text": "endpoint.String() != binding.Advertise"
+        },
+        {
+          "begin": {
+            "column": 132,
+            "line": 57,
+            "offset": 2801
+          },
+          "end": {
+            "column": 152,
+            "line": 57,
+            "offset": 2821
+          },
+          "text": "endpoint.Port() == 0"
+        },
+        {
+          "begin": {
+            "column": 156,
+            "line": 57,
+            "offset": 2825
+          },
+          "end": {
+            "column": 187,
+            "line": 57,
+            "offset": 2856
+          },
+          "text": "endpoint.Addr().IsUnspecified()"
+        },
+        {
+          "begin": {
+            "column": 191,
+            "line": 57,
+            "offset": 2860
+          },
+          "end": {
+            "column": 220,
+            "line": 57,
+            "offset": 2889
+          },
+          "text": "endpoint.Addr().IsMulticast()"
+        },
+        {
+          "begin": {
+            "column": 224,
+            "line": 57,
+            "offset": 2893
+          },
+          "end": {
+            "column": 248,
+            "line": 57,
+            "offset": 2917
+          },
+          "text": "endpoint.Addr().Is4In6()"
+        },
+        {
+          "begin": {
+            "column": 252,
+            "line": 57,
+            "offset": 2921
+          },
+          "end": {
+            "column": 280,
+            "line": 57,
+            "offset": 2949
+          },
+          "text": "endpoint.Addr().Zone() != \"\""
+        },
+        {
+          "begin": {
+            "column": 284,
+            "line": 57,
+            "offset": 2953
+          },
+          "end": {
+            "column": 294,
+            "line": 57,
+            "offset": 2963
+          },
+          "text": "path == \"\""
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 57,
+        "offset": 2674
+      },
+      "end": {
+        "column": 294,
+        "line": 57,
+        "offset": 2963
+      },
+      "id": "polaris/internal/storage/store.go:2674",
+      "kind": "if",
+      "root": 23,
+      "text": "!limits.valid() || !name(binding.Galaxy) || !name(binding.Username) || err != nil || endpoint.String() != binding.Advertise || endpoint.Port() == 0 || endpoint.Addr().IsUnspecified() || endpoint.Addr().IsMulticast() || endpoint.Addr().Is4In6() || endpoint.Addr().Zone() != \"\" || path == \"\"",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            1,
+            3
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            5
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            4,
+            6
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            7,
+            8
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 4,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            9,
+            10
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 5,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            11,
+            12
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 6,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            13,
+            14
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 7,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            15,
+            16
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 8,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            17,
+            18
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 9,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            19,
+            20
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 10,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            21,
+            22
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:4000": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 89,
+            "offset": 4000
+          },
+          "end": {
+            "column": 15,
+            "line": 89,
+            "offset": 4010
+          },
+          "text": "err != nil"
+        },
+        {
+          "begin": {
+            "column": 20,
+            "line": 89,
+            "offset": 4015
+          },
+          "end": {
+            "column": 43,
+            "line": 89,
+            "offset": 4038
+          },
+          "text": "info.Mode().IsRegular()"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 89,
+        "offset": 4000
+      },
+      "end": {
+        "column": 43,
+        "line": 89,
+        "offset": 4038
+      },
+      "id": "polaris/internal/storage/store.go:4000",
+      "kind": "if",
+      "root": 3,
+      "text": "err != nil || !info.Mode().IsRegular()",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            0,
+            2
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "frames": [
+    {
+      "backlog": 132,
+      "backlog_limit": 1024,
+      "history_limit": 1,
+      "index": 0,
+      "next_calls": 1,
+      "next_index": 1,
+      "result": true,
+      "retained": 2,
+      "rows": [
+        [
+          "AAAAAAAAAAE=",
+          66
+        ],
+        [
+          "AAAAAAAAAAI=",
+          66
+        ]
+      ],
+      "test": "TestRetentionInputs/count",
+      "values": [
+        true,
+        false,
+        true
+      ]
+    },
+    {
+      "backlog": 66,
+      "backlog_limit": 1024,
+      "history_limit": 1,
+      "index": 1,
+      "next_calls": 0,
+      "next_index": 1,
+      "result": false,
+      "retained": 1,
+      "rows": [
+        [
+          "AAAAAAAAAAE=",
+          66
+        ],
+        [
+          "AAAAAAAAAAI=",
+          66
+        ]
+      ],
+      "test": "TestRetentionInputs/count",
+      "values": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "backlog": 132,
+      "backlog_limit": 66,
+      "history_limit": 8,
+      "index": 0,
+      "next_calls": 1,
+      "next_index": 1,
+      "result": true,
+      "retained": 2,
+      "rows": [
+        [
+          "AAAAAAAAAAE=",
+          66
+        ],
+        [
+          "AAAAAAAAAAI=",
+          66
+        ]
+      ],
+      "test": "TestRetentionInputs/backlog",
+      "values": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "backlog": 66,
+      "backlog_limit": 66,
+      "history_limit": 8,
+      "index": 1,
+      "next_calls": 0,
+      "next_index": 1,
+      "result": false,
+      "retained": 1,
+      "rows": [
+        [
+          "AAAAAAAAAAE=",
+          66
+        ],
+        [
+          "AAAAAAAAAAI=",
+          66
+        ]
+      ],
+      "test": "TestRetentionInputs/backlog",
+      "values": [
+        false,
+        false,
+        true
+      ]
+    }
+  ],
+  "vectors": {
+    "polaris/internal/storage/commit.go:2317": [
+      {
+        "hits": 4761,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 2507,
+        "result": true,
+        "values": "12"
+      }
+    ],
+    "polaris/internal/storage/commit.go:8972": [
+      {
+        "hits": 771,
+        "result": false,
+        "values": "110"
+      },
+      {
+        "hits": 6,
+        "result": false,
+        "values": "121"
+      },
+      {
+        "hits": 20,
+        "result": true,
+        "values": "122"
+      },
+      {
+        "hits": 1,
+        "result": false,
+        "values": "201"
+      },
+      {
+        "hits": 777,
+        "result": true,
+        "values": "202"
+      }
+    ],
+    "polaris/internal/storage/lock_linux.go:636": [
+      {
+        "hits": 1,
+        "result": true,
+        "values": "11"
+      },
+      {
+        "hits": 448,
+        "result": false,
+        "values": "12"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/read.go:3910": [
+      {
+        "hits": 12,
+        "result": true,
+        "values": "1100"
+      },
+      {
+        "hits": 24596,
+        "result": false,
+        "values": "1211"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "1212"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "1220"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "2000"
+      }
+    ],
+    "polaris/internal/storage/read.go:6637": [
+      {
+        "hits": 21351,
+        "result": false,
+        "values": "11111"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "11112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "11120"
+      },
+      {
+        "hits": 7,
+        "result": true,
+        "values": "11200"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12000"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "20000"
+      }
+    ],
+    "polaris/internal/storage/schema.go:7432": [
+      {
+        "hits": 367,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/store.go:10634": [
+      {
+        "hits": 2,
+        "result": false,
+        "values": "110"
+      },
+      {
+        "hits": 15,
+        "result": false,
+        "values": "121"
+      },
+      {
+        "hits": 50973,
+        "result": true,
+        "values": "122"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/store.go:11406": [
+      {
+        "hits": 6,
+        "result": false,
+        "values": "1"
+      }
+    ],
+    "polaris/internal/storage/store.go:11597": [
+      {
+        "hits": 12420,
+        "result": false,
+        "values": "1"
+      }
+    ],
+    "polaris/internal/storage/store.go:11618": [
+      {
+        "hits": 4968,
+        "result": true,
+        "values": "2"
+      }
+    ],
+    "polaris/internal/storage/store.go:2674": [
+      {
+        "hits": 1,
+        "result": true,
+        "values": "10000000000"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "21000000000"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "22100000000"
+      },
+      {
+        "hits": 361,
+        "result": false,
+        "values": "22211111111"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22211111112"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22211111120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22211111200"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22211112000"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22211120000"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22211200000"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22212000000"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "22220000000"
+      }
+    ],
+    "polaris/internal/storage/store.go:4000": [
+      {
+        "hits": 1,
+        "result": true,
+        "values": "11"
+      },
+      {
+        "hits": 354,
+        "result": false,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ]
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "basis": "Synthetic reader controls only. Copied source AST and native-shaped observations do not qualify new application execution. Error identity expectations derive from the fixed fixture and standard error semantics.",
+  "bindings": {
+    "borrowing_test.go": "9cf605c2ef186c908a1045009bbbcdf4dbf78de105ba5f52044e790ae05665ea",
+    "database/sql/sql.go": "5d5ec3cd3519e1d4a388a372e29ddeaedea45dde86845cb4e9002a5ef52f27f0",
+    "opening_test.go": "0d650bd3bdaface718bee99cadad62d8201ce9d0245fda7ac0bfb9fbdefe5158",
+    "store.go": "7c914530e29059161f9665f867c1ce7f114cdec5c0be7bad43fdcbba3dfd0f16",
+    "transaction_test.go": "b35f1c8ba7a9e59c0c6b90005ff326f8ac99dd5d9b7bbc500d8fee8794946eda",
+    "verification_test.go": "d387fcdd4575a9cde8aabb392d4e113d64b2207a714be1858507cf6dd1ffc792"
+  },
+  "cases": {
+    "TestBorrowing": {
+      "markers": [
+        "ASTRA-CONTRACT {\"contract\":\"STORAGE-BORROWING\",\"hits\":9}"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/read/cancelled": {
+      "markers": [
+        "STORAGE-BORROWING owner=read fault=cancelled entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/read/closed": {
+      "markers": [
+        "STORAGE-BORROWING owner=read fault=closed entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/read/expired": {
+      "markers": [
+        "STORAGE-BORROWING owner=read fault=expired entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/validation/cancelled": {
+      "markers": [
+        "STORAGE-BORROWING owner=validation fault=cancelled entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/validation/closed": {
+      "markers": [
+        "STORAGE-BORROWING owner=validation fault=closed entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/validation/expired": {
+      "markers": [
+        "STORAGE-BORROWING owner=validation fault=expired entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/write/cancelled": {
+      "markers": [
+        "STORAGE-BORROWING owner=write fault=cancelled entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/write/closed": {
+      "markers": [
+        "STORAGE-BORROWING owner=write fault=closed entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestBorrowing/write/expired": {
+      "markers": [
+        "STORAGE-BORROWING owner=write fault=expired entered=0 in_use=0 published=0 version=1 records=1"
+      ],
+      "status": "passed"
+    },
+    "TestFinalization": {
+      "markers": [
+        "ASTRA-CONTRACT {\"contract\":\"STORAGE-FINALIZE\",\"hits\":239}"
+      ],
+      "status": "passed"
+    },
+    "TestFinalization/rollback-after": {
+      "markers": [],
+      "status": "passed"
+    },
+    "TestVerification/rollback": {
+      "markers": [
+        "ASTRA-CONTRACT {\"contract\":\"STORAGE-ROLLBACK\",\"hits\":7}"
+      ],
+      "status": "passed"
+    },
+    "TestWriteFault/open-control": {
+      "markers": [
+        "STORAGE-OPEN point=control hits=0 opened=4 closed=4"
+      ],
+      "status": "passed"
+    },
+    "TestWriteFault/open-directory-sync": {
+      "markers": [
+        "STORAGE-OPEN point=directory-sync hits=2 opened=8 closed=8 files=4 released=4"
+      ],
+      "status": "passed"
+    }
+  },
+  "decisions": {
+    "polaris/internal/storage/store.go:5255": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 119,
+            "offset": 5255
+          },
+          "end": {
+            "column": 19,
+            "line": 119,
+            "offset": 5268
+          },
+          "text": "synced != nil"
+        },
+        {
+          "begin": {
+            "column": 23,
+            "line": 119,
+            "offset": 5272
+          },
+          "end": {
+            "column": 36,
+            "line": 119,
+            "offset": 5285
+          },
+          "text": "closed != nil"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 119,
+        "offset": 5255
+      },
+      "end": {
+        "column": 36,
+        "line": 119,
+        "offset": 5285
+      },
+      "id": "polaris/internal/storage/store.go:5255",
+      "kind": "if",
+      "root": 2,
+      "text": "synced != nil || closed != nil",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:9215": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 39,
+            "line": 229,
+            "offset": 9215
+          },
+          "end": {
+            "column": 54,
+            "line": 229,
+            "offset": 9230
+          },
+          "text": "rollback != nil"
+        },
+        {
+          "begin": {
+            "column": 59,
+            "line": 229,
+            "offset": 9235
+          },
+          "end": {
+            "column": 93,
+            "line": 229,
+            "offset": 9269
+          },
+          "text": "errors.Is(rollback, sql.ErrTxDone)"
+        }
+      ],
+      "begin": {
+        "column": 39,
+        "line": 229,
+        "offset": 9215
+      },
+      "end": {
+        "column": 93,
+        "line": 229,
+        "offset": 9269
+      },
+      "id": "polaris/internal/storage/store.go:9215",
+      "kind": "if",
+      "root": 3,
+      "text": "rollback != nil && !errors.Is(rollback, sql.ErrTxDone)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            0,
+            2
+          ],
+          "kind": "and"
+        }
+      ]
+    },
+    "polaris/internal/storage/store.go:9996": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 249,
+            "offset": 9996
+          },
+          "end": {
+            "column": 38,
+            "line": 249,
+            "offset": 10028
+          },
+          "text": "errors.Is(err, context.Canceled)"
+        },
+        {
+          "begin": {
+            "column": 42,
+            "line": 249,
+            "offset": 10032
+          },
+          "end": {
+            "column": 82,
+            "line": 249,
+            "offset": 10072
+          },
+          "text": "errors.Is(err, context.DeadlineExceeded)"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 249,
+        "offset": 9996
+      },
+      "end": {
+        "column": 82,
+        "line": 249,
+        "offset": 10072
+      },
+      "id": "polaris/internal/storage/store.go:9996",
+      "kind": "if",
+      "root": 2,
+      "text": "errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "vectors": {
+    "polaris/internal/storage/store.go:5255": [
+      {
+        "hits": 195,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 4,
+        "result": true,
+        "values": "20"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "12"
+      }
+    ],
+    "polaris/internal/storage/store.go:9215": [
+      {
+        "hits": 2894,
+        "result": false,
+        "values": "10"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "21"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "22"
+      }
+    ],
+    "polaris/internal/storage/store.go:9996": [
+      {
+        "hits": 3,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 3,
+        "result": true,
+        "values": "20"
+      }
+    ]
+  }
+}

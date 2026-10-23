@@ -1,0 +1,1272 @@
+{
+  "added": {
+    "comet-go/DEV-ADOPTION/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ADOPTION",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-ADOPTION/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-ADOPTION",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-ASYNC/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ASYNC",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-ASYNC/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-ASYNC",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-AUDIT/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-AUDIT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-AUDIT/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-AUDIT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CAPACITY/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CAPACITY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CAPACITY/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-CAPACITY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-COMPAT/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-COMPAT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-COMPAT/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-COMPAT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CONFIG/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONFIG",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CONFIG/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONFIG",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "requires": [
+        {
+          "contract": "COMET-GO-INPUT",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-AUTH",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-PUBLISH",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-BEACON",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-TIME",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-WATCH",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-READER",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-OBSERVER",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-LIFETIME",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-CALLBACK",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-CAPACITY",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-ERROR",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-SYSTEM",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        }
+      ],
+      "rule": "DEV-CONTRACT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "requires": [
+        {
+          "contract": "COMET-GO-INPUT",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-AUTH",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-PUBLISH",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-BEACON",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-TIME",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-WATCH",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-READER",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-OBSERVER",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-LIFETIME",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-CALLBACK",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-CAPACITY",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-ERROR",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        },
+        {
+          "contract": "COMET-GO-SYSTEM",
+          "rule": "DEV-CONTRACT",
+          "scenario": "behavior"
+        }
+      ],
+      "rule": "DEV-CONTRACT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-AUTH/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-AUTH",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-AUTH/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-AUTH",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-BEACON/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-BEACON",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-BEACON/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-BEACON",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-CALLBACK/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-CALLBACK",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-CALLBACK/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-CALLBACK",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-CAPACITY/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-CAPACITY",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-CAPACITY/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-CAPACITY",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-ERROR/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ERROR",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-ERROR/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ERROR",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-INPUT/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-input-linux"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-INPUT",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo"
+      ],
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-INPUT/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-input-windows"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-INPUT",
+      "platform": "windows-amd64",
+      "platforms": [
+        "windows-amd64"
+      ],
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-LIFETIME/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-LIFETIME",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-LIFETIME/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-LIFETIME",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-OBSERVER/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-OBSERVER",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-OBSERVER/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-OBSERVER",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-PUBLISH/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-PUBLISH",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-PUBLISH/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-PUBLISH",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-READER/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-READER",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-READER/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-READER",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-SYSTEM/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-SYSTEM",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-SYSTEM/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-SYSTEM",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-TIME/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-TIME",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-TIME/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-TIME",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-WATCH/linux-amd64-cgo/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-WATCH",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CONTRACT/COMET-GO-WATCH/windows-amd64/behavior": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-WATCH",
+      "platform": "windows-amd64",
+      "rule": "DEV-CONTRACT",
+      "scenario": "behavior"
+    },
+    "comet-go/DEV-CORE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CORE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-CORE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-CORE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-COVERAGE",
+          "scenario": "structure"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-COVERAGE",
+          "scenario": "mcdc"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-COVERAGE",
+          "scenario": "mutation"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-FAULT",
+          "scenario": "fault-matrix"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-MATRIX",
+          "scenario": "delivery-matrix"
+        }
+      ],
+      "rule": "DEV-COVERAGE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/linux-amd64-cgo/mcdc": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-COVERAGE",
+      "scenario": "mcdc"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/linux-amd64-cgo/mutation": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-COVERAGE",
+      "scenario": "mutation"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/linux-amd64-cgo/structure": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-COVERAGE",
+      "scenario": "structure"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-COVERAGE",
+          "scenario": "structure"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-COVERAGE",
+          "scenario": "mcdc"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-COVERAGE",
+          "scenario": "mutation"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-FAULT",
+          "scenario": "fault-matrix"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-MATRIX",
+          "scenario": "delivery-matrix"
+        }
+      ],
+      "rule": "DEV-COVERAGE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/windows-amd64/mcdc": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-COVERAGE",
+      "scenario": "mcdc"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/windows-amd64/mutation": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-COVERAGE",
+      "scenario": "mutation"
+    },
+    "comet-go/DEV-COVERAGE/COMET-GO-ASSURANCE/windows-amd64/structure": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-COVERAGE",
+      "scenario": "structure"
+    },
+    "comet-go/DEV-EVIDENCE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-EVIDENCE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-FAILURE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-FAILURE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-FAILURE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-FAILURE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-FAULT/COMET-GO-ASSURANCE/linux-amd64-cgo/fault-matrix": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-FAULT",
+      "scenario": "fault-matrix"
+    },
+    "comet-go/DEV-FAULT/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-FAULT",
+          "scenario": "fault-matrix"
+        }
+      ],
+      "rule": "DEV-FAULT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-FAULT/COMET-GO-ASSURANCE/windows-amd64/fault-matrix": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-FAULT",
+      "scenario": "fault-matrix"
+    },
+    "comet-go/DEV-FAULT/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-FAULT",
+          "scenario": "fault-matrix"
+        }
+      ],
+      "rule": "DEV-FAULT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-GATE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-GATE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-GATE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-IMPACT/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-IMPACT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-IMPACT/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-IMPACT",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-MATRIX/COMET-GO-ASSURANCE/linux-amd64-cgo/delivery-matrix": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-MATRIX",
+      "scenario": "delivery-matrix"
+    },
+    "comet-go/DEV-MATRIX/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-MATRIX",
+          "scenario": "delivery-matrix"
+        }
+      ],
+      "rule": "DEV-MATRIX",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-MATRIX/COMET-GO-ASSURANCE/windows-amd64/delivery-matrix": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-MATRIX",
+      "scenario": "delivery-matrix"
+    },
+    "comet-go/DEV-MATRIX/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-MATRIX",
+          "scenario": "delivery-matrix"
+        }
+      ],
+      "rule": "DEV-MATRIX",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-MODEL/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-MODEL",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-MODEL/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-MODEL",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-NUMERIC/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-NUMERIC",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-NUMERIC/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-NUMERIC",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-OPERATE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-OPERATE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-OPERATE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-OPERATE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-ORACLE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-ORACLE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-ORACLE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-REDGREEN/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-REDGREEN",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-REDGREEN/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-REDGREEN",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-RELEASE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-RELEASE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-RELEASE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-RELEASE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-REPLAY/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-REPLAY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-REPLAY/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-REPLAY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-RETRY/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-RETRY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-RETRY/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-RETRY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-SCOPE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-SCOPE",
+          "scenario": "source-inventory"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-CONFIG",
+          "scenario": "full-rule"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-GATE",
+          "scenario": "full-rule"
+        }
+      ],
+      "rule": "DEV-SCOPE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-SCOPE/COMET-GO-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "comet-go-source-scope"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "comet-go/DEV-SCOPE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "aggregate": true,
+      "checks": [],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "requires": [
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-SCOPE",
+          "scenario": "source-inventory"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-CONFIG",
+          "scenario": "full-rule"
+        },
+        {
+          "contract": "COMET-GO-ASSURANCE",
+          "rule": "DEV-GATE",
+          "scenario": "full-rule"
+        }
+      ],
+      "rule": "DEV-SCOPE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-SCOPE/COMET-GO-ASSURANCE/windows-amd64/source-inventory": {
+      "checks": [
+        "comet-go-source-scope"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "comet-go/DEV-SECURITY/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SECURITY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-SECURITY/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-SECURITY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-STOP/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-STOP",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-STOP/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-STOP",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-SUPPLY/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SUPPLY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-SUPPLY/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-SUPPLY",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-TIME/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-TIME",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-TIME/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-TIME",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-TRACE/COMET-GO-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-TRACE",
+      "scenario": "full-rule"
+    },
+    "comet-go/DEV-TRACE/COMET-GO-ASSURANCE/windows-amd64/full-rule": {
+      "checks": [
+        "comet-go-qualification"
+      ],
+      "component": "comet-go",
+      "contract": "COMET-GO-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-TRACE",
+      "scenario": "full-rule"
+    },
+    "verification/DEV-EVIDENCE/GO-PARTITION-COMMAND/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "logic-python"
+      ],
+      "component": "verification",
+      "contract": "GO-PARTITION-COMMAND",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-EVIDENCE/GO-PARTITION-INACTIVE/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "logic-python"
+      ],
+      "component": "verification",
+      "contract": "GO-PARTITION-INACTIVE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-EVIDENCE/GO-PARTITION-INVENTORY/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "logic-python"
+      ],
+      "component": "verification",
+      "contract": "GO-PARTITION-INVENTORY",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-EVIDENCE/GO-PARTITION-MODULE/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "logic-python"
+      ],
+      "component": "verification",
+      "contract": "GO-PARTITION-MODULE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-EVIDENCE/GO-PARTITION-ROOT/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "logic-python"
+      ],
+      "component": "verification",
+      "contract": "GO-PARTITION-ROOT",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-EVIDENCE/GO-PARTITION-SELECTION/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "logic-python"
+      ],
+      "component": "verification",
+      "contract": "GO-PARTITION-SELECTION",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-EVIDENCE",
+      "scenario": "native-oracle"
+    }
+  },
+  "origin": "Approved Comet Go delivery scope on Linux/Windows and the admitted native platform-partition design. Literal rule/contract/platform construction, independent of the implementation under test; preserves all original obligations and fixture hashes.",
+  "version": 1
+}

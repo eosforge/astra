@@ -1,0 +1,7 @@
+{
+  "archive_sha256": "98d01dda8689961ca0c3fa6a85da9b815f5cf132b388379d4a7c763e918f2225",
+  "boundary": "Historical 206-case raw parser fixture only; source/check adoption into any later workspace must be independently rejected unless exact.",
+  "directory": "build/results/assurance/reuse-plan/verification-python-current-11",
+  "retired_sha256": "012359a181bf3baaa331edc484af04dba4fd2b937c9d27934a9ed4ed90c8b98c",
+  "seal_sha256": "0fa6ab727fa0aac77fe5a19b377896ee9749d0142e679a67b5ec853aec9c52d7"
+}

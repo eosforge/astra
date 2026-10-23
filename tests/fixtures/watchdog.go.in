@@ -1,0 +1,161 @@
+// Verify public watchdog rescheduling with one test-only checkpoint after timer selection.
+package server
+
+import (
+	"context"
+	"errors"
+	"sync"
+	"sync/atomic"
+	"testing"
+	"testing/synctest"
+	"time"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+
+	"github.com/eosforge/astra/internal/generated/polaris"
+	"github.com/eosforge/astra/polaris/internal/storage"
+)
+
+// phase holds a real protocol send until the selected watchdog notification is suspended.
+type phase struct {
+	capture                 // Own the parent context and reject unexpected metadata operations.
+	hello   *polaris.Packet // The sole successful received frame before inventory blocks.
+	release chan struct{}   // End the held Hello send without changing the production deadline.
+	cause   error           // A failed send clears the phase; success starts the inventory phase.
+	reads   atomic.Int32    // Include the blocked receive in the expected transport history.
+	writes  atomic.Int32    // No frame beyond the Hello may be emitted by either schedule.
+}
+
+// Recv delivers the authenticated Hello, then waits for the fixture's explicit transport cancellation.
+func (wire *phase) Recv() (*polaris.Packet, error) {
+	if wire.reads.Add(1) == 1 {
+		return wire.hello, nil
+	}
+	<-wire.ctx.Done()
+	return nil, wire.ctx.Err()
+}
+
+// Send changes no protocol state; production send owns deadline publication and completion.
+func (wire *phase) Send(packet *polaris.Packet) error {
+	if wire.writes.Add(1) != 1 || packet.GetHello() == nil {
+		return errors.New("unexpected frame in watchdog schedule")
+	}
+	select {
+	case <-wire.release:
+		return wire.cause
+	case <-wire.ctx.Done():
+		return wire.ctx.Err()
+	}
+}
+
+// TestWatchdog fixes both orders after timer selection without replacing clocks, atomics or expire.
+func TestWatchdog(t *testing.T) {
+	for _, name := range []string{"cleared", "extended"} {
+		t.Run(name, func(t *testing.T) {
+			system := environment(t, storage.Default())
+			synctest.Test(t, func(t *testing.T) {
+				ctx, cancel := context.WithCancel(t.Context())
+				cause := errors.New("controlled Hello send refusal")
+				wire := &phase{capture: capture{ctx: ctx}, hello: &polaris.Packet{Body: &polaris.Packet_Hello{Hello: system.star}}, release: make(chan struct{})}
+				if name == "cleared" {
+					wire.cause = cause
+				}
+				entered, release := make(chan *transfer, 1), make(chan struct{})
+				result := make(chan error, 1)
+				var calls atomic.Int32
+				var handler sync.WaitGroup
+				var sent, resumed sync.Once
+				// The generated overlay invokes this callback only after the watchdog selected timer.C.
+				watchpoint = func(state *transfer, _ *time.Timer) {
+					if calls.Add(1) == 1 {
+						entered <- state
+						<-release
+					}
+				}
+				cleanup := func() {
+					sent.Do(func() { close(wire.release) })
+					resumed.Do(func() { close(release) })
+					cancel()
+					handler.Wait()
+					system.streams.Wait()
+					watchpoint = nil
+				}
+				defer cleanup()
+				start := time.Now()
+				handler.Add(1)
+				go func() {
+					defer handler.Done()
+					result <- system.streams.Open(wire)
+				}()
+				synctest.Wait()
+				if wire.writes.Load() != 1 || wire.reads.Load() != 2 || calls.Load() != 0 || time.Since(start) != 0 {
+					t.Fatal("Hello send did not establish the initial thirty-second phase")
+				}
+				time.Sleep(30 * time.Second)
+				synctest.Wait()
+				var state *transfer
+				select {
+				case state = <-entered:
+				default:
+					t.Fatal("watchdog did not reach the selected notification checkpoint")
+				}
+				if deadline := state.deadline.Load(); deadline == nil || time.Until(*deadline) != 0 || calls.Load() != 1 {
+					t.Fatal("checkpoint did not preserve the original expired phase")
+				}
+				// Only transport completion resumes the real worker; the fixture never stores a deadline.
+				sent.Do(func() { close(wire.release) })
+				synctest.Wait()
+				deadline := state.deadline.Load()
+				if name == "cleared" {
+					if deadline != nil {
+						t.Fatal("failed send did not clear its deadline before watchdog resumption")
+					}
+				} else if deadline == nil || time.Until(*deadline) != 10*time.Second {
+					t.Fatal("successful send did not establish the replacement inventory deadline")
+				}
+				resumed.Do(func() { close(release) })
+				synctest.Wait()
+				if name == "extended" {
+					select {
+					case err := <-result:
+						t.Fatal("stale timer ended replacement phase", err)
+					default:
+					}
+					time.Sleep(10*time.Second - time.Nanosecond)
+					synctest.Wait()
+					select {
+					case err := <-result:
+						t.Fatal("replacement phase expired early", err)
+					default:
+					}
+					time.Sleep(time.Nanosecond)
+					synctest.Wait()
+				}
+				select {
+				case err := <-result:
+					if name == "cleared" && !errors.Is(err, cause) {
+						t.Fatal("stale timer replaced completed send result", err)
+					}
+					if name == "extended" && status.Code(err) != codes.DeadlineExceeded {
+						t.Fatal("replacement inventory deadline did not expire", err)
+					}
+				default:
+					t.Fatal("watchdog failed to return the scheduled result")
+				}
+				want := int32(1)
+				if name == "extended" {
+					want = 2
+				}
+				if calls.Load() != want || ctx.Err() != nil || len(system.streams.slots) != 1 {
+					t.Fatal("watchdog lost timer identity or released its still-blocked receiver")
+				}
+				cleanup()
+				if wire.reads.Load() != 2 || wire.writes.Load() != 1 || len(system.streams.slots) != 0 || len(system.streams.active) != 0 || system.streams.authority.cache.used != 0 {
+					t.Fatal("watchdog schedule retained ownership or emitted extra protocol work")
+				}
+				t.Log("WATCHDOG-SCHEDULE", name, "complete", want)
+			})
+		})
+	}
+}

@@ -1,0 +1,158 @@
+{
+  "added": {
+    "benchmarks/DEV-CONTRACT/BENCHMARKS-GATES-1/linux-amd64-cgo/prospective-gate-control": {
+      "checks": [
+        "benchmarks-python"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-GATES-1",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "prospective-gate-control"
+    },
+    "benchmarks/DEV-CONTRACT/BENCHMARKS-GATES-2/linux-amd64-cgo/prospective-gate-control": {
+      "checks": [
+        "benchmarks-python"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-GATES-2",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "prospective-gate-control"
+    },
+    "benchmarks/DEV-CONTRACT/BENCHMARKS-GATES-3/linux-amd64-cgo/prospective-gate-control": {
+      "checks": [
+        "benchmarks-python"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-GATES-3",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "prospective-gate-control"
+    },
+    "benchmarks/DEV-CONTRACT/BENCHMARKS-GATES-4/linux-amd64-cgo/prospective-gate-control": {
+      "checks": [
+        "benchmarks-python"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-GATES-4",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "prospective-gate-control"
+    },
+    "benchmarks/DEV-CONTRACT/BENCHMARKS-GATES-5/linux-amd64-cgo/prospective-gate-control": {
+      "checks": [
+        "benchmarks-python"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-GATES-5",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "prospective-gate-control"
+    },
+    "benchmarks/DEV-CONTRACT/BENCHMARKS-GATES-6/linux-amd64-cgo/prospective-gate-control": {
+      "checks": [
+        "benchmarks-python"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-GATES-6",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "prospective-gate-control"
+    },
+    "benchmarks/DEV-CONTRACT/BENCHMARKS-GATES-7/linux-amd64-cgo/prospective-gate-control": {
+      "checks": [
+        "benchmarks-python"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-GATES-7",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "prospective-gate-control"
+    },
+    "polaris-storage/DEV-OPERATE/STORAGE-BACKUP-ONLINE/linux-amd64-cgo/online-consistent-backup": {
+      "checks": [
+        "storage-backup",
+        "storage-backup-race"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-BACKUP-ONLINE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-OPERATE",
+      "scenario": "online-consistent-backup"
+    },
+    "polaris-storage/DEV-RELEASE/STORAGE-BACKUP-RESTORE/linux-amd64-cgo/quiesced-backup-restore": {
+      "checks": [
+        "storage-backup",
+        "storage-backup-race"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-BACKUP-RESTORE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-RELEASE",
+      "scenario": "quiesced-backup-restore"
+    }
+  },
+  "migrations": {
+    "polaris-storage/DEV-OPERATE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-operate"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-BACKUP-ONLINE",
+            "rule": "DEV-OPERATE",
+            "scenario": "online-consistent-backup"
+          }
+        ],
+        "rule": "DEV-OPERATE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-operate"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-OPERATE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-RELEASE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-release"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-BACKUP-RESTORE",
+            "rule": "DEV-RELEASE",
+            "scenario": "quiesced-backup-restore"
+          }
+        ],
+        "rule": "DEV-RELEASE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-release"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-RELEASE",
+        "scenario": "full-rule"
+      }
+    }
+  },
+  "original_obligations": 1361,
+  "version": 1
+}

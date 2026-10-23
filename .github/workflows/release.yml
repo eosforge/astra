@@ -1,0 +1,165 @@
+# Build the exact source tag in the pinned compiler image; publish only complete artifacts.
+name: Release Linux x64
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing stable source tag to build
+        required: true
+        default: v0.1.0
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: astra-release
+  cancel-in-progress: false
+
+env:
+  RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+
+jobs:
+  build:
+    if: github.repository == 'eosforge/astra'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    container:
+      # Official GCC 16.2.0, Debian 13; the manifest records the actual libc requirement.
+      image: gcc:16.2.0@sha256:3f73339bf0d3d64081cac3f6d9fdafc6dd4cef2b9c49e0a09f91e97cb0eb139a
+      options: --cpus 4 --memory 7g --memory-swap 7g
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ env.RELEASE_TAG }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify checkout and scope Git trust
+        run: |
+          set -euo pipefail
+          git status --short || echo 'Initial Git status rejected; checking scoped workspace trust.'
+          git -c safe.directory="$GITHUB_WORKSPACE" status --short
+          git -c safe.directory="$GITHUB_WORKSPACE" rev-parse HEAD
+          {
+            echo 'GIT_CONFIG_COUNT=1'
+            echo 'GIT_CONFIG_KEY_0=safe.directory'
+            printf 'GIT_CONFIG_VALUE_0=%s\n' "$GITHUB_WORKSPACE"
+          } >> "$GITHUB_ENV"
+      - name: Install CI build utilities
+        run: |
+          set -euo pipefail
+          apt-get update
+          apt-get install --yes --no-install-recommends cmake python3 curl ca-certificates
+      - uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        id: dependencies
+        with:
+          path: |
+            build/deps
+            build/tools/go-1.27.2
+            build/downloads
+          key: release-linux-x64-3f73339bf0d3-go1.27.2-${{ hashFiles('dependencies.lock.json', 'go.sum', 'comet/go/go.sum', 'cmake/sqlite.cmake', 'tools/prepare_dependencies.py') }}
+      - name: Explicitly prepare pinned dependencies
+        run: python3 -B .github/scripts/release.py prepare
+      - name: Save prepared dependencies before product compilation
+        if: steps.dependencies.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            build/deps
+            build/tools/go-1.27.2
+            build/downloads
+          key: ${{ steps.dependencies.outputs.cache-primary-key }}
+      - name: Compile delivered targets offline
+        run: python3 -B .github/scripts/release.py build
+      - name: Install, inspect linkage and package
+        run: python3 -B .github/scripts/release.py package
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: linux-x86_64-release
+          path: build/release/*
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ env.RELEASE_TAG }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: linux-x86_64-release
+          path: release-assets
+      - name: Publish the verified tag and its binary assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd release-assets
+          sha256sum --check SHA256SUMS
+          python3 - <<'PY'
+          import json, os, pathlib, re, subprocess
+          tag = os.environ['RELEASE_TAG']
+          if not re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+', tag):
+              raise SystemExit('Invalid stable release tag')
+          manifest = json.loads(pathlib.Path('build-manifest.json').read_text())
+          commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          if manifest['commit'] != commit or manifest['tag'] != tag or manifest['go_module_tag'] != 'comet/go/' + tag:
+              raise SystemExit('Artifact source identity mismatch')
+          notes = pathlib.Path('../.github/release-notes.txt').read_text()
+          pathlib.Path('release-notes.txt').write_text(notes, encoding='utf-8')
+          PY
+          # Query current remote refs as well as the checkout; do not publish a moved tag's old build.
+          expected=$(git rev-parse HEAD)
+          for tag in "$RELEASE_TAG" "comet/go/$RELEASE_TAG"; do
+            reference=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" --jq '.object | [.type, .sha] | @tsv')
+            read -r kind commit <<< "$reference"
+            if [[ "$kind" != tag ]]; then
+              echo 'Release tags must be annotated.' >&2
+              exit 1
+            fi
+            commit=$(gh api "repos/$GITHUB_REPOSITORY/git/tags/$commit" --jq '.object.sha')
+            [[ "$commit" == "$expected" ]]
+          done
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            draft=$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq '.isDraft')
+            if [[ "$draft" != true ]]; then
+              echo 'A published release already exists; preserve its assets.' >&2
+              exit 1
+            fi
+            # Recover an interrupted draft; published versions are never overwritten or unpublished.
+            gh release upload "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --clobber \
+              astra-*-linux-x86_64.tar.gz SHA256SUMS build-manifest.json
+          else
+            gh release create "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --draft \
+              --title "Astra ${RELEASE_TAG#v}" --notes-file release-notes.txt \
+              astra-*-linux-x86_64.tar.gz SHA256SUMS build-manifest.json
+          fi
+          release_id=$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json databaseId --jq '.databaseId')
+          gh api "repos/$GITHUB_REPOSITORY/releases/$release_id" > uploaded-release.json
+          python3 - <<'PY'
+          import hashlib, json, pathlib
+          release = json.loads(pathlib.Path('uploaded-release.json').read_text())
+          assets = {asset['name']: asset for asset in release['assets']}
+          expected = {'build-manifest.json', 'SHA256SUMS'} | {path.name for path in pathlib.Path('.').glob('astra-*-linux-x86_64.tar.gz')}
+          if not release['draft'] or set(assets) != expected or len(expected) != 3:
+              raise SystemExit('Unexpected draft release assets; leave unpublished for inspection')
+          for name in expected:
+              digest = 'sha256:' + hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()
+              if assets[name]['state'] != 'uploaded' or assets[name]['digest'] != digest:
+                  raise SystemExit('Uploaded release checksum mismatch: ' + name)
+          PY
+          gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --verify-tag \
+            --title "Astra ${RELEASE_TAG#v}" --notes-file release-notes.txt --draft=false --latest

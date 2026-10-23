@@ -1,0 +1,168 @@
+{
+  "names": [
+    {
+      "value": "alpha",
+      "valid": true
+    },
+    {
+      "value": "A-z_0.9",
+      "valid": true
+    },
+    {
+      "value": "",
+      "valid": false
+    },
+    {
+      "value": "alpha/beta",
+      "valid": false
+    },
+    {
+      "value": "alpha\u0000beta",
+      "valid": false
+    },
+    {
+      "value": "alpha beta",
+      "valid": false
+    },
+    {
+      "value": "カナ",
+      "valid": false
+    },
+    {
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "valid": true
+    },
+    {
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "valid": false
+    }
+  ],
+  "addresses": [
+    {
+      "value": "127.0.0.1:7443",
+      "valid": true
+    },
+    {
+      "value": "192.0.2.7:1",
+      "valid": true
+    },
+    {
+      "value": "[::1]:65535",
+      "valid": true
+    },
+    {
+      "value": "[2001:db8::1]:7443",
+      "valid": true
+    },
+    {
+      "value": "127.0.0.1:0",
+      "valid": false
+    },
+    {
+      "value": "127.0.0.1:07443",
+      "valid": false
+    },
+    {
+      "value": "127.000.0.1:7443",
+      "valid": false
+    },
+    {
+      "value": "localhost:7443",
+      "valid": false
+    },
+    {
+      "value": "0.0.0.0:7443",
+      "valid": false
+    },
+    {
+      "value": "[::]:7443",
+      "valid": false
+    },
+    {
+      "value": "224.0.0.1:7443",
+      "valid": false
+    },
+    {
+      "value": "[ff02::1]:7443",
+      "valid": false
+    },
+    {
+      "value": "[::ffff:127.0.0.1]:7443",
+      "valid": false
+    },
+    {
+      "value": "[fe80::1%2]:7443",
+      "valid": false
+    },
+    {
+      "value": "[0:0:0:0:0:0:0:1]:7443",
+      "valid": false
+    },
+    {
+      "value": "[2001:DB8::1]:7443",
+      "valid": false
+    }
+  ],
+  "principals": [
+    {
+      "username": "stars",
+      "cluster": "alpha",
+      "address": "127.0.0.1:7443",
+      "sha256": "40ff2c81b912f4ba03daa166aa9ad70a81d80c2b1c33e85cf9e2c18e43a072dd"
+    },
+    {
+      "username": "stars",
+      "cluster": "alpha",
+      "address": "[2001:db8::1]:7443",
+      "sha256": "50bd7de8c9248ba9c0484566d54d7f7795b4d66cb68efb4bea888b765b8551d2"
+    },
+    {
+      "username": "node-2",
+      "cluster": "galaxy_2",
+      "address": "192.0.2.7:1",
+      "sha256": "91a1043d55bfcd923b6223c99420c1da9e0a6b748322a02fd3488118d12f0ef6"
+    }
+  ],
+  "ids": [
+    {
+      "value": "",
+      "valid": false
+    },
+    {
+      "value": "short",
+      "valid": true
+    },
+    {
+      "value": "00000000000000000000000000000000",
+      "valid": true
+    },
+    {
+      "value": "ID/vNext:カナ \"\\\n",
+      "valid": true
+    },
+    {
+      "value": " A ",
+      "valid": true
+    },
+    {
+      "value": "A",
+      "valid": true
+    },
+    {
+      "value": "a",
+      "valid": true
+    },
+    {
+      "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "valid": true
+    },
+    {
+      "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "valid": false
+    },
+    {
+      "value": "カカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカカ",
+      "valid": false
+    }
+  ]
+}

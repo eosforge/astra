@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "scope": "Full-width BLOB versions and exact length/quota boundaries. Each semantic substitution must fail TestNumeric after an unchanged passing baseline; compilation failure, timeout or incomplete native output does not count. This is numeric sensitivity, not whole-Storage mutation qualification.",
+  "package": "./polaris/internal/storage",
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "mutations": [
+    {"id": "version-narrowed", "file": "polaris/internal/storage/model.go", "test": "TestNumeric", "before": "binary.BigEndian.AppendUint64(nil, uint64(version))", "after": "binary.BigEndian.AppendUint64(nil, uint64(uint32(version)))"},
+    {"id": "version-order", "file": "polaris/internal/storage/model.go", "test": "TestNumeric", "before": "binary.BigEndian.AppendUint64(nil, uint64(version))", "after": "binary.LittleEndian.AppendUint64(nil, uint64(version))"},
+    {"id": "version-scan-narrowed", "file": "polaris/internal/storage/model.go", "test": "TestNumeric", "before": "Version(binary.BigEndian.Uint64(bytes))", "after": "Version(uint32(binary.BigEndian.Uint64(bytes)))"},
+    {"id": "scope-limit-exclusive", "file": "polaris/internal/storage/model.go", "test": "TestNumeric", "before": "limits.Scopes <= 16384", "after": "limits.Scopes < 16384"},
+    {"id": "zero-history-refused", "file": "polaris/internal/storage/model.go", "test": "TestNumeric", "before": "limits.History >= 0", "after": "limits.History > 0"},
+    {"id": "aggregate-cover-equality", "file": "polaris/internal/storage/model.go", "test": "TestNumeric", "before": "limits.Total >= limits.Bytes", "after": "limits.Total > limits.Bytes"},
+    {"id": "count-narrowed", "file": "polaris/internal/storage/batch.go", "test": "TestNumeric", "before": "count := binary.BigEndian.Uint64(data[4:12])", "after": "count := uint64(uint32(binary.BigEndian.Uint64(data[4:12])))"},
+    {"id": "length-narrowed", "file": "polaris/internal/storage/batch.go", "test": "TestNumeric", "before": "binary.BigEndian.Uint32(data[2:6])", "after": "uint32(uint16(binary.BigEndian.Uint32(data[2:6])))"},
+    {"id": "aggregate-feed-exclusive", "file": "polaris/internal/storage/feed.go", "test": "TestNumeric", "before": "limit > (128<<20)-store.feedBytes", "after": "limit >= (128<<20)-store.feedBytes"},
+    {"id": "feed-cost-exclusive", "file": "polaris/internal/storage/feed.go", "test": "TestNumeric", "before": "cost > feed.limit-feed.bytes", "after": "cost >= feed.limit-feed.bytes"}
+  ]
+}

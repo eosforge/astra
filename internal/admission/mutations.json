@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "scope": "Twenty-six original Admission directory, Node, identity and constructor guard mutations. Immutable native inspection scheduling and independent metadata fixtures preserve the original two file-boundary oracles on the current acquisition implementation; this group alone does not qualify whole-Admission mutation coverage.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "stale-list",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryModel",
+      "before": "incoming == nil || incoming.Epoch < old.Epoch",
+      "after": "incoming == nil || incoming.Epoch > old.Epoch"
+    },
+    {
+      "id": "missing-member",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryModel",
+      "before": "prepared[principal] = old\n\t\t\tcontinue",
+      "after": "delete(prepared, principal)\n\t\t\tcontinue"
+    },
+    {
+      "id": "stale-handshake",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryModel",
+      "before": "if member.Epoch < old.Epoch ||",
+      "after": "if member.Epoch > old.Epoch ||"
+    },
+    {
+      "id": "capacity-union",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryModel",
+      "before": "if len(prepared) > directory.maximum {",
+      "after": "if len(prepared) > directory.maximum+1 {"
+    },
+    {
+      "id": "current-epoch",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryModel",
+      "before": "return same(directory.known[string(member.Principal)], member)",
+      "after": "return directory.known[string(member.Principal)] != nil"
+    },
+    {
+      "id": "borrow-installed",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryOwnership",
+      "before": "prepared[string(member.Principal)] = proto.Clone(member).(*orbit.Member)",
+      "after": "prepared[string(member.Principal)] = member"
+    },
+    {
+      "id": "borrow-observed",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryOwnership",
+      "before": "directory.known[string(member.Principal)] = proto.Clone(member).(*orbit.Member)",
+      "after": "directory.known[string(member.Principal)] = member"
+    },
+    {
+      "id": "borrow-snapshot",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryModel",
+      "before": "result = append(result, proto.Clone(member).(*orbit.Member))",
+      "after": "result = append(result, member)"
+    },
+    {
+      "id": "node-register-again",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRegistration",
+      "before": "if node.Member() != nil {",
+      "after": "if false {"
+    },
+    {
+      "id": "node-accept-old",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRegistration",
+      "before": "if !node.directory.Current(member) {\n\t\treturn ErrIdentity\n\t}\n\tnode.mutex.Lock()",
+      "after": "if false {\n\t\treturn ErrIdentity\n\t}\n\tnode.mutex.Lock()"
+    },
+    {
+      "id": "node-borrow-hello",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeState",
+      "before": "return proto.Clone(node.hello).(*astra.Hello)",
+      "after": "return node.hello"
+    },
+    {
+      "id": "node-join-cap",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeJoin",
+      "before": "delay = min(delay*2, 30*time.Second)",
+      "after": "delay = min(delay*2, 60*time.Second)"
+    },
+    {
+      "id": "node-refresh-reset",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRun",
+      "before": "if err == nil {\n\t\t\tdelay = 30 * time.Second",
+      "after": "if err == nil {\n\t\t\tdelay = time.Minute"
+    },
+    {
+      "id": "node-retry-aborted",
+      "file": "internal/admission/node.go",
+      "test": "TestNodePause",
+      "before": " || status.Code(err) == codes.Aborted",
+      "after": " || false"
+    },
+    {
+      "id": "identity-material-limit",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadBoundaries",
+      "before": "len(data) > 16384",
+      "after": "len(data) > 32768"
+    },
+    {
+      "id": "identity-follow-link",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadInspection",
+      "before": "return load(directory, advertise, os.Lstat,",
+      "after": "return load(directory, advertise, os.Stat,"
+    },
+    {
+      "id": "identity-unknown-field",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "name != \"username\" && name != \"password\"",
+      "after": "false"
+    },
+    {
+      "id": "identity-empty-name",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "len(value) == 0 || len(value) > 64",
+      "after": "len(value) > 64"
+    },
+    {
+      "id": "directory-planet-role",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConstruction",
+      "before": " || role == orbit.Role_ROLE_PLANET",
+      "after": " || false"
+    },
+    {
+      "id": "identity-stat-error",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadFault",
+      "before": "staterr != nil ||",
+      "after": "staterr != nil && false ||"
+    },
+    {
+      "id": "identity-stat-kind",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadMetadata",
+      "before": "staterr != nil || !info.Mode().IsRegular()",
+      "after": "staterr != nil || !info.Mode().IsRegular() && false"
+    },
+    {
+      "id": "identity-read-error",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadFault",
+      "before": "readerr != nil ||",
+      "after": "readerr != nil && false ||"
+    },
+    {
+      "id": "identity-close-error",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadFault",
+      "before": "closeerr != nil ||",
+      "after": "closeerr != nil && false ||"
+    },
+    {
+      "id": "identity-close-omitted",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadFault",
+      "before": "closeerr := file.Close()",
+      "after": "closeerr := error(nil)"
+    },
+    {
+      "id": "identity-close-twice",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadFault",
+      "before": "closeerr := file.Close()",
+      "after": "closeerr := file.Close()\n\t\t_ = file.Close()"
+    },
+    {
+      "id": "node-client-error",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeOpen",
+      "before": "if err != nil {\n\t\treturn nil, err\n\t}\n\treturn &Node{",
+      "after": "if err != nil && false {\n\t\treturn nil, err\n\t}\n\treturn &Node{"
+    }
+  ],
+  "fixtures": [
+    {
+      "source": "tests/fixtures/admission-inspection.go.in",
+      "target": "internal/admission/inspection_linux_amd64_test.go"
+    },
+    {
+      "source": "tests/fixtures/admission-metadata.go.in",
+      "target": "internal/admission/metadata_linux_amd64_test.go"
+    }
+  ]
+}

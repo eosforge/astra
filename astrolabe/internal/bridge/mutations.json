@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "scope": "Eight bridge transport mutations covering no-retry writes, batch completeness/content, authority ambiguity, closed-target publication, send-error propagation and cancellation. This is not complete Astrolabe mutation coverage.",
+  "package": "./astrolabe/internal/bridge",
+  "import": "github.com/eosforge/astra/astrolabe/internal/bridge",
+  "mutations": [
+    {
+      "id": "replay-write",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransport",
+      "before": "return client.Commit(ctx, request)",
+      "after": "_, _ = client.Commit(ctx, request)\n\t\treturn client.Commit(ctx, request)"
+    },
+    {
+      "id": "incomplete-batch",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransport",
+      "before": "page.Complete = true",
+      "after": "page.Complete = false"
+    },
+    {
+      "id": "duplicated-change",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransport",
+      "before": "page.Changes = append(page.Changes, change)",
+      "after": "page.Changes = append(page.Changes, change, change)"
+    },
+    {
+      "id": "ambiguous-authority",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransportReplacement",
+      "before": "if multiple {",
+      "after": "if multiple && false {"
+    },
+    {
+      "id": "undrained-load",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransportLoad",
+      "before": "func (backend *Backend) Load(ctx context.Context, scope *comet.Scope, receive func(*polaris.Snapshot) error) error {\n\n\tctx, cancel := context.WithCancel(ctx)\n\tdefer cancel()",
+      "after": "func (backend *Backend) Load(ctx context.Context, scope *comet.Scope, receive func(*polaris.Snapshot) error) error {\n\n\tctx, cancel := context.WithCancel(ctx)\n\tdefer func() { _ = cancel }()"
+    },
+    {
+      "id": "late-target",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransportReplacement",
+      "before": "if backend.closed {",
+      "after": "if backend.closed && false {"
+    },
+    {
+      "id": "prefix-error",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransportFailures",
+      "before": "if err := stream.Send(page); err != nil {\n\t\t\t\treturn nil, err",
+      "after": "if err := stream.Send(page); err != nil {\n\t\t\t\treturn nil, nil"
+    },
+    {
+      "id": "final-error",
+      "file": "astrolabe/internal/bridge/backend.go",
+      "test": "TestTransportFailures",
+      "before": "if err := stream.Send(page); err != nil {\n\t\treturn nil, err",
+      "after": "if err := stream.Send(page); err != nil {\n\t\treturn nil, nil"
+    }
+  ]
+}

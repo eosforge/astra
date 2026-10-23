@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "global": [
+    "DEV-SCOPE",
+    "DEV-CONFIG",
+    "DEV-EVIDENCE",
+    "DEV-GATE",
+    "DEV-STOP"
+  ],
+  "rules": [
+    {
+      "id": "DEV-SCOPE",
+      "sections": "1, 2.1",
+      "subject": "Adoption scope, permission, and applicability",
+      "depends_on": []
+    },
+    {
+      "id": "DEV-TRACE",
+      "sections": "2.3-2.4, 3.1, 10.2",
+      "subject": "Feature-design admission, requirements-to-evidence mapping, and public examples",
+      "depends_on": [
+        "DEV-CONFIG",
+        "DEV-CONTRACT"
+      ]
+    },
+    {
+      "id": "DEV-CORE",
+      "sections": "3.2",
+      "subject": "Testable boundaries and execution carriers",
+      "depends_on": [
+        "DEV-CONTRACT"
+      ]
+    },
+    {
+      "id": "DEV-ASYNC",
+      "sections": "4.1, 7.3",
+      "subject": "Task ownership, cancellation, and draining",
+      "depends_on": [
+        "DEV-CONTRACT",
+        "DEV-STOP"
+      ]
+    },
+    {
+      "id": "DEV-TIME",
+      "sections": "4.4",
+      "subject": "Clock domains, virtual time, and leases",
+      "depends_on": [
+        "DEV-CONTRACT"
+      ]
+    },
+    {
+      "id": "DEV-CONTRACT",
+      "sections": "3, 4.1",
+      "subject": "Behavior, failure guarantees, and commit boundaries",
+      "depends_on": [
+        "DEV-SCOPE"
+      ]
+    },
+    {
+      "id": "DEV-SECURITY",
+      "sections": "3.3, 4.3, 4.6",
+      "subject": "Trust, secrets, inputs, and fault isolation",
+      "depends_on": [
+        "DEV-SCOPE",
+        "DEV-CONTRACT"
+      ]
+    },
+    {
+      "id": "DEV-CAPACITY",
+      "sections": "4.2, 4.6, 7.2",
+      "subject": "Aggregate budgets and overload",
+      "depends_on": [
+        "DEV-CONTRACT"
+      ]
+    },
+    {
+      "id": "DEV-RETRY",
+      "sections": "3.3, 4.2",
+      "subject": "Idempotency, unknown outcomes, and retry control",
+      "depends_on": [
+        "DEV-TIME",
+        "DEV-CONTRACT"
+      ]
+    },
+    {
+      "id": "DEV-ORACLE",
+      "sections": "5.1-5.2, 5.4",
+      "subject": "Independent oracles, validity, and anti-weakening controls",
+      "depends_on": [
+        "DEV-CONTRACT",
+        "DEV-EVIDENCE"
+      ]
+    },
+    {
+      "id": "DEV-REDGREEN",
+      "sections": "5.2",
+      "subject": "Prior failures, new passes, and scheduling evidence",
+      "depends_on": [
+        "DEV-ORACLE",
+        "DEV-REPLAY"
+      ]
+    },
+    {
+      "id": "DEV-COVERAGE",
+      "sections": "5.3-5.4",
+      "subject": "Coverage denominators, mutation, and exclusions",
+      "depends_on": [
+        "DEV-ORACLE",
+        "DEV-MATRIX"
+      ]
+    },
+    {
+      "id": "DEV-REPLAY",
+      "sections": "4.4, 6.1",
+      "subject": "Deterministic inputs, replay, and corpora",
+      "depends_on": [
+        "DEV-EVIDENCE",
+        "DEV-TIME"
+      ]
+    },
+    {
+      "id": "DEV-NUMERIC",
+      "sections": "4.4",
+      "subject": "Numeric semantics and cross-platform conditions",
+      "depends_on": [
+        "DEV-CONTRACT",
+        "DEV-REPLAY"
+      ]
+    },
+    {
+      "id": "DEV-FAULT",
+      "sections": "3.3, 4, 5.1",
+      "subject": "Fault boundaries and recovery",
+      "depends_on": [
+        "DEV-CONTRACT",
+        "DEV-STOP",
+        "DEV-REPLAY"
+      ]
+    },
+    {
+      "id": "DEV-MODEL",
+      "sections": "5.1-5.3",
+      "subject": "Model assumptions, independent grounds, and real-system supplements",
+      "depends_on": [
+        "DEV-ORACLE",
+        "DEV-REPLAY"
+      ]
+    },
+    {
+      "id": "DEV-STOP",
+      "sections": "7.3",
+      "subject": "Owned-task shutdown and residual-resource checks",
+      "depends_on": [
+        "DEV-SCOPE",
+        "DEV-CAPACITY"
+      ]
+    },
+    {
+      "id": "DEV-IMPACT",
+      "sections": "2.2",
+      "subject": "Impact closure and evidence invalidation",
+      "depends_on": [
+        "DEV-CONFIG",
+        "DEV-TRACE"
+      ]
+    },
+    {
+      "id": "DEV-MATRIX",
+      "sections": "5.1, 5.3, 7.1",
+      "subject": "Applicable capabilities and configuration matrix",
+      "depends_on": [
+        "DEV-CONFIG",
+        "DEV-CONTRACT"
+      ]
+    },
+    {
+      "id": "DEV-GATE",
+      "sections": "8.3, 9",
+      "subject": "Controlled acceptance and negative self-checks",
+      "depends_on": [
+        "DEV-EVIDENCE"
+      ]
+    },
+    {
+      "id": "DEV-FAILURE",
+      "sections": "6.2-6.3",
+      "subject": "Failure handling and isolated recovery",
+      "depends_on": [
+        "DEV-EVIDENCE",
+        "DEV-REPLAY"
+      ]
+    },
+    {
+      "id": "DEV-AUDIT",
+      "sections": "2.3, 10.1",
+      "subject": "Complexity justification, reverse analysis, and stopping criteria",
+      "depends_on": [
+        "DEV-TRACE",
+        "DEV-ORACLE"
+      ]
+    },
+    {
+      "id": "DEV-SUPPLY",
+      "sections": "4.3, 10.2",
+      "subject": "Dependency admission, locking, and delivery identity",
+      "depends_on": [
+        "DEV-SECURITY",
+        "DEV-CONFIG"
+      ]
+    },
+    {
+      "id": "DEV-COMPAT",
+      "sections": "4.5, 10.2",
+      "subject": "Interfaces, versions, migration, and rollback",
+      "depends_on": [
+        "DEV-CONTRACT",
+        "DEV-MATRIX"
+      ]
+    },
+    {
+      "id": "DEV-RELEASE",
+      "sections": "9, 10.2",
+      "subject": "Actual candidate gates and publication authority",
+      "depends_on": [
+        "DEV-GATE",
+        "DEV-SUPPLY",
+        "DEV-COMPAT"
+      ]
+    },
+    {
+      "id": "DEV-OPERATE",
+      "sections": "4.6, 7.3, 10.3",
+      "subject": "Steady-state operation, maintenance, and recovery",
+      "depends_on": [
+        "DEV-CAPACITY",
+        "DEV-STOP",
+        "DEV-FAILURE"
+      ]
+    },
+    {
+      "id": "DEV-EVIDENCE",
+      "sections": "8",
+      "subject": "Native facts, correlation, and content verification",
+      "depends_on": [
+        "DEV-CONFIG"
+      ]
+    },
+    {
+      "id": "DEV-CONFIG",
+      "sections": "2.1-2.2, 7.1-7.2",
+      "subject": "Effective configuration, inheritance, and environment",
+      "depends_on": [
+        "DEV-SCOPE"
+      ]
+    },
+    {
+      "id": "DEV-ADOPTION",
+      "sections": "11",
+      "subject": "Adoption maturity and standard evolution",
+      "depends_on": [
+        "DEV-GATE",
+        "DEV-COVERAGE"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "scope": "Eighteen explicit directory conflict, verification, metadata and coupled epoch predicate omissions; complete named baselines and semantic failures are required, not full Admission mutation qualification.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "input-principal",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "prepared[string(member.Principal)] != nil",
+      "after": "false"
+    },
+    {
+      "id": "input-address",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "\t\tif !Valid(member) || member.Galaxy != directory.galaxy || directory.role != orbit.Role_ROLE_ASTROLABE && member.Role != orbit.Role_ROLE_STAR && member.Role != orbit.Role_ROLE_POLARIS || index != 0 && bytes.Compare(previous, member.Id) >= 0 || prepared[string(member.Principal)] != nil || addresses[member.Advertise] {",
+      "after": "\t\tif !Valid(member) || member.Galaxy != directory.galaxy || directory.role != orbit.Role_ROLE_ASTROLABE && member.Role != orbit.Role_ROLE_STAR && member.Role != orbit.Role_ROLE_POLARIS || index != 0 && bytes.Compare(previous, member.Id) >= 0 || prepared[string(member.Principal)] != nil || false {"
+    },
+    {
+      "id": "merge-role",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "incoming.Role != old.Role",
+      "after": "false"
+    },
+    {
+      "id": "merge-address",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "incoming.Advertise != old.Advertise",
+      "after": "false"
+    },
+    {
+      "id": "merge-id-reuse",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "incoming.Epoch > old.Epoch && bytes.Equal(incoming.Id, old.Id)",
+      "after": "false"
+    },
+    {
+      "id": "merge-id-alias",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "if addresses[member.Advertise] || ids[string(member.Id)] {",
+      "after": "if addresses[member.Advertise] {"
+    },
+    {
+      "id": "observe-epoch",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "member.Epoch == old.Epoch && !same(member, old)",
+      "after": "false"
+    },
+    {
+      "id": "observe-role",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "member.Role != old.Role",
+      "after": "false"
+    },
+    {
+      "id": "observe-address",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "member.Advertise != old.Advertise",
+      "after": "false"
+    },
+    {
+      "id": "observe-id-reuse",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "member.Epoch > old.Epoch && bytes.Equal(member.Id, old.Id)",
+      "after": "false"
+    },
+    {
+      "id": "observe-id-alias",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "bytes.Equal(known.Id, member.Id)",
+      "after": "false"
+    },
+    {
+      "id": "verify-signature",
+      "file": "internal/admission/directory.go",
+      "test": "TestAdmissionCredentials",
+      "before": "\tif err != nil || member.Galaxy != directory.galaxy || !slices.Contains(roles, member.Role) {",
+      "after": "\tif false && err != nil || member.Galaxy != directory.galaxy || !slices.Contains(roles, member.Role) {"
+    },
+    {
+      "id": "verify-galaxy",
+      "file": "internal/admission/directory.go",
+      "test": "TestAdmissionCredentials",
+      "before": "\tif err != nil || member.Galaxy != directory.galaxy || !slices.Contains(roles, member.Role) {",
+      "after": "\tif err != nil || false || !slices.Contains(roles, member.Role) {"
+    },
+    {
+      "id": "verify-role",
+      "file": "internal/admission/directory.go",
+      "test": "TestAdmissionCredentials",
+      "before": "\tif err != nil || member.Galaxy != directory.galaxy || !slices.Contains(roles, member.Role) {",
+      "after": "\tif err != nil || member.Galaxy != directory.galaxy || false {"
+    },
+    {
+      "id": "metadata-admission",
+      "file": "internal/admission/directory.go",
+      "test": "TestAdmissionCredentials",
+      "before": "len(data) != 1 || len(signature) != 1",
+      "after": "false || len(signature) != 1"
+    },
+    {
+      "id": "metadata-signature",
+      "file": "internal/admission/directory.go",
+      "test": "TestAdmissionCredentials",
+      "before": "len(data) != 1 || len(signature) != 1",
+      "after": "len(data) != 1 || false"
+    },
+    {
+      "id": "merge-epoch-guard",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "incoming.Epoch > old.Epoch && bytes.Equal(incoming.Id, old.Id)",
+      "after": "bytes.Equal(incoming.Id, old.Id)"
+    },
+    {
+      "id": "observe-epoch-guard",
+      "file": "internal/admission/directory.go",
+      "test": "TestDirectoryConflicts",
+      "before": "member.Epoch > old.Epoch && bytes.Equal(member.Id, old.Id)",
+      "after": "bytes.Equal(member.Id, old.Id)"
+    }
+  ]
+}

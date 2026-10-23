@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "scope": "Twenty-nine security boundary mutations supplement the retained 116 Admission mutants: material publication, certificate authorization, TLS ownership/options, domain separation, signed-format validation, login fields, canonical endpoints, registration binding and outgoing credentials. Each uses an existing unchanged named oracle. This inventory does not itself discharge whole-component qualification.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "material-public-key",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadBoundaries",
+      "before": "len(identity.public) != ed25519.PublicKeySize",
+      "after": "false"
+    },
+    {
+      "id": "material-login",
+      "file": "internal/admission/identity.go",
+      "test": "TestLoadBoundaries",
+      "before": "identity.login(materials[\"login.json\"]) != nil",
+      "after": "false"
+    },
+    {
+      "id": "certificate-authorization",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentity",
+      "before": "if _, err := leaf.Verify(x509.VerifyOptions{DNSName: endpoint.Addr().String(), Roots: roots, Intermediates: intermediates, KeyUsages: []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth}}); err != nil {",
+      "after": "if _, err := leaf.Verify(x509.VerifyOptions{DNSName: endpoint.Addr().String(), Roots: roots, Intermediates: intermediates, KeyUsages: []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth}}); err != nil && false {"
+    },
+    {
+      "id": "tls-client-copy",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "return identity.client.Clone()",
+      "after": "return identity.client"
+    },
+    {
+      "id": "tls-server-copy",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "return identity.server.Clone()",
+      "after": "return identity.server"
+    },
+    {
+      "id": "tls-client-minimum",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "identity.client = &tls.Config{RootCAs: roots, MinVersion: tls.VersionTLS13, MaxVersion: tls.VersionTLS13}",
+      "after": "identity.client = &tls.Config{RootCAs: roots, MinVersion: tls.VersionTLS12, MaxVersion: tls.VersionTLS13}"
+    },
+    {
+      "id": "tls-server-maximum",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "identity.server = &tls.Config{Certificates: []tls.Certificate{certificate}, MinVersion: tls.VersionTLS13, MaxVersion: tls.VersionTLS13}",
+      "after": "identity.server = &tls.Config{Certificates: []tls.Certificate{certificate}, MinVersion: tls.VersionTLS13, MaxVersion: tls.VersionTLS12}"
+    },
+    {
+      "id": "principal-domain",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentity",
+      "before": "identity.username + \"\\x00\" + galaxy + \"\\x00\" + advertise",
+      "after": "identity.username + galaxy + \"\\x00\" + advertise"
+    },
+    {
+      "id": "signature-verification",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentity",
+      "before": "!ed25519.Verify(identity.public, input, signature)",
+      "after": "!ed25519.Verify(identity.public, input, signature) && false"
+    },
+    {
+      "id": "signature-domain",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentity",
+      "before": "input := append([]byte(\"proto.orbit.v1.admission\\x00\"), data...)",
+      "after": "input := append([]byte(\"proto.astra.v1.admission\\x00\"), data...)"
+    },
+    {
+      "id": "signed-member-format",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentity",
+      "before": "!Valid(member)",
+      "after": "false"
+    },
+    {
+      "id": "login-duplicate",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "seen[name] ||",
+      "after": "false ||"
+    },
+    {
+      "id": "login-user",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "!Name(identity.username)",
+      "after": "false"
+    },
+    {
+      "id": "login-empty-password",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "len(identity.password) == 0",
+      "after": "false"
+    },
+    {
+      "id": "login-password-limit",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "len(identity.password) > 1024",
+      "after": "false"
+    },
+    {
+      "id": "login-trailing",
+      "file": "internal/admission/identity.go",
+      "test": "TestIdentityRules",
+      "before": "err != io.EOF",
+      "after": "err != io.EOF && false"
+    },
+    {
+      "id": "endpoint-canonical",
+      "file": "internal/admission/identity.go",
+      "test": "TestSharedVectors",
+      "before": "endpoint.String() != value",
+      "after": "false"
+    },
+    {
+      "id": "endpoint-zero-port",
+      "file": "internal/admission/identity.go",
+      "test": "TestSharedVectors",
+      "before": "endpoint.Port() == 0",
+      "after": "false"
+    },
+    {
+      "id": "endpoint-unspecified",
+      "file": "internal/admission/identity.go",
+      "test": "TestSharedVectors",
+      "before": "endpoint.Addr().IsUnspecified()",
+      "after": "false"
+    },
+    {
+      "id": "endpoint-multicast",
+      "file": "internal/admission/identity.go",
+      "test": "TestSharedVectors",
+      "before": "endpoint.Addr().IsMulticast()",
+      "after": "false"
+    },
+    {
+      "id": "endpoint-mapped",
+      "file": "internal/admission/identity.go",
+      "test": "TestSharedVectors",
+      "before": "endpoint.Addr().Is4In6()",
+      "after": "false"
+    },
+    {
+      "id": "endpoint-zone",
+      "file": "internal/admission/identity.go",
+      "test": "TestSharedVectors",
+      "before": "endpoint.Addr().Zone() != \"\"",
+      "after": "false"
+    },
+    {
+      "id": "registration-role",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRegistration",
+      "before": "member.Role != node.request.Role",
+      "after": "false"
+    },
+    {
+      "id": "registration-group",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRegistration",
+      "before": "member.Group != node.request.Group",
+      "after": "false"
+    },
+    {
+      "id": "registration-address",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRegistration",
+      "before": "member.Advertise != node.request.Advertise",
+      "after": "false"
+    },
+    {
+      "id": "registration-principal",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeRegistration",
+      "before": "!bytes.Equal(member.Principal, node.identity.Principal(node.request.Galaxy, node.request.Advertise))",
+      "after": "!bytes.Equal(member.Principal, node.identity.Principal(node.request.Galaxy, node.request.Advertise)) && false"
+    },
+    {
+      "id": "metadata-admission",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeState",
+      "before": "len(values.Get(\"astra-admission-bin\")) != 0",
+      "after": "false"
+    },
+    {
+      "id": "metadata-signature",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeState",
+      "before": "len(values.Get(\"astra-signature-bin\")) != 0",
+      "after": "false"
+    },
+    {
+      "id": "member-copy",
+      "file": "internal/admission/node.go",
+      "test": "TestNodeState",
+      "before": "return proto.Clone(node.member).(*orbit.Member)",
+      "after": "return node.member"
+    }
+  ]
+}

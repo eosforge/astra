@@ -1,0 +1,5716 @@
+{
+  "basis": "The frozen Go 1.27.1 source-block obligations are preserved one-to-one. Go 1.27.2 raw statement weights are independently enumerated from the same uninstrumented syntax and historical spans; the original current compiler-source diagnosis identifies the per-executable-range correction. Only weights change, not covered source, required hit sets or exclusions.",
+  "packages": {
+    "polaris": {
+      "blocks": [
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 12,
+          "span": [
+            40,
+            2,
+            42,
+            1
+          ]
+        },
+        {
+          "current": 10,
+          "file": "polaris/main.go",
+          "legacy": 12,
+          "span": [
+            43,
+            2,
+            52,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            53,
+            3,
+            54,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            56,
+            2,
+            56,
+            28
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            57,
+            3,
+            58,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            60,
+            2,
+            60,
+            83
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            61,
+            3,
+            61,
+            57
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            62,
+            4,
+            63,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            65,
+            2,
+            65,
+            194
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            66,
+            3,
+            67,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            68,
+            2,
+            68,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            75,
+            2,
+            75,
+            29
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            76,
+            3,
+            77,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            79,
+            2,
+            80,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            81,
+            3,
+            82,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            83,
+            2,
+            84,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            85,
+            3,
+            86,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            87,
+            2,
+            88,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            89,
+            3,
+            90,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            91,
+            2,
+            92,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            93,
+            3,
+            94,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 3,
+          "span": [
+            95,
+            2,
+            96,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 3,
+          "span": [
+            97,
+            2,
+            98,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            99,
+            3,
+            100,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            101,
+            2,
+            102,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            103,
+            2,
+            103,
+            39
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            104,
+            3,
+            105,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            106,
+            2,
+            107,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            108,
+            3,
+            109,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 9,
+          "span": [
+            110,
+            2,
+            111,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/main.go",
+          "legacy": 9,
+          "span": [
+            112,
+            2,
+            115,
+            1
+          ]
+        },
+        {
+          "current": 5,
+          "file": "polaris/main.go",
+          "legacy": 9,
+          "span": [
+            116,
+            2,
+            120,
+            76
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            121,
+            3,
+            121,
+            40
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            122,
+            4,
+            122,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            123,
+            5,
+            124,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/main.go",
+          "legacy": 4,
+          "span": [
+            132,
+            2,
+            135,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            135,
+            14,
+            135,
+            41
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            136,
+            2,
+            137,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            137,
+            14,
+            137,
+            46
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/main.go",
+          "legacy": 3,
+          "span": [
+            138,
+            2,
+            140,
+            9
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/main.go",
+          "legacy": 0,
+          "span": [
+            141,
+            20,
+            141,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            143,
+            3,
+            143,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            145,
+            3,
+            145,
+            16
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/main.go",
+          "legacy": 4,
+          "span": [
+            148,
+            2,
+            151,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            152,
+            3,
+            154,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            155,
+            2,
+            155,
+            9
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/main.go",
+          "legacy": 0,
+          "span": [
+            156,
+            17,
+            156,
+            17
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            158,
+            3,
+            159,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            161,
+            2,
+            162,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            163,
+            3,
+            164,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            165,
+            2,
+            165,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            166,
+            3,
+            167,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            168,
+            2,
+            168,
+            85
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            169,
+            3,
+            170,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            171,
+            2,
+            171,
+            15
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            176,
+            2,
+            177,
+            34
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            178,
+            3,
+            179,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            180,
+            2,
+            180,
+            16
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            181,
+            3,
+            183,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/main.go",
+          "legacy": 3,
+          "span": [
+            184,
+            2,
+            186,
+            78
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            187,
+            3,
+            189,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/main.go",
+          "legacy": 1,
+          "span": [
+            190,
+            2,
+            190,
+            10
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/main.go",
+          "legacy": 2,
+          "span": [
+            195,
+            2,
+            197,
+            1
+          ]
+        }
+      ],
+      "shape_sha256": {
+        "1.27.1": "e3efe433f943becdc759523230d045b21698bcbf2eef6bbbeb178678852ee895",
+        "1.27.2": "bdec7c0e93a86cec6f0eb04ace1a8be60eea50e0481f023fa3eb5bf190e976f7"
+      }
+    },
+    "polaris/internal/server": {
+      "blocks": [
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            35,
+            2,
+            35,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            36,
+            3,
+            37,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 3,
+          "span": [
+            39,
+            2,
+            41,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            42,
+            3,
+            43,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            45,
+            2,
+            45,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            46,
+            3,
+            46,
+            79
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            47,
+            4,
+            48,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            50,
+            2,
+            50,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            56,
+            2,
+            56,
+            38
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            57,
+            3,
+            58,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            59,
+            2,
+            60,
+            60
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            61,
+            3,
+            62,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            63,
+            2,
+            63,
+            106
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            70,
+            2,
+            71,
+            79
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            72,
+            3,
+            73,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            75,
+            2,
+            75,
+            9
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 0,
+          "span": [
+            76,
+            37,
+            76,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            78,
+            3,
+            78,
+            84
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            80,
+            2,
+            81,
+            16
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            82,
+            3,
+            84,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            85,
+            2,
+            85,
+            20
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            92,
+            2,
+            93,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            94,
+            3,
+            95,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            96,
+            2,
+            96,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            96,
+            17,
+            96,
+            36
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            97,
+            2,
+            97,
+            47
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 3,
+          "span": [
+            103,
+            2,
+            105,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            106,
+            3,
+            107,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            108,
+            2,
+            108,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            108,
+            17,
+            108,
+            36
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 4,
+          "span": [
+            109,
+            2,
+            111,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 4,
+          "span": [
+            112,
+            2,
+            113,
+            6
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            114,
+            3,
+            115,
+            29
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            116,
+            4,
+            116,
+            9
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            118,
+            3,
+            118,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            119,
+            4,
+            120,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            121,
+            3,
+            121,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            122,
+            4,
+            123,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            124,
+            3,
+            124,
+            98
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            125,
+            4,
+            126,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            127,
+            3,
+            127,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            128,
+            4,
+            129,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            129,
+            10,
+            129,
+            88
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            130,
+            4,
+            131,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            132,
+            3,
+            132,
+            39
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            133,
+            4,
+            133,
+            41
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            134,
+            5,
+            135,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            136,
+            4,
+            136,
+            45
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            137,
+            5,
+            138,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            139,
+            4,
+            139,
+            33
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            141,
+            3,
+            142,
+            27
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            144,
+            2,
+            144,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            145,
+            3,
+            146,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            147,
+            2,
+            148,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            149,
+            3,
+            150,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            151,
+            2,
+            151,
+            36
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            156,
+            2,
+            156,
+            102
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            157,
+            3,
+            158,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            159,
+            2,
+            160,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            161,
+            3,
+            161,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            162,
+            4,
+            163,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            164,
+            3,
+            165,
+            40
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            166,
+            4,
+            166,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            167,
+            5,
+            168,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            169,
+            4,
+            170,
+            40
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            172,
+            5,
+            172,
+            22
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            173,
+            6,
+            174,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            175,
+            5,
+            175,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            177,
+            5,
+            177,
+            45
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            178,
+            6,
+            179,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            180,
+            5,
+            180,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            182,
+            5,
+            182,
+            76
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            184,
+            4,
+            184,
+            36
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            186,
+            3,
+            186,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            187,
+            4,
+            188,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            189,
+            3,
+            190,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            191,
+            4,
+            192,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            193,
+            3,
+            193,
+            80
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            195,
+            2,
+            196,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            197,
+            2,
+            197,
+            48
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            199,
+            3,
+            199,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            200,
+            4,
+            201,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            202,
+            3,
+            202,
+            30
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            204,
+            3,
+            204,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            205,
+            4,
+            206,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            207,
+            3,
+            207,
+            22
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            209,
+            3,
+            209,
+            78
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            212,
+            2,
+            212,
+            32
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            213,
+            3,
+            214,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            216,
+            2,
+            216,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            217,
+            3,
+            218,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            219,
+            2,
+            220,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            221,
+            3,
+            222,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            223,
+            2,
+            223,
+            79
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            229,
+            2,
+            229,
+            59
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            230,
+            3,
+            231,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            233,
+            2,
+            233,
+            123
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            234,
+            3,
+            235,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            236,
+            2,
+            236,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            238,
+            3,
+            239,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            241,
+            2,
+            242,
+            136
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            248,
+            2,
+            248,
+            48
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            249,
+            3,
+            250,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            251,
+            2,
+            251,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            251,
+            17,
+            251,
+            36
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            252,
+            2,
+            253,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            254,
+            3,
+            255,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            257,
+            2,
+            258,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            259,
+            3,
+            260,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            261,
+            2,
+            261,
+            32
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            262,
+            3,
+            263,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            264,
+            2,
+            264,
+            20
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            270,
+            2,
+            271,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            272,
+            3,
+            273,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            274,
+            2,
+            274,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            274,
+            17,
+            274,
+            36
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            275,
+            2,
+            275,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            276,
+            3,
+            277,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 3,
+          "span": [
+            278,
+            2,
+            279,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 3,
+          "span": [
+            280,
+            2,
+            281,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            282,
+            3,
+            283,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            285,
+            2,
+            286,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            287,
+            3,
+            288,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            289,
+            2,
+            290,
+            71
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            292,
+            3,
+            292,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            293,
+            4,
+            294,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            295,
+            3,
+            295,
+            27
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            303,
+            2,
+            303,
+            39
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            304,
+            3,
+            305,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 4,
+          "span": [
+            306,
+            2,
+            309,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 4,
+          "span": [
+            310,
+            2,
+            310,
+            42
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 3,
+          "span": [
+            311,
+            3,
+            313,
+            66
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            314,
+            4,
+            314,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            315,
+            5,
+            316,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            317,
+            4,
+            318,
+            33
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            320,
+            3,
+            320,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            321,
+            4,
+            322,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            323,
+            3,
+            324,
+            15
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 2,
+          "span": [
+            327,
+            2,
+            328,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            335,
+            2,
+            335,
+            9
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            337,
+            3,
+            337,
+            72
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            339,
+            3,
+            339,
+            67
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            341,
+            3,
+            341,
+            74
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            343,
+            3,
+            343,
+            77
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            345,
+            3,
+            345,
+            78
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            347,
+            3,
+            347,
+            69
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            349,
+            3,
+            349,
+            85
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/authority.go",
+          "legacy": 1,
+          "span": [
+            351,
+            3,
+            351,
+            74
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            49,
+            2,
+            50,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            57,
+            2,
+            57,
+            34
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            58,
+            3,
+            59,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 5,
+          "span": [
+            60,
+            2,
+            61,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 5,
+          "span": [
+            62,
+            2,
+            65,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            66,
+            3,
+            66,
+            47
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 2,
+          "span": [
+            67,
+            4,
+            69,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 3,
+          "span": [
+            70,
+            3,
+            72,
+            30
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 4,
+          "span": [
+            74,
+            2,
+            77,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 2,
+          "span": [
+            79,
+            3,
+            80,
+            59
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            81,
+            4,
+            82,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            83,
+            3,
+            83,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            86,
+            2,
+            86,
+            9
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 2,
+          "span": [
+            88,
+            3,
+            89,
+            24
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            91,
+            3,
+            91,
+            35
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 2,
+          "span": [
+            92,
+            4,
+            94,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            95,
+            3,
+            95,
+            23
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 2,
+          "span": [
+            96,
+            4,
+            98,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 2,
+          "span": [
+            99,
+            3,
+            100,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 1,
+          "span": [
+            107,
+            2,
+            107,
+            21
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 4,
+          "span": [
+            108,
+            3,
+            111,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 4,
+          "span": [
+            112,
+            3,
+            112,
+            32
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/cache.go",
+          "legacy": 2,
+          "span": [
+            113,
+            4,
+            115,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            38,
+            2,
+            39,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            42,
+            34,
+            42,
+            58
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            78,
+            2,
+            78,
+            9
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 0,
+          "span": [
+            79,
+            35,
+            79,
+            35
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            81,
+            3,
+            81,
+            83
+          ]
+        },
+        {
+          "current": 5,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 7,
+          "span": [
+            84,
+            2,
+            89,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 7,
+          "span": [
+            90,
+            2,
+            91,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 5,
+          "span": [
+            92,
+            3,
+            93,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 5,
+          "span": [
+            94,
+            3,
+            98,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            100,
+            2,
+            102,
+            6
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            103,
+            3,
+            103,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            106,
+            4,
+            106,
+            14
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            108,
+            4,
+            108,
+            51
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            111,
+            4,
+            111,
+            61
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            112,
+            5,
+            113,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            114,
+            5,
+            115,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            118,
+            4,
+            118,
+            49
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            119,
+            5,
+            120,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            128,
+            2,
+            129,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            130,
+            3,
+            131,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            132,
+            2,
+            133,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            134,
+            3,
+            135,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            136,
+            2,
+            137,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            143,
+            2,
+            143,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            144,
+            3,
+            145,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            146,
+            3,
+            148,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            150,
+            2,
+            150,
+            9
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 0,
+          "span": [
+            151,
+            35,
+            151,
+            35
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 0,
+          "span": [
+            152,
+            10,
+            152,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            158,
+            2,
+            159,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            160,
+            2,
+            160,
+            6
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            161,
+            3,
+            162,
+            10
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 0,
+          "span": [
+            163,
+            61,
+            163,
+            61
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            165,
+            4,
+            165,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            167,
+            3,
+            167,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            168,
+            4,
+            169,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            176,
+            2,
+            176,
+            9
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            178,
+            3,
+            178,
+            34
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            180,
+            4,
+            181,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            182,
+            3,
+            182,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            184,
+            3,
+            184,
+            33
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            192,
+            2,
+            192,
+            31
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            193,
+            3,
+            194,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            196,
+            2,
+            196,
+            89
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            197,
+            3,
+            198,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            200,
+            2,
+            200,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            201,
+            3,
+            202,
+            1
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 4,
+          "span": [
+            204,
+            2,
+            207,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 4,
+          "span": [
+            213,
+            2,
+            214,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 4,
+          "span": [
+            215,
+            2,
+            217,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 4,
+          "span": [
+            218,
+            2,
+            218,
+            6
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            219,
+            3,
+            220,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            221,
+            4,
+            222,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            223,
+            3,
+            224,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            225,
+            4,
+            226,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            227,
+            3,
+            227,
+            61
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            228,
+            4,
+            229,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            230,
+            3,
+            230,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            231,
+            4,
+            232,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            239,
+            2,
+            239,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            241,
+            3,
+            241,
+            47
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            242,
+            4,
+            243,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            244,
+            3,
+            245,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            246,
+            3,
+            246,
+            65
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            247,
+            4,
+            248,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            250,
+            3,
+            250,
+            75
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            251,
+            4,
+            252,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            253,
+            3,
+            253,
+            52
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            255,
+            2,
+            255,
+            12
+          ]
+        },
+        {
+          "current": 4,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 4,
+          "span": [
+            261,
+            2,
+            264,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            265,
+            3,
+            266,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            267,
+            2,
+            268,
+            107
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            269,
+            3,
+            270,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            272,
+            2,
+            273,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            274,
+            3,
+            275,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            276,
+            2,
+            277,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            278,
+            2,
+            279,
+            76
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            280,
+            3,
+            282,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            283,
+            2,
+            285,
+            15
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            286,
+            3,
+            289,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            291,
+            2,
+            292,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            293,
+            3,
+            294,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            295,
+            2,
+            295,
+            98
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            296,
+            3,
+            297,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            299,
+            2,
+            300,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            301,
+            3,
+            302,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            304,
+            2,
+            305,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            306,
+            3,
+            307,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            308,
+            2,
+            309,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            310,
+            2,
+            311,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            312,
+            3,
+            313,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            314,
+            2,
+            315,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            316,
+            3,
+            317,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            318,
+            2,
+            318,
+            49
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            319,
+            3,
+            319,
+            76
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            320,
+            4,
+            321,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            322,
+            3,
+            322,
+            33
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            325,
+            2,
+            325,
+            53
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            326,
+            3,
+            327,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            328,
+            2,
+            328,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            329,
+            3,
+            329,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            330,
+            4,
+            331,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            332,
+            3,
+            332,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            333,
+            4,
+            334,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            337,
+            2,
+            339,
+            6
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            341,
+            3,
+            341,
+            29
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            342,
+            4,
+            344,
+            53
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            345,
+            5,
+            346,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            349,
+            3,
+            349,
+            45
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            350,
+            4,
+            351,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            353,
+            3,
+            353,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            355,
+            4,
+            355,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            356,
+            5,
+            357,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            358,
+            4,
+            358,
+            82
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 0,
+          "span": [
+            359,
+            11,
+            359,
+            11
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            362,
+            3,
+            364,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            365,
+            4,
+            366,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            367,
+            3,
+            367,
+            40
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            369,
+            4,
+            370,
+            50
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            372,
+            5,
+            372,
+            112
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            373,
+            6,
+            374,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            376,
+            4,
+            378,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            379,
+            4,
+            379,
+            82
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            380,
+            5,
+            382,
+            33
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            383,
+            6,
+            383,
+            14
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            385,
+            5,
+            385,
+            35
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            386,
+            6,
+            387,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            388,
+            5,
+            389,
+            28
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            391,
+            4,
+            391,
+            58
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            392,
+            5,
+            393,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            394,
+            4,
+            394,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            395,
+            5,
+            396,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            398,
+            3,
+            398,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            400,
+            4,
+            400,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            403,
+            3,
+            403,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            405,
+            4,
+            405,
+            29
+          ]
+        },
+        {
+          "current": 0,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 0,
+          "span": [
+            406,
+            18,
+            406,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            408,
+            4,
+            408,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            409,
+            5,
+            410,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            411,
+            4,
+            411,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            412,
+            5,
+            413,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            415,
+            4,
+            415,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            416,
+            5,
+            417,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            418,
+            4,
+            418,
+            82
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            426,
+            2,
+            428,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            429,
+            2,
+            429,
+            37
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            430,
+            3,
+            432,
+            77
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            433,
+            4,
+            433,
+            97
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            434,
+            5,
+            435,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            436,
+            4,
+            436,
+            41
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            438,
+            3,
+            439,
+            15
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            441,
+            2,
+            442,
+            79
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            449,
+            2,
+            449,
+            62
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            450,
+            3,
+            450,
+            32
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            451,
+            4,
+            452,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            453,
+            3,
+            454,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            455,
+            4,
+            456,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            457,
+            3,
+            457,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            458,
+            4,
+            459,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            462,
+            2,
+            462,
+            35
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            468,
+            2,
+            469,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            470,
+            3,
+            471,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            472,
+            2,
+            473,
+            40
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            479,
+            2,
+            481,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            482,
+            2,
+            482,
+            33
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            483,
+            3,
+            484,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            485,
+            4,
+            486,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            487,
+            3,
+            488,
+            32
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            489,
+            4,
+            490,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            491,
+            5,
+            492,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            493,
+            4,
+            493,
+            24
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            494,
+            5,
+            495,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            496,
+            5,
+            497,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            499,
+            3,
+            500,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            502,
+            4,
+            503,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            504,
+            3,
+            504,
+            75
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            505,
+            4,
+            505,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            506,
+            5,
+            507,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            508,
+            4,
+            510,
+            43
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            511,
+            5,
+            512,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            514,
+            3,
+            515,
+            15
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            517,
+            2,
+            517,
+            28
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            518,
+            3,
+            519,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            520,
+            2,
+            520,
+            38
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            526,
+            2,
+            526,
+            38
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            527,
+            3,
+            527,
+            10
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            529,
+            4,
+            529,
+            23
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            530,
+            5,
+            531,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            532,
+            4,
+            532,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            533,
+            5,
+            534,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            536,
+            4,
+            536,
+            14
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            539,
+            2,
+            539,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            546,
+            2,
+            546,
+            80
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            547,
+            3,
+            548,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            550,
+            2,
+            550,
+            84
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            551,
+            3,
+            553,
+            76
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            554,
+            4,
+            555,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            556,
+            3,
+            558,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            561,
+            2,
+            561,
+            83
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            562,
+            3,
+            562,
+            71
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            563,
+            4,
+            564,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            565,
+            3,
+            565,
+            25
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            568,
+            4,
+            568,
+            47
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            569,
+            5,
+            569,
+            79
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            570,
+            6,
+            571,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            574,
+            4,
+            574,
+            47
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            575,
+            5,
+            575,
+            72
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            576,
+            6,
+            577,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            578,
+            5,
+            579,
+            37
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            581,
+            4,
+            582,
+            24
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            584,
+            3,
+            584,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            586,
+            2,
+            586,
+            80
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            593,
+            2,
+            593,
+            53
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            594,
+            3,
+            595,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 4,
+          "span": [
+            596,
+            2,
+            599,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 4,
+          "span": [
+            600,
+            2,
+            600,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            601,
+            3,
+            602,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            603,
+            2,
+            603,
+            49
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            604,
+            3,
+            605,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            606,
+            2,
+            606,
+            91
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            613,
+            2,
+            614,
+            16
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            615,
+            3,
+            616,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            617,
+            2,
+            618,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            619,
+            3,
+            620,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            622,
+            2,
+            622,
+            37
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            623,
+            3,
+            623,
+            110
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            624,
+            4,
+            625,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            626,
+            3,
+            626,
+            70
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            629,
+            2,
+            629,
+            37
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            630,
+            3,
+            632,
+            48
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            633,
+            4,
+            633,
+            15
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            634,
+            5,
+            635,
+            19
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            636,
+            6,
+            636,
+            76
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            637,
+            7,
+            638,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            639,
+            6,
+            639,
+            14
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            641,
+            5,
+            641,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            642,
+            6,
+            643,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            645,
+            4,
+            646,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            647,
+            5,
+            648,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            649,
+            4,
+            651,
+            18
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            652,
+            5,
+            653,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            654,
+            4,
+            654,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            656,
+            3,
+            656,
+            56
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            657,
+            4,
+            658,
+            1
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 3,
+          "span": [
+            661,
+            2,
+            663,
+            12
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            669,
+            2,
+            669,
+            20
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            670,
+            3,
+            671,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            673,
+            2,
+            673,
+            44
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            674,
+            3,
+            674,
+            87
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            675,
+            4,
+            676,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            678,
+            2,
+            678,
+            107
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 1,
+          "span": [
+            679,
+            3,
+            680,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/stream.go",
+          "legacy": 2,
+          "span": [
+            681,
+            2,
+            682,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 3,
+          "span": [
+            25,
+            2,
+            27,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 3,
+          "span": [
+            28,
+            2,
+            28,
+            98
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 2,
+          "span": [
+            29,
+            3,
+            30,
+            17
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            31,
+            4,
+            32,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            33,
+            3,
+            33,
+            50
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            34,
+            4,
+            35,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            37,
+            2,
+            37,
+            27
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 3,
+          "span": [
+            43,
+            2,
+            46,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 2,
+          "span": [
+            52,
+            2,
+            53,
+            40
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            54,
+            3,
+            54,
+            53
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            55,
+            4,
+            56,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            57,
+            4,
+            58,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 2,
+          "span": [
+            60,
+            2,
+            61,
+            25
+          ]
+        },
+        {
+          "current": 3,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 3,
+          "span": [
+            67,
+            2,
+            69,
+            46
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            70,
+            3,
+            71,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            72,
+            2,
+            72,
+            46
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            73,
+            3,
+            74,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 2,
+          "span": [
+            75,
+            2,
+            76,
+            12
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 2,
+          "span": [
+            83,
+            2,
+            84,
+            42
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            85,
+            3,
+            86,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            87,
+            2,
+            87,
+            46
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            88,
+            3,
+            89,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            91,
+            2,
+            91,
+            81
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            92,
+            3,
+            92,
+            104
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            93,
+            4,
+            94,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            96,
+            3,
+            96,
+            21
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            97,
+            4,
+            98,
+            1
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            99,
+            3,
+            99,
+            13
+          ]
+        },
+        {
+          "current": 1,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 1,
+          "span": [
+            101,
+            3,
+            102,
+            1
+          ]
+        },
+        {
+          "current": 2,
+          "file": "polaris/internal/server/window.go",
+          "legacy": 2,
+          "span": [
+            103,
+            2,
+            104,
+            12
+          ]
+        }
+      ],
+      "shape_sha256": {
+        "1.27.1": "0688fd18428c4c66eb65d9fad26ec11a3f9b1f16c8a5202aa94802a1f32f6176",
+        "1.27.2": "ae51959dba35e0bfd64463ee44b722b88c182c2341a58d80e26edf50a5feba9f"
+      }
+    }
+  },
+  "source_sha256": {
+    "polaris/internal/server/authority.go": "76348643eb6b779fe7bd42fb2e438439d247367739c7a523b898ff872dbbc481",
+    "polaris/internal/server/cache.go": "1f7d34e07e0b4294a668fbfdb4e86e797c4b70264726a3e43af2b433cb692450",
+    "polaris/internal/server/stream.go": "cb32fe961c3d2704a29001ca1a5c45a70f7a2c02189d9cc7b959788a040793a3",
+    "polaris/internal/server/window.go": "1cff18acf241738c7dc5f556c0e3191472ca895d839872b3b9d9b322cef27d19",
+    "polaris/main.go": "ccd18fea581e3500cf9ed9b12e80277d060903af4603fd3e138b90d3695e0471"
+  },
+  "version": 1
+}

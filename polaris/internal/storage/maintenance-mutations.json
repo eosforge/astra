@@ -1,0 +1,63 @@
+{
+  "fixtures": [
+    {
+      "source": "tests/fixtures/maintenance.go.in",
+      "target": "polaris/internal/storage/maintenancecontext_test.go"
+    }
+  ],
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "mutations": [
+    {
+      "after": "\t\t_ = maintenance\n",
+      "before": "\t\tstore.maintenance(maintenance)\n",
+      "file": "polaris/internal/storage/store.go",
+      "id": "missing-task",
+      "test": "TestIdleCheckpoint"
+    },
+    {
+      "after": "if false {",
+      "before": "if store.poisoned.Load() {",
+      "file": "polaris/internal/storage/maintenance.go",
+      "id": "poisoned-work",
+      "test": "TestMaintenancePoison"
+    },
+    {
+      "after": "context.WithCancel(ctx)",
+      "before": "context.WithTimeout(ctx, store.limits.Timeout)",
+      "file": "polaris/internal/storage/maintenance.go",
+      "id": "unbounded-attempt",
+      "test": "TestMaintenanceDeadline"
+    },
+    {
+      "after": "",
+      "before": "\t\t<-store.done\n",
+      "file": "polaris/internal/storage/store.go",
+      "id": "missing-join",
+      "test": "TestMaintenanceClose"
+    },
+    {
+      "after": "",
+      "before": "\t\tstore.cancel()\n",
+      "file": "polaris/internal/storage/store.go",
+      "id": "missing-cancel",
+      "test": "TestMaintenanceClose"
+    },
+    {
+      "after": "time.NewTicker(2 * time.Second)",
+      "before": "time.NewTicker(time.Second)",
+      "file": "polaris/internal/storage/maintenance.go",
+      "id": "maintenance-cadence",
+      "test": "TestMaintenanceFailure"
+    },
+    {
+      "after": "\n\t\t\tdefer cancel()\n",
+      "before": "\n\t\t\tcancel()\n",
+      "file": "polaris/internal/storage/maintenance.go",
+      "id": "maintenance-child",
+      "test": "TestMaintenanceContext"
+    }
+  ],
+  "package": "./polaris/internal/storage",
+  "scope": "Seven finite maintenance ownership, poison, attempt-bound, stop/drain, cadence and child-context release operators. The added fixture defines only TestMaintenanceContext; it introduces no package initializer or production replacement. Existing five operators retain their separately sealed native counterexamples. Core semantic operators and numeric boundaries keep separate required evidence.",
+  "version": 1
+}

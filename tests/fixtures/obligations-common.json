@@ -1,0 +1,4679 @@
+{
+  "added": {
+    "admin/DEV-SCOPE/ADMIN-ASSURANCE/windows-amd64/source-inventory": {
+      "checks": [
+        "admin-source-scope"
+      ],
+      "component": "admin",
+      "contract": "ADMIN-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "admission/DEV-SCOPE/ADMISSION-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "admission-gap-scope"
+      ],
+      "component": "admission",
+      "contract": "ADMISSION-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "astrolabe/DEV-SCOPE/ASTROLABE-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "astrolabe-source-scope"
+      ],
+      "component": "astrolabe",
+      "contract": "ASTROLABE-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "benchmarks/DEV-SCOPE/BENCHMARKS-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "benchmarks-source-scope"
+      ],
+      "component": "benchmarks",
+      "contract": "BENCHMARKS-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "comet/DEV-SCOPE/COMET-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "comet-source-scope"
+      ],
+      "component": "comet",
+      "contract": "COMET-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "comet/DEV-SCOPE/COMET-ASSURANCE/windows-amd64/source-inventory": {
+      "checks": [
+        "comet-source-scope"
+      ],
+      "component": "comet",
+      "contract": "COMET-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "command/DEV-SCOPE/COMMAND-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "command-source-scope"
+      ],
+      "component": "command",
+      "contract": "COMMAND-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "common/DEV-CONTRACT/COMMON_NATIVE-16/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "common-native"
+      ],
+      "component": "common",
+      "contract": "COMMON_NATIVE-16",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "common/DEV-SCOPE/COMMON-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "common-source-scope"
+      ],
+      "component": "common",
+      "contract": "COMMON-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "documentation/DEV-SCOPE/DOCUMENTATION-ASSURANCE/windows-amd64/source-inventory": {
+      "checks": [
+        "documentation-source-scope"
+      ],
+      "component": "documentation",
+      "contract": "DOCUMENTATION-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "polaris-server/DEV-CONTRACT/POLARIS-BATCH-ADMISSION/linux-amd64-cgo/boundary-oracle": {
+      "checks": [
+        "polaris-batch-admission",
+        "polaris-batch-mutants"
+      ],
+      "component": "polaris-server",
+      "contract": "POLARIS-BATCH-ADMISSION",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "boundary-oracle"
+    },
+    "polaris-server/DEV-SCOPE/POLARIS_SERVER-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "polaris-server-source-scope"
+      ],
+      "component": "polaris-server",
+      "contract": "POLARIS_SERVER-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "polaris-storage/DEV-FAULT/STORAGE-SQL-FAULT/linux-amd64-cgo/sql-recovery": {
+      "checks": [
+        "storage-sql-recovery"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-SQL-FAULT",
+      "platform": "linux-amd64-cgo",
+      "requires": [
+        {
+          "contract": "STORAGE-SQL-FAULT",
+          "rule": "DEV-ORACLE",
+          "scenario": "sql-recovery-inputs"
+        }
+      ],
+      "rule": "DEV-FAULT",
+      "scenario": "sql-recovery"
+    },
+    "polaris-storage/DEV-ORACLE/STORAGE-SQL-FAULT/linux-amd64-cgo/sql-recovery-inputs": {
+      "checks": [
+        "storage-sql-inputs-python"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-SQL-FAULT",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-ORACLE",
+      "scenario": "sql-recovery-inputs"
+    },
+    "polaris-storage/DEV-SCOPE/STORAGE-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "gap-scope"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "polaris-storage/DEV-TIME/STORAGE-TIME/linux-amd64-cgo/virtual-and-host-deadlines": {
+      "checks": [
+        "gap-time"
+      ],
+      "component": "polaris-storage",
+      "contract": "STORAGE-TIME",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-TIME",
+      "scenario": "virtual-and-host-deadlines"
+    },
+    "protocol/DEV-SCOPE/PROTOCOL-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "protocol-source-scope"
+      ],
+      "component": "protocol",
+      "contract": "PROTOCOL-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-10/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-10",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-11/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-11",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-12/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-12",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-13/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-13",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-14/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-14",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-5/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-5",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-6/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-6",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-7/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-7",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-8/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-8",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-9/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "pulsar-native"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR_NATIVE-9",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-CONTRACT",
+      "scenario": "native-oracle"
+    },
+    "pulsar/DEV-SCOPE/PULSAR-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "pulsar-source-scope"
+      ],
+      "component": "pulsar",
+      "contract": "PULSAR-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "star/DEV-SCOPE/STAR-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "star-source-scope"
+      ],
+      "component": "star",
+      "contract": "STAR-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-ARCHIVE/linux-amd64-cgo/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-ARCHIVE",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-ARCHIVE/windows-amd64/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-ARCHIVE",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-CURRENT/linux-amd64-cgo/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-CURRENT",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-CURRENT/windows-amd64/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-CURRENT",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-DELTA/linux-amd64-cgo/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-DELTA",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-DELTA/windows-amd64/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-DELTA",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-GRAPH/linux-amd64-cgo/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-GRAPH",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-GRAPH/windows-amd64/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-GRAPH",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-NATIVE/linux-amd64-cgo/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-NATIVE",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-NATIVE/windows-amd64/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-NATIVE",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-POLICY/linux-amd64-cgo/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-POLICY",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-POLICY/windows-amd64/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-POLICY",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-SOURCES/linux-amd64-cgo/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-SOURCES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REACH-SOURCES/windows-amd64/reach-reader": {
+      "checks": [
+        "reach-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REACH-SOURCES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "reach-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-ARCHIVES/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-ARCHIVES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-ARCHIVES/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-ARCHIVES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-CASES/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-CASES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-CASES/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-CASES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-COMMAND/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-COMMAND",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-COMMAND/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-COMMAND",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-CURRENT/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-CURRENT",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-CURRENT/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-CURRENT",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-LIFECYCLE/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-LIFECYCLE",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-LIFECYCLE/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-LIFECYCLE",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-OBSERVATIONS/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-OBSERVATIONS",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-OBSERVATIONS/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-OBSERVATIONS",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-PACKAGES/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-PACKAGES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-PACKAGES/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-PACKAGES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-POLICY/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-POLICY",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-POLICY/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-POLICY",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-PREREQUISITES/linux-amd64-cgo/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-PREREQUISITES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-REPAIR-PREREQUISITES/windows-amd64/repair-reader": {
+      "checks": [
+        "repair-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-REPAIR-PREREQUISITES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "repair-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-ARCHIVES/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-ARCHIVES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-ARCHIVES/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-ARCHIVES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-CASES/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-CASES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-CASES/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-CASES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-COMMAND/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-COMMAND",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-COMMAND/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-COMMAND",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-INPUTS/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-INPUTS",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-INPUTS/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-INPUTS",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-LIFECYCLE/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-LIFECYCLE",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-LIFECYCLE/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-LIFECYCLE",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-OBSERVATIONS/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-OBSERVATIONS",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-OBSERVATIONS/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-OBSERVATIONS",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-OVERLAY/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-OVERLAY",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-OVERLAY/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-OVERLAY",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-POLICY/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-POLICY",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-POLICY/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-POLICY",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-SOURCES/linux-amd64-cgo/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-SOURCES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-ROLLBACK-SOURCES/windows-amd64/rollback-reader": {
+      "checks": [
+        "rollback-reader-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ROLLBACK-SOURCES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "rollback-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-CURRENT/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-CURRENT",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-CURRENT/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-CURRENT",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-EMPTY/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-EMPTY",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-EMPTY/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-EMPTY",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-ENTRIES/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-ENTRIES",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-ENTRIES/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-ENTRIES",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-MISSING/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-MISSING",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-MISSING/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-MISSING",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-OWNERSHIP/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-OWNERSHIP",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-OWNERSHIP/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-OWNERSHIP",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-POLICY/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-POLICY",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-POLICY/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-POLICY",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-SOURCE/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-SOURCE",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-SOURCE/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-SOURCE",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-UNOWNED/linux-amd64-cgo/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-UNOWNED",
+      "platform": "linux-amd64-cgo",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-ORACLE/TOOLS-SCOPE-UNOWNED/windows-amd64/source-scope-reader": {
+      "checks": [
+        "source-scope-python"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-SCOPE-UNOWNED",
+      "platform": "windows-amd64",
+      "platforms": [
+        "linux-amd64-cgo",
+        "windows-amd64"
+      ],
+      "rule": "DEV-ORACLE",
+      "scenario": "source-scope-reader"
+    },
+    "tools/DEV-SCOPE/TOOLS-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "tools-source-scope"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "tools/DEV-SCOPE/TOOLS-ASSURANCE/windows-amd64/source-inventory": {
+      "checks": [
+        "tools-source-scope"
+      ],
+      "component": "tools",
+      "contract": "TOOLS-ASSURANCE",
+      "platform": "windows-amd64",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    },
+    "verification/DEV-GATE/BOUNDARY-CONFIGURATION/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-CONFIGURATION",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-DISCOVERY/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-DISCOVERY",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-DISPATCH/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-DISPATCH",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-DOCUMENTS/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-DOCUMENTS",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-DOMAIN/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-DOMAIN",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-FRAMES/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-FRAMES",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-MODEL/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-MODEL",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-PROJECTION/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-PROJECTION",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-SCHEMA/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-SCHEMA",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-GATE/BOUNDARY-TERMINAL/linux-amd64-cgo/native-oracle": {
+      "checks": [
+        "verification-python"
+      ],
+      "component": "verification",
+      "contract": "BOUNDARY-TERMINAL",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-GATE",
+      "scenario": "native-oracle"
+    },
+    "verification/DEV-SCOPE/VERIFICATION-ASSURANCE/linux-amd64-cgo/source-inventory": {
+      "checks": [
+        "verification-source-scope"
+      ],
+      "component": "verification",
+      "contract": "VERIFICATION-ASSURANCE",
+      "platform": "linux-amd64-cgo",
+      "rule": "DEV-SCOPE",
+      "scenario": "source-inventory"
+    }
+  },
+  "changed": {
+    "admin/DEV-SCOPE/ADMIN-ASSURANCE/windows-amd64/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admin",
+        "contract": "ADMIN-ASSURANCE",
+        "platform": "windows-amd64",
+        "requires": [
+          {
+            "contract": "ADMIN-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "ADMIN-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMIN-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admin-qualification"
+        ],
+        "component": "admin",
+        "contract": "ADMIN-ASSURANCE",
+        "platform": "windows-amd64",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-AUDIT/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "admission-gap-audit"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-AUDIT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-audit"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-AUDIT",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-CONFIG/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "admission-gap-config"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-CONFIG",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-config"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-CONFIG",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-CONTRACT/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-SCHEDULE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "two-operation-linearization"
+          },
+          {
+            "contract": "ADMISSION-NODE-OPEN",
+            "rule": "DEV-CONTRACT",
+            "scenario": "construction"
+          },
+          {
+            "contract": "ADMISSION-NODE-REFRESH",
+            "rule": "DEV-CONTRACT",
+            "scenario": "refresh-receipts"
+          },
+          {
+            "contract": "ADMISSION-DIRECTORY-BOUNDARIES",
+            "rule": "DEV-CONTRACT",
+            "scenario": "directory-boundaries"
+          },
+          {
+            "contract": "ADMISSION-CONFLICTS",
+            "rule": "DEV-CONTRACT",
+            "scenario": "identity-conflicts"
+          }
+        ],
+        "rule": "DEV-CONTRACT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-contract"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-CONTRACT",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-CORE/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-OWNERSHIP",
+            "rule": "DEV-CORE",
+            "scenario": "message-ownership"
+          },
+          {
+            "contract": "ADMISSION-NODE-OPEN",
+            "rule": "DEV-CONTRACT",
+            "scenario": "construction"
+          },
+          {
+            "contract": "ADMISSION-NODE-STATE",
+            "rule": "DEV-ASYNC",
+            "scenario": "message-ownership"
+          },
+          {
+            "contract": "ADMISSION-NODE-SCHEDULE",
+            "rule": "DEV-ASYNC",
+            "scenario": "admission-overlap"
+          },
+          {
+            "contract": "ADMISSION-NODE-TRANSPORT",
+            "rule": "DEV-MATRIX",
+            "scenario": "tls-generated-rpc"
+          },
+          {
+            "contract": "ADMISSION-IDENTITY-FILES",
+            "rule": "DEV-FAULT",
+            "scenario": "native-identity-files"
+          },
+          {
+            "contract": "ADMISSION-NODE-RESOLVER",
+            "rule": "DEV-FAULT",
+            "scenario": "client-construction"
+          }
+        ],
+        "rule": "DEV-CORE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-core"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-CORE",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-FAILURE/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "admission-gap-failure"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-FAILURE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-failure"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-FAILURE",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-IMPACT/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "admission-gap-impact"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "delivery-matrix"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-REDGREEN",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-IMPACT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-impact"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-IMPACT",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-MODEL/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "finite-model"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-OWNERSHIP",
+            "rule": "DEV-CORE",
+            "scenario": "message-ownership"
+          },
+          {
+            "contract": "ADMISSION-NODE-SCHEDULE",
+            "rule": "DEV-ASYNC",
+            "scenario": "admission-overlap"
+          },
+          {
+            "contract": "ADMISSION-NODE-TRANSPORT",
+            "rule": "DEV-MATRIX",
+            "scenario": "tls-generated-rpc"
+          },
+          {
+            "contract": "ADMISSION-NODE-DRAIN",
+            "rule": "DEV-ASYNC",
+            "scenario": "native-cancellation"
+          },
+          {
+            "contract": "ADMISSION-DRAIN-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "cancellation-mutations"
+          },
+          {
+            "contract": "ADMISSION-NODE-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "targeted-mutations"
+          },
+          {
+            "contract": "ADMISSION-SAME",
+            "rule": "DEV-COVERAGE",
+            "scenario": "member-equality"
+          },
+          {
+            "contract": "ADMISSION-SAME-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "member-equality-mutations"
+          },
+          {
+            "contract": "ADMISSION-CONFLICTS",
+            "rule": "DEV-CONTRACT",
+            "scenario": "identity-conflicts"
+          },
+          {
+            "contract": "ADMISSION-CREDENTIALS",
+            "rule": "DEV-SECURITY",
+            "scenario": "signed-boundaries"
+          },
+          {
+            "contract": "ADMISSION-CONFLICT-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "directory-boundary-mutations"
+          },
+          {
+            "contract": "ADMISSION-FINITE",
+            "rule": "DEV-MODEL",
+            "scenario": "two-principal-finite"
+          },
+          {
+            "contract": "ADMISSION-NODE-FINITE",
+            "rule": "DEV-MODEL",
+            "scenario": "loop-state-domain"
+          },
+          {
+            "contract": "ADMISSION-NODE-TRANSITIONS",
+            "rule": "DEV-MODEL",
+            "scenario": "publication-state-domain"
+          }
+        ],
+        "rule": "DEV-MODEL",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "finite-model"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-OWNERSHIP",
+            "rule": "DEV-CORE",
+            "scenario": "message-ownership"
+          },
+          {
+            "contract": "ADMISSION-NODE-SCHEDULE",
+            "rule": "DEV-ASYNC",
+            "scenario": "admission-overlap"
+          },
+          {
+            "contract": "ADMISSION-NODE-TRANSPORT",
+            "rule": "DEV-MATRIX",
+            "scenario": "tls-generated-rpc"
+          },
+          {
+            "contract": "ADMISSION-NODE-DRAIN",
+            "rule": "DEV-ASYNC",
+            "scenario": "native-cancellation"
+          },
+          {
+            "contract": "ADMISSION-DRAIN-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "cancellation-mutations"
+          },
+          {
+            "contract": "ADMISSION-NODE-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "targeted-mutations"
+          },
+          {
+            "contract": "ADMISSION-SAME",
+            "rule": "DEV-COVERAGE",
+            "scenario": "member-equality"
+          },
+          {
+            "contract": "ADMISSION-SAME-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "member-equality-mutations"
+          },
+          {
+            "contract": "ADMISSION-CONFLICTS",
+            "rule": "DEV-CONTRACT",
+            "scenario": "identity-conflicts"
+          },
+          {
+            "contract": "ADMISSION-CREDENTIALS",
+            "rule": "DEV-SECURITY",
+            "scenario": "signed-boundaries"
+          },
+          {
+            "contract": "ADMISSION-CONFLICT-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "directory-boundary-mutations"
+          }
+        ],
+        "rule": "DEV-MODEL",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-ORACLE/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-NODE-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "targeted-mutations"
+          },
+          {
+            "contract": "ADMISSION-SAME-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "member-equality-mutations"
+          },
+          {
+            "contract": "ADMISSION-CONFLICT-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "directory-boundary-mutations"
+          },
+          {
+            "contract": "ADMISSION-LOOP-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "node-loop-mutations"
+          },
+          {
+            "contract": "ADMISSION-PREDICATE-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "identity-format-mutations"
+          },
+          {
+            "contract": "ADMISSION-NUMERIC-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "integer-mutations"
+          },
+          {
+            "contract": "ADMISSION-DRAIN-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "cancellation-mutations"
+          }
+        ],
+        "rule": "DEV-ORACLE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-oracle"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-ORACLE",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-REDGREEN/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "admission-gap-redgreen"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-REDGREEN",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-redgreen"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-REDGREEN",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-REPLAY/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "admission-gap-replay"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-REPLAY",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-replay"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-REPLAY",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-SCOPE/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-scope"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "admission/DEV-SECURITY/ADMISSION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ADMISSION-NODE-STATE",
+            "rule": "DEV-ASYNC",
+            "scenario": "message-ownership"
+          },
+          {
+            "contract": "ADMISSION-NODE-TRANSPORT",
+            "rule": "DEV-MATRIX",
+            "scenario": "tls-generated-rpc"
+          },
+          {
+            "contract": "ADMISSION-NODE-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "targeted-mutations"
+          },
+          {
+            "contract": "ADMISSION-IDENTITY-RULES",
+            "rule": "DEV-SECURITY",
+            "scenario": "identity-inputs"
+          },
+          {
+            "contract": "ADMISSION-IDENTITY-FILES",
+            "rule": "DEV-FAULT",
+            "scenario": "native-identity-files"
+          },
+          {
+            "contract": "ADMISSION-IDENTITY-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "file-response-matrix"
+          },
+          {
+            "contract": "ADMISSION-CREDENTIALS",
+            "rule": "DEV-SECURITY",
+            "scenario": "signed-boundaries"
+          },
+          {
+            "contract": "ADMISSION-CONFLICT-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "directory-boundary-mutations"
+          },
+          {
+            "contract": "ADMISSION-PREDICATES",
+            "rule": "DEV-COVERAGE",
+            "scenario": "identity-format-pairs"
+          },
+          {
+            "contract": "ADMISSION-PREDICATE-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "identity-format-mutations"
+          },
+          {
+            "contract": "ADMISSION-NODE-DRAIN",
+            "rule": "DEV-ASYNC",
+            "scenario": "native-cancellation"
+          },
+          {
+            "contract": "ADMISSION-DRAIN-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "cancellation-mutations"
+          }
+        ],
+        "rule": "DEV-SECURITY",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "admission-gap-security"
+        ],
+        "component": "admission",
+        "contract": "ADMISSION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SECURITY",
+        "scenario": "full-rule"
+      }
+    },
+    "astrolabe/DEV-SCOPE/ASTROLABE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "astrolabe",
+        "contract": "ASTROLABE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "ASTROLABE-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "ASTROLABE-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "ASTROLABE-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "astrolabe-qualification"
+        ],
+        "component": "astrolabe",
+        "contract": "ASTROLABE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "benchmarks/DEV-SCOPE/BENCHMARKS-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "benchmarks",
+        "contract": "BENCHMARKS-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "BENCHMARKS-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "BENCHMARKS-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "BENCHMARKS-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "benchmarks-qualification"
+        ],
+        "component": "benchmarks",
+        "contract": "BENCHMARKS-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "comet/DEV-SCOPE/COMET-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "comet",
+        "contract": "COMET-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMET-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "COMET-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMET-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "comet-qualification"
+        ],
+        "component": "comet",
+        "contract": "COMET-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "comet/DEV-SCOPE/COMET-ASSURANCE/windows-amd64/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "comet",
+        "contract": "COMET-ASSURANCE",
+        "platform": "windows-amd64",
+        "requires": [
+          {
+            "contract": "COMET-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "COMET-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMET-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "comet-qualification"
+        ],
+        "component": "comet",
+        "contract": "COMET-ASSURANCE",
+        "platform": "windows-amd64",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "command/DEV-CONTRACT/COMMAND-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-BOUNDARY",
+            "rule": "DEV-CONTRACT",
+            "scenario": "boundary-oracle"
+          }
+        ],
+        "rule": "DEV-CONTRACT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "aggregate": true,
+        "checks": [],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-CONTRACT",
+        "scenario": "full-rule"
+      }
+    },
+    "command/DEV-MATRIX/COMMAND-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "delivery-matrix"
+          }
+        ],
+        "rule": "DEV-MATRIX",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "aggregate": true,
+        "checks": [],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-MATRIX",
+        "scenario": "full-rule"
+      }
+    },
+    "command/DEV-ORACLE/COMMAND-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-NUMERIC-CONTROLS",
+            "rule": "DEV-ORACLE",
+            "scenario": "typed-controls"
+          },
+          {
+            "contract": "COMMAND-MODEL-CONTROLS",
+            "rule": "DEV-ORACLE",
+            "scenario": "model-vectors"
+          }
+        ],
+        "rule": "DEV-ORACLE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "aggregate": true,
+        "checks": [],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-ORACLE",
+        "scenario": "full-rule"
+      }
+    },
+    "command/DEV-SCOPE/COMMAND-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMAND-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "command-qualification"
+        ],
+        "component": "command",
+        "contract": "COMMAND-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "common/DEV-SCOPE/COMMON-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "common",
+        "contract": "COMMON-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "COMMON-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "COMMON-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "COMMON-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "common-qualification"
+        ],
+        "component": "common",
+        "contract": "COMMON-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "documentation/DEV-SCOPE/DOCUMENTATION-ASSURANCE/windows-amd64/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "documentation",
+        "contract": "DOCUMENTATION-ASSURANCE",
+        "platform": "windows-amd64",
+        "requires": [
+          {
+            "contract": "DOCUMENTATION-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "DOCUMENTATION-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "DOCUMENTATION-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "documentation-qualification"
+        ],
+        "component": "documentation",
+        "contract": "DOCUMENTATION-ASSURANCE",
+        "platform": "windows-amd64",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-server/DEV-SCOPE/POLARIS_SERVER-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-server",
+        "contract": "POLARIS_SERVER-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "POLARIS_SERVER-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "POLARIS_SERVER-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "POLARIS_SERVER-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "polaris-server-qualification"
+        ],
+        "component": "polaris-server",
+        "contract": "POLARIS_SERVER-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-ASYNC/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-SCHEDULE",
+            "rule": "DEV-MODEL",
+            "scenario": "two-writer-pair-histories"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-FINALIZE",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-finalization"
+          },
+          {
+            "contract": "STORAGE-PANIC",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-panic"
+          },
+          {
+            "contract": "STORAGE-LIFETIME",
+            "rule": "DEV-ASYNC",
+            "scenario": "controlled-close"
+          },
+          {
+            "contract": "STORAGE-TERMINATION",
+            "rule": "DEV-STOP",
+            "scenario": "close-receipt-grid"
+          },
+          {
+            "contract": "STORAGE-DRAINING",
+            "rule": "DEV-ASYNC",
+            "scenario": "cancelled-native-rollback"
+          },
+          {
+            "contract": "STORAGE-BORROWING",
+            "rule": "DEV-FAULT",
+            "scenario": "refused-connection-acquisition"
+          }
+        ],
+        "rule": "DEV-ASYNC",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-async"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-ASYNC",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-AUDIT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-audit"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-IMPACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-AUDIT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-audit"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-AUDIT",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-COMPAT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-compat",
+          "gap-compat-race"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-COMPAT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-compat"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-COMPAT",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-CONTRACT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ATOMIC",
+            "rule": "DEV-CONTRACT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-ROLLBACK",
+            "rule": "DEV-FAULT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-HISTORY",
+            "rule": "DEV-COMPAT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-FINALIZE",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-finalization"
+          },
+          {
+            "contract": "STORAGE-PANIC",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-panic"
+          },
+          {
+            "contract": "STORAGE-CRASH",
+            "rule": "DEV-FAULT",
+            "scenario": "process-death"
+          },
+          {
+            "contract": "STORAGE-READ",
+            "rule": "DEV-CONTRACT",
+            "scenario": "read-boundaries"
+          }
+        ],
+        "rule": "DEV-CONTRACT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-contract"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-CONTRACT",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-CORE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ATOMIC",
+            "rule": "DEV-CONTRACT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-SCHEDULE",
+            "rule": "DEV-MODEL",
+            "scenario": "two-writer-pair-histories"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-READ",
+            "rule": "DEV-CONTRACT",
+            "scenario": "read-boundaries"
+          },
+          {
+            "contract": "STORAGE-LIFETIME",
+            "rule": "DEV-ASYNC",
+            "scenario": "controlled-close"
+          },
+          {
+            "contract": "STORAGE-DRAINING",
+            "rule": "DEV-ASYNC",
+            "scenario": "cancelled-native-rollback"
+          },
+          {
+            "contract": "STORAGE-BORROWING",
+            "rule": "DEV-FAULT",
+            "scenario": "refused-connection-acquisition"
+          }
+        ],
+        "rule": "DEV-CORE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-core"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-CORE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-COVERAGE/STORAGE-ASSURANCE/linux-amd64-cgo/mcdc": {
+      "after": {
+        "checks": [
+          "storage-independence"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-COVERAGE",
+        "scenario": "mcdc"
+      },
+      "before": {
+        "checks": [
+          "gap-mcdc"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-COVERAGE",
+        "scenario": "mcdc"
+      }
+    },
+    "polaris-storage/DEV-COVERAGE/STORAGE-ASSURANCE/linux-amd64-cgo/mutation": {
+      "after": {
+        "checks": [
+          "storage-core-mutants"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-NUMERIC-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "integer-mutations"
+          }
+        ],
+        "rule": "DEV-COVERAGE",
+        "scenario": "mutation"
+      },
+      "before": {
+        "checks": [
+          "gap-mutation"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-COVERAGE",
+        "scenario": "mutation"
+      }
+    },
+    "polaris-storage/DEV-FAILURE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-failure"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-IMPACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-FAILURE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-failure"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-FAILURE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-FAULT/STORAGE-ASSURANCE/linux-amd64-cgo/fault-matrix": {
+      "after": {
+        "checks": [
+          "gap-fault-matrix"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-SQL-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "sql-recovery"
+          }
+        ],
+        "rule": "DEV-FAULT",
+        "scenario": "fault-matrix"
+      },
+      "before": {
+        "checks": [
+          "gap-fault-matrix"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-FAULT",
+        "scenario": "fault-matrix"
+      }
+    },
+    "polaris-storage/DEV-FAULT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ROLLBACK",
+            "rule": "DEV-FAULT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "sql-write-boundaries"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "fault-matrix"
+          },
+          {
+            "contract": "STORAGE-FINALIZE",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-finalization"
+          },
+          {
+            "contract": "STORAGE-PANIC",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-panic"
+          },
+          {
+            "contract": "STORAGE-CRASH",
+            "rule": "DEV-FAULT",
+            "scenario": "process-death"
+          },
+          {
+            "contract": "STORAGE-CORRUPTION",
+            "rule": "DEV-FAULT",
+            "scenario": "persisted-corruption"
+          },
+          {
+            "contract": "STORAGE-READ-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "read-preparation"
+          },
+          {
+            "contract": "STORAGE-READ-STEP",
+            "rule": "DEV-FAULT",
+            "scenario": "read-iteration"
+          },
+          {
+            "contract": "STORAGE-CHECKPOINT",
+            "rule": "DEV-FAULT",
+            "scenario": "wal-checkpoint"
+          },
+          {
+            "contract": "STORAGE-CONNECTION",
+            "rule": "DEV-FAULT",
+            "scenario": "sqlite-connection"
+          },
+          {
+            "contract": "STORAGE-WRITE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "write-preparation"
+          },
+          {
+            "contract": "STORAGE-WRITE-DAMAGE",
+            "rule": "DEV-FAULT",
+            "scenario": "write-accounting-rejection"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "public-resource-boundaries"
+          },
+          {
+            "contract": "STORAGE-RETAIN-SCAN",
+            "rule": "DEV-FAULT",
+            "scenario": "retained-prefix-type"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-lock-fault"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-wal-write-sync"
+          },
+          {
+            "contract": "STORAGE-BORROWING",
+            "rule": "DEV-FAULT",
+            "scenario": "refused-connection-acquisition"
+          },
+          {
+            "contract": "STORAGE-SQL-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "sql-recovery"
+          }
+        ],
+        "rule": "DEV-FAULT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ROLLBACK",
+            "rule": "DEV-FAULT",
+            "scenario": "bounded-example"
+          },
+          {
+            "contract": "STORAGE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "sql-write-boundaries"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "fault-matrix"
+          },
+          {
+            "contract": "STORAGE-FINALIZE",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-finalization"
+          },
+          {
+            "contract": "STORAGE-PANIC",
+            "rule": "DEV-FAULT",
+            "scenario": "transaction-panic"
+          },
+          {
+            "contract": "STORAGE-CRASH",
+            "rule": "DEV-FAULT",
+            "scenario": "process-death"
+          },
+          {
+            "contract": "STORAGE-CORRUPTION",
+            "rule": "DEV-FAULT",
+            "scenario": "persisted-corruption"
+          },
+          {
+            "contract": "STORAGE-READ-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "read-preparation"
+          },
+          {
+            "contract": "STORAGE-READ-STEP",
+            "rule": "DEV-FAULT",
+            "scenario": "read-iteration"
+          },
+          {
+            "contract": "STORAGE-CHECKPOINT",
+            "rule": "DEV-FAULT",
+            "scenario": "wal-checkpoint"
+          },
+          {
+            "contract": "STORAGE-CONNECTION",
+            "rule": "DEV-FAULT",
+            "scenario": "sqlite-connection"
+          },
+          {
+            "contract": "STORAGE-WRITE-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "write-preparation"
+          },
+          {
+            "contract": "STORAGE-WRITE-DAMAGE",
+            "rule": "DEV-FAULT",
+            "scenario": "write-accounting-rejection"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "public-resource-boundaries"
+          },
+          {
+            "contract": "STORAGE-RETAIN-SCAN",
+            "rule": "DEV-FAULT",
+            "scenario": "retained-prefix-type"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-lock-fault"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-wal-write-sync"
+          },
+          {
+            "contract": "STORAGE-BORROWING",
+            "rule": "DEV-FAULT",
+            "scenario": "refused-connection-acquisition"
+          }
+        ],
+        "rule": "DEV-FAULT",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-GATE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-gate"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-GATE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-gate"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-GATE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-IMPACT/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-impact"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "delivery-matrix"
+          }
+        ],
+        "rule": "DEV-IMPACT",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-impact"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-IMPACT",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-MODEL/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-FINITE",
+            "rule": "DEV-ORACLE",
+            "scenario": "two-key-finite-model"
+          },
+          {
+            "contract": "STORAGE-SCHEDULE",
+            "rule": "DEV-MODEL",
+            "scenario": "two-writer-pair-histories"
+          },
+          {
+            "contract": "STORAGE-ORACLE",
+            "rule": "DEV-ORACLE",
+            "scenario": "fixed-journal-axioms"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "finite-model"
+          }
+        ],
+        "rule": "DEV-MODEL",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-model"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-MODEL",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-ORACLE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-FINITE",
+            "rule": "DEV-ORACLE",
+            "scenario": "two-key-finite-model"
+          },
+          {
+            "contract": "STORAGE-SCHEDULE",
+            "rule": "DEV-MODEL",
+            "scenario": "two-writer-pair-histories"
+          },
+          {
+            "contract": "STORAGE-ORACLE",
+            "rule": "DEV-ORACLE",
+            "scenario": "fixed-journal-axioms"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-NUMERIC-SENSITIVITY",
+            "rule": "DEV-ORACLE",
+            "scenario": "integer-mutations"
+          },
+          {
+            "contract": "STORAGE-NUMERIC-CONTROLS",
+            "rule": "DEV-ORACLE",
+            "scenario": "typed-controls"
+          },
+          {
+            "contract": "STORAGE-SQL-FAULT",
+            "rule": "DEV-ORACLE",
+            "scenario": "sql-recovery-inputs"
+          }
+        ],
+        "rule": "DEV-ORACLE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-oracle"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-ORACLE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-REDGREEN/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-redgreen"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-REDGREEN",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-redgreen"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-REDGREEN",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-REPLAY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "checks": [
+          "gap-replay"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-ASYNC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONTRACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-IMPACT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MATRIX",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-ORACLE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-SECURITY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-STOP",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-TIME",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-REPLAY",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-replay"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-REPLAY",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-SCOPE/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-scope"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-SECURITY/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-RETRY",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-CORRUPTION",
+            "rule": "DEV-FAULT",
+            "scenario": "persisted-corruption"
+          },
+          {
+            "contract": "STORAGE-READ-FAULT",
+            "rule": "DEV-FAULT",
+            "scenario": "read-preparation"
+          },
+          {
+            "contract": "STORAGE-WRITE-DAMAGE",
+            "rule": "DEV-FAULT",
+            "scenario": "write-accounting-rejection"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "public-resource-boundaries"
+          },
+          {
+            "contract": "STORAGE-RETAIN-SCAN",
+            "rule": "DEV-FAULT",
+            "scenario": "retained-prefix-type"
+          },
+          {
+            "contract": "STORAGE-NAMES",
+            "rule": "DEV-SECURITY",
+            "scenario": "authority-name-alphabet"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-lock-fault"
+          },
+          {
+            "contract": "STORAGE-BOUNDARY",
+            "rule": "DEV-FAULT",
+            "scenario": "native-wal-write-sync"
+          },
+          {
+            "contract": "STORAGE-RETRY-IDENTITY",
+            "rule": "DEV-RETRY",
+            "scenario": "intent-window-grid"
+          },
+          {
+            "contract": "STORAGE-BORROWING",
+            "rule": "DEV-FAULT",
+            "scenario": "refused-connection-acquisition"
+          }
+        ],
+        "rule": "DEV-SECURITY",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-security"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SECURITY",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-STOP/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-SCHEDULE",
+            "rule": "DEV-MODEL",
+            "scenario": "two-writer-pair-histories"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-COVERAGE",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-FAULT",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-MODEL",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-CRASH",
+            "rule": "DEV-FAULT",
+            "scenario": "process-death"
+          },
+          {
+            "contract": "STORAGE-CHECKPOINT",
+            "rule": "DEV-FAULT",
+            "scenario": "wal-checkpoint"
+          },
+          {
+            "contract": "STORAGE-CONNECTION",
+            "rule": "DEV-FAULT",
+            "scenario": "sqlite-connection"
+          },
+          {
+            "contract": "STORAGE-LIFETIME",
+            "rule": "DEV-ASYNC",
+            "scenario": "controlled-close"
+          },
+          {
+            "contract": "STORAGE-TERMINATION",
+            "rule": "DEV-STOP",
+            "scenario": "close-receipt-grid"
+          },
+          {
+            "contract": "STORAGE-DRAINING",
+            "rule": "DEV-ASYNC",
+            "scenario": "cancelled-native-rollback"
+          },
+          {
+            "contract": "STORAGE-BORROWING",
+            "rule": "DEV-FAULT",
+            "scenario": "refused-connection-acquisition"
+          }
+        ],
+        "rule": "DEV-STOP",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-stop"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-STOP",
+        "scenario": "full-rule"
+      }
+    },
+    "polaris-storage/DEV-TIME/STORAGE-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STORAGE-TIME",
+            "rule": "DEV-TIME",
+            "scenario": "virtual-and-host-deadlines"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-NUMERIC",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STORAGE-ASSURANCE",
+            "rule": "DEV-CORE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-TIME",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "gap-time"
+        ],
+        "component": "polaris-storage",
+        "contract": "STORAGE-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-TIME",
+        "scenario": "full-rule"
+      }
+    },
+    "protocol/DEV-SCOPE/PROTOCOL-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "protocol",
+        "contract": "PROTOCOL-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "PROTOCOL-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "PROTOCOL-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "PROTOCOL-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "protocol-qualification"
+        ],
+        "component": "protocol",
+        "contract": "PROTOCOL-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "pulsar/DEV-CONTRACT/PULSAR_NATIVE-2/linux-amd64-cgo/native-oracle": {
+      "after": {
+        "checks": [
+          "pulsar-native"
+        ],
+        "component": "pulsar",
+        "contract": "PULSAR_NATIVE-2",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "PULSAR_NATIVE-5",
+            "rule": "DEV-CONTRACT",
+            "scenario": "native-oracle"
+          },
+          {
+            "contract": "PULSAR_NATIVE-6",
+            "rule": "DEV-CONTRACT",
+            "scenario": "native-oracle"
+          },
+          {
+            "contract": "PULSAR_NATIVE-7",
+            "rule": "DEV-CONTRACT",
+            "scenario": "native-oracle"
+          },
+          {
+            "contract": "PULSAR_NATIVE-8",
+            "rule": "DEV-CONTRACT",
+            "scenario": "native-oracle"
+          },
+          {
+            "contract": "PULSAR_NATIVE-9",
+            "rule": "DEV-CONTRACT",
+            "scenario": "native-oracle"
+          },
+          {
+            "contract": "PULSAR_NATIVE-10",
+            "rule": "DEV-CONTRACT",
+            "scenario": "native-oracle"
+          },
+          {
+            "contract": "PULSAR_NATIVE-11",
+            "rule": "DEV-CONTRACT",
+            "scenario": "native-oracle"
+          }
+        ],
+        "rule": "DEV-CONTRACT",
+        "scenario": "native-oracle"
+      },
+      "before": {
+        "checks": [
+          "pulsar-native"
+        ],
+        "component": "pulsar",
+        "contract": "PULSAR_NATIVE-2",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-CONTRACT",
+        "scenario": "native-oracle"
+      }
+    },
+    "pulsar/DEV-SCOPE/PULSAR-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "pulsar",
+        "contract": "PULSAR-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "PULSAR-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "PULSAR-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "PULSAR-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "pulsar-qualification"
+        ],
+        "component": "pulsar",
+        "contract": "PULSAR-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "star/DEV-SCOPE/STAR-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "star",
+        "contract": "STAR-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "STAR-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "STAR-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "STAR-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "star-qualification"
+        ],
+        "component": "star",
+        "contract": "STAR-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "tools/DEV-SCOPE/TOOLS-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "tools",
+        "contract": "TOOLS-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "TOOLS-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "TOOLS-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "TOOLS-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "tools-qualification"
+        ],
+        "component": "tools",
+        "contract": "TOOLS-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "tools/DEV-SCOPE/TOOLS-ASSURANCE/windows-amd64/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "tools",
+        "contract": "TOOLS-ASSURANCE",
+        "platform": "windows-amd64",
+        "requires": [
+          {
+            "contract": "TOOLS-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "TOOLS-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "TOOLS-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "tools-qualification"
+        ],
+        "component": "tools",
+        "contract": "TOOLS-ASSURANCE",
+        "platform": "windows-amd64",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    },
+    "verification/DEV-SCOPE/VERIFICATION-ASSURANCE/linux-amd64-cgo/full-rule": {
+      "after": {
+        "aggregate": true,
+        "checks": [],
+        "component": "verification",
+        "contract": "VERIFICATION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "requires": [
+          {
+            "contract": "VERIFICATION-ASSURANCE",
+            "rule": "DEV-SCOPE",
+            "scenario": "source-inventory"
+          },
+          {
+            "contract": "VERIFICATION-ASSURANCE",
+            "rule": "DEV-CONFIG",
+            "scenario": "full-rule"
+          },
+          {
+            "contract": "VERIFICATION-ASSURANCE",
+            "rule": "DEV-GATE",
+            "scenario": "full-rule"
+          }
+        ],
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      },
+      "before": {
+        "checks": [
+          "verification-qualification"
+        ],
+        "component": "verification",
+        "contract": "VERIFICATION-ASSURANCE",
+        "platform": "linux-amd64-cgo",
+        "rule": "DEV-SCOPE",
+        "scenario": "full-rule"
+      }
+    }
+  },
+  "origin": {
+    "archive_sha256": "9c5c0d5b5e40be9b40ae78daed58fec150f7592323483f16246ddd53b3e06adf",
+    "historical_obligations": 1151,
+    "historical_sha256": "56b831db78f817b5975d478c4a17fa8d62cc76a9a5f7ed5eecff9f3e051d127f",
+    "policy_sha256": "77cd5672cc777289c87e5e54cd826a9bd52229558d5b2a98351eacd471e83464",
+    "supplement_sha256": "fba322d85e355ce7ea2cb79ab9f2f9df31cbdf7092e3814e1229f4f1822b7257"
+  }
+}

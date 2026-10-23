@@ -1,0 +1,2996 @@
+{
+  "boundary": "Synthetic control shapes copied from real inputs; these fixtures carry no native test or condition credit. Expected semantics come from the independent map/log and fixed boundary contracts.",
+  "cases": {
+    "capacity-bytes": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 4,
+            "History": 2,
+            "Records": 3,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "capacity",
+        "point": "capacity-bytes",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "Zm91cg==",
+          "Version": 2
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 4,
+            "History": 2,
+            "Records": 3,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "capacity",
+        "point": "capacity-bytes",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "Zm91cg==",
+          "Version": 2
+        },
+        "version": 0
+      }
+    ],
+    "capacity-fit": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 8,
+            "History": 2,
+            "Records": 1,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "capacity-fit",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 2
+      }
+    ],
+    "capacity-records": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 8,
+            "History": 2,
+            "Records": 1,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "capacity",
+        "point": "capacity-records",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "z",
+          "Value": "",
+          "Version": 2
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 8,
+            "History": 2,
+            "Records": 1,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "capacity",
+        "point": "capacity-records",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "z",
+          "Value": "",
+          "Version": 2
+        },
+        "version": 0
+      }
+    ],
+    "history-both": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 100,
+            "Bytes": 67108864,
+            "History": 1,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "history-both",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 2
+      }
+    ],
+    "history-bytes": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 100,
+            "Bytes": 67108864,
+            "History": 3,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "history-bytes",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 2
+      }
+    ],
+    "history-count": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 1,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "history-count",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 2
+      }
+    ],
+    "history-excess": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 100,
+            "Bytes": 67108864,
+            "History": 3,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 1000,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-excess",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "cost": 66,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000002"
+          },
+          {
+            "kind": "next",
+            "outcome": "eof"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 100,
+            "Bytes": 67108864,
+            "History": 3,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 1000,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-excess",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "cost": 66,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000002"
+          },
+          {
+            "kind": "next",
+            "outcome": "eof"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      }
+    ],
+    "history-negative": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 999,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 1,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-negative",
+        "prefix": [
+          {
+            "cost": 999,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 999,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 1,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-negative",
+        "prefix": [
+          {
+            "cost": 999,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      }
+    ],
+    "history-off": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 0,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 0,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 0,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "history-off",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 2
+      }
+    ],
+    "history-short-prefix": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 4,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-short-prefix",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "cost": 66,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000002"
+          },
+          {
+            "kind": "next",
+            "outcome": "eof"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 4,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-short-prefix",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000001"
+          },
+          {
+            "cost": 66,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000002"
+          },
+          {
+            "kind": "next",
+            "outcome": "eof"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      }
+    ],
+    "history-within": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "history-within",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 2
+      }
+    ],
+    "history-zero-prefix": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 0
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 1,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-zero-prefix",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000000"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 0
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 1,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "history-zero-prefix",
+        "prefix": [
+          {
+            "cost": 68,
+            "kind": "next",
+            "outcome": "nil",
+            "version": "0000000000000000"
+          },
+          {
+            "kind": "close",
+            "outcome": "nil"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 0
+      }
+    ],
+    "meta-receipt": [
+      {
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "point": "meta-receipt",
+        "receipts": [
+          {
+            "error": true,
+            "injected": true,
+            "rows": 1,
+            "sql": "UPDATE meta SET scopes=?,bytes=? WHERE id=1 AND scopes=? AND bytes=?"
+          },
+          {
+            "error": true,
+            "injected": true,
+            "rows": 1,
+            "sql": "UPDATE meta SET scopes=?,bytes=? WHERE id=1 AND scopes=? AND bytes=?"
+          },
+          {
+            "error": false,
+            "injected": false,
+            "rows": 1,
+            "sql": "UPDATE meta SET scopes=?,bytes=? WHERE id=1 AND scopes=? AND bytes=?"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "z",
+          "Value": "bmV3",
+          "Version": 2
+        }
+      }
+    ],
+    "negative-records": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 0,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "negative-records",
+        "prefix": null,
+        "request": {
+          "Erase": true,
+          "Key": "k",
+          "Value": "",
+          "Version": 2
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 0,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "corrupt",
+        "point": "negative-records",
+        "prefix": null,
+        "request": {
+          "Erase": true,
+          "Key": "k",
+          "Value": "",
+          "Version": 2
+        },
+        "version": 0
+      }
+    ],
+    "retry-erase": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "version",
+        "point": "retry-erase",
+        "request": {
+          "Erase": true,
+          "Key": "k",
+          "Value": "",
+          "Version": 1
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "version",
+        "point": "retry-erase",
+        "request": {
+          "Erase": true,
+          "Key": "k",
+          "Value": "",
+          "Version": 1
+        },
+        "version": 0
+      }
+    ],
+    "retry-key": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "version",
+        "point": "retry-key",
+        "request": {
+          "Erase": false,
+          "Key": "z",
+          "Value": "",
+          "Version": 1
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "version",
+        "point": "retry-key",
+        "request": {
+          "Erase": false,
+          "Key": "z",
+          "Value": "",
+          "Version": 1
+        },
+        "version": 0
+      }
+    ],
+    "retry-same": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "retry-same",
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "",
+          "Version": 1
+        },
+        "version": 1
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "retry-same",
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "",
+          "Version": 1
+        },
+        "version": 1
+      }
+    ],
+    "retry-value": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "version",
+        "point": "retry-value",
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "dg==",
+          "Version": 1
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 65,
+              "Erase": false,
+              "Key": "k",
+              "Value": "",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 1,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": ""
+            }
+          ],
+          "state": {
+            "Backlog": 65,
+            "Bytes": 1,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "version",
+        "point": "retry-value",
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "dg==",
+          "Version": 1
+        },
+        "version": 0
+      }
+    ],
+    "scope-existing-full": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 1,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "outcome": "nil",
+        "point": "scope-existing-full",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 2
+        },
+        "version": 2
+      }
+    ],
+    "scope-new-full": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": false,
+          "history": [],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 1,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [],
+          "state": {
+            "Backlog": 0,
+            "Bytes": 0,
+            "Records": 0,
+            "Retained": 0,
+            "Version": 0
+          }
+        },
+        "outcome": "capacity",
+        "point": "scope-new-full",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 1
+        },
+        "version": 0
+      },
+      {
+        "attempt": 1,
+        "before": {
+          "exists": false,
+          "history": [],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 1,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [],
+          "state": {
+            "Backlog": 0,
+            "Bytes": 0,
+            "Records": 0,
+            "Retained": 0,
+            "Version": 0
+          }
+        },
+        "outcome": "capacity",
+        "point": "scope-new-full",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 1
+        },
+        "version": 0
+      }
+    ],
+    "scope-new-space": [
+      {
+        "attempt": 0,
+        "before": {
+          "exists": false,
+          "history": [],
+          "limits": {
+            "Backlog": 256,
+            "Bytes": 67108864,
+            "History": 2,
+            "Records": 65536,
+            "Scopes": 2,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [],
+          "state": {
+            "Backlog": 0,
+            "Bytes": 0,
+            "Records": 0,
+            "Retained": 0,
+            "Version": 0
+          }
+        },
+        "outcome": "nil",
+        "point": "scope-new-space",
+        "prefix": null,
+        "request": {
+          "Erase": false,
+          "Key": "k",
+          "Value": "bg==",
+          "Version": 1
+        },
+        "version": 1
+      }
+    ],
+    "scopes-receipt": [
+      {
+        "before": {
+          "exists": true,
+          "history": [
+            {
+              "Cost": 68,
+              "Erase": false,
+              "Key": "k",
+              "Value": "b2xk",
+              "Version": 1
+            }
+          ],
+          "limits": {
+            "Backlog": 8388608,
+            "Bytes": 67108864,
+            "History": 1000,
+            "Records": 65536,
+            "Scopes": 4096,
+            "Timeout": 5000000000,
+            "Total": 268435456,
+            "WAL": 134217728
+          },
+          "meta": {
+            "Advertise": "127.0.0.1:45101",
+            "Bytes": 4,
+            "Format": 1,
+            "Galaxy": "test",
+            "Scopes": 1,
+            "Username": "polaris"
+          },
+          "records": [
+            {
+              "Key": "k",
+              "Value": "b2xk"
+            }
+          ],
+          "state": {
+            "Backlog": 68,
+            "Bytes": 4,
+            "Records": 1,
+            "Retained": 1,
+            "Version": 1
+          }
+        },
+        "point": "scopes-receipt",
+        "receipts": [
+          {
+            "error": true,
+            "injected": true,
+            "rows": 1,
+            "sql": "UPDATE scopes SET version=?,records=?,bytes=?,retained=?,backlog=? WHERE sector=? AND spectrum=? AND version=?"
+          },
+          {
+            "error": true,
+            "injected": true,
+            "rows": 1,
+            "sql": "UPDATE scopes SET version=?,records=?,bytes=?,retained=?,backlog=? WHERE sector=? AND spectrum=? AND version=?"
+          },
+          {
+            "error": false,
+            "injected": false,
+            "rows": 1,
+            "sql": "UPDATE scopes SET version=?,records=?,bytes=?,retained=?,backlog=? WHERE sector=? AND spectrum=? AND version=?"
+          }
+        ],
+        "request": {
+          "Erase": false,
+          "Key": "z",
+          "Value": "bmV3",
+          "Version": 2
+        }
+      }
+    ]
+  },
+  "decisions": {
+    "polaris/internal/storage/commit.go:2611": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 7,
+            "line": 74,
+            "offset": 2612
+          },
+          "end": {
+            "column": 13,
+            "line": 74,
+            "offset": 2618
+          },
+          "text": "exists"
+        },
+        {
+          "begin": {
+            "column": 17,
+            "line": 74,
+            "offset": 2622
+          },
+          "end": {
+            "column": 51,
+            "line": 74,
+            "offset": 2656
+          },
+          "text": "meta.Scopes >= store.limits.Scopes"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 74,
+        "offset": 2611
+      },
+      "end": {
+        "column": 51,
+        "line": 74,
+        "offset": 2656
+      },
+      "id": "polaris/internal/storage/commit.go:2611",
+      "kind": "if",
+      "root": 3,
+      "text": "!exists && meta.Scopes >= store.limits.Scopes",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0
+          ],
+          "kind": "not"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            1,
+            2
+          ],
+          "kind": "and"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:3304": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 94,
+            "offset": 3304
+          },
+          "end": {
+            "column": 23,
+            "line": 94,
+            "offset": 3321
+          },
+          "text": "state.Records < 0"
+        },
+        {
+          "begin": {
+            "column": 27,
+            "line": 94,
+            "offset": 3325
+          },
+          "end": {
+            "column": 42,
+            "line": 94,
+            "offset": 3340
+          },
+          "text": "state.Bytes < 0"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 94,
+        "offset": 3304
+      },
+      "end": {
+        "column": 42,
+        "line": 94,
+        "offset": 3340
+      },
+      "id": "polaris/internal/storage/commit.go:3304",
+      "kind": "if",
+      "root": 2,
+      "text": "state.Records < 0 || state.Bytes < 0",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:3448": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 98,
+            "offset": 3448
+          },
+          "end": {
+            "column": 42,
+            "line": 98,
+            "offset": 3484
+          },
+          "text": "state.Records > store.limits.Records"
+        },
+        {
+          "begin": {
+            "column": 46,
+            "line": 98,
+            "offset": 3488
+          },
+          "end": {
+            "column": 78,
+            "line": 98,
+            "offset": 3520
+          },
+          "text": "state.Bytes > store.limits.Bytes"
+        },
+        {
+          "begin": {
+            "column": 82,
+            "line": 98,
+            "offset": 3524
+          },
+          "end": {
+            "column": 134,
+            "line": 98,
+            "offset": 3576
+          },
+          "text": "meta.Bytes+state.Bytes-previous > store.limits.Total"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 98,
+        "offset": 3448
+      },
+      "end": {
+        "column": 134,
+        "line": 98,
+        "offset": 3576
+      },
+      "id": "polaris/internal/storage/commit.go:3448",
+      "kind": "if",
+      "root": 4,
+      "text": "state.Records > store.limits.Records || state.Bytes > store.limits.Bytes || meta.Bytes+state.Bytes-previous > store.limits.Total",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:5064": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 133,
+            "offset": 5064
+          },
+          "end": {
+            "column": 25,
+            "line": 133,
+            "offset": 5083
+          },
+          "text": "result.Error != nil"
+        },
+        {
+          "begin": {
+            "column": 29,
+            "line": 133,
+            "offset": 5087
+          },
+          "end": {
+            "column": 53,
+            "line": 133,
+            "offset": 5111
+          },
+          "text": "result.RowsAffected != 1"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 133,
+        "offset": 5064
+      },
+      "end": {
+        "column": 53,
+        "line": 133,
+        "offset": 5111
+      },
+      "id": "polaris/internal/storage/commit.go:5064",
+      "kind": "if",
+      "root": 2,
+      "text": "result.Error != nil || result.RowsAffected != 1",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:5404": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 6,
+            "line": 138,
+            "offset": 5404
+          },
+          "end": {
+            "column": 25,
+            "line": 138,
+            "offset": 5423
+          },
+          "text": "result.Error != nil"
+        },
+        {
+          "begin": {
+            "column": 29,
+            "line": 138,
+            "offset": 5427
+          },
+          "end": {
+            "column": 53,
+            "line": 138,
+            "offset": 5451
+          },
+          "text": "result.RowsAffected != 1"
+        }
+      ],
+      "begin": {
+        "column": 6,
+        "line": 138,
+        "offset": 5404
+      },
+      "end": {
+        "column": 53,
+        "line": 138,
+        "offset": 5451
+      },
+      "id": "polaris/internal/storage/commit.go:5404",
+      "kind": "if",
+      "root": 2,
+      "text": "result.Error != nil || result.RowsAffected != 1",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:7097": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 187,
+            "offset": 7097
+          },
+          "end": {
+            "column": 31,
+            "line": 187,
+            "offset": 7123
+          },
+          "text": "actual.Key != expected.Key"
+        },
+        {
+          "begin": {
+            "column": 35,
+            "line": 187,
+            "offset": 7127
+          },
+          "end": {
+            "column": 65,
+            "line": 187,
+            "offset": 7157
+          },
+          "text": "actual.Erase != expected.Erase"
+        },
+        {
+          "begin": {
+            "column": 70,
+            "line": 187,
+            "offset": 7162
+          },
+          "end": {
+            "column": 111,
+            "line": 187,
+            "offset": 7203
+          },
+          "text": "bytes.Equal(actual.Value, expected.Value)"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 187,
+        "offset": 7097
+      },
+      "end": {
+        "column": 111,
+        "line": 187,
+        "offset": 7203
+      },
+      "id": "polaris/internal/storage/commit.go:7097",
+      "kind": "if",
+      "root": 5,
+      "text": "actual.Key != expected.Key || actual.Erase != expected.Erase || !bytes.Equal(actual.Value, expected.Value)",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            3
+          ],
+          "kind": "not"
+        },
+        {
+          "children": [
+            2,
+            4
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:7697": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 198,
+            "offset": 7697
+          },
+          "end": {
+            "column": 30,
+            "line": 198,
+            "offset": 7722
+          },
+          "text": "store.limits.History == 0"
+        },
+        {
+          "begin": {
+            "column": 34,
+            "line": 198,
+            "offset": 7726
+          },
+          "end": {
+            "column": 61,
+            "line": 198,
+            "offset": 7753
+          },
+          "text": "cost > store.limits.Backlog"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 198,
+        "offset": 7697
+      },
+      "end": {
+        "column": 61,
+        "line": 198,
+        "offset": 7753
+      },
+      "id": "polaris/internal/storage/commit.go:7697",
+      "kind": "if",
+      "root": 2,
+      "text": "store.limits.History == 0 || cost > store.limits.Backlog",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:8303": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 211,
+            "offset": 8303
+          },
+          "end": {
+            "column": 43,
+            "line": 211,
+            "offset": 8341
+          },
+          "text": "state.Retained <= store.limits.History"
+        },
+        {
+          "begin": {
+            "column": 47,
+            "line": 211,
+            "offset": 8345
+          },
+          "end": {
+            "column": 84,
+            "line": 211,
+            "offset": 8382
+          },
+          "text": "state.Backlog <= store.limits.Backlog"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 211,
+        "offset": 8303
+      },
+      "end": {
+        "column": 84,
+        "line": 211,
+        "offset": 8382
+      },
+      "id": "polaris/internal/storage/commit.go:8303",
+      "kind": "if",
+      "root": 2,
+      "text": "state.Retained <= store.limits.History && state.Backlog <= store.limits.Backlog",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "and"
+        }
+      ]
+    },
+    "polaris/internal/storage/commit.go:9427": {
+      "atoms": [
+        {
+          "begin": {
+            "column": 5,
+            "line": 240,
+            "offset": 9427
+          },
+          "end": {
+            "column": 17,
+            "line": 240,
+            "offset": 9439
+          },
+          "text": "through == 0"
+        },
+        {
+          "begin": {
+            "column": 21,
+            "line": 240,
+            "offset": 9443
+          },
+          "end": {
+            "column": 58,
+            "line": 240,
+            "offset": 9480
+          },
+          "text": "state.Retained > store.limits.History"
+        },
+        {
+          "begin": {
+            "column": 62,
+            "line": 240,
+            "offset": 9484
+          },
+          "end": {
+            "column": 79,
+            "line": 240,
+            "offset": 9501
+          },
+          "text": "state.Backlog < 0"
+        },
+        {
+          "begin": {
+            "column": 83,
+            "line": 240,
+            "offset": 9505
+          },
+          "end": {
+            "column": 119,
+            "line": 240,
+            "offset": 9541
+          },
+          "text": "state.Backlog > store.limits.Backlog"
+        }
+      ],
+      "begin": {
+        "column": 5,
+        "line": 240,
+        "offset": 9427
+      },
+      "end": {
+        "column": 119,
+        "line": 240,
+        "offset": 9541
+      },
+      "id": "polaris/internal/storage/commit.go:9427",
+      "kind": "if",
+      "root": 6,
+      "text": "through == 0 || state.Retained > store.limits.History || state.Backlog < 0 || state.Backlog > store.limits.Backlog",
+      "tree": [
+        {
+          "atom": 0,
+          "kind": "atom"
+        },
+        {
+          "atom": 1,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            0,
+            1
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 2,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            2,
+            3
+          ],
+          "kind": "or"
+        },
+        {
+          "atom": 3,
+          "kind": "atom"
+        },
+        {
+          "children": [
+            4,
+            5
+          ],
+          "kind": "or"
+        }
+      ]
+    }
+  },
+  "selection": {
+    "adapter": "go-test-json",
+    "argv": [
+      "go",
+      "test",
+      "-json",
+      "-count=1",
+      "-parallel=1",
+      "-p=2",
+      "-timeout=180s",
+      "-run=^TestTransactionInputs$",
+      "-overlay=/home/ubuntu/verdandi/astra/build/results/assurance/storage-transaction-inputs-current-1/source/_overlay.json",
+      "./polaris/internal/storage"
+    ],
+    "environment": {
+      "ASTRA_CACHE_ROOT": "{cache}",
+      "CC": "{cache}/tools/gcc-16.2.0/bin/gcc",
+      "CGO_ENABLED": "1",
+      "CXX": "{cache}/tools/gcc-16.2.0/bin/g++",
+      "GOARCH": "amd64",
+      "GOCACHE": "{root}/build/cache/go",
+      "GOFLAGS": "-mod=readonly",
+      "GOMAXPROCS": "2",
+      "GOMODCACHE": "{cache}/deps/go/pkg/mod",
+      "GOOS": "linux",
+      "GOPATH": "{cache}/deps/go",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOTOOLCHAIN": "local",
+      "GOWORK": "off",
+      "LD_LIBRARY_PATH": "{cache}/tools/gcc-16.2.0/lib64",
+      "PATH": "{cache}/tools/go-1.27.2/bin:{cache}/tools/gcc-16.2.0/bin:/usr/bin:/bin",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "TMPDIR": "{run}/tmp"
+    },
+    "expected_tests": [
+      "TestTransactionInputs",
+      "TestTransactionInputs/scopes-receipt",
+      "TestTransactionInputs/meta-receipt",
+      "TestTransactionInputs/retry-same",
+      "TestTransactionInputs/retry-key",
+      "TestTransactionInputs/retry-erase",
+      "TestTransactionInputs/retry-value",
+      "TestTransactionInputs/scope-existing-full",
+      "TestTransactionInputs/scope-new-full",
+      "TestTransactionInputs/scope-new-space",
+      "TestTransactionInputs/capacity-fit",
+      "TestTransactionInputs/capacity-records",
+      "TestTransactionInputs/capacity-bytes",
+      "TestTransactionInputs/negative-records",
+      "TestTransactionInputs/history-off",
+      "TestTransactionInputs/history-within",
+      "TestTransactionInputs/history-count",
+      "TestTransactionInputs/history-bytes",
+      "TestTransactionInputs/history-both",
+      "TestTransactionInputs/history-zero-prefix",
+      "TestTransactionInputs/history-short-prefix",
+      "TestTransactionInputs/history-negative",
+      "TestTransactionInputs/history-excess"
+    ],
+    "log_bytes": 33554432,
+    "package": "github.com/eosforge/astra/polaris/internal/storage",
+    "probes": [
+      {
+        "contract": "STORAGE-BOUNDARY",
+        "minimum_hits": 22,
+        "test": "TestTransactionInputs"
+      }
+    ],
+    "timeout_s": 240
+  },
+  "vectors": {
+    "polaris/internal/storage/commit.go:2611": [
+      {
+        "hits": 1934,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 2824,
+        "result": false,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/commit.go:3304": [
+      {
+        "hits": 4753,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/commit.go:3448": [
+      {
+        "hits": 4750,
+        "result": false,
+        "values": "111"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "112"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/commit.go:5064": [
+      {
+        "hits": 4715,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/commit.go:5404": [
+      {
+        "hits": 4713,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/commit.go:7097": [
+      {
+        "hits": 313,
+        "result": true,
+        "values": "111"
+      },
+      {
+        "hits": 2243,
+        "result": false,
+        "values": "112"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "200"
+      }
+    ],
+    "polaris/internal/storage/commit.go:7697": [
+      {
+        "hits": 4727,
+        "result": false,
+        "values": "11"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "12"
+      },
+      {
+        "hits": 10,
+        "result": true,
+        "values": "20"
+      }
+    ],
+    "polaris/internal/storage/commit.go:8303": [
+      {
+        "hits": 778,
+        "result": false,
+        "values": "10"
+      },
+      {
+        "hits": 3,
+        "result": false,
+        "values": "21"
+      },
+      {
+        "hits": 3944,
+        "result": true,
+        "values": "22"
+      }
+    ],
+    "polaris/internal/storage/commit.go:9427": [
+      {
+        "hits": 765,
+        "result": false,
+        "values": "1111"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "1112"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "1120"
+      },
+      {
+        "hits": 1,
+        "result": true,
+        "values": "1200"
+      },
+      {
+        "hits": 2,
+        "result": true,
+        "values": "2000"
+      }
+    ]
+  }
+}

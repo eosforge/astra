@@ -1,0 +1,122 @@
+// Verify immediate malformed-prefix refusal without imposing a batch-wide key or size ceiling.
+//go:build linux && cgo
+
+package server
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"reflect"
+	"testing"
+	"time"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/proto"
+
+	"github.com/eosforge/astra/internal/generated/comet"
+	"github.com/eosforge/astra/internal/generated/polaris"
+	"github.com/eosforge/astra/polaris/internal/storage"
+)
+
+// TestBatchAdmission rejects a known-invalid prefix before another receive and admits 257 distinct keys atomically.
+func TestBatchAdmission(t *testing.T) {
+	t.Parallel()
+	hits := 0
+	t.Cleanup(func() { t.Logf(`ASTRA-CONTRACT {"contract":"POLARIS-BATCH-ADMISSION","hits":%d}`, hits) })
+	for _, name := range []string{"in-page", "across-pages", "nil-entry", "unique"} {
+		t.Run(name, func(t *testing.T) {
+			// Successful checks, rather than declared cases, supply the native contract-hit count.
+			check := func(condition bool, message string) {
+				t.Helper()
+				if !condition {
+					t.Fatal(message)
+				}
+				hits++
+			}
+			system := environment(t, storage.Default())
+			authority, err := NewAuthority(system.store, system.node.Directory(), 256<<20)
+			check(err == nil, "create authority with its normal preparation budget")
+			scope := storage.Scope{Sector: "s", Spectrum: "p"}
+			version, err := system.store.Commit(t.Context(), scope, storage.Change{Version: 1, Key: "keep", Value: []byte("before")})
+			check(err == nil && version == 1, "establish the independent durable baseline")
+			before, err := system.store.Load(t.Context(), scope)
+			check(err == nil, "capture the complete baseline")
+			positions, err := system.store.List(t.Context())
+			check(err == nil, "capture the original inventory")
+			feed, err := system.store.Subscribe(4096, 4)
+			check(err == nil, "observe only subsequent durable commits")
+			defer feed.Close()
+			changed := system.store.Changed()
+			ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+			defer cancel()
+			ctx = metadata.NewIncomingContext(ctx, metadata.Pairs("astra-admission-bin", string(system.manager.Admission), "astra-signature-bin", string(system.manager.AdmissionSignature)))
+			position := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("p")}
+			entry := &comet.AlmanacChange{Key: "a", Action: &comet.AlmanacChange_Value{Value: []byte("new")}}
+			page := &polaris.BatchRequest{Scope: position, Version: 2, Changes: []*comet.AlmanacChange{entry}}
+			// The next receive is a deliberate transport failure, not EOF; refusal must precede it.
+			wire := &upload{capture: capture{ctx: ctx}, pages: []*polaris.BatchRequest{page}, failure: errors.New("unexpected receive after invalid batch prefix")}
+			calls := 1
+			switch name {
+			case "in-page":
+				page.Changes = append(page.Changes, &comet.AlmanacChange{Key: "a", Action: &comet.AlmanacChange_Erase{Erase: &comet.Empty{}}})
+			case "across-pages":
+				wire.pages = append(wire.pages, &polaris.BatchRequest{Scope: position, Version: 2, Changes: []*comet.AlmanacChange{entry}})
+				calls = 2
+			case "nil-entry":
+				page.Changes = []*comet.AlmanacChange{nil}
+			case "unique":
+				// Two legal transport pages cross the former 128-key boundary without a new count ceiling.
+				page.Changes = nil
+				last := &polaris.BatchRequest{Scope: position, Version: 2, Complete: true}
+				for index := range 257 {
+					change := &comet.AlmanacChange{Key: fmt.Sprintf("%03d", index), Action: &comet.AlmanacChange_Value{Value: []byte{byte(index)}}}
+					if index < 128 {
+						page.Changes = append(page.Changes, change)
+					} else {
+						last.Changes = append(last.Changes, change)
+					}
+				}
+				wire.pages, wire.receipt, wire.failure, calls = append(wire.pages, last), true, nil, 3
+			}
+			err = authority.Batch(wire)
+			if name == "unique" {
+				check(err == nil && proto.Equal(wire.result, &polaris.Position{Scope: position, Version: 2}), "complete unique batch returns its one durable receipt")
+			} else {
+				check(status.Code(err) == codes.InvalidArgument && wire.result == nil, "invalid prefix is refused before an additional transport read or receipt")
+			}
+			check(wire.reads == calls, "receive count ends exactly at refusal or healthy EOF")
+			check(len(authority.slots) == 0 && authority.cache.used == 0 && len(authority.cache.entries) == 0, "every outcome releases management admission and preparation")
+			after, err := system.store.Load(t.Context(), scope)
+			check(err == nil, "storage remains readable after the upload")
+			listed, err := system.store.List(t.Context())
+			check(err == nil, "inventory remains readable after the upload")
+			if name == "unique" {
+				want := storage.Snapshot{Position: storage.Position{Scope: scope, Version: 2}}
+				for index := range 257 {
+					want.Records = append(want.Records, storage.Record{Key: fmt.Sprintf("%03d", index), Value: []byte{byte(index)}})
+				}
+				want.Records = append(want.Records, before.Records...)
+				check(reflect.DeepEqual(after, want), "all 257 keys share one version and preserve the original key")
+				check(reflect.DeepEqual(listed, []storage.Position{{Scope: scope, Version: 2}}), "the complete batch advances one inventory position")
+			} else {
+				check(reflect.DeepEqual(before, after) && reflect.DeepEqual(positions, listed), "refusal preserves complete durable state and inventory")
+				select {
+				case <-changed:
+					t.Fatal("invalid prefix published a state notification")
+				default:
+					hits++
+				}
+				events, err := feed.Take()
+				check(err == nil && len(events) == 0, "invalid prefix publishes no downstream event")
+				// A new healthy operation must reuse the released admission and the unconsumed version.
+				result, err := authority.Commit(ctx, &polaris.CommitRequest{Scope: position, Version: 2, Change: entry})
+				check(err == nil && result.Version == 2 && len(authority.slots) == 0, "a healthy write proceeds after malformed-prefix refusal")
+			}
+			events, err := feed.Take()
+			check(err == nil && len(events) == 1 && events[0].Version == 2, "exactly one healthy commit is published after either path")
+		})
+	}
+}

@@ -1,0 +1,11 @@
+# The real HTTP state machine is tested on each platform, not a socket-only mock.
+add_library(astra_metrics STATIC "${ASTRA_ROOT}/star/src/metrics.cpp" "${ASTRA_ROOT}/star/src/${astra_platform}/metrics_io.cpp")
+target_include_directories(astra_metrics PUBLIC "${ASTRA_ROOT}/star/src")
+target_link_libraries(astra_metrics PUBLIC astra_platform)
+if(BUILD_TESTING)
+    add_executable(astra_metrics_test "${ASTRA_ROOT}/star/tests/metrics_test.cpp")
+    target_include_directories(astra_metrics_test PRIVATE "${ASTRA_ROOT}/common/tests")
+    target_link_libraries(astra_metrics_test PRIVATE astra_metrics)
+    add_test(NAME native_metrics COMMAND astra_metrics_test)
+    set_tests_properties(native_metrics PROPERTIES TIMEOUT 30)
+endif()

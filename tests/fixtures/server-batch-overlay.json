@@ -1,0 +1,5 @@
+{
+  "Replace": {
+    "polaris/internal/server/batch_test.go": "tests/fixtures/server-batch.go.in"
+  }
+}

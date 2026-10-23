@@ -1,0 +1,83 @@
+// Verify repeated refresh refusal, intact published state and recovery on the same Node.
+package admission
+
+import (
+	"context"
+	"encoding/json"
+	"slices"
+	"testing"
+
+	"github.com/eosforge/astra/internal/generated/orbit"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/proto"
+)
+
+// TestRefreshFaults retains the superseded identity refusal even after a healthy older reply.
+func TestRefreshFaults(t *testing.T) {
+	check := counter(t, "ADMISSION-NODE-REFRESH")
+	for scenario := range 5 {
+		value, local := node(t)
+		ready(t, value, local)
+		if scenario == 3 {
+			newer := proto.Clone(local).(*orbit.Member)
+			newer.Epoch, newer.Id = 2, []byte("replacement")
+			check(value.directory.Install([]*orbit.Member{newer}) == nil, "replacement fixture did not install")
+		}
+		member, hello, request := value.Member(), value.Hello(), proto.Clone(value.request)
+		members := value.directory.Members()
+		calls := 0
+		for phase := range 3 {
+			value.client = &transport{list: func(context.Context, *orbit.DirectoryRequest) (*orbit.DirectoryResponse, error) {
+				calls++
+				if phase != 2 && scenario == 0 {
+					return nil, status.Error(codes.Unavailable, "Controlled refresh refusal")
+				}
+				incoming := []*orbit.Member{proto.Clone(local).(*orbit.Member)}
+				if phase != 2 && scenario == 1 {
+					incoming = nil
+				}
+				if phase != 2 && scenario == 2 {
+					incoming = append(incoming, nil)
+				}
+				return &orbit.DirectoryResponse{Members: incoming}, nil
+			}}
+			ctx := context.Background()
+			if phase != 2 && scenario == 4 {
+				ctx = metadata.NewOutgoingContext(ctx, metadata.Pairs("astra-signature-bin", "occupied"))
+			}
+			err := value.Refresh(ctx)
+			want := []codes.Code{codes.Unavailable, codes.Unauthenticated, codes.Unknown, codes.Unauthenticated, codes.Unknown}[scenario]
+			if phase == 2 && scenario != 3 {
+				want = codes.OK
+			}
+			expected := phase + 1
+			if scenario == 4 {
+				expected = 0
+				if phase == 2 {
+					expected = 1
+				}
+			}
+			code := status.Code(err)
+			keptMember, keptHello, keptRequest := proto.Equal(value.Member(), member), proto.Equal(value.Hello(), hello), proto.Equal(value.request, request)
+			keptDirectory := slices.EqualFunc(value.directory.Members(), members, func(a, b *orbit.Member) bool { return proto.Equal(a, b) })
+			permits := len(value.gate)
+			check(code == want, "refresh returned the wrong failure or recovery result")
+			check(keptMember, "refresh changed the process identity")
+			check(keptHello, "refresh changed the published credential")
+			check(keptRequest, "refresh changed the startup request")
+			check(keptDirectory, "refresh changed the retained complete directory")
+			check(permits == 0, "refresh retained its admission permit")
+			check(calls == expected, "refresh retried secretly or called through conflicting metadata")
+			data, err := json.Marshal(map[string]any{
+				"scenario": scenario, "phase": phase, "code": int(code), "calls": calls, "permits": permits,
+				"member": keptMember, "hello": keptHello, "request": keptRequest, "directory": keptDirectory,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			t.Logf("ADMISSION-REFRESH-FAULT %s", data)
+		}
+	}
+}

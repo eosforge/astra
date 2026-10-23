@@ -1,0 +1,65 @@
+//go:build linux && cgo
+
+// Observe per-attempt context release after a real checkpoint, with an explicitly owned test worker.
+package storage
+
+import (
+	"bytes"
+	"context"
+	"testing"
+	"testing/synctest"
+	"time"
+
+	"gorm.io/gorm"
+)
+
+// TestMaintenanceContext requires prompt child cancellation while the healthy maintenance owner remains live.
+func TestMaintenanceContext(t *testing.T) {
+	synctest.Test(t, func(t *testing.T) {
+		check := verification(t, "STORAGE-LIFETIME")
+		limits := Default()
+		limits.WAL, limits.Timeout = 1<<20, 10*time.Second
+		// The standard fixture joins its initial task before callback registration; no live callback table is changed.
+		store, _, _ := fixture(t, limits)
+		scope := Scope{Sector: "maintenance", Spectrum: "context"}
+		requireCommit(t, store, scope, Change{Version: 1, Key: "k", Value: []byte{1}})
+		reader, err := store.readSQL.BeginTx(t.Context(), nil)
+		check(err == nil, "pin a real read mark before accumulating WAL pressure")
+		defer reader.Rollback()
+		var version Version
+		check(reader.QueryRowContext(t.Context(), "SELECT version FROM scopes").Scan(&version) == nil && version == 1, "establish the committed read mark")
+		for version := Version(2); version <= 3; version++ {
+			requireCommit(t, store, scope, Change{Version: version, Key: "k", Value: bytes.Repeat([]byte{byte(version)}, 256<<10)})
+		}
+		check(reader.Rollback() == nil, "release the pin without issuing another foreground operation")
+		changed, saved := store.Changed(), contents(t, store.writeSQL)
+		contexts := make(chan context.Context, 1)
+		check(store.write.Callback().Row().After("gorm:row").Register("test:maintenance-context", func(query *gorm.DB) {
+			if query.Statement.SQL.String() == "PRAGMA wal_checkpoint(PASSIVE)" {
+				contexts <- query.Statement.Context
+			}
+		}) == nil, "observe the actual SQL attempt context before starting the isolated worker")
+		owner, cancel := context.WithCancel(t.Context())
+		done := make(chan struct{})
+		go func() {
+			defer close(done)
+			store.maintenance(owner)
+		}()
+		defer func() {
+			cancel()
+			<-done
+		}()
+		time.Sleep(time.Second)
+		synctest.Wait()
+		var attempt context.Context
+		select {
+		case attempt = <-contexts:
+			check(attempt != nil, "the scheduled native checkpoint exposes one real attempt context")
+		default:
+			check(false, "the scheduled native checkpoint never reached the observer")
+		}
+		check(owner.Err() == nil, "the maintenance owner stays live after successful work")
+		check(attempt.Err() == context.Canceled, "completed maintenance cancels its child before the next iteration")
+		check(store.writeSQL.Stats().InUse == 0 && contents(t, store.writeSQL) == saved && store.Changed() == changed, "context release preserves SQL ownership, business contents and notifications")
+	})
+}

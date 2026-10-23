@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "scope": "Seven current acquisition guard mutations with immutable same-package test overlays. This targeted increment does not qualify whole-Admission mutation coverage.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "fixtures": [
+    {"source": "tests/fixtures/admission-acquisition.go.in", "target": "internal/admission/acquisition_linux_amd64_test.go"},
+    {"source": "tests/fixtures/admission-metadata.go.in", "target": "internal/admission/metadata_linux_amd64_test.go"}
+  ],
+  "mutations": [
+    {"id": "acquire-follow-link", "file": "internal/admission/file_linux.go", "test": "TestAcquisition", "before": "|syscall.O_NOFOLLOW", "after": "|0"},
+    {"id": "acquire-blocking", "file": "internal/admission/file_linux.go", "test": "TestAcquisition", "before": "|syscall.O_NONBLOCK", "after": "|0"},
+    {"id": "acquire-writable", "file": "internal/admission/file_linux.go", "test": "TestAcquisition", "before": "os.O_RDONLY", "after": "os.O_WRONLY"},
+    {"id": "load-replacement", "file": "internal/admission/identity.go", "test": "TestLoadReplacement", "before": "|| !os.SameFile(before, info)", "after": "|| false"},
+    {"id": "load-metadata-kind", "file": "internal/admission/identity.go", "test": "TestLoadMetadata", "before": "staterr != nil || !info.Mode().IsRegular()", "after": "staterr != nil || false"},
+    {"id": "load-rejected-close-omitted", "file": "internal/admission/identity.go", "test": "TestLoadReplacement", "before": "_ = file.Close()", "after": "_ = error(nil)"},
+    {"id": "load-rejected-close-twice", "file": "internal/admission/identity.go", "test": "TestLoadReplacement", "before": "_ = file.Close()", "after": "_ = file.Close()\n\t\t\t_ = file.Close()"}
+  ]
+}

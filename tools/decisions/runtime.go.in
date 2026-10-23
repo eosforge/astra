@@ -1,0 +1,102 @@
+// Collect bounded, per-invocation Boolean vectors in an isolated diagnostic overlay.
+package probe
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"sort"
+	"sync"
+)
+
+// astraProbeState owns only diagnostic observations, never production state.
+var astraProbeState = struct {
+	sync.Mutex
+	rows   map[string]map[string]uint64 // Decision/vector counters; vectors encode unevaluated, false and true operands.
+	total  int                          // At most 65,536 distinct vectors across this process.
+	closed bool                         // Terminal emission forbids subsequent observations.
+}{rows: make(map[string]map[string]uint64)}
+
+// astraProbeAtom evaluates its operand exactly once and retains defined Boolean types.
+func astraProbeAtom[T ~bool](slot *byte, value T) T {
+	*slot = 1
+	if value {
+		*slot = 2
+	}
+	return value
+}
+
+// astraProbeRecord commits one completed decision; skipped and panicking decisions are not fabricated.
+func astraProbeRecord(id string, values []byte, result bool) {
+	// Copy the completed invocation before its caller releases the stack-local vector.
+	key := make([]byte, len(values)+1)
+	for i, v := range values {
+		key[i] = '0' + v
+	}
+	key[len(values)] = '0'
+	if result {
+		key[len(values)] = '1'
+	}
+	astraProbeState.Lock()
+	defer astraProbeState.Unlock()
+	if astraProbeState.closed {
+		panic("decision trace after terminal report")
+	}
+	// Only first observations consume the global vector budget; counts must not wrap.
+	rows := astraProbeState.rows[id]
+	if rows == nil {
+		rows = make(map[string]uint64)
+		astraProbeState.rows[id] = rows
+	}
+	if rows[string(key)] == 0 {
+		if astraProbeState.total == 65536 {
+			panic("decision trace capacity")
+		}
+		astraProbeState.total++
+	}
+	if rows[string(key)] == ^uint64(0) {
+		panic("decision trace counter overflow")
+	}
+	rows[string(key)]++
+}
+
+// astraProbeFinish emits a deterministic native terminal record for this process only.
+func astraProbeFinish(code int) {
+	astraProbeState.Lock()
+	defer astraProbeState.Unlock()
+	astraProbeState.closed = true
+	// Canonical ordering makes repeated vectors comparable without depending on map iteration order.
+	ids := make([]string, 0, len(astraProbeState.rows))
+	for id := range astraProbeState.rows {
+		ids = append(ids, id)
+	}
+	sort.Strings(ids)
+	rows := []any{}
+	for _, id := range ids {
+		states := make([]string, 0, len(astraProbeState.rows[id]))
+		for state := range astraProbeState.rows[id] {
+			states = append(states, state)
+		}
+		sort.Strings(states)
+		for _, state := range states {
+			rows = append(rows, struct {
+				ID     string `json:"id"`     // Source path and byte offset.
+				Values string `json:"values"` // Per-occurrence operand observations.
+				Result bool   `json:"result"` // Actual completed decision result.
+				Hits   uint64 `json:"hits"`   // Completed invocations of this vector/result pair.
+			}{id, state[:len(state)-1], state[len(state)-1] == '1', astraProbeState.rows[id][state]})
+		}
+	}
+	// A native process receipt is useful only together with its parent command and original inventory.
+	data, err := json.Marshal(struct {
+		PID  int   `json:"pid"`  // Emitting process, separated from joined children.
+		Code int   `json:"code"` // Native test or semantic-harness result.
+		Rows []any `json:"rows"` // Sorted observations; missing decisions remain missing.
+	}{os.Getpid(), code, rows})
+	if err != nil {
+		panic(err)
+	}
+	if _, err := fmt.Printf("GO-DECISIONS %s\n", data); err != nil {
+		panic(err)
+	}
+}

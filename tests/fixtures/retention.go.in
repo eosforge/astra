@@ -1,0 +1,177 @@
+//go:build linux && cgo
+
+// Observe retention predicates over real SQLite rows frozen into one bounded, private cursor.
+package storage
+
+import (
+	"context"
+	"database/sql"
+	"database/sql/driver"
+	"encoding/json"
+	"fmt"
+	"io"
+	"reflect"
+	"strings"
+	"testing"
+
+	"github.com/mattn/go-sqlite3"
+)
+
+// retentionDriver owns all connections and the single current retained-history cursor.
+type retentionDriver struct {
+	native    sqlite3.SQLiteDriver // Existing native implementation and production connection hook.
+	rows      *retentionRows       // Frozen input cursor for the current private query.
+	test      *testing.T           // Joined sequential fixture scope.
+	opened    int                  // Native connections acquired.
+	closed    int                  // Native connections released.
+	finalized int                  // Actual SQLite cursors finalized before replay.
+}
+
+// retentionConn delegates every operation except the exact retained-prefix query.
+type retentionConn struct {
+	*sqlite3.SQLiteConn                  // Native production connection.
+	owner               *retentionDriver // Private test ownership.
+}
+
+// retentionRows exposes the real query result as a finite memory cursor, without changing its cells.
+type retentionRows struct {
+	columns []string         // Original native column names.
+	values  [][]driver.Value // Owned copies of the actual SQLite result.
+	index   int              // Next memory row, including rows not requested by short circuit.
+	calls   int              // Actual delegated Next calls only.
+	closed  bool             // Idempotent cursor finalization.
+}
+
+var retentionOwner *retentionDriver // Sole fixture process; never used by the ordinary test selection.
+
+// Open preserves native initialization and rejects an unexpected SQL length domain.
+func (owner *retentionDriver) Open(name string) (driver.Conn, error) {
+	raw, err := owner.native.Open(name)
+	if err != nil {
+		return nil, err
+	}
+	conn := raw.(*sqlite3.SQLiteConn)
+	if conn.GetLimit(sqlite3.SQLITE_LIMIT_LENGTH) != (64<<20)+1024 {
+		_ = conn.Close()
+		return nil, fmt.Errorf("unexpected native SQL length bound")
+	}
+	owner.opened++
+	return &retentionConn{SQLiteConn: conn, owner: owner}, nil
+}
+
+// Close releases the native connection before incrementing its owner's completed count.
+func (conn *retentionConn) Close() error {
+	err := conn.SQLiteConn.Close()
+	conn.owner.closed++
+	return err
+}
+
+// QueryContext freezes at most two actual history rows, then finalizes the native cursor exactly once.
+func (conn *retentionConn) QueryContext(ctx context.Context, query string, args []driver.NamedValue) (driver.Rows, error) {
+	raw, err := conn.SQLiteConn.QueryContext(ctx, query, args)
+	if err != nil || !strings.Contains(query, "SELECT version,cost FROM `history`") {
+		return raw, err
+	}
+	rows := &retentionRows{columns: append([]string(nil), raw.Columns()...)}
+	for {
+		values := make([]driver.Value, len(rows.columns))
+		err = raw.Next(values)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			_ = raw.Close()
+			return nil, err
+		}
+		if len(rows.values) >= 2 {
+			_ = raw.Close()
+			return nil, fmt.Errorf("unbounded retention input")
+		}
+		for index, value := range values {
+			if value, ok := value.([]byte); ok {
+				values[index] = append([]byte(nil), value...)
+			}
+		}
+		rows.values = append(rows.values, values)
+	}
+	if err := raw.Close(); err != nil {
+		return nil, err
+	}
+	conn.owner.finalized++
+	conn.owner.rows = rows
+	return rows, nil
+}
+
+// Columns preserves the actual native schema of the frozen query.
+func (rows *retentionRows) Columns() []string { return rows.columns }
+
+// Close retires the memory cursor without owning any native handle.
+func (rows *retentionRows) Close() error { rows.closed = true; return nil }
+
+// Next changes only the cursor index and records actual requests, including exhaustion.
+func (rows *retentionRows) Next(values []driver.Value) error {
+	rows.calls++
+	if rows.closed || rows.index == len(rows.values) {
+		return io.EOF
+	}
+	copy(values, rows.values[rows.index])
+	rows.index++
+	return nil
+}
+
+// retentionInput evaluates the unchanged condition once; skipped Next has an input value but no execution hit.
+func retentionInput(store *Store, state *group, rows *sql.Rows) bool {
+	owner := retentionOwner
+	input := owner.rows
+	if input == nil || input.closed {
+		owner.test.Fatal("retention input has no live private cursor")
+	}
+	count, backlog := state.Retained > store.limits.History, state.Backlog > store.limits.Backlog
+	index, calls := input.index, input.calls
+	available := index < len(input.values)
+	result := (state.Retained > store.limits.History || state.Backlog > store.limits.Backlog) && rows.Next()
+	data, err := json.Marshal(map[string]any{"test": owner.test.Name(), "retained": state.Retained, "backlog": state.Backlog, "history_limit": store.limits.History, "backlog_limit": store.limits.Backlog, "rows": input.values, "index": index, "next_index": input.index, "next_calls": input.calls - calls, "values": []bool{count, backlog, available}, "result": result})
+	if err != nil {
+		owner.test.Fatal(err)
+	}
+	fmt.Printf("STORAGE-RETENTION-INPUT %s\n", data)
+	return result
+}
+
+// TestRetentionInputs checks both independent retention limits and complete durable/public cleanup.
+func TestRetentionInputs(t *testing.T) {
+	check := verification(t, "STORAGE-RETENTION-INPUTS")
+	_, scanner := any((*sqlite3.SQLiteRows)(nil)).(driver.RowsColumnScanner)
+	check(!scanner, "pinned native rows use sequential database/sql conversions")
+	owner := &retentionDriver{native: sqlite3.SQLiteDriver{ConnectHook: connection}}
+	retentionOwner = owner
+	driverOnce.Do(func() { sql.Register("astra-polaris", owner) })
+	for _, point := range []string{"count", "backlog"} {
+		check(t.Run(point, func(t *testing.T) {
+			owner.test = t
+			limits := Default()
+			limits.History, limits.Backlog = 8, 1024
+			if point == "count" {
+				limits.History = 1
+			} else {
+				limits.Backlog = 66
+			}
+			store, _, binding := fixture(t, limits)
+			scope := Scope{"retention", "input"}
+			for version := Version(1); version <= 2; version++ {
+				requireCommit(t, store, scope, Change{Version: version, Key: "k", Value: []byte("v")})
+			}
+			input := owner.rows
+			check(input != nil && input.closed && input.calls == 1 && input.index == 1 && len(input.values) == 2, "short circuit skips the second available row")
+			image, loaded := store.Load(t.Context(), scope)
+			history, replayed := store.Since(t.Context(), scope, 1)
+			check(loaded == nil && image.Version == 2 && reflect.DeepEqual(image.Records, []Record{{Key: "k", Value: []byte("v")}}), "complete durable snapshot")
+			check(replayed == nil && history.Version == 2 && len(history.Changes) == 1 && history.Changes[0].Version == 2, "exact retained suffix")
+			state, found, err := current(store.read.WithContext(t.Context()), scope)
+			check(err == nil && found && state.Retained == 1 && state.Backlog == 66, "count and bytes agree after prefix deletion")
+			check(len(store.writer) == 0 && store.readSQL.Stats().InUse == 0 && store.writeSQL.Stats().InUse == 0 && !store.poisoned.Load() && store.validate(t.Context(), binding) == nil, "all transactional ownership returns")
+			check(store.Close() == nil && owner.opened == owner.closed, "all native connections drain")
+		}), "joined retention input case")
+	}
+	check(owner.finalized == 2 && owner.opened == owner.closed, "exactly two native history cursors finalize")
+}

@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "scope": "Complete named predicate mutation set for Name, Role, Valid and NewDirectory; each guard or alphabet alternative is neutralized individually after a passing native baseline. Other Admission decisions retain their separate qualification gaps.",
+  "package": "./internal/admission",
+  "import": "github.com/eosforge/astra/internal/admission",
+  "mutations": [
+    {
+      "id": "name-length-0",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif len(value) == 0 || len(value) > 64 {",
+      "after": "\tif false || len(value) > 64 {"
+    },
+    {
+      "id": "name-length-1",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif len(value) == 0 || len(value) > 64 {",
+      "after": "\tif len(value) == 0 || false {"
+    },
+    {
+      "id": "name-alphabet-0",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(true && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-1",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && true || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-2",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && char <= 'z' || true && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-3",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && true || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-4",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || true && char <= '9' || char == '.' || char == '_' || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-5",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && true || char == '.' || char == '_' || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-6",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || false || char == '_' || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-7",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || false || char == '-') {"
+    },
+    {
+      "id": "name-alphabet-8",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || char == '-') {",
+      "after": "\t\tif !(char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '.' || char == '_' || false) {"
+    },
+    {
+      "id": "role-0",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\treturn role == orbit.Role_ROLE_STAR || role == orbit.Role_ROLE_PLANET || role == orbit.Role_ROLE_POLARIS || role == orbit.Role_ROLE_ASTROLABE",
+      "after": "\treturn false || role == orbit.Role_ROLE_PLANET || role == orbit.Role_ROLE_POLARIS || role == orbit.Role_ROLE_ASTROLABE"
+    },
+    {
+      "id": "role-1",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\treturn role == orbit.Role_ROLE_STAR || role == orbit.Role_ROLE_PLANET || role == orbit.Role_ROLE_POLARIS || role == orbit.Role_ROLE_ASTROLABE",
+      "after": "\treturn role == orbit.Role_ROLE_STAR || false || role == orbit.Role_ROLE_POLARIS || role == orbit.Role_ROLE_ASTROLABE"
+    },
+    {
+      "id": "role-2",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\treturn role == orbit.Role_ROLE_STAR || role == orbit.Role_ROLE_PLANET || role == orbit.Role_ROLE_POLARIS || role == orbit.Role_ROLE_ASTROLABE",
+      "after": "\treturn role == orbit.Role_ROLE_STAR || role == orbit.Role_ROLE_PLANET || false || role == orbit.Role_ROLE_ASTROLABE"
+    },
+    {
+      "id": "role-3",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\treturn role == orbit.Role_ROLE_STAR || role == orbit.Role_ROLE_PLANET || role == orbit.Role_ROLE_POLARIS || role == orbit.Role_ROLE_ASTROLABE",
+      "after": "\treturn role == orbit.Role_ROLE_STAR || role == orbit.Role_ROLE_PLANET || role == orbit.Role_ROLE_POLARIS || false"
+    },
+    {
+      "id": "valid-0",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif false || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-1",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || false || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-2",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || !Name(member.Galaxy) || false || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-3",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || false || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-4",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || false || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-5",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || false || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-6",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || false || !Role(member.Role) || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-7",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || false || len(member.Principal) != 32 {"
+    },
+    {
+      "id": "valid-8",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || len(member.Principal) != 32 {",
+      "after": "\tif member == nil || !Name(member.Galaxy) || !Name(member.Group) || len(member.Id) == 0 || len(member.Id) > 128 || !utf8.Valid(member.Id) || member.Epoch == 0 || !Role(member.Role) || false {"
+    },
+    {
+      "id": "valid-endpoint-0",
+      "file": "internal/admission/identity.go",
+      "test": "TestPredicates",
+      "before": "\treturn err == nil",
+      "after": "\treturn err == nil || err != nil"
+    },
+    {
+      "id": "directory-0",
+      "file": "internal/admission/directory.go",
+      "test": "TestPredicates",
+      "before": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {",
+      "after": "\tif false || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {"
+    },
+    {
+      "id": "directory-1",
+      "file": "internal/admission/directory.go",
+      "test": "TestPredicates",
+      "before": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {",
+      "after": "\tif identity == nil || false || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {"
+    },
+    {
+      "id": "directory-2",
+      "file": "internal/admission/directory.go",
+      "test": "TestPredicates",
+      "before": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {",
+      "after": "\tif identity == nil || !Name(galaxy) || false || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {"
+    },
+    {
+      "id": "directory-3",
+      "file": "internal/admission/directory.go",
+      "test": "TestPredicates",
+      "before": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {",
+      "after": "\tif identity == nil || !Name(galaxy) || !Role(role) || false || maximum < 1 || maximum > 16384 {"
+    },
+    {
+      "id": "directory-4",
+      "file": "internal/admission/directory.go",
+      "test": "TestPredicates",
+      "before": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {",
+      "after": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || false || maximum > 16384 {"
+    },
+    {
+      "id": "directory-5",
+      "file": "internal/admission/directory.go",
+      "test": "TestPredicates",
+      "before": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || maximum > 16384 {",
+      "after": "\tif identity == nil || !Name(galaxy) || !Role(role) || role == orbit.Role_ROLE_PLANET || maximum < 1 || false {"
+    }
+  ]
+}

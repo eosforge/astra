@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "scope": "Requalify only the original version-size operator using a valid-width-first scanner oracle. The prior TestDecisions panic remains an invalid original attempt, not a semantic kill. Production source and the operator are unchanged; this fixture adds one isolated test with no initializer or production replacement.",
+  "package": "./polaris/internal/storage",
+  "import": "github.com/eosforge/astra/polaris/internal/storage",
+  "fixtures": [
+    {
+      "source": "tests/fixtures/version.go.in",
+      "target": "polaris/internal/storage/versionboundary_test.go"
+    }
+  ],
+  "mutations": [
+    {
+      "id": "version-size",
+      "file": "polaris/internal/storage/model.go",
+      "test": "TestVersionBoundary",
+      "before": "len(bytes) != 8",
+      "after": "len(bytes) == 8"
+    }
+  ]
+}

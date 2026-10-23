@@ -1,0 +1,78 @@
+{
+  "import": "github.com/eosforge/astra/polaris/internal/server",
+  "mutations": [
+    {
+      "after": "limits.Records*128 + 2<<20",
+      "before": "limits.Bytes + limits.Records*128 + 2<<20",
+      "file": "polaris/internal/server/cache.go",
+      "id": "reserve-payload",
+      "test": "TestReservation"
+    },
+    {
+      "after": "limits.Bytes + 2<<20",
+      "before": "limits.Bytes + limits.Records*128 + 2<<20",
+      "file": "polaris/internal/server/cache.go",
+      "id": "reserve-index",
+      "test": "TestReservation"
+    },
+    {
+      "after": "limits.Bytes + limits.Records*128",
+      "before": "limits.Bytes + limits.Records*128 + 2<<20",
+      "file": "polaris/internal/server/cache.go",
+      "id": "reserve-page",
+      "test": "TestReservation"
+    },
+    {
+      "after": "defer func() {}()",
+      "before": "defer close(transfer.received)",
+      "file": "polaris/internal/server/stream.go",
+      "id": "receive-retirement",
+      "test": "TestReceive"
+    },
+    {
+      "after": "incoming{packet: packet, err: nil}",
+      "before": "incoming{packet: packet, err: err}",
+      "file": "polaris/internal/server/stream.go",
+      "id": "receive-error",
+      "test": "TestReceive"
+    },
+    {
+      "after": "packet, err := transfer.wire.Recv(); packet = nil",
+      "before": "packet, err := transfer.wire.Recv()",
+      "file": "polaris/internal/server/stream.go",
+      "id": "receive-packet",
+      "test": "TestReceive"
+    },
+    {
+      "after": "case <-make(chan struct{}):\n\t\t\treturn\n\t\t}\n\t\tif err != nil",
+      "before": "case <-transfer.ctx.Done():\n\t\t\treturn\n\t\t}\n\t\tif err != nil",
+      "file": "polaris/internal/server/stream.go",
+      "id": "receive-cancel",
+      "test": "TestReceive"
+    },
+    {
+      "after": "if err != nil && false {\n\t\t\treturn\n\t\t}\n\t}\n}\n\n// next",
+      "before": "if err != nil {\n\t\t\treturn\n\t\t}\n\t}\n}\n\n// next",
+      "file": "polaris/internal/server/stream.go",
+      "id": "receive-terminal",
+      "test": "TestReceive"
+    },
+    {
+      "after": "if false && proto.Size(page.Scope)+32+cost > transfer.maximum {",
+      "before": "if proto.Size(page.Scope)+32+cost > transfer.maximum {",
+      "file": "polaris/internal/server/stream.go",
+      "id": "fallback-frame",
+      "test": "TestFallback"
+    },
+    {
+      "after": "Version: change.Version",
+      "before": "Version: changes[len(changes)-1].Version",
+      "file": "polaris/internal/server/stream.go",
+      "id": "fallback-target",
+      "test": "TestFallback"
+    }
+  ],
+  "package": "./polaris/internal/server",
+  "scope": "Additional targeted preparation, receive-retirement and atomic snapshot-fallback checks. These extend, never replace, the preceding 122 mutations; they do not qualify all Server decisions, subscription-order schedules or release acceptance.",
+  "version": 1
+}

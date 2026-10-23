@@ -1,0 +1,125 @@
+// Verify discovery across the captured-inventory boundary using one test-only scheduling checkpoint.
+package server
+
+import (
+	"context"
+	"errors"
+	"reflect"
+	"testing"
+	"testing/synctest"
+	"time"
+
+	"google.golang.org/protobuf/proto"
+
+	"github.com/eosforge/astra/internal/generated/comet"
+	"github.com/eosforge/astra/internal/generated/polaris"
+	"github.com/eosforge/astra/polaris/internal/storage"
+)
+
+// TestSubscription requires discovery of a new scope committed after the initial inventory was captured.
+func TestSubscription(t *testing.T) {
+	system := environment(t, storage.Default())
+	synctest.Test(t, func(t *testing.T) {
+		// Commit replaces the change channel inside this bubble; close it here after the protocol worker retires.
+		// The environment's later Close is idempotent, while its real network resources remain outside virtual time.
+		defer func() {
+			if err := system.store.Close(); err != nil {
+				t.Error("inventory-boundary store did not close", err)
+			}
+		}()
+		ctx, cancel := context.WithCancel(t.Context())
+		wire := &dialogue{capture: capture{ctx: ctx}}
+		state := &transfer{owner: system.streams, wire: wire, ctx: ctx, input: make(chan incoming, 1), wake: make(chan struct{}, 1), maximum: 8 << 20, sent: make(map[storage.Scope]storage.Version), installed: make(map[storage.Scope]storage.Version)}
+		scope := storage.Scope{Sector: "s", Spectrum: "new"}
+		position := &comet.Scope{Sector: []byte("s"), Spectrum: []byte("new")}
+		calls := 0
+		var cause error
+		// The overlay invokes this callback after List returns, outside the storage transaction and its locks.
+		inventoryPoint = func(current *transfer) {
+			if current != state {
+				return
+			}
+			calls++
+			_, cause = system.store.Commit(ctx, scope, storage.Change{Version: 1, Key: "key", Value: []byte("durable")})
+		}
+		wire.step = func(packet *polaris.Packet) error {
+			var response *polaris.Packet
+			switch {
+			case packet.GetHello() != nil:
+				response = &polaris.Packet{Body: &polaris.Packet_Inventory{Inventory: &polaris.Inventory{Complete: true}}}
+			case packet.GetSnapshot() != nil:
+				response = &polaris.Packet{Body: &polaris.Packet_Acknowledged{Acknowledged: &polaris.Position{Scope: position, Version: 1}}}
+			case packet.GetPlan() != nil, packet.GetReady() != nil:
+			default:
+				return errors.New("unexpected frame in inventory-boundary schedule")
+			}
+			if response != nil {
+				select {
+				case state.input <- incoming{packet: response}:
+				default:
+					return errors.New("inventory-boundary peer exceeded its one-frame queue")
+				}
+			}
+			return nil
+		}
+		state.input <- incoming{packet: &polaris.Packet{Body: &polaris.Packet_Hello{Hello: system.star}}}
+		done := make(chan struct{})
+		var result error
+		go func() {
+			defer close(done)
+			result = state.run()
+		}()
+		defer func() {
+			cancel()
+			<-done
+			inventoryPoint = nil
+			if !errors.Is(result, context.Canceled) || len(system.streams.active) != 0 || system.streams.authority.cache.used != 0 {
+				t.Error("inventory-boundary stream did not release its owned state", result)
+			}
+		}()
+		start := time.Now()
+		synctest.Wait()
+		if calls != 1 || cause != nil || time.Since(start) != 0 {
+			t.Fatal("inventory checkpoint did not complete its single durable commit without timer advancement", calls, cause)
+		}
+		select {
+		case <-done:
+			t.Fatal("stream ended before the inventory-boundary discovery check", result)
+		default:
+		}
+		expected := []*polaris.Packet{
+			{Body: &polaris.Packet_Hello{Hello: system.node.Hello()}},
+			{Body: &polaris.Packet_Plan{Plan: &polaris.Inventory{Complete: true}}},
+			{Body: &polaris.Packet_Ready{Ready: &comet.Empty{}}},
+			{Body: &polaris.Packet_Snapshot{Snapshot: &polaris.Snapshot{Scope: position, Version: proto.Uint64(1), Complete: true, Entries: []*comet.AlmanacChange{{Key: "key", Action: &comet.AlmanacChange_Value{Value: []byte("durable")}}}}}},
+		}
+		if len(wire.packets) != 3 && len(wire.packets) != 4 {
+			t.Fatal("inventory-boundary transcript has an unexpected frame count", len(wire.packets))
+		}
+		for index, packet := range expected[:len(wire.packets)] {
+			if !proto.Equal(packet, wire.packets[index]) {
+				t.Fatal("inventory-boundary delivery changed its frozen plan, readiness or complete contents", index)
+			}
+		}
+		if len(wire.packets) == 3 {
+			t.Fatal("scope committed after inventory capture was lost before subscription")
+		}
+		if len(state.plan) != 0 || state.sent[scope] != 1 || state.installed[scope] != 1 || len(state.credits) != 0 || state.bytes != 0 {
+			t.Fatal("new scope changed the frozen initial plan or retained acknowledged credit")
+		}
+		cancel()
+		<-done
+		if !errors.Is(result, context.Canceled) || len(system.streams.active) != 0 || system.streams.authority.cache.used != 0 {
+			t.Fatal("inventory-boundary stream did not release its owned state", result)
+		}
+		actual, err := system.store.Load(t.Context(), scope)
+		want := storage.Snapshot{Position: storage.Position{Scope: scope, Version: 1}, Records: []storage.Record{{Key: "key", Value: []byte("durable")}}}
+		if err != nil || !reflect.DeepEqual(actual, want) {
+			t.Fatal("discovery changed the durable commit", err)
+		}
+		if err := system.store.Close(); err != nil {
+			t.Fatal("inventory-boundary store did not close", err)
+		}
+		t.Log("SUBSCRIPTION-SCHEDULE complete 1")
+	})
+}
